@@ -1,0 +1,43 @@
+
+body {
+    margin: 0;
+    background-color: var(--bgPage);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+h1, h3, ul li{
+    font-family: "Quicksand", sans-serif;
+}
+
+h2 {
+    font-family: "Quicksand", sans-serif;
+    font-weight: lighter;
+}
+
+p {
+    font-family: "Archivo", sans-serif;
+}
+
+:root {
+    --s: 600px;
+    --m: 800px;
+    --l: 1100;
+
+    --dark: #030C15;
+    --darkblue: #0D1D29;
+    --lightteal: #29ABAD;
+    --coral: #F75B4B;
+    --grey: #787878;
+
+    --bgDark: var(--dark);
+    --bgMenu: var(--darkblue);
+    --bgPage: var(--darkblue);
+    --textLight: white;
+    --textDark: black;
+    --primAccent: var(--lightteal);
+    --secAccent: var(--coral);
+    --cardBg: white;
+}

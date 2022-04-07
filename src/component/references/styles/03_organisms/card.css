@@ -1,0 +1,9 @@
+.item {
+    border-radius: 1.5em;
+    background-color: var(--cardBg);
+    z-index: 1;
+}
+
+.card-content {
+
+}

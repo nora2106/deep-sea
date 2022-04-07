@@ -1,0 +1,46 @@
+.menu-wrapper{
+    display: none;
+}
+
+@media(min-width: 1000px) {
+
+    .menu-wrapper {
+        position: fixed;
+        z-index: 4;
+        border-bottom: 1px solid black;
+        background-color: grey;
+        height: 8em;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .main-menu-list{
+
+    }
+
+    .main-menu-list li {
+        display: inline;
+        background-color: transparent;
+        font-size: 2vw;
+        color: white;
+        margin: 1em;
+    }
+
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .sub-list {
+        position: absolute;
+        background-color: grey;
+        padding: 0;
+    }
+
+    .sub-list li {
+        display: block;
+        font-size: 1.5vw;
+    }
+}

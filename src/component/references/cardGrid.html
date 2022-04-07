@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Archivo">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="styles/04_templates/grid.css">
+    <link rel="stylesheet" href="styles/04_templates/style.css">
+    <link rel="stylesheet" href="styles/03_organisms/header.css">
+    <link rel="stylesheet" href="styles/03_organisms/footer.css">
+    <link rel="stylesheet" href="styles/03_organisms/card.css">
+    <link rel="stylesheet" href="styles/02_molecules/mobileMenu.css">
+    <link rel="stylesheet" href="styles/02_molecules/mainMenu.css">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div class="overlay">
+    <div></div>
+</div>
+<div class="header">
+    <span id="closeBtn" class="material-icons md-24" onclick="closeMenu()">close</span>
+    <span id="menuBtn" class="material-icons" onclick="openMenu()">menu</span>
+
+<div class="mobile-menu">
+    <p class="logo">deep</p>
+    <p class="logo">sea</p>
+    <input placeholder="Search" type="text" id="mobileSearch">
+    <label for="mobileSearch"></label>
+    <ul class="menu-list">
+        <li>Homepage</li>
+        <li>Deep Sea Map</li>
+        <li>Discover Creatures</li>
+            <ul class="sub-list-mobile">
+                <li>SubPage 1</li>
+                <li>Subpage 2</li>
+                <li>Subpage 3</li>
+            </ul>
+    </ul>
+</div>
+    <div class="menu-wrapper">
+<!--        <p class="logo">deep</p>-->
+<!--        <p class="logo">sea</p>-->
+        <ul class="main-menu-list">
+            <li>Homepage</li>
+            <li>Deep Sea Map</li>
+            <div  class="dropdown">
+            <li>Discover Creatures</li>
+            <ul class="sub-list">
+                <li>SubPage 1</li>
+                <li>Subpage 2</li>
+                <li>Subpage 3</li>
+            </ul>
+            </div>
+        </ul>
+        <input value="Search" type="text" id="desktopSearch">
+        <label for="desktopSearch"></label>
+    </div>
+</div>
+
+<div class="content">
+    <div class="container">
+        <div class="item">
+            <img class="card-img">
+            <div class="card-content">
+                <h2>Name</h2>
+                <h3>Biologial name</h3>
+                <div class="info-icons">
+
+                </div>
+                <p>information text</p>
+                <button class="read-more-btn"></button>
+            </div>
+        </div>
+        <div class="item">
+
+        </div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+    </div>
+</div>
+<div class="footer"></div>
+</body>
+<script rel="script" src="../scripts/menu.js"></script>
+</html>
