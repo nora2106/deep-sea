@@ -10,7 +10,7 @@ const Container = styled('div')`
 function Header() {
     return (
         <Container>
-             {/*<MobileMenu/>*/}
+             <MobileMenu/>
             <Menu/>
             {/*<p>Tesdwt</p>*/}
         </Container>

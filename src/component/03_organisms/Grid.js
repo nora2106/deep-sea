@@ -9,23 +9,23 @@ const Container = styled('div')`
   grid-template-columns:  repeat(1, 1fr);
   grid-auto-rows: 100vw;
 
-  @media (min-width: 600px) {
+  @media (min-width: ${(props) => props.theme.breakpoints.s}) {
       grid-template-columns:  repeat(2, 1fr);
       grid-auto-rows: 50vw;
 
   }
 
-  @media (min-width: 1000px) {
+  @media (min-width: ${(props) => props.theme.breakpoints.m}) {
       grid-template-columns:  repeat(3, 1fr);
       grid-auto-rows: 35vw;
+    padding: 3.5em;
   }
 
-  @media (min-width: 1400px) {
-      width: 90%;
-      padding: 5em;
-    grid-template-columns:  repeat(4, 1fr);
-      grid-auto-rows: 25vw;
-      gap: 2.7em;
+  @media (min-width: ${(props) => props.theme.breakpoints.l}) {
+      //width: 90%;
+      padding: 4em;
+      grid-template-columns:  repeat(4, 1fr);
+      grid-auto-rows: 26vw;
   }
 `;
 
