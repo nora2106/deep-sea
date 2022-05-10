@@ -1,14 +1,21 @@
 import styled from 'styled-components';
+import React from "react";
 import MobileMenu from "../02_molecules/MobileMenu";
-import React, {Component} from "react";
+import Menu from "../02_molecules/Menu";
 
 const Container = styled('div')`
     
 `;
 
-export default function Header(){
+function Header() {
     return (
-        <p>Tessst</p>
+        <Container>
+             {/*<MobileMenu/>*/}
+            <Menu/>
+            {/*<p>Tesdwt</p>*/}
+        </Container>
     );
 }
+
+export default Header;
 

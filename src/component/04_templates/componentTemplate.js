@@ -8,7 +8,6 @@ const Container = styled('div')`
 function Name() {
     return (
         <Container>
-
         </Container>
     );
 }
