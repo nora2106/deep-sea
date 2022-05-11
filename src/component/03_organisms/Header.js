@@ -11,8 +11,7 @@ function Header() {
     return (
         <Container>
              <MobileMenu/>
-            <Menu/>
-            {/*<p>Tesdwt</p>*/}
+             <Menu/>
         </Container>
     );
 }
