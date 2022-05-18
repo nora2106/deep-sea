@@ -14,14 +14,6 @@ const Container = styled('div')`
     margin: 0 3vw 0 3vw;
 
   }
-  
-  .list-container {
-  }
-
-  #lastItem:hover{
-    color: ${(props) => props.theme.colors.textHighlight};
-    
-  }
 
 `;
 
@@ -33,8 +25,20 @@ const Item = styled('h2')`
 
   @media(min-width: ${(props) => props.theme.breakpoints.m}){
     border: none;
-    padding: 0 2vw 0 2vw;
+    padding: 0 1.5vw 0 1.5vw;
     line-height: 50px;
+
+    :hover {
+      //color: ${(props) => props.theme.colors.textHighlight};
+    }
+    
+    :last-child:hover {
+      color: red;
+    }
+  }
+  
+  :hover {
+    cursor: pointer;
   }
   
 
@@ -49,10 +53,26 @@ const SubItem = styled(Item)`
     color: ${(props) => props.theme.colors.textDark};
     //padding-left: 10px;
     display: block;
-    padding: 0;
-    margin: 0 0 20px;
+    padding: 0 0 20px;
+    margin: 0;
+    background-color: ${(props) => props.theme.colors.textLight};
+    
+    :first-child {
+      border-top-right-radius: 10px;
+      border-top-left-radius: 10px;
+      padding-top: 5px;
+    }
+    :last-child {
+      border-bottom-right-radius: 10px;
+      border-bottom-left-radius: 10px;
+      padding-bottom: 25px;
+    }
 
+    :hover {
+      background-color: grey;
+    }
   }
+  
 
 `;
 
@@ -62,15 +82,13 @@ const SubMenu = styled('div')`
   border-bottom: 2px solid ${(props) => props.theme.colors.bgDark};
 
   @media(min-width: ${(props) => props.theme.breakpoints.m}){
-    background-color: ${(props) => props.theme.colors.textLight};
     border-radius: 10px;
     position: absolute;
-    display: block;
+    display: none;
     border: none;
     text-align: center;
     width: 250px;
     right: 5%;
-    padding: 10px 0 10px 0;
     box-shadow: 8px 8px 8px 2px rgba(0, 0, 0, 0.4);
   }
   
@@ -90,15 +108,16 @@ const SubButton = styled('button')`
 `;
 
 function MenuList() {
+
     return (
         <Container id="container">
             <Item>Homepage</Item>
             <Item id="test">Deep Sea Map</Item>
-            <div onMouseEnter={openSubMenu} onMouseLeave={closeSubMenu} className="list-container">
-                <Item  id="lastItem">Discover Creatures
-                    <SubButton onClick={toggleMobileMenu} >v</SubButton>
+            <div className="list-container">
+                <Item onMouseEnter={openSubMenu} onMouseLeave={closeSubMenu} id="lastItem">Discover Creatures
+                    <SubButton onClick={toggleSubMenu} >v</SubButton>
                 </Item>
-                <SubMenu className="subMenu">
+                <SubMenu className="sub-menu">
                     <SubItem>Option</SubItem>
                     <SubItem>Option</SubItem>
                     <SubItem>Option</SubItem>
@@ -108,31 +127,35 @@ function MenuList() {
     );
 }
 
-function toggleMobileMenu(){
+function toggleSubMenu(){
     let subMenu = document.querySelector(".subMenu")
-    if(subMenu.style.display === "none") {
-        subMenu.style.display = "block";
 
-    }
-    else {
-        subMenu.style.display = "none";
-        console.log("toggle");
+        if(subMenu.style.display === "none") {
+            subMenu.style.display = "block";
 
-    }
+        }
+
+        else {
+            subMenu.style.display = "none";
+
+        }
 }
 
 function openSubMenu(){
-    let subMenu = document.querySelectorAll(".subMenu");
-    subMenu.forEach(subMenu => {
-        subMenu.style.display = "block";
-    })
+    let mobileMenu = document.querySelector(".mobile-menu");
+    let subMenu = document.querySelector(".subMenu")[1];
+    console.log(subMenu);
+        // subMenu.forEach(subMenu => {
+        //     subMenu.style.display = "block";
+        // })
 }
 
 function closeSubMenu(){
     let subMenu = document.querySelectorAll(".subMenu");
-    subMenu.forEach(subMenu => {
-        subMenu.style.display = "none";
-    })
+
+        // subMenu.forEach(subMenu => {
+        //     subMenu.style.display = "none";
+        // })
 }
 
 

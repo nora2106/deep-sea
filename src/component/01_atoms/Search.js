@@ -17,9 +17,9 @@ const Container = styled('div')`
   @media(min-width: ${(props) => props.theme.breakpoints.m}){
     flex-direction: row-reverse;
     height: 40px;
-    border-radius: 10px;
+    border-radius: 12px;
     padding: 5px;
-    width: 200px;
+    width: 250px;
 
   }
 `;
