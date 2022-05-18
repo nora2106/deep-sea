@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Icon from "./Icon";
 
 const Container = styled('div')`
   background-color: white;
@@ -8,7 +9,10 @@ const Container = styled('div')`
   z-index: 2;
   border-radius: 1em;
 
-  
+  .icons {
+    display: flex;
+    justify-content: center;
+  }
 `;
 
 
@@ -39,6 +43,10 @@ function CardContent() {
                 <Name>Giant Phantom Jelly</Name>
                 <SubName>Stygiomedusa gigantea</SubName>
                 <div className="icons">
+                    <Icon/>
+                    <Icon/>
+                    <Icon/>
+                    <Icon/>
                 </div>
             <hr/>
             <Text>Text</Text>

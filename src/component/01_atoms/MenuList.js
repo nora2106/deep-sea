@@ -7,13 +7,14 @@ const Container = styled('div')`
   position: relative;
   margin-top: 50px;
   border-top: 2px solid ${(props) => props.theme.colors.bgDark};
-  
+  order: 3;
 
 
   @media(min-width: ${(props) => props.theme.breakpoints.m}){
     display: flex;
     border: none;
     margin: 0 3vw 0 3vw;
+    order: 2;
     
     #lastItem:hover #subMenu {
       display: block;
@@ -26,7 +27,7 @@ const Item = styled('h2')`
   color: ${(props) => props.theme.colors.textLight};
   height: 50px;
   border-bottom: 2px solid ${(props) => props.theme.colors.bgDark};
-  padding-left: 8vw;
+  text-indent: 20px;
 
   @media(min-width: ${(props) => props.theme.breakpoints.m}){
     border: none;
@@ -48,15 +49,15 @@ const Item = styled('h2')`
 
 const SubItem = styled(Item)`
   height: 30px;
-  padding-left: 15vw;
+  padding-left: 8vw;
   border: none;
+  font-size: 18px;
 
   @media(min-width: ${(props) => props.theme.breakpoints.m}){
     color: ${(props) => props.theme.colors.textDark};
     padding: 0 0 20px;
     margin: 0;
     background-color: ${(props) => props.theme.colors.textLight};
-    font-size: 18px;
     
     :first-child {
       border-top-right-radius: 10px;
@@ -81,6 +82,7 @@ const SubMenu = styled('div')`
   color: ${(props) => props.theme.colors.textLight};
   border-bottom: 2px solid ${(props) => props.theme.colors.bgDark};
   display: none;
+  padding-top: 20px;
   
   @media(min-width: ${(props) => props.theme.breakpoints.m}){
     border-radius: 10px;
@@ -114,8 +116,8 @@ function MenuList() {
             <Item>Homepage</Item>
             <Item id="test">Deep Sea Map</Item>
             <div className="list-container">
-                <Item id="lastItem">Discover Creatures
-                    <SubButton onClick={toggleSubMenu} >v</SubButton>
+                <Item onClick={toggleSubMenu} id="lastItem">Discover Creatures
+                    <SubButton  >v</SubButton>
                 <SubMenu id="subMenu">
                     <SubItem>Option</SubItem>
                     <SubItem>Option</SubItem>

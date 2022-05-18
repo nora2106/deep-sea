@@ -20,7 +20,9 @@ const Container = styled('div')`
     height: 100%;
     right: 0;
     background-color: ${(props) => props.theme.colors.bgDarker};
-
+    display:flex;
+    flex-direction: column;
+    
     div {
       visibility: visible;
     }
@@ -69,10 +71,10 @@ const MainMenu = styled('div')`
   top: 0;
 
 
-
   div {
     visibility: hidden;
   }
+
 
   @media (min-width: ${(props) => props.theme.breakpoints.m}) {
     background-color: ${(props) => props.theme.colors.bgDarker};
@@ -87,11 +89,7 @@ const MainMenu = styled('div')`
     div {
       visibility: visible;
     }
-    
-    
   }
-  
-
 `;
 
 const MenuButton = styled('button')`

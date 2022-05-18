@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const Container = styled('div')`
-    
+    order: 1;
     p{
       color: white;
       text-align: center;

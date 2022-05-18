@@ -6,6 +6,7 @@ const Container = styled('div')`
   flex-direction: row;
   justify-content: space-between;
   text-align: right;
+  order: 2;  
   
   p {
     color: white;
@@ -20,7 +21,7 @@ const Container = styled('div')`
     border-radius: 12px;
     padding: 5px;
     width: 250px;
-
+    order: 3;
   }
 `;
 
