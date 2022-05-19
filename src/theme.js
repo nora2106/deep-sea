@@ -4,6 +4,7 @@ export const colors = {
     bgDark: '#0D1D29',
     primAccent: '#29ABAD',
     secAccent: '#F75B4B',
+    secAccentHighlight: '#ff735c',
     textHighlight: '#787878',
     cardBg: '#FFF',
     pageBg: '#0D1D29',

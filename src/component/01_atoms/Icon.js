@@ -9,23 +9,23 @@ const Container = styled('div')`
 
 const Image = styled('div')`
   background-color: ${(props) => props.theme.colors.primAccent};
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   border-radius: 100%;
-  margin-left: .5em;
-  margin-right: .5em;
+  margin-left: .8em;
+  margin-right: .8em;
   margin-bottom: -8px;
   
   .icon {
-    width: 60%;
-    height: 60%;
+    width: 55%;
+    height: 55%;
     padding: 10px;
   }
 
 `;
 
 const Text = styled('p')`
-    font-size: 11px;
+  font-size: 11px;
   text-align: center;
   line-height: 12px;
 `;

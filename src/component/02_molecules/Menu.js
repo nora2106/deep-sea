@@ -2,18 +2,13 @@ import styled from 'styled-components';
 import Search from "../01_atoms/Search";
 import Logo from "../01_atoms/Logo";
 import MenuList from "../01_atoms/MenuList";
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Container = styled('div')`
   height: 100vh;
   width: 100%;
   position: absolute;
-
-  .teaser-menu {
-    height: 100px;
-    background-color: ${(props) => props.theme.colors.bgDarker};
-    z-index: 3;
-  }
+  
 
   .show {
     width: 70%;
@@ -22,6 +17,7 @@ const Container = styled('div')`
     background-color: ${(props) => props.theme.colors.bgDarker};
     display:flex;
     flex-direction: column;
+    pointer-events: all;
     
     div {
       visibility: visible;
@@ -51,10 +47,12 @@ const Overlay = styled('div')`
   height: 100%;
   position: absolute;
   z-index: 3;
+  pointer-events: none;
 
   .top-bar {
     background-color: ${(props) => props.theme.colors.bgDarker};
-    height: 100px;
+    height: 85px;
+    box-shadow:  -10px 12px 18px 5px rgba(0, 0, 0, 0.3);
   }
   
   @media (min-width: ${(props) => props.theme.breakpoints.m}) {
@@ -69,7 +67,7 @@ const MainMenu = styled('div')`
   z-index: 3;
   position: absolute;
   top: 0;
-
+  pointer-events: none;
 
   div {
     visibility: hidden;
@@ -92,16 +90,20 @@ const MainMenu = styled('div')`
   }
 `;
 
-const MenuButton = styled('button')`
-  width: 30px;
-  height: 30px;
+const MenuButton = styled('div')`
   z-index: 4;
   position: fixed;
-  background-color: white;
-
+  background-color: transparent;
+  
   
   @media (min-width: ${(props) => props.theme.breakpoints.m}) {
     display: none;
+  }
+  
+  .icon {
+    height: 40px;
+    width: 40px;
+    padding: 1em;
   }
 
 `;
@@ -113,13 +115,15 @@ function Menu() {
             <Overlay className="overlay">
                 <div className="top-bar"/>
             </Overlay>
-            <MenuButton onClick={toggleMenu}/>
+            <MenuButton onClick={toggleMenu}>
+                <FontAwesomeIcon className="icon" icon="fa-solid fa-bars" inverse />
+                {/*<FontAwesomeIcon icon={solid('coffee')} />*/}
+            </MenuButton>
             <MainMenu className="menu">
                 <Logo/>
                 <MenuList/>
                 <Search/>
             </MainMenu>
-
 
         </Container>
     );

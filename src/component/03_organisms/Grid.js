@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import Card from "../02_molecules/Card";
 
 const Container = styled('div')`
-  padding: 3em;
-  margin: 0 auto;
+  padding: 130px 3em 0 3em;
+  //margin: 0 auto;
   display: grid;
   gap: 4rem;
   grid-template-columns:  repeat(1, 1fr);

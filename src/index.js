@@ -7,7 +7,11 @@ import LandingPage from "./component/05_pages/LandingPage";
 import DefaultGrid from './component/05_pages/DefaultGrid'
 import {ThemeProvider} from "styled-components";
 import {colors, breakpoints} from "./theme";
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+import { faTwitter, faFontAwesome } from '@fortawesome/free-brands-svg-icons'
 
+library.add(fas, faTwitter, faFontAwesome)
 
 const theme = {
     colors,

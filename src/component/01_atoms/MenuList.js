@@ -8,7 +8,10 @@ const Container = styled('div')`
   margin-top: 50px;
   border-top: 2px solid ${(props) => props.theme.colors.bgDark};
   order: 3;
-
+  
+  .sub-show {
+    display: block;
+  }
 
   @media(min-width: ${(props) => props.theme.breakpoints.m}){
     display: flex;
@@ -116,8 +119,8 @@ function MenuList() {
             <Item>Homepage</Item>
             <Item id="test">Deep Sea Map</Item>
             <div className="list-container">
-                <Item onClick={toggleSubMenu} id="lastItem">Discover Creatures
-                    <SubButton  >v</SubButton>
+                <Item  id="lastItem">Discover Species
+                    <SubButton onClick={toggleSubMenu} id="subButton" >v</SubButton>
                 <SubMenu id="subMenu">
                     <SubItem>Option</SubItem>
                     <SubItem>Option</SubItem>
@@ -133,12 +136,12 @@ function MenuList() {
 function toggleSubMenu(){
     let subMenu = document.querySelector("#subMenu")
 
-        if(subMenu.style.display === "none") {
-            subMenu.style.display = "block";
+        if(subMenu.classList.contains("sub-show")) {
+            subMenu.classList.remove("sub-show");
         }
 
         else {
-            subMenu.style.display = "none";
+            subMenu.classList.add("sub-show");
         }
 }
 
