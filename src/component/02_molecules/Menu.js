@@ -37,7 +37,7 @@ const Container = styled('div')`
   .darken {
     background-color: ${(props) => props.theme.colors.bgDarker};
     opacity: 80%;
-    
+    pointer-events: none;
   }
 
 `;
@@ -57,6 +57,7 @@ const Overlay = styled('div')`
   
   @media (min-width: ${(props) => props.theme.breakpoints.m}) {
     display: none;
+    pointer-events: none;
   }
 `;
 
@@ -83,6 +84,7 @@ const MainMenu = styled('div')`
     flex-direction: row;
     align-items: center;
     justify-content: space-evenly;
+    pointer-events: all;
     
     div {
       visibility: visible;

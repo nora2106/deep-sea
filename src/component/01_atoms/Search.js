@@ -1,18 +1,25 @@
 import styled from 'styled-components';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 
 const Container = styled('div')`
   border: 2px solid white;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   text-align: right;
   order: 2;  
   
-  p {
+  .icon {
     color: white;
-    padding-left: 10px;
-    line-height: 100%;
+    width: 1.8em;
+    height: 1.8em;
+    margin-left: 10px;
 
+    @media(min-width: ${(props) => props.theme.breakpoints.m}){
+      margin-right: 10px;
+    }
   }
 
   @media(min-width: ${(props) => props.theme.breakpoints.m}){
@@ -20,7 +27,7 @@ const Container = styled('div')`
     height: 40px;
     border-radius: 12px;
     padding: 5px;
-    width: 250px;
+    width: 15vw;
     order: 3;
   }
 `;
@@ -41,7 +48,7 @@ const SearchInput = styled('input')`
 function Search() {
     return (
         <Container>
-            <p>Icon</p>
+            <FontAwesomeIcon icon="search" className="icon"/>
             <SearchInput placeholder="Search" type="text"/>
         </Container>
     );

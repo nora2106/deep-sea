@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {FaGlobeAmericas} from 'react-icons/fa'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Container = styled('div')`
   .btn-icon {
@@ -32,7 +32,7 @@ function MapButton() {
     return (
         <Container>
             <Button>
-                <FaGlobeAmericas className="btn-icon"/>
+                <FontAwesomeIcon className="btn-icon" icon="globe-americas"/>
             </Button>
         </Container>
     );

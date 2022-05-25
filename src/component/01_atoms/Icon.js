@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-// import Fish from '@material-ui/icons/Fastfood';
-import {FaFish} from "react-icons/fa";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Container = styled('div')`
   margin-bottom: -8px;
@@ -34,7 +33,7 @@ function Icon() {
     return (
         <Container>
             <Image>
-                <FaFish className="icon"/>
+                <FontAwesomeIcon className="icon" icon="fish"/>
             </Image>
             <Text>Title</Text>
         </Container>

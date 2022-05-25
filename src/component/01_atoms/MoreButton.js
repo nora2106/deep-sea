@@ -1,10 +1,11 @@
 import styled from 'styled-components';
-import {FaArrowDown} from 'react-icons/fa'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 
 const Container = styled('div')`
   .btn-icon {
-    width: 50%;
-    height: 50%;
+    width: 55%;
+    height: 55%;
     padding: 8px;
   }
   width: 100%;
@@ -15,12 +16,12 @@ const Container = styled('div')`
 `;
 
 const Button = styled('btn')`
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
   background-color: ${(props) => props.theme.colors.secAccent};
   border-radius: 100px;
   position: absolute;
-  bottom: -20px;
+  bottom: -15px;
   box-shadow:  8px 6px 10px 5px rgba(0, 0, 0, 0.3);
   
   :hover {
@@ -34,7 +35,7 @@ function MoreButton() {
     return (
         <Container>
             <Button>
-                <FaArrowDown className="btn-icon"/>
+                <FontAwesomeIcon icon="arrow-down" className="btn-icon"/>
             </Button>
         </Container>
     );

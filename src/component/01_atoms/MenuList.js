@@ -32,15 +32,26 @@ const Item = styled('h2')`
   border-bottom: 2px solid ${(props) => props.theme.colors.bgDark};
   text-indent: 20px;
 
+  :hover {
+    color: ${(props) => props.theme.colors.primAccent};
+  }
+
   @media(min-width: ${(props) => props.theme.breakpoints.m}){
     border: none;
-    padding: 0 1.5vw 0 1.5vw;
+    padding: 0 1vw 0 1vw;
     line-height: 50px;
+    font-size: 20px;
 
-    :hover {
-      color: ${(props) => props.theme.colors.textHighlight};
-    }
     
+  }
+
+  @media(min-width: ${(props) => props.theme.breakpoints.l}){
+    padding: 0 1.5vw 0 1.5vw;
+    font-size: 30px;
+  }
+
+  @media(min-width: ${(props) => props.theme.breakpoints.xl}){
+    font-size: 34px;
   }
   
   :hover {
@@ -57,27 +68,43 @@ const SubItem = styled(Item)`
   font-size: 18px;
 
   @media(min-width: ${(props) => props.theme.breakpoints.m}){
-    color: ${(props) => props.theme.colors.textDark};
-    padding: 0 0 20px;
+    color: ${(props) => props.theme.colors.textHighlight};
+    padding: 8px 0 8px 0;
     margin: 0;
+    line-height: 30px;
     background-color: ${(props) => props.theme.colors.textLight};
+    font-size: 18px;
+    text-align: center;
     
     :first-child {
       border-top-right-radius: 10px;
       border-top-left-radius: 10px;
-      padding-top: 5px;
+      padding-top: 10px;
     }
+    
     :last-child {
       border-bottom-right-radius: 10px;
       border-bottom-left-radius: 10px;
-      padding-bottom: 25px;
+      padding-bottom: 10px;
     }
 
     :hover {
-      background-color: grey;
+      color: ${(props) => props.theme.colors.textDark};
     }
   }
-  
+  @media(min-width: ${(props) => props.theme.breakpoints.l}){
+    font-size: 24px;
+    padding: 10px 0 10px 0;
+
+    :first-child {
+      padding-top: 25px;
+    }
+    
+    :last-child {
+      padding-bottom: 25px;
+    }
+  }
+
 
 `;
 
@@ -92,12 +119,14 @@ const SubMenu = styled('div')`
     position: absolute;
     border: none;
     text-align: center;
-    width: 250px;
+    width: 30%;
     right: 5%;
     box-shadow: 8px 8px 8px 2px rgba(0, 0, 0, 0.4);
   }
   
-  
+  @media(min-width: ${(props) => props.theme.breakpoints.l}){
+    
+  }
 `;
 
 const SubButton = styled('button')`
@@ -122,9 +151,9 @@ function MenuList() {
                 <Item  id="lastItem">Discover Species
                     <SubButton onClick={toggleSubMenu} id="subButton" >v</SubButton>
                 <SubMenu id="subMenu">
-                    <SubItem>Option</SubItem>
-                    <SubItem>Option</SubItem>
-                    <SubItem>Option</SubItem>
+                    <SubItem>Option 1</SubItem>
+                    <SubItem>Option 2</SubItem>
+                    <SubItem>Option 3</SubItem>
                 </SubMenu>
                 </Item>
 

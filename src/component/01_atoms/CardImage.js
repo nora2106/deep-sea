@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import img from '../../assets/img/img.png'
 import MapButton from "./MapButton";
-import {FaGlobeAmericas} from "react-icons/fa";
 
 const Container = styled('div')`
   height: 45%;

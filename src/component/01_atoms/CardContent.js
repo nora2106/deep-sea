@@ -13,6 +13,7 @@ const Container = styled('div')`
   .icons {
     display: flex;
     justify-content: center;
+    margin-top: 10px;
   }
 `;
 
@@ -29,16 +30,28 @@ const Name = styled('h2')`
 const SubName = styled('h3')`
   margin-left: 10px;
   font-size: 13px;
-  margin-top: -10px;
+  margin-top: -8px;
   font-weight: 300;
 `;
 
 const Text = styled('p')`
-  font-size: 11px;
+  font-size: 2vw;
   padding-left: 2%;
   padding-right: 2%;
   overflow: auto;
   font-weight: normal;
+
+  @media (min-width: ${(props) => props.theme.breakpoints.s}) {
+    font-size: 1.5vw;
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.m}) {
+      font-size: .8vw;
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.l}) {
+      font-size: .7vw;
+  }
 `;
 
 function CardContent() {
