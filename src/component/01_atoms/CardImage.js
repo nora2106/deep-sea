@@ -15,7 +15,8 @@ const Container = styled('div')`
 
   img {
       width: 100%;
-    border-radius: 1em;
+    border-top-left-radius: 1em;
+    border-top-right-radius: 1em;
   }
   
   p {

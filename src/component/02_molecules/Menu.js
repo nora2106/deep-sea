@@ -33,12 +33,7 @@ const Container = styled('div')`
       justify-content: space-evenly;
     }
   }
-
-  .darken {
-    background-color: ${(props) => props.theme.colors.bgDarker};
-    opacity: 80%;
-    pointer-events: none;
-  }
+  
 
 `;
 
@@ -53,6 +48,15 @@ const Overlay = styled('div')`
     background-color: ${(props) => props.theme.colors.bgDarker};
     height: 85px;
     box-shadow:  -10px 12px 18px 5px rgba(0, 0, 0, 0.3);
+  }
+
+  #darken {
+    background-color: ${(props) => props.theme.colors.bgDarker};
+    opacity: 80%;
+    pointer-events: none;
+    height: 100%;
+    width: 100%;
+    display: none;
   }
   
   @media (min-width: ${(props) => props.theme.breakpoints.m}) {
@@ -116,6 +120,7 @@ function Menu() {
         <Container>
             <Overlay className="overlay">
                 <div className="top-bar"/>
+                <div id="darken"/>
             </Overlay>
             <MenuButton onClick={toggleMenu}>
                 <FontAwesomeIcon className="icon" icon="fa-solid fa-bars" inverse />
@@ -134,14 +139,15 @@ function Menu() {
 function toggleMenu() {
     let menu = document.querySelector(".menu");
     let overlay = document.querySelector(".overlay");
+    let darken = document.getElementById("darken");
 
     if(menu.classList.contains("show")) {
         menu.classList.remove("show");
-        overlay.classList.remove("darken");
+        darken.style.display = "none";
     }
     else {
         menu.classList.add("show");
-        overlay.classList.add("darken");
+        darken.style.display = "block";
     }
 
 }

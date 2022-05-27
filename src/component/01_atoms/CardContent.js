@@ -2,6 +2,26 @@ import styled from 'styled-components';
 import Icon from "./Icon";
 import MoreButton from "./MoreButton";
 
+const arthropod = "shrimp"
+const cnidarian = "star-of-life";
+const comb = "circle-node";
+const chordate = "fish-fins";
+const mollusk = "octopus-deploy";
+const worm = "worm";
+const echoniderm = "bacterium";
+
+const sunlight = "sun";
+const twilight = "cloud-sun";
+const midnight = "circle-half-stroke";
+const abyss = "circle-full-stroke";
+const hadal = "snowflake";
+
+const size = "ruler-horizontal"
+
+const carnivore = "drumstick-bite";
+const herbivore = "seedling";
+const detrivore = "bone";
+
 const Container = styled('div')`
   background-color: white;
   height: 55%;
@@ -54,19 +74,76 @@ const Text = styled('p')`
   }
 `;
 
-function CardContent() {
+function CardContent(props) {
+    let icon1 = classIcon();
+    let icon2 = zoneIcon();
+    let icon3 = size;
+    let icon4 = dietIcon();
+
+     function classIcon() {
+        switch (props.class) {
+            default:
+                return chordate;
+            case "Arthropods":
+                return arthropod;
+            case "Cnidarians":
+                return cnidarian;
+            case "Comb jellies":
+                return comb;
+            case "Chordates":
+                return chordate;
+            case "Mollusks":
+                return mollusk;
+            case "Segmented Worms":
+                return worm;
+            case "Echoniderms":
+                return echoniderm;
+        }
+    }
+
+    function zoneIcon() {
+        switch (props.zone) {
+            default:
+                return sunlight;
+            case "Sunlight":
+                return sunlight;
+            case "Twilight":
+                return twilight;
+            case "Midnight":
+                return midnight;
+            case "Abyssal":
+                return abyss;
+            case "Hadal":
+                return hadal;
+
+        }
+    }
+
+    function dietIcon() {
+        switch (props.diet) {
+            default:
+                return carnivore;
+            case "Carnivorous":
+                return carnivore;
+            case "Herbivorous":
+                return herbivore;
+            case "Detrivorous":
+                return detrivore;
+        }
+    }
+
     return (
         <Container>
-                <Name>Giant Phantom Jelly</Name>
-                <SubName>Stygiomedusa gigantea</SubName>
+                <Name>{props.name}</Name>
+                <SubName>{props.subName}</SubName>
                 <div className="icons">
-                    <Icon/>
-                    <Icon/>
-                    <Icon/>
-                    <Icon/>
+                    <Icon icon={icon1} label="Species"/>
+                    <Icon icon={icon2} label="Zone"/>
+                    <Icon icon={icon3} label="Size"/>
+                    <Icon icon={icon4} label="Diet"/>
                 </div>
             <hr/>
-            <Text>Stygiomedusa is a genus of giant deep sea jellyfish in the family Ulmaridae. With only 110 sightings in 110 years, it is a jellyfish that is rarely seen, but believed to be widespread throughout the world, with the exception of the Arctic Ocean. It is thought to be one of the largest invertebrate predators in the deep sea ecosystem. The giant phantom jelly has an umbrella-shaped  bell that can be up to a metre.</Text>
+            <Text>{props.text}</Text>
             <MoreButton/>
         </Container>
     );

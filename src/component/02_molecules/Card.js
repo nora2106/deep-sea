@@ -8,12 +8,13 @@ const Container = styled('div')`
   z-index: 1;
 `;
 
-function Card() {
+function Card(props) {
     return (
         <Container>
             <MapButton/>
             <CardImage/>
-            <CardContent/>
+            <CardContent name={props.name} subName={props.subName} size={props.size}
+                         class={props.class} zone={props.zone} diet={props.diet} text={props.text} />
         </Container>
     );
 }
