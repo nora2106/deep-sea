@@ -33,7 +33,12 @@ const Container = styled('div')`
   .icons {
     display: flex;
     justify-content: center;
-    margin-top: 10px;
+    margin-top: 30px;
+
+    @media (min-width: ${(props) => props.theme.breakpoints.m}) {
+      margin-top: 10px;
+
+    }
   }
 `;
 
@@ -137,14 +142,14 @@ function CardContent(props) {
                 <Name>{props.name}</Name>
                 <SubName>{props.subName}</SubName>
                 <div className="icons">
-                    <Icon icon={icon1} label="Species"/>
-                    <Icon icon={icon2} label="Zone"/>
-                    <Icon icon={icon3} label="Size"/>
-                    <Icon icon={icon4} label="Diet"/>
+                    <Icon icon={icon1} text={props.class} label="Species"/>
+                    <Icon icon={icon2} text={props.zone} label="Zone"/>
+                    <Icon icon={icon3} text={props.size} label="Size"/>
+                    <Icon icon={icon4} text={props.diet} label="Diet"/>
                 </div>
             <hr/>
             <Text>{props.text}</Text>
-            <MoreButton/>
+            {/*<MoreButton/>*/}
         </Container>
     );
 }

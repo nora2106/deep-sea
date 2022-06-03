@@ -7,12 +7,11 @@ const Container = styled('div')`
   background-color: ${(props) => props.theme.colors.bgDark};
 `;
 
-export default function LandingPage(){
+export default function MapMenu(){
     return (
-            <Container>
-                <Header/>
-                <Grid/>
-            </Container>
+        <Container>
+            <Header/>
+        </Container>
     );
 }
 

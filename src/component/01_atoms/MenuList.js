@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import {useEffect} from "react";
+import {Link} from "react-router-dom";
 
 const Container = styled('div')`
   //background-color: ${(props) => props.theme.colors.bgDark};
@@ -24,6 +25,10 @@ const Container = styled('div')`
     }
 
   }
+
+  a {
+    text-decoration: none;
+  }
 `;
 
 const Item = styled('h2')`
@@ -40,9 +45,7 @@ const Item = styled('h2')`
     border: none;
     padding: 0 1vw 0 1vw;
     line-height: 50px;
-    font-size: 20px;
-
-    
+    font-size: 26px;
   }
 
   @media(min-width: ${(props) => props.theme.breakpoints.l}){
@@ -57,6 +60,7 @@ const Item = styled('h2')`
   :hover {
     cursor: pointer;
   }
+
   
 
 `;
@@ -137,18 +141,21 @@ const SubButton = styled('button')`
   border: none;
   font-size: 25px;
 
-  @media(min-width: ${(props) => props.theme.breakpoints.m}){
-  }
 `;
 
 function MenuList() {
 
     return (
         <Container id="container">
-            <Item>Homepage</Item>
-            <Item id="test">Deep Sea Map</Item>
+            <Link to="/">
+                <Item>Homepage</Item>
+            </Link>
+            <Link to="/map">
+                <Item id="test">Deep Sea Map</Item>
+            </Link>
             <div className="list-container">
-                <Item  id="lastItem">Discover Species
+                <Item  id="lastItem">Discover Creatures
+                    {/*<h2>Discover Species</h2>*/}
                     <SubButton onClick={toggleSubMenu} id="subButton" >v</SubButton>
                 <SubMenu id="subMenu">
                     <SubItem>Option 1</SubItem>

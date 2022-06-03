@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import Card from "../02_molecules/Card";
 import { species } from '../04_templates/testData.js'
 import {useEffect, useState} from "react";
+import * as Realm from 'realm-web';
+const app = new Realm.App({ id: 'deep-sea-balmb' });
 
 const Container = styled('div')`
   display: grid;
@@ -32,27 +34,44 @@ const Container = styled('div')`
 `;
 
 function Grid() {
+    const [restaurants, setRestaurants] = useState([])
+
+
+    useEffect(() => {
+        async function getData () {
+            const user = await app.logIn(Realm.Credentials.anonymous())
+            const client = app.currentUser.mongoClient('mongodb-atlas')
+            const rests = client.db('sample_restaurants').collection('restaurants')
+            setRestaurants((await rests.find()).slice(0, 10))
+        }
+
+        getData();
+
+    }, [])
+    console.log(restaurants);
+
+
 
     const fetchSpecies = () => {
         return species;
     }
 
-    console.log(fetchSpecies());
+    // console.log(fetchSpecies());
 
     return (
         <Container>
+
             {species.map(creature => (
                 <Card key={creature.id} name={creature.name} subName={creature.scientific} size={creature.size}
                       class={creature.class} zone={creature.zone} diet={creature.diet} text={creature.text}
                 />
             ))}
 
-                {/*<Card/>*/}
-                {/*<Card/>*/}
-                {/*<Card/>*/}
-                {/*<Card/>*/}
-                {/*<Card/>*/}
-
+            {/*{restaurants.map(creature => (*/}
+            {/*    <Card key={creature.id} name={creature.name} subName={creature.cuisine} size={creature.size}*/}
+            {/*          class={creature.class} zone={creature.zone} diet={creature.diet} text={creature.text}*/}
+            {/*    />*/}
+            {/*))}*/}
         </Container>
     );
 }
