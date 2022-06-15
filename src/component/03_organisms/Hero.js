@@ -3,7 +3,9 @@ import React from "react";
 import fish from '../../assets/img/fish-1.png'
 
 const Container = styled('div')`
-  width: 100vw;
+  overflow: hidden;
+
+  width: 100%;
   height: 65vh;
   top: 5em;
   background-color: ${(props) => props.theme.colors.bgDarker};
