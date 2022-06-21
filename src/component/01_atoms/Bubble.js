@@ -14,7 +14,7 @@ const Container = styled('div')`
 
 const Card = styled('div')`
   //margin: 10em 2em 0 2em;
-  margin: 1em 3em;
+  margin: 1em 4em;
   background-color: white;
   border-radius: 100%;
   height: 210px;

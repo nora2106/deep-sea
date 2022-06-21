@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+
 const Container = styled('div')`
   .btn-icon {
     width: 50%;
@@ -32,7 +33,7 @@ function MapButton() {
     return (
         <Container>
             <Button>
-                <FontAwesomeIcon className="btn-icon" icon="globe-americas"/>
+                <FontAwesomeIcon className="btn-icon" icon={'globe-americas'}/>
             </Button>
         </Container>
     );

@@ -3,10 +3,10 @@ import Icon from "./Icon";
 import MoreButton from "./MoreButton";
 
 const arthropod = "shrimp"
-const cnidarian = "star-of-life";
-const comb = "circle-node";
-const chordate = "fish-fins";
-const mollusk = "octopus-deploy";
+const cnidarian = "star-of-life"; //['fab', 'phoenix-framework']
+const ctenophore = "circle-nodes";
+const vertebrae = "fish-fins";
+const mollusk = "broom"; //['fab', 'octopus-deploy']
 const worm = "worm";
 const echoniderm = "bacterium";
 
@@ -21,6 +21,8 @@ const size = "ruler-horizontal"
 const carnivore = "drumstick-bite";
 const herbivore = "seedling";
 const detrivore = "bone";
+const omnivore = "holly-berry";
+const pescivore = "fish";
 
 const Container = styled('div')`
   background-color: white;
@@ -33,7 +35,7 @@ const Container = styled('div')`
   .icons {
     display: flex;
     justify-content: center;
-    margin-top: 30px;
+    margin-top: 12px;
 
     @media (min-width: ${(props) => props.theme.breakpoints.m}) {
       margin-top: 10px;
@@ -60,11 +62,13 @@ const SubName = styled('h3')`
 `;
 
 const Text = styled('p')`
-  font-size: 2vw;
+  font-size: 2.5vw;
   padding-left: 2%;
   padding-right: 2%;
   overflow: auto;
-  font-weight: normal;
+  font-weight: 500;
+  font-family: Archivo, sans-serif;
+  letter-spacing: .3px;
 
   @media (min-width: ${(props) => props.theme.breakpoints.s}) {
     font-size: 1.5vw;
@@ -88,20 +92,20 @@ function CardContent(props) {
      function classIcon() {
         switch (props.class) {
             default:
-                return chordate;
-            case "Arthropods":
+                return vertebrae;
+            case "Arthropod":
                 return arthropod;
-            case "Cnidarians":
+            case "Cnidarian":
                 return cnidarian;
-            case "Comb jellies":
-                return comb;
-            case "Chordates":
-                return chordate;
-            case "Mollusks":
+            case "Ctenophore":
+                return ctenophore;
+            case "Vertebrae":
+                return vertebrae;
+            case "Mollusk":
                 return mollusk;
-            case "Segmented Worms":
+            case "Segmented Worm":
                 return worm;
-            case "Echoniderms":
+            case "Echoniderm":
                 return echoniderm;
         }
     }
@@ -134,6 +138,10 @@ function CardContent(props) {
                 return herbivore;
             case "Detrivorous":
                 return detrivore;
+            case "Omnivorous":
+                return omnivore;
+            case "Pescivorous":
+                return pescivore;
         }
     }
 
@@ -142,10 +150,10 @@ function CardContent(props) {
                 <Name>{props.name}</Name>
                 <SubName>{props.subName}</SubName>
                 <div className="icons">
-                    <Icon icon={icon1} text={props.class} label="Species"/>
-                    <Icon icon={icon2} text={props.zone} label="Zone"/>
-                    <Icon icon={icon3} text={props.size} label="Size"/>
-                    <Icon icon={icon4} text={props.diet} label="Diet"/>
+                    <Icon icon={icon1} label={props.class} text="Species"/>
+                    <Icon icon={icon2} label={props.zone} text="Zone"/>
+                    <Icon icon={icon3} label={props.size} text="Size"/>
+                    <Icon icon={icon4} label={props.diet} text="Diet"/>
                 </div>
             <hr/>
             <Text>{props.text}</Text>

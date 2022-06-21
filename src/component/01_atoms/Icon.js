@@ -1,9 +1,14 @@
 import styled from 'styled-components';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {useEffect} from "react";
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faOctopusDeploy } from '@fortawesome/free-brands-svg-icons';
+import { faPhoenixFramework } from '@fortawesome/free-brands-svg-icons';
+library.add(faOctopusDeploy, faPhoenixFramework);
 
 const Container = styled('div')`
-  margin-bottom: -8px;
+  margin-right: 2%;
+  margin-left: 2%;
   
   .icon-content {
     display: flex;
@@ -15,7 +20,6 @@ const Container = styled('div')`
     }
 
     .tooltip {
-      margin-left: 5px;
       visibility: hidden;
       width: auto;
       background-color: #555;
@@ -49,9 +53,7 @@ const Image = styled('div')`
   width: 45px;
   height: 45px;
   border-radius: 100%;
-  margin-left: .8em;
-  margin-right: .8em;
-  margin-bottom: -8px;
+ 
 
 
   .icon {
@@ -70,9 +72,22 @@ const Image = styled('div')`
 `;
 
 const Text = styled('p')`
-  font-size: 11px;
+  font-size: 2.2vw;
+  font-weight: 500;
   text-align: center;
   line-height: 12px;
+
+  @media (min-width: ${(props) => props.theme.breakpoints.s}) {
+    font-size: 1.3vw;
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.m}) {
+    font-size: .8vw;
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.l}) {
+    font-size: .6vw;
+  }
 `;
 
 function checkMobile(){
@@ -91,6 +106,7 @@ function Icon(props) {
     useEffect(() => {
         checkMobile();
     }, [])
+
 
     return (
         <Container>

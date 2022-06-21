@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Card from "../02_molecules/Card";
-import { species } from '../04_templates/testData.js'
+// import { species } from '../04_templates/testData.js'
 import {useEffect, useState} from "react";
 import * as Realm from 'realm-web';
 const app = new Realm.App({ id: 'deep-sea-balmb' });
@@ -34,44 +34,35 @@ const Container = styled('div')`
 `;
 
 function Grid() {
-    const [restaurants, setRestaurants] = useState([])
-
+    const [creatures, setCreatures] = useState([])
 
     useEffect(() => {
         async function getData () {
             const user = await app.logIn(Realm.Credentials.anonymous())
             const client = app.currentUser.mongoClient('mongodb-atlas')
-            const rests = client.db('sample_restaurants').collection('restaurants')
-            setRestaurants((await rests.find()).slice(0, 10))
+            const set = client.db('deep_sea').collection('creatures')
+            setCreatures((await set.find()).slice(0, 50))
         }
 
         getData();
 
     }, [])
-    console.log(restaurants);
 
-
-
-    const fetchSpecies = () => {
-        return species;
-    }
-
-    // console.log(fetchSpecies());
-
+    console.log(creatures);
     return (
         <Container>
 
-            {species.map(creature => (
-                <Card key={creature.id} name={creature.name} subName={creature.scientific} size={creature.size}
-                      class={creature.class} zone={creature.zone} diet={creature.diet} text={creature.text}
-                />
-            ))}
-
-            {/*{restaurants.map(creature => (*/}
-            {/*    <Card key={creature.id} name={creature.name} subName={creature.cuisine} size={creature.size}*/}
+            {/*{species.map(creature => (*/}
+            {/*    <Card key={creature.id} name={creature.name} subName={creature.scientific} size={creature.size}*/}
             {/*          class={creature.class} zone={creature.zone} diet={creature.diet} text={creature.text}*/}
             {/*    />*/}
             {/*))}*/}
+
+            {creatures.map(creature => (
+                <Card key={creature._id} name={creature.Name} subName={creature.Scientific} size={creature.Size}
+                      class={creature.Classification} zone={creature.Zone} diet={creature.Feed} text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab ad amet assumenda beatae dicta dignissimos dolorem dolores doloribus dolorum earum esse est, fugiat modi molestias nemo numquam porro quibusdam voluptas!"
+                />
+            ))}
         </Container>
     );
 }

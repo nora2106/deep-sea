@@ -41,10 +41,14 @@ const Container = styled('div')`
 const Text = styled('div')`
   color: white;
   padding: 2em;
-  width: 50%;
+  width: 60%;
   margin-top: 160px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   
   h1 {
+    width: 80%;
     text-align: center;
     font-size: 36px;
     font-family: "IM Fell Double Pica", sans-serif;
