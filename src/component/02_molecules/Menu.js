@@ -47,6 +47,7 @@ const Overlay = styled('div')`
   .top-bar {
     background-color: ${(props) => props.theme.colors.bgDarker};
     height: 85px;
+    width: 100%;
     box-shadow:  -10px 12px 18px 5px rgba(0, 0, 0, 0.3);
   }
 
@@ -98,9 +99,10 @@ const MainMenu = styled('div')`
 
 const MenuButton = styled('div')`
   z-index: 4;
-  position: fixed;
   background-color: transparent;
-  
+  top: 0;
+  left: 0;
+  position: absolute;
   
   @media (min-width: ${(props) => props.theme.breakpoints.m}) {
     display: none;
@@ -110,6 +112,10 @@ const MenuButton = styled('div')`
     height: 40px;
     width: 40px;
     padding: 1em;
+  }
+  
+  :hover {
+    cursor: pointer;
   }
 
 `;

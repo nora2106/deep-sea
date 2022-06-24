@@ -8,6 +8,7 @@ import Lightmode from '@mui/icons-material/LightModeOutlined';
 
 const Container = styled('div')`
   position: relative;
+  padding-top: 100px;
 `;
 
 const Box = styled('div')`

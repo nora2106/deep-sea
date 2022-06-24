@@ -9,7 +9,7 @@ const Container = styled('div')`
   display: grid;
   gap: 4rem;
   grid-template-columns:  repeat(1, 1fr);
-  grid-auto-rows: 90vw;
+  grid-auto-rows: 100vw;
   padding: 8em 3em 5em 3em;
 
   @media (min-width: ${(props) => props.theme.breakpoints.s}) {
@@ -20,7 +20,7 @@ const Container = styled('div')`
 
   @media (min-width: ${(props) => props.theme.breakpoints.m}) {
       grid-template-columns:  repeat(3, 1fr);
-      grid-auto-rows: 43vw;
+      grid-auto-rows: 40vw;
       padding: 10em 3.5em 5em 3em;
 
   }
@@ -51,12 +51,6 @@ function Grid() {
     console.log(creatures);
     return (
         <Container>
-
-            {/*{species.map(creature => (*/}
-            {/*    <Card key={creature.id} name={creature.name} subName={creature.scientific} size={creature.size}*/}
-            {/*          class={creature.class} zone={creature.zone} diet={creature.diet} text={creature.text}*/}
-            {/*    />*/}
-            {/*))}*/}
 
             {creatures.map(creature => (
                 <Card key={creature._id} name={creature.Name} subName={creature.Scientific} size={creature.Size}

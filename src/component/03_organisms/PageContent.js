@@ -3,6 +3,7 @@ import React from "react";
 import Menu from "../02_molecules/Menu";
 import Bubble from "../01_atoms/Bubble";
 import FactBox from "../01_atoms/FactBox";
+import References from "../02_molecules/References";
 
 const Container = styled('div')`
 
@@ -19,8 +20,14 @@ const Section = styled('section')`
 
 const Section2 = styled(Section)`
   background-color: ${(props) => props.theme.colors.bgDarker};
-
+  height: 40vh;
 `;
+
+const Section3 = styled(Section)`
+  background-color: ${(props) => props.theme.colors.bgDarker};
+  height: 80vh;
+`;
+
 
 function PageContent() {
     return (
@@ -32,6 +39,9 @@ function PageContent() {
             <Section2>
                 <FactBox/>
             </Section2>
+            <Section3>
+                <References/>
+            </Section3>
         </Container>
     );
 }

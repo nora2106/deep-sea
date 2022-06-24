@@ -13,13 +13,11 @@ const Container = styled('div')`
   flex-direction: column;
   position: relative;
   align-items: center;
-  
 
   @media (min-width: ${(props) => props.theme.breakpoints.m}) {
     align-items: normal;
     justify-content: center;
     height: 90vh;
-
   }
   
   img {
@@ -28,27 +26,27 @@ const Container = styled('div')`
     top: 0;
     width: 110%;
     right: -20%;
+    z-index: 1;
 
     @media (min-width: ${(props) => props.theme.breakpoints.m}) {
       right: -12%;
       width: 80%;
-
     }
-    
   }
 `;
 
 const Text = styled('div')`
   color: white;
   padding: 2em;
-  width: 60%;
+  width: 65%;
   margin-top: 160px;
   display: flex;
   align-items: center;
   flex-direction: column;
+  z-index: 2;
   
   h1 {
-    width: 80%;
+    width: 70%;
     text-align: center;
     font-size: 36px;
     font-family: "IM Fell Double Pica", sans-serif;
@@ -61,7 +59,7 @@ const Text = styled('div')`
   }
   
   h2 {
-    font-size: 16px;
+    font-size: 18px;
     text-align: center;
 
     @media (min-width: ${(props) => props.theme.breakpoints.m}) {

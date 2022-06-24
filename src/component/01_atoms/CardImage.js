@@ -3,9 +3,13 @@ import img from '../../assets/img/img.png'
 import MapButton from "./MapButton";
 
 const Container = styled('div')`
-  height: 45%;
+  height: 50%;
   text-align: center;
   position: relative;
+
+  @media (min-width: ${(props) => props.theme.breakpoints.s}) {
+    height: 45%;
+  }
 
   .btn-icon {
     width: 50%;

@@ -2,18 +2,18 @@ import styled from 'styled-components';
 import Icon from "./Icon";
 import MoreButton from "./MoreButton";
 
-const arthropod = "shrimp"
-const cnidarian = "star-of-life"; //['fab', 'phoenix-framework']
-const ctenophore = "circle-nodes";
-const vertebrae = "fish-fins";
-const mollusk = "broom"; //['fab', 'octopus-deploy']
-const worm = "worm";
+const arthropod = 'shrimp';
+const cnidarian = ['fab', 'phoenix-framework'] ;
+const ctenophore = ['fab', 'empire'];
+const vertebrae = 'fish-fins';
+const mollusk = ['fab', 'octopus-deploy'];
+const worm = 'worm';
 const echoniderm = "bacterium";
 
-const sunlight = "sun";
+const sunlight = 'sun';
 const twilight = "cloud-sun";
-const midnight = "circle-half-stroke";
-const abyss = "circle-full-stroke";
+const midnight = "moon";
+const abyssal = "circle-half-stroke";
 const hadal = "snowflake";
 
 const size = "ruler-horizontal"
@@ -22,7 +22,7 @@ const carnivore = "drumstick-bite";
 const herbivore = "seedling";
 const detrivore = "bone";
 const omnivore = "holly-berry";
-const pescivore = "fish";
+const piscivore = "fish";
 
 const Container = styled('div')`
   background-color: white;
@@ -56,13 +56,13 @@ const Name = styled('h2')`
 
 const SubName = styled('h3')`
   margin-left: 10px;
-  font-size: 13px;
+  font-size: 15px;
   margin-top: -8px;
   font-weight: 300;
 `;
 
 const Text = styled('p')`
-  font-size: 2.5vw;
+  font-size: 2.6vw;
   padding-left: 2%;
   padding-right: 2%;
   overflow: auto;
@@ -114,15 +114,15 @@ function CardContent(props) {
         switch (props.zone) {
             default:
                 return sunlight;
-            case "Sunlight":
+            case "Sunlight Zone":
                 return sunlight;
-            case "Twilight":
+            case "Twilight Zone":
                 return twilight;
-            case "Midnight":
+            case "Midnight Zone":
                 return midnight;
-            case "Abyssal":
-                return abyss;
-            case "Hadal":
+            case "Abyssal Zone":
+                return abyssal;
+            case "Hadal Zone":
                 return hadal;
 
         }
@@ -140,8 +140,8 @@ function CardContent(props) {
                 return detrivore;
             case "Omnivorous":
                 return omnivore;
-            case "Pescivorous":
-                return pescivore;
+            case "Piscivorous":
+                return piscivore;
         }
     }
 
@@ -150,7 +150,7 @@ function CardContent(props) {
                 <Name>{props.name}</Name>
                 <SubName>{props.subName}</SubName>
                 <div className="icons">
-                    <Icon icon={icon1} label={props.class} text="Species"/>
+                    <Icon icon={icon1} label={props.class} text="Classification"/>
                     <Icon icon={icon2} label={props.zone} text="Zone"/>
                     <Icon icon={icon3} label={props.size} text="Size"/>
                     <Icon icon={icon4} label={props.diet} text="Diet"/>

@@ -4,19 +4,33 @@ import {useEffect} from "react";
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faOctopusDeploy } from '@fortawesome/free-brands-svg-icons';
 import { faPhoenixFramework } from '@fortawesome/free-brands-svg-icons';
-library.add(faOctopusDeploy, faPhoenixFramework);
+import { faEmpire } from '@fortawesome/free-brands-svg-icons';
+library.add(faOctopusDeploy, faPhoenixFramework, faEmpire);
 
 const Container = styled('div')`
-  margin-right: 2%;
-  margin-left: 2%;
+  margin-right: 2.5%;
+  margin-left: 2.5%;
+  margin-bottom: -10px;
+ 
   
   .icon-content {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    
+    :hover {
+      cursor: pointer;
+    }
     
     :hover .tooltip {
       visibility: visible;
       opacity: 1;
+    }
+
+    :hover .label-text {
+      transform: scale(1.2);
+      transition: scale 1s;
     }
 
     .tooltip {
@@ -30,9 +44,9 @@ const Container = styled('div')`
       position: absolute;
       z-index: 1;
       opacity: 0;
-      margin-top: -2.5em;
-      transition: opacity 0.3s;
+      transition: opacity 0.5s;
       font-size: 12px;
+      top: 50px;
     }
 
     .tooltip::after {
@@ -44,6 +58,25 @@ const Container = styled('div')`
       border-width: 5px;
       border-style: solid;
       border-color: #555 transparent transparent transparent;
+    }
+  }
+  
+  .label-text {
+    font-size: 2.2vw;
+    font-weight: 500;
+    text-align: center;
+    line-height: 12px;
+
+    @media (min-width: ${(props) => props.theme.breakpoints.s}) {
+      font-size: 1.3vw;
+    }
+
+    @media (min-width: ${(props) => props.theme.breakpoints.m}) {
+      font-size: .8vw;
+    }
+
+    @media (min-width: ${(props) => props.theme.breakpoints.l}) {
+      font-size: .6vw;
     }
   }
 `;
@@ -63,31 +96,10 @@ const Image = styled('div')`
   }
 
   :hover {
-    cursor: context-menu;
-    background-color: #46c3c5;
+    background-color: ${(props) => props.theme.colors.primAccentHighlight};
   }
-
   
 
-`;
-
-const Text = styled('p')`
-  font-size: 2.2vw;
-  font-weight: 500;
-  text-align: center;
-  line-height: 12px;
-
-  @media (min-width: ${(props) => props.theme.breakpoints.s}) {
-    font-size: 1.3vw;
-  }
-
-  @media (min-width: ${(props) => props.theme.breakpoints.m}) {
-    font-size: .8vw;
-  }
-
-  @media (min-width: ${(props) => props.theme.breakpoints.l}) {
-    font-size: .6vw;
-  }
 `;
 
 function checkMobile(){
@@ -115,8 +127,8 @@ function Icon(props) {
                 <Image>
                     <FontAwesomeIcon className="icon" icon={props.icon}/>
                 </Image>
+                <p className="label-text">{props.label}</p>
             </div>
-            <Text>{props.label}</Text>
         </Container>
     );
 }

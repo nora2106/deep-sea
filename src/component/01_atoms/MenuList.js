@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import {useEffect} from "react";
 import {Link} from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Container = styled('div')`
   //background-color: ${(props) => props.theme.colors.bgDark};
@@ -12,7 +13,10 @@ const Container = styled('div')`
   
   .sub-show {
     display: block;
-  }
+    @media(min-width: ${(props) => props.theme.breakpoints.m}){
+      display: none;
+    }
+    }
 
   @media(min-width: ${(props) => props.theme.breakpoints.m}){
     display: flex;
@@ -29,6 +33,12 @@ const Container = styled('div')`
   a {
     text-decoration: none;
   }
+  
+    .sub-arrow {
+      margin-left: 10px;
+
+    }
+
 `;
 
 const Item = styled('h2')`
@@ -67,7 +77,7 @@ const Item = styled('h2')`
 
 const SubItem = styled(Item)`
   height: 30px;
-  padding-left: 8vw;
+  //padding-left: 8vw;
   border: none;
   font-size: 18px;
 
@@ -76,26 +86,14 @@ const SubItem = styled(Item)`
     padding: 8px 0 8px 0;
     margin: 0;
     line-height: 30px;
-    background-color: ${(props) => props.theme.colors.textLight};
     font-size: 18px;
     text-align: center;
     
-    :first-child {
-      border-top-right-radius: 10px;
-      border-top-left-radius: 10px;
-      padding-top: 10px;
-    }
-    
-    :last-child {
-      border-bottom-right-radius: 10px;
-      border-bottom-left-radius: 10px;
-      padding-bottom: 10px;
-    }
-
     :hover {
       color: ${(props) => props.theme.colors.textDark};
     }
   }
+  
   @media(min-width: ${(props) => props.theme.breakpoints.l}){
     font-size: 24px;
     padding: 10px 0 10px 0;
@@ -108,8 +106,6 @@ const SubItem = styled(Item)`
       padding-bottom: 25px;
     }
   }
-
-
 `;
 
 const SubMenu = styled('div')`
@@ -117,8 +113,11 @@ const SubMenu = styled('div')`
   border-bottom: 2px solid ${(props) => props.theme.colors.bgDark};
   display: none;
   padding-top: 20px;
-  
+
   @media(min-width: ${(props) => props.theme.breakpoints.m}){
+    padding-top: 10px;
+    padding-bottom: 5px;
+    background-color: white;
     border-radius: 10px;
     position: absolute;
     border: none;
@@ -127,20 +126,6 @@ const SubMenu = styled('div')`
     right: 5%;
     box-shadow: 8px 8px 8px 2px rgba(0, 0, 0, 0.4);
   }
-  
-  @media(min-width: ${(props) => props.theme.breakpoints.l}){
-    
-  }
-`;
-
-const SubButton = styled('button')`
-  color: ${(props) => props.theme.colors.textLight};
-  background-color: transparent;
-  margin-top: 0;
-  margin-left: 15px;
-  border: none;
-  font-size: 25px;
-
 `;
 
 function MenuList() {
@@ -154,16 +139,20 @@ function MenuList() {
                 <Item id="test">Deep Sea Map</Item>
             </Link>
             <div className="list-container">
-                <Item  id="lastItem">Discover Creatures
-                    {/*<h2>Discover Species</h2>*/}
-                    <SubButton onClick={toggleSubMenu} id="subButton" >v</SubButton>
-                <SubMenu id="subMenu">
-                    <SubItem>Option 1</SubItem>
-                    <SubItem>Option 2</SubItem>
-                    <SubItem>Option 3</SubItem>
+                <Item onClick={toggleSubMenu} id="lastItem">Discover Creatures
+                    <FontAwesomeIcon className="sub-arrow" icon='angle-down'/>
+                <SubMenu  id="subMenu">
+                    <Link to='/discover'>
+                        <SubItem>Option 1</SubItem>
+                    </Link>
+                    <Link to='/discover'>
+                        <SubItem>Option 2</SubItem>
+                    </Link>
+                    <Link to='/discover'>
+                        <SubItem>Option 3</SubItem>
+                    </Link>
                 </SubMenu>
                 </Item>
-
             </div>
         </Container>
     );
