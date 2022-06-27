@@ -49,6 +49,9 @@ const Card = styled('div')`
     opacity: 1;
   }
   
+  :hover .bubble{
+    animation-play-state: paused;
+  }
 `;
 
 const Button = styled('button')`
@@ -82,6 +85,17 @@ const Outline = styled('img')`
   margin-right: 10px;
   position: absolute;
   z-index: 1;
+  animation-name: rotate;
+  animation-duration: 60s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+
+  @keyframes rotate {
+    from{ transform: rotate(-360deg); }
+    to{ transform: rotate(360deg); }
+  }
+  
+
 `;
 
 const Outline2 = styled(Outline)`
@@ -90,18 +104,23 @@ const Outline2 = styled(Outline)`
   margin-left: 10px;
   margin-top: 5px;
   position: absolute;
+  animation-name: rotate2;
+  
+  @keyframes rotate2 {
+    from{ transform: rotate(360deg); }
+    to{ transform: rotate(-360deg); }
+  }
 `;
 
 
 function Bubble(props) {
     return (
         <Container >
-
             <div className="wrapper" id={props.id}>
             <Card>
-                    <Outline src={circle}/>
-                    <Outline2 src={circle}/>
-                    <FontAwesomeIcon className="icon" icon={props.icon}/>
+                <Outline className='bubble' src={circle}/>
+                <Outline2 className='bubble' src={circle}/>
+                <FontAwesomeIcon className="icon" icon={props.icon}/>
                 <h3>{props.text}</h3>
                 <Button>View
                     <FontAwesomeIcon className="icon-btn" icon='arrow-right'/>
@@ -114,4 +133,5 @@ function Bubble(props) {
 }
 
 export default Bubble;
+
 

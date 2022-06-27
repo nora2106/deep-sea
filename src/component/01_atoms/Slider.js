@@ -1,15 +1,18 @@
 import styled from 'styled-components';
 import SliderItem from "./SliderItem";
 import circle from '../../assets/dotted-circle2.png';
+import logoMbari from '../../assets/img/mbari.jpeg';
+import logoPodcast from '../../assets/img/ds-podcast.jpeg';
+import logoOceanx from '../../assets/img/oceanx2.png';
 import CircleType from 'circletype';
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 
 const Container = styled('div')`
-    .icon {
-      width: 200px;
-      height: 200px;
-      position: absolute;
-    }
+  .icon {
+    width: 200px;
+    height: 200px;
+    position: absolute;
+  }
 
   #left {
     transform: rotate(130deg);
@@ -22,6 +25,9 @@ const Container = styled('div')`
   display: flex;
   flex-direction: row;
   align-items: center;
+  
+
+  
 `;
 
 const Bubble = styled('div')`
@@ -30,17 +36,31 @@ const Bubble = styled('div')`
   justify-content: center;
 
   img {
-    width: 350px;
-    height: 350px;
     position: absolute;
   }
+  
+  #bubble-circle {
+    width: 350px;
+    height: 350px;
+    animation-name: rotate;
+    animation-duration: 60s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+
+    @keyframes rotate {
+      from{ transform: rotate(-360deg); }
+      to{ transform: rotate(360deg); }
+    }
+  }
+  
+
 `;
 
 const Text = styled('p')`
-    color: white;
-    position: absolute;
-  transform: rotate(-45deg);
-  float: right;
+  color: white;
+  position: absolute;
+  margin-bottom: -21em;
+  margin-left: 14em;
 `;
 
 const Arrow = styled('div')`
@@ -53,29 +73,62 @@ const Arrow = styled('div')`
   margin: 2em;
   
   :hover {
+    cursor: pointer;
   }
 `;
 
 function Slider() {
+    const slide1 = ['MBARI', 'https://www.mbari.org/', logoMbari];
+    const slide2 = ['Deep-Sea Podcast', 'https://www.armatusoceanic.com/the-deepsea-podcast', logoPodcast];
+    const slide3 = ['OceanX', 'https://www.oceanx.org/', logoOceanx];
 
-    // useEffect(() => {
-    //     const circleType = new CircleType(document.getElementById('curved'));
-    //     circleType.radius(180).dir(-1);
-    // });
+    const slides = [slide1, slide2, slide3];
 
+    const [name, setName] = useState('');
+    const [link, setLink] = useState('');
+    const [img, setImg] = useState('');
+    const [slideIndex, setIndex] = useState(0);
+
+    useEffect(() => {
+        const circleType = new CircleType(document.getElementById('curved'));
+        circleType.radius(170).dir(-1);
+
+    });
+
+    useEffect(() => {
+        showSlides(0);
+    }, []);
+
+
+    function showSlides(index) {
+        let count = slideIndex + index;
+
+        if (count > slides.length -1  ) {
+            count = 0;
+        }
+
+        if (count < 0) {
+            count = slides.length -1;
+        }
+
+        setIndex(count);
+        let array = slides[count];
+        setName(array[0]);
+        setLink(array[1]);
+        setImg(array[2]);
+    }
 
     return (
         <Container>
-            <Arrow id="left" />
+            <Arrow id="left" onClick={() => showSlides(-1)} />
             <Bubble >
-                <img src={circle}/>
-                <SliderItem/>
+                <img id='bubble-circle' src={circle}/>
+                <SliderItem link={link} img={img}/>
             </Bubble>
-            <Text id='curved'>Deep-Sea Podcast</Text>
-            <Arrow id="right"/>
+            <Text id='curved'>{name}</Text>
+            <Arrow id="right" onClick={() => showSlides(1)} />
         </Container>
     );
 }
 
 export default Slider;
-
