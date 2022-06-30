@@ -21,27 +21,50 @@ const Container = styled('div')`
   #right {
     transform: rotate(-45deg);
   }
-  
   display: flex;
   flex-direction: row;
   align-items: center;
-  
-
-  
+  overflow: no-display;
 `;
 
 const Bubble = styled('div')`
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 250px;
+  height: 250px;
+  position: relative;
 
+  @media (min-width: ${(props) => props.theme.breakpoints.s}) {
+    width: 32vw;
+    height: 32vw;
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.m}) {
+    width: 25vw;
+    height: 25vw;
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.l}) {
+    width: 20vw;
+    height: 20vw;
+  }
+  
   img {
     position: absolute;
   }
   
+  :hover .bubble-img {
+    transform: scale(1.15);
+    opacity: .6;
+    cursor: pointer;
+    transition: opacity .6s ease, transform .5s ease;
+
+  }
+  
   #bubble-circle {
-    width: 350px;
-    height: 350px;
+    width: 140%;
+    height: 140%;
     animation-name: rotate;
     animation-duration: 60s;
     animation-iteration-count: infinite;
@@ -60,7 +83,7 @@ const Text = styled('p')`
   color: white;
   position: absolute;
   margin-bottom: -21em;
-  margin-left: 14em;
+  margin-left: 15em;
 `;
 
 const Arrow = styled('div')`
@@ -70,7 +93,7 @@ const Arrow = styled('div')`
   display: inline-block;
   width: 30px;
   height: 30px;
-  margin: 2em;
+  margin: 2.5em;
   
   :hover {
     cursor: pointer;

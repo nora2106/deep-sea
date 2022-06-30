@@ -1,38 +1,33 @@
 import styled from 'styled-components';
 
 
-const Container = styled('div')`
-  
-  width: 250px;
-  height: 250px;
+const Container = styled('a')`
+  width: 90%;
+  height: 90%;
   border-radius: 100%;
   overflow: hidden;
-  position: relative;
   display: flex;
   justify-content: center;
-  //align-items: center;
-  
+  align-items: center;
+  transform: scale(1);
+  transition: opacity .6s ease, transform .5s ease;
+
+
   img {
     border-radius: 100%;
     height: 100%;
     width: auto;
+    position: relative;
     transition: opacity .6s ease, transform .5s ease;
-    position: absolute;
   }
 
-  :hover img{
-    transform: scale(1.3);
-    opacity: .6;
-  }
 `;
 
 function SliderItem(props) {
     return (
-        <a onMouseEnter={pause} onMouseLeave={play} href={props.link} target='_blank'>
-        <Container>
+        <Container className='bubble-img' onMouseEnter={pause} onMouseLeave={play} href={props.link} target='_blank'>
                 <img src={props.img}/>
         </Container>
-        </a>
 
     );
 }

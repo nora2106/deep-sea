@@ -4,9 +4,8 @@ import fish from '../../assets/img/fish-1.png'
 
 const Container = styled('div')`
   overflow: hidden;
-
   width: 100%;
-  height: 65vh;
+  height: 35em;
   top: 5em;
   background-color: ${(props) => props.theme.colors.bgDarker};
   display: flex;

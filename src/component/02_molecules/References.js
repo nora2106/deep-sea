@@ -3,7 +3,6 @@ import Slider from '../01_atoms/Slider';
 
 const Container = styled('div')`
     position: relative;
-  padding-top: 10vh;
   display: flex;
   flex-direction: column;
   align-items: center;

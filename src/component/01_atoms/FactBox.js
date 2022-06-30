@@ -8,7 +8,6 @@ import Lightmode from '@mui/icons-material/LightModeOutlined';
 
 const Container = styled('div')`
   position: relative;
-  padding-top: 100px;
 `;
 
 const Box = styled('div')`
@@ -38,8 +37,7 @@ const Icon = styled('div')`
   }
   
   .sun-icon {
-    display: none;
-    opacity: 90%;
+    opacity: 0;
     position: absolute;
     width: 75%;
     height: 75%;
@@ -48,10 +46,12 @@ const Icon = styled('div')`
 
   
  :hover {
+   transition: background-color .5s ease;
    background-color: ${(props) => props.theme.colors.primAccentHighlight};
    cursor: pointer;
    .sun-icon {
-     display: block;
+     opacity: 90%;
+    transition: opacity .5s ease;
    }
    
  }
