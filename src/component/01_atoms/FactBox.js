@@ -8,11 +8,13 @@ import Lightmode from '@mui/icons-material/LightModeOutlined';
 
 const Container = styled('div')`
   position: relative;
+  top: 3em;
 `;
 
 const Box = styled('div')`
   background-color: white;
   width: 70%;
+  max-width: 45em;
   position: absolute;
   right: 0;
   border-top-left-radius: 15px;
@@ -60,8 +62,8 @@ const Icon = styled('div')`
 const Headline = styled('h3')`
   font-weight: 500;
   font-size: 28px;
-  text-align: right;
-  padding-right: 10px;
+  text-align: left;
+  padding-left: 5em;
 
 `;
 

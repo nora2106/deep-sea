@@ -8,6 +8,7 @@ import CircleType from 'circletype';
 import {useEffect, useState} from "react";
 
 const Container = styled('div')`
+  
   .icon {
     width: 200px;
     height: 200px;
@@ -21,10 +22,12 @@ const Container = styled('div')`
   #right {
     transform: rotate(-45deg);
   }
+  height: 25em;
   display: flex;
   flex-direction: row;
   align-items: center;
   overflow: no-display;
+  
 `;
 
 const Bubble = styled('div')`
@@ -82,8 +85,17 @@ const Bubble = styled('div')`
 const Text = styled('p')`
   color: white;
   position: absolute;
-  margin-bottom: -21em;
-  margin-left: 15em;
+  left: 50%;
+  top: 92%;
+
+  @media (min-width: ${(props) => props.theme.breakpoints.s}) {
+    top: 98%;
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.m}) {
+    top: 105%;
+  }
+
 `;
 
 const Arrow = styled('div')`
@@ -91,9 +103,25 @@ const Arrow = styled('div')`
   border: dotted white;
   border-width: 0 5px 5px 0;
   display: inline-block;
-  width: 30px;
-  height: 30px;
-  margin: 2.5em;
+  width: 35px;
+  height: 35px;
+  margin: 3em;
+
+  @media (min-width: ${(props) => props.theme.breakpoints.s}) {
+    margin: 7vw;
+    width: 4vw;
+    height: 4vw;
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.m}) {
+    margin: 5vw;
+    width: 3vw;
+    height: 3vw;
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.l}) {
+    margin: 3vw;
+  }
   
   :hover {
     cursor: pointer;

@@ -24,7 +24,11 @@ const Container = styled('div')`
     9kZCIgZD0ibSAwLDExLjM4NDQ4IGMgMCwwIDIxLjEzMzg1MSwxMS4zOTUzMSA0My42MTc2NjEsMTEuMzg0NDEgQyA2Ni4xMDE0NzEsMjIuNzU3OTkgM
     TA3Ljk2ODU2LDAuMDMyNjIKICAgIDEzMC41MDgsN2UtNSBjIDIyLjUzOTQ0LC0wLjAzMjUgNDMuOTYyNjQsMTEuMzg0NDEgNDMuOTYyNjQsMTEuMzg0
     NDEgViA0Ni4zNDU5NCBIIDAgWiIgLz4KPC9zdmc+");
-    top: 51em;
+    top: 55em;
+
+    @media (min-width: ${(props) => props.theme.breakpoints.s}) {
+      top: 60em;
+    }
   }
   
   .wave-footer {
@@ -77,10 +81,14 @@ const Wave = styled('div')`
 const Section = styled('section')`
   margin-top: 150px;
   width: 100%;
-  height: 45em;
+  height: 50em;
   padding-bottom: 5em;
   position: relative;
   background-color: ${(props) => props.theme.colors.bgDark};
+
+  @media (min-width: ${(props) => props.theme.breakpoints.s}) {
+    height: 55em;
+  }
 `;
 
 const Section2 = styled(Section)`
@@ -92,9 +100,9 @@ const Section2 = styled(Section)`
 const Section3 = styled(Section)`
   margin-top: 0;
   background-color: ${(props) => props.theme.colors.bgDarker};
-  height: 45em;
+  height: 50em;
   @media (min-width: ${(props) => props.theme.breakpoints.s}) {
-    height: 45em;
+    height: 50em;
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.m}) {
@@ -112,8 +120,8 @@ function PageContent() {
         <Container>
             <Wave/>
             <Section>
-                <Bubble img={bg2} id="map-bubble" text='Deep Sea Map' icon={'globe-americas'}/>
-                <Bubble img={bg1} id="discover-bubble" text='Discover Creatures' icon={'search'}/>
+                <Bubble link='/map' img={bg2} id="map-bubble" text='Deep Sea Map' icon={'globe-americas'}/>
+                <Bubble link='/discover' img={bg1} id="discover-bubble" text='Discover Creatures' icon={'search'}/>
             </Section>
             <Wave className='wave-dark'/>
             <Section2>

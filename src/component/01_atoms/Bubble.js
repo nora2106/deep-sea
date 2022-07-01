@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import circle from '../../assets/dotted-circle2.png';
 import SliderItem from './SliderItem';
+import {Link} from "react-router-dom";
 
 const Container = styled('div')`
   position: relative;
@@ -18,7 +19,7 @@ const Container = styled('div')`
 `;
 
 const Card = styled('div')`
-  margin: 0 4em;
+  margin: 0 12vw;
   height: 220px;
   width: 220px;
   display: flex;
@@ -28,21 +29,19 @@ const Card = styled('div')`
   z-index: 1;
 
   @media (min-width: ${(props) => props.theme.breakpoints.s}) {
-    margin: 0 14em;
+    margin: .5em 12em;
+
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.m}) {
-    width: 20vw;
-    height: 20vw;
+    margin: 5em 16em;
   }
-
   @media (min-width: ${(props) => props.theme.breakpoints.l}) {
-    width: 20vw;
-    height: 20vw;
+    margin: 6em 22vw;
   }
 
   :hover .bubble-img{
-    transform: scale(1.1);
+    transform: scale(1.14);
     opacity: .6;
     cursor: pointer;
     transition: opacity .6s ease, transform .5s ease;
@@ -73,6 +72,7 @@ const Card = styled('div')`
   }
   
   h3{
+    position: relative;
     font-size: 18px;
     font-weight: 500;
     z-index: 2;
@@ -80,6 +80,13 @@ const Card = styled('div')`
     padding-top: 2.5em;
     animation-delay: 6s;
     transition: opacity .4s ease;
+    @media (min-width: ${(props) => props.theme.breakpoints.m}) {
+      font-size: 22px;
+    }
+
+    @media (min-width: ${(props) => props.theme.breakpoints.l}) {
+      font-size: 24px;
+    }
     
     :hover {
       cursor: pointer;
@@ -96,16 +103,29 @@ const Card = styled('div')`
   }
   
   .bubble-bg {
-    //background-color: white;
-    //opacity: .6;
-    height: 65%;
-    width: 65%;
+    width: 45vw;
+    height: 45vw;
+    max-height: 18em;
     position: absolute;
     border-radius: 100%;
     z-index: 1;
     display: flex;
     align-items: center;
     justify-content: center;
+
+    @media (min-width: ${(props) => props.theme.breakpoints.s}) {
+      height: 33vw;
+      max-height: 18em;
+    }
+    @media (min-width: ${(props) => props.theme.breakpoints.m}) {
+      height: 26vw;
+      max-height: 23em;
+    }
+
+    @media (min-width: ${(props) => props.theme.breakpoints.l}) {
+      max-height: 23em;
+      height: 24vw;
+    }
     
     img {
       position: absolute;
@@ -115,13 +135,15 @@ const Card = styled('div')`
   :hover .bubble{
     animation-play-state: paused;
   }
+  .link {
+    position: absolute;
+  }
 `;
 
 const Button = styled('button')`
   opacity: 0;
-
   z-index: 2;
-  position: absolute;
+  position: relative;
   height: 30px;
   width: 100px;
   border-radius: 15px;
@@ -139,7 +161,7 @@ const Button = styled('button')`
 
   :hover {
     cursor: pointer;
-    transform: scale(1.15);
+    transform: scale(1.14);
     //background-color: ${(props) => props.theme.colors.secAccentHighlight};
   }
 
@@ -147,8 +169,9 @@ const Button = styled('button')`
 `;
 
 const Outline = styled('img')`
-  width: 19em;
+  width: 60vw;
   height: auto;
+  max-width: 23em;
   margin-right: 10px;
   position: absolute;
   z-index: 1;
@@ -161,13 +184,23 @@ const Outline = styled('img')`
     from{ transform: rotate(-360deg); }
     to{ transform: rotate(360deg); }
   }
-  
+
+  @media (min-width: ${(props) => props.theme.breakpoints.s}) {
+    max-width: 24em;
+    width: 44vw;
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.m}) {
+    max-width: 32em;
+    width: 35vw;
+  }
 
 `;
 
 const Outline2 = styled(Outline)`
-  width: 22em;
+  width: 70vw;
   height: auto;
+  max-width: 26em;
   margin-left: 10px;
   margin-top: 5px;
   position: absolute;
@@ -177,21 +210,33 @@ const Outline2 = styled(Outline)`
     from{ transform: rotate(360deg); }
     to{ transform: rotate(-360deg); }
   }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.s}) {
+    max-width: 28em;
+    width: 50vw;
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.m}) {
+    max-width: 36em;
+    width: 40vw;
+  }
 `;
 
 
 function Bubble(props) {
     return (
         <Container >
+
             <div className="wrapper" id={props.id}>
             <Card>
-                <Outline className='bubble' src={circle}/>
-                <Outline2 className='bubble' src={circle}/>
-                {/*<FontAwesomeIcon className="icon" icon={props.icon}/>*/}
+                    <Outline className='bubble' src={circle}/>
+                    <Outline2 className='bubble' src={circle}/>
                 <h3>{props.text}</h3>
+                <Link className='link' to={props.link}>
                 <Button className='view-btn'>View
-                    <FontAwesomeIcon className="icon-btn" icon='arrow-right'/>
-                </Button>
+                        <FontAwesomeIcon className="icon-btn" icon='arrow-right'/>
+                    </Button>
+                </Link>
                 <div className="bubble-bg">
                     <SliderItem img={props.img} />
                 </div>
