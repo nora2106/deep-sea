@@ -16,6 +16,7 @@ const Container = styled('div')`
     width: 1.8em;
     height: 1.8em;
     margin-left: 10px;
+    cursor: pointer;
 
     @media(min-width: ${(props) => props.theme.breakpoints.m}){
       margin-right: 10px;
@@ -34,7 +35,7 @@ const Container = styled('div')`
 
 const SearchInput = styled('input')`
   height: 46px;
-  width: 80%;
+  width: 85%;
   background-color: transparent;
   color: white;
   border: none;

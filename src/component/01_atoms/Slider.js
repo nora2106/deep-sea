@@ -106,6 +106,7 @@ const Arrow = styled('div')`
   width: 35px;
   height: 35px;
   margin: 3em;
+  z-index: 3;
 
   @media (min-width: ${(props) => props.theme.breakpoints.s}) {
     margin: 7vw;

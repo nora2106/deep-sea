@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import React from "react";
 import bg1 from '../../assets/img/bubble-bg1.png'
 import bg2 from '../../assets/img/bubble-bg2.png'
-import wave from '../../assets/img/wave.svg'
 import Bubble from "../01_atoms/Bubble";
 import FactBox from "../01_atoms/FactBox";
 import References from "../02_molecules/References";
@@ -28,6 +27,8 @@ const Container = styled('div')`
 
     @media (min-width: ${(props) => props.theme.breakpoints.s}) {
       top: 60em;
+    }
+    @media (min-width: ${(props) => props.theme.breakpoints.m}) {
     }
   }
   
@@ -106,7 +107,7 @@ const Section3 = styled(Section)`
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.m}) {
-    height: 50em;
+    height: 55em;
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.l}) {

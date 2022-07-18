@@ -26,11 +26,12 @@ const Container = styled('div')`
     :hover .tooltip {
       visibility: visible;
       opacity: 1;
+      transition: opacity .5s;
     }
 
     :hover .label-text {
       transform: scale(1.2);
-      transition: scale 1s;
+      transition: transform .3s;
     }
 
     .tooltip {

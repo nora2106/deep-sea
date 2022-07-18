@@ -162,10 +162,13 @@ const Button = styled('button')`
   :hover {
     cursor: pointer;
     transform: scale(1.14);
-    //background-color: ${(props) => props.theme.colors.secAccentHighlight};
   }
 
-
+  @media (min-width: ${(props) => props.theme.breakpoints.m}) {
+    height: 38px;
+    width: 130px;
+    border-radius: 18px;
+  }
 `;
 
 const Outline = styled('img')`

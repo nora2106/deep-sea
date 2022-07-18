@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import Icon from "./Icon";
-import MoreButton from "./MoreButton";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 
 const arthropod = 'shrimp';
 const cnidarian = ['fab', 'phoenix-framework'] ;
@@ -39,7 +40,14 @@ const Container = styled('div')`
 
     @media (min-width: ${(props) => props.theme.breakpoints.m}) {
       margin-top: 10px;
-
+    }
+  }
+  
+  a {
+    color: ${(props) => props.theme.colors.primAccent};
+    
+    .icon {
+      margin-left: 5px;
     }
   }
 `;
@@ -157,7 +165,11 @@ function CardContent(props) {
                 </div>
             <hr/>
             <Text>{props.text}</Text>
-            {/*<MoreButton/>*/}
+            <a href='https://www.mbari.org/'>
+                <Text>Read more
+                <FontAwesomeIcon className='icon' icon={'arrow-right'}/>
+                </Text>
+            </a>
         </Container>
     );
 }
