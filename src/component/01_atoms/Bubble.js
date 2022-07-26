@@ -147,14 +147,14 @@ const Button = styled('button')`
   height: 30px;
   width: 100px;
   border-radius: 15px;
-  background-color: ${(props) => props.theme.colors.secAccent};
+  background-color: rgba(12, 22, 42, 0.8);
   color: white;
   border: none;
   font-size: 16px;
   font-family: Quicksand, sans-serif;
   font-weight: 500;
   text-align: center;
-  
+
   .icon-btn {
     width: 30%;
   }

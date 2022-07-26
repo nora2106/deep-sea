@@ -1,8 +1,8 @@
 import styled from 'styled-components';
+import Wave from "../01_atoms/Wave";
 
 const Container = styled('div')`
   position: relative;
-  z-index: 1;
   width: 100%;
   top: 5em;
 
@@ -32,6 +32,10 @@ const Container = styled('div')`
   #zone5 {
     background-color: #05091a;
   }
+
+  .wave {
+    
+  }
 `;
 
 const MapIntro = styled('div')`
@@ -52,6 +56,8 @@ const Zone = styled('section')`
   align-items: center;
   flex-direction: column;
   justify-content: center;
+  position: relative;
+  z-index: 2;
     
   h2 {
    color: ${(props) => props.theme.colors.textLight};
@@ -83,6 +89,7 @@ function MapOverview() {
     return (
         <Container>
             <MapIntro/>
+            <Wave class='wave-light'/>
             <Zone id='zone1'>
                 <h2>Sunlight Zone</h2>
                 <h3>Epipelagic</h3>

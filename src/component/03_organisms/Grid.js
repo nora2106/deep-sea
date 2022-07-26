@@ -33,18 +33,22 @@ const Container = styled('div')`
   }
 `;
 
-function Grid() {
+function Grid(props) {
     const [creatures, setCreatures] = useState([])
-
+    let Zone;
     useEffect(() => {
-        async function getData () {
+        async function getData (zone) {
             const user = await app.logIn(Realm.Credentials.anonymous())
             const client = app.currentUser.mongoClient('mongodb-atlas')
-            const set = client.db('deep_sea').collection('creatures')
-            setCreatures((await set.find()).slice(0, 50))
+            // const set = client.db('deep_sea').collection('creatures')
+            const set = client.db('sample_restaurants').collection('restaurants')
+            setCreatures((await set.find()).slice(0, 20))
+            // setCreatures((await set.find( { $text: { $search: zone } } )))
+            // setCreatures((await set.find({Zone: zone})))
+
         }
 
-        getData();
+        getData("Twilight Zone");
 
     }, [])
 
@@ -53,10 +57,14 @@ function Grid() {
         <Container>
 
             {creatures.map(creature => (
-                <Card key={creature._id} name={creature.Name} subName={creature.Scientific} size={creature.Size}
-                      class={creature.Classification} zone={creature.Zone} diet={creature.Feed} text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab ad amet assumenda beatae dicta dignissimos dolorem dolores doloribus dolorum earum esse est, fugiat modi molestias nemo numquam porro quibusdam voluptas!"
+                <Card key={creature._id}
+                      text={creature.cuisine}
+                      // name={creature.Name} subName={creature.Scientific} size={creature.Size}
+                      // class={creature.Classification} zone={creature.Zone} diet={creature.Feed}
+                      // text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab ad amet assumenda beatae dicta dignissimos dolorem dolores doloribus dolorum earum esse est, fugiat modi molestias nemo numquam porro quibusdam voluptas!"
                 />
             ))}
+
         </Container>
     );
 }

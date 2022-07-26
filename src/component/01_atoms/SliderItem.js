@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-
 const Container = styled('a')`
   width: 90%;
   height: 90%;
@@ -10,7 +9,6 @@ const Container = styled('a')`
   justify-content: center;
   align-items: center;
   transform: scale(1);
-  transition: opacity .6s ease, transform .5s ease;
 
 
   img {

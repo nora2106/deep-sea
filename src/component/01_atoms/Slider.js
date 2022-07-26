@@ -62,7 +62,12 @@ const Bubble = styled('div')`
     opacity: .6;
     cursor: pointer;
     transition: opacity .6s ease, transform .5s ease;
-
+  }
+  
+  :hover .arrow-icon {
+    opacity: 1;
+    transition: opacity .8s ease;
+    cursor: pointer;
   }
   
   #bubble-circle {
@@ -78,7 +83,6 @@ const Bubble = styled('div')`
       to{ transform: rotate(360deg); }
     }
   }
-  
 
 `;
 
