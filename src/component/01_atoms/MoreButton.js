@@ -15,7 +15,7 @@ const Container = styled('div')`
   justify-content: center;
 `;
 
-const Button = styled('btn')`
+const Button = styled('div')`
   width: 35px;
   height: 35px;
   background-color: ${(props) => props.theme.colors.secAccent};

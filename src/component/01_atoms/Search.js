@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {Link} from "react-router-dom";
+import {useState} from "react";
 
 
 const Container = styled('div')`
@@ -47,12 +49,26 @@ const SearchInput = styled('input')`
 
 
 function Search() {
+    const [value, setValue] = useState('');
+
+    function updateInput() {
+        let val = document.getElementById('search').value;
+        setValue(val);
+    }
+
     return (
         <Container>
-            <FontAwesomeIcon icon="search" className="icon"/>
-            <SearchInput placeholder="Search" type="text"/>
+            <Link to='/search' state={{val: value}}>
+                <FontAwesomeIcon  icon="search" className="icon"/>
+            </Link>
+            <SearchInput id='search' onChange={updateInput} placeholder="Search" type="text"/>
         </Container>
     );
 }
 
+
+
+
+
 export default Search;
+

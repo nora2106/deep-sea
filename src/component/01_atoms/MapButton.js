@@ -11,7 +11,7 @@ const Container = styled('div')`
    
 `;
 
-const Button = styled('btn')`
+const Button = styled('div')`
   width: 40px;
   height: 40px;
   background-color: ${(props) => props.theme.colors.secAccent};

@@ -14,11 +14,10 @@ function Card(props) {
             <MapButton/>
             <CardImage/>
             <CardContent
-                // name={props.name} subName={props.subName} size={props.size}
-                //          class={props.class} zone={props.zone} diet={props.diet}
-                // text={props.text}
+                name={props.name} subName={props.subName} size={props.size}
+                         class={props.class} zone={props.zone} diet={props.diet}
+                text={props.text}
             />
-            <p>{props.text}</p>
         </Container>
     );
 }

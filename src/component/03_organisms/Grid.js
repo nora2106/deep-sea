@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import Card from "../02_molecules/Card";
-// import { species } from '../04_templates/testData.js'
 import {useEffect, useState} from "react";
 import * as Realm from 'realm-web';
 const app = new Realm.App({ id: 'deep-sea-balmb' });
@@ -34,40 +33,70 @@ const Container = styled('div')`
 `;
 
 function Grid(props) {
-    const [creatures, setCreatures] = useState([])
-    let Zone;
-    useEffect(() => {
-        async function getData (zone) {
-            const user = await app.logIn(Realm.Credentials.anonymous())
-            const client = app.currentUser.mongoClient('mongodb-atlas')
-            // const set = client.db('deep_sea').collection('creatures')
-            const set = client.db('sample_restaurants').collection('restaurants')
-            setCreatures((await set.find()).slice(0, 20))
-            // setCreatures((await set.find( { $text: { $search: zone } } )))
-            // setCreatures((await set.find({Zone: zone})))
-
+    if(props.type === "discover") {
+        if(props.value === undefined) {
+            showAll();
         }
+        else {
+            getData(props.value);
+        }
+    }
 
-        getData("Twilight Zone");
+    else if(props.type === "search"){
+        searchData(props.value);
+    }
 
-    }, [])
 
-    console.log(creatures);
+    const [creatures, setCreatures] = useState([]);
+
+    async function getData (zone) {
+        const user = await app.logIn(Realm.Credentials.anonymous())
+        const client = app.currentUser.mongoClient('mongodb-atlas')
+        const set = client.db('deep_sea').collection('creatures')
+        setCreatures((await set.find({Zone: zone})))
+    }
+
+    async function showAll () {
+        const user = await app.logIn(Realm.Credentials.anonymous())
+        const client = app.currentUser.mongoClient('mongodb-atlas')
+        const set = client.db('deep_sea').collection('creatures')
+        setCreatures(await set.find());
+    }
+
+    async function searchData (value) {
+        const client = app.currentUser.mongoClient('mongodb-atlas');
+        const set = client.db('deep_sea').collection('creatures');
+        const result = await set.aggregate([
+            {
+                $search: {
+                    index: 'text',
+                    text: {
+                        query: value,
+                        path: {
+                            'wildcard': '*'
+                        }
+                    }
+                }
+            }
+        ])
+        setCreatures(result);
+    }
+
     return (
         <Container>
 
             {creatures.map(creature => (
                 <Card key={creature._id}
-                      text={creature.cuisine}
-                      // name={creature.Name} subName={creature.Scientific} size={creature.Size}
-                      // class={creature.Classification} zone={creature.Zone} diet={creature.Feed}
-                      // text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab ad amet assumenda beatae dicta dignissimos dolorem dolores doloribus dolorum earum esse est, fugiat modi molestias nemo numquam porro quibusdam voluptas!"
+                      name={creature.Name} subName={creature.Scientific} size={creature.Size}
+                      class={creature.Classification} zone={creature.Zone} diet={creature.Feed}
+                      text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab ad amet assumenda beatae dicta dignissimos dolorem dolores doloribus dolorum earum esse est, fugiat modi molestias nemo numquam porro quibusdam voluptas!"
                 />
             ))}
 
         </Container>
     );
 }
+
 
 export default Grid;
 

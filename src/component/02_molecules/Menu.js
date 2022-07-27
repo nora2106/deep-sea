@@ -119,7 +119,8 @@ const MenuButton = styled('div')`
 
 `;
 
-function Menu() {
+function Menu(props) {
+
 
     return (
         <Container>
@@ -129,12 +130,11 @@ function Menu() {
             </Overlay>
             <MenuButton onClick={toggleMenu}>
                 <FontAwesomeIcon className="icon" icon="fa-solid fa-bars" inverse />
-                {/*<FontAwesomeIcon icon={solid('coffee')} />*/}
             </MenuButton>
             <MainMenu className="menu">
                 <Logo/>
                 <MenuList/>
-                <Search/>
+                <Search />
             </MainMenu>
 
         </Container>

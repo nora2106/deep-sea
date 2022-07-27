@@ -6,6 +6,7 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import LandingPage from "./component/05_pages/LandingPage";
 import MapMenu from "./component/05_pages/MapMenu";
 import DiscoverPage from "./component/05_pages/DiscoverPage";
+import SearchPage from "./component/05_pages/SearchPage";
 import {ThemeProvider} from "styled-components";
 import {colors, breakpoints} from "./theme";
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -26,6 +27,7 @@ ReactDOM.render(
             <Route path="/" element={<LandingPage/>} />
             <Route path="/map" element={<MapMenu/>} />
             <Route path="/discover" element={<DiscoverPage/>} />
+            <Route path="/search" element={<SearchPage/>} />
             </Routes>
         </BrowserRouter>
     </ThemeProvider>,

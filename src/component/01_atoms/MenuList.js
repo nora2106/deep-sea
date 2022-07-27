@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import {useEffect} from "react";
 import {Link} from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -142,14 +141,14 @@ function MenuList() {
                 <Item onClick={toggleSubMenu} id="lastItem">Discover Creatures
                     <FontAwesomeIcon className="sub-arrow" icon='angle-down'/>
                 <SubMenu  id="subMenu">
-                    <Link to='/discover'>
-                        <SubItem>Option 1</SubItem>
+                    <Link state={{val: "Sunlight Zone"}} to='/discover'>
+                        <SubItem>Sunlight Zone</SubItem>
                     </Link>
-                    <Link to='/discover'>
-                        <SubItem>Option 2</SubItem>
+                    <Link state={{val: "Twilight Zone"}} to='/discover'>
+                        <SubItem>Twilight Zone</SubItem>
                     </Link>
-                    <Link to='/discover'>
-                        <SubItem>Option 3</SubItem>
+                    <Link state={{val: "Midnight Zone"}} to='/discover'>
+                        <SubItem>Midnight Zone</SubItem>
                     </Link>
                 </SubMenu>
                 </Item>

@@ -7,9 +7,10 @@ const Container = styled('div')`
 `;
 
 function Header() {
+
     return (
         <Container>
-             <Menu/>
+             <Menu />
         </Container>
     );
 }
