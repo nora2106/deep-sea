@@ -17,7 +17,7 @@ export default function SearchPage(){
     return (
             <Container>
                 <Header/>
-                <Grid type='discover' value={search} />
+                <Grid type='search' value={search} />
             </Container>
     );
 }

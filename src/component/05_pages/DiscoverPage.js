@@ -23,13 +23,15 @@ export default function DiscoverPage(){
     let zone;
     if(location.state !== null){
          zone = location.state.val;
+        console.log(zone);
     }
 
     return (
             <Container>
                 <Header/>
                 {/*<h1>Test</h1>*/}
-                <Grid type='discover' value={zone} />
+                <Grid type='discover' value={zone}/>
+                {/*<Grid/>*/}
             </Container>
     );
 }

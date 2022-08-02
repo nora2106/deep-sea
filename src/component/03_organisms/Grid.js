@@ -33,21 +33,32 @@ const Container = styled('div')`
 `;
 
 function Grid(props) {
-    if(props.type === "discover") {
-        if(props.value === undefined) {
-            showAll();
+
+
+const [creatures, setCreatures] = useState([]);
+
+    useEffect(() => {
+        if(props.type === "discover") {
+            if(props.value === undefined) {
+                showAll();
+            }
+            else {
+                getData(props.value);
+            }
         }
-        else {
-            getData(props.value);
+
+        else if(props.type === "search"){
+            searchData(props.value);
         }
+    },[props.value]);
+
+    async function showAll() {
+        const user = await app.logIn(Realm.Credentials.anonymous())
+        const client = app.currentUser.mongoClient('mongodb-atlas')
+        const set = client.db('deep_sea').collection('creatures')
+        setCreatures((await set.find()).slice(0, 20));
+        console.log(creatures);
     }
-
-    else if(props.type === "search"){
-        searchData(props.value);
-    }
-
-
-    const [creatures, setCreatures] = useState([]);
 
     async function getData (zone) {
         const user = await app.logIn(Realm.Credentials.anonymous())
@@ -56,12 +67,7 @@ function Grid(props) {
         setCreatures((await set.find({Zone: zone})))
     }
 
-    async function showAll () {
-        const user = await app.logIn(Realm.Credentials.anonymous())
-        const client = app.currentUser.mongoClient('mongodb-atlas')
-        const set = client.db('deep_sea').collection('creatures')
-        setCreatures(await set.find());
-    }
+
 
     async function searchData (value) {
         const client = app.currentUser.mongoClient('mongodb-atlas');
@@ -81,6 +87,7 @@ function Grid(props) {
         ])
         setCreatures(result);
     }
+
 
     return (
         <Container>
