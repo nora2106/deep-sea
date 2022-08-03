@@ -80,8 +80,9 @@ const MainMenu = styled('div')`
 
 
   @media (min-width: ${(props) => props.theme.breakpoints.m}) {
+    position: sticky;
     background-color: ${(props) => props.theme.colors.bgDarker};
-    box-shadow:  -10px 12px 18px 5px rgba(0, 0, 0, 0.3);
+    //box-shadow:  -10px 12px 18px 5px rgba(0, 0, 0, 0.3);
     width: 100%;
     height: 140px;
     display: flex;

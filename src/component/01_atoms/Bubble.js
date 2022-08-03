@@ -46,7 +46,9 @@ const Card = styled('div')`
     cursor: pointer;
     transition: opacity .6s ease, transform .5s ease;
   }
-  
+  .bubble-img {
+    transition: opacity .6s ease, transform .5s ease;
+  }
   :hover h3 {
     transition: opacity .4s ease;
     opacity: 0;

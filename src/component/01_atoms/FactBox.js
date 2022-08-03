@@ -1,10 +1,9 @@
 import styled from 'styled-components';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { LightMode } from '@mui/icons-material/LightMode';
 import Lightbulb from '@mui/icons-material/Lightbulb';
-// import Light_Mode from '@mui/icons-material/lightmode';
-import wb_incandescent from '@mui/icons-material/WbIncandescentOutlined';
 import Lightmode from '@mui/icons-material/LightModeOutlined';
+import {useEffect, useState} from "react";
+import * as Realm from 'realm-web';
+const app = new Realm.App({ id: 'deep-sea-balmb' });
 
 const Container = styled('div')`
   position: relative;
@@ -75,6 +74,23 @@ const Text = styled('p')`
 `;
 
 function FactBox() {
+    // const [text, setText] = useState( 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam.');
+    const [text, setText] = useState('');
+
+    useEffect(() => {
+        async function getData() {
+            const user = await app.logIn(Realm.Credentials.anonymous())
+            const client = app.currentUser.mongoClient('mongodb-atlas')
+            const set = client.db('deep_sea').collection('facts')
+            // const random = await set.find();
+            setText((await set.find()).slice(0, 20));
+            console.log(text);
+        }
+        getData();
+    },[]);
+
+
+
     return (
         <Container>
             <Box>
@@ -83,7 +99,7 @@ function FactBox() {
                     <Lightmode className="sun-icon"/>
                 </Icon>
                 <Headline>Did you know?</Headline>
-                <Text>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam</Text>
+                <Text>{text}</Text>
             </Box>
         </Container>
     );

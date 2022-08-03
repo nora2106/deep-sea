@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import CardImage from "../01_atoms/CardImage";
 import CardContent from "../01_atoms/CardContent";
-import MapButton from "../01_atoms/MapButton";
 
 const Container = styled('div')`
   border-radius: 1.5em;
@@ -11,7 +10,6 @@ const Container = styled('div')`
 function Card(props) {
     return (
         <Container>
-            <MapButton/>
             <CardImage/>
             <CardContent
                 name={props.name} subName={props.subName} size={props.size}

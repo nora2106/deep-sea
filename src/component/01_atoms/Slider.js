@@ -53,8 +53,10 @@ const Bubble = styled('div')`
     height: 20vw;
   }
   
-  img {
+  .bubble-img {
     position: absolute;
+    z-index: 3;
+    transition: opacity .6s ease, transform .5s ease;
   }
   
   :hover .bubble-img {

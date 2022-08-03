@@ -21,17 +21,14 @@ const Container = styled('div')`
     
     :hover {
       cursor: pointer;
-    }
-    
-    :hover .tooltip {
-      visibility: visible;
-      opacity: 1;
-      transition: opacity .5s;
-    }
-
-    :hover .label-text {
-      transform: scale(1.2);
-      transition: transform .3s;
+      transform: scale(1.1);
+      transition: transform .4s;
+      .tooltip {
+        transform: scale(1);
+        visibility: visible;
+        opacity: 1;
+        transition: opacity .4s;
+      }
     }
 
     .tooltip {
@@ -47,7 +44,7 @@ const Container = styled('div')`
       opacity: 0;
       transition: opacity 0.5s;
       font-size: 12px;
-      top: 50px;
+      top: -26px;
     }
 
     .tooltip::after {

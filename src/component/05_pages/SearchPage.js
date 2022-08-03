@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import React from "react";
 import Header from "../03_organisms/Header";
-import {useLocation} from "react-router-dom";
+import {useLocation, useSearchParams} from "react-router-dom";
 import Grid from "../03_organisms/Grid";
 
 const Container = styled('div')`
@@ -12,7 +12,11 @@ const Container = styled('div')`
 
 export default function SearchPage(){
     const location = useLocation();
-    const search = location.state.val;
+    // const search = location.state.val;
+
+    const queryParams = new URLSearchParams(window.location.search)
+    const search = queryParams.get("q");
+    // const searchParam = queryParams.get("location");
 
     return (
             <Container>

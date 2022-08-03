@@ -41,7 +41,7 @@ function CardImage() {
     return (
         <Container>
             <p>© MBARI</p>
-            <MapButton/>
+            {/*<MapButton/>*/}
             <img src={img}/>
         </Container>
     );

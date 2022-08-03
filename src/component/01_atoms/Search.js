@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {Link} from "react-router-dom";
 import {useState} from "react";
 
-
 const Container = styled('div')`
   border: 2px solid white;
   display: flex;
@@ -49,6 +48,7 @@ const SearchInput = styled('input')`
 
 
 function Search() {
+
     const [value, setValue] = useState('');
 
     function updateInput() {
@@ -56,12 +56,23 @@ function Search() {
         setValue(val);
     }
 
+    function handleKeyPress(target) {
+        if(target.charCode===13) {
+            search();
+        }
+    }
+
+    function search(){
+        const  href  = window.location.origin;
+        window.location.href = `${href}/search?q=${value}`;
+        console.log(href);
+    }
+
+
     return (
         <Container>
-            <Link to='/search' state={{val: value}}>
-                <FontAwesomeIcon  icon="search" className="icon"/>
-            </Link>
-            <SearchInput id='search' onChange={updateInput} placeholder="Search" type="text"/>
+                <FontAwesomeIcon onClick={search} icon="search" className="icon"/>
+            <SearchInput onKeyPress={e => handleKeyPress(e)} id='search' onChange={updateInput} placeholder="Search Creatures" type="text"/>
         </Container>
     );
 }

@@ -9,7 +9,7 @@ const Container = styled('a')`
   justify-content: center;
   align-items: center;
   transform: scale(1);
-
+  position: relative;
 
   img {
     border-radius: 100%;

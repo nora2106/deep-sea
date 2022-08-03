@@ -81,7 +81,8 @@ const SubItem = styled(Item)`
   font-size: 18px;
 
   @media(min-width: ${(props) => props.theme.breakpoints.m}){
-    color: ${(props) => props.theme.colors.textHighlight};
+    //color: ${(props) => props.theme.colors.textHighlight};
+    color: white;
     padding: 8px 0 8px 0;
     margin: 0;
     line-height: 30px;
@@ -89,7 +90,7 @@ const SubItem = styled(Item)`
     text-align: center;
     
     :hover {
-      color: ${(props) => props.theme.colors.textDark};
+      color: ${(props) => props.theme.colors.textHighLight};
     }
   }
   
@@ -108,7 +109,7 @@ const SubItem = styled(Item)`
 `;
 
 const SubMenu = styled('div')`
-  color: ${(props) => props.theme.colors.textLight};
+  //color: ${(props) => props.theme.colors.textLight};
   border-bottom: 2px solid ${(props) => props.theme.colors.bgDark};
   display: none;
   padding-top: 20px;
@@ -116,7 +117,7 @@ const SubMenu = styled('div')`
   @media(min-width: ${(props) => props.theme.breakpoints.m}){
     padding-top: 10px;
     padding-bottom: 5px;
-    background-color: white;
+    background-color: ${(props) => props.theme.colors.bgDark};
     border-radius: 10px;
     position: absolute;
     border: none;
