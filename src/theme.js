@@ -12,12 +12,37 @@ export const colors = {
     textLight: '#FFF',
     textDark: '#000',
 }
+// call props: ${(props) => props.theme.colors.bgDarker};
 
 export const breakpoints = {
-    s: '750px',
-    m: '1100px',
-    l: '1550px',
-    xl: '1600px'
+    // s: '750px',
+    // m: '1100px',
+    // l: '1550px',
+    // xl: '1600px'
+                // mobile <425px
+    xs: '425px', //tablet 425-768px
+    s: '768px', //tablet: 768-1024px
+    m: '1024px', //laptop: 1024-1440px
+    l: '1550px', //desktop: 1440-2560px
+    xl: '1600px' //4k: >25560px
 }
 
-// call props: ${(props) => props.theme.colors.bgDarker};
+// @media (min-width: ${(props) => props.theme.breakpoints.xs}) {
+//
+// }
+//
+// @media (min-width: ${(props) => props.theme.breakpoints.s}) {
+//
+// }
+//
+// @media (min-width: ${(props) => props.theme.breakpoints.m}) {
+//
+// }
+//
+// @media (min-width: ${(props) => props.theme.breakpoints.l}) {
+//
+// }
+//
+// @media (min-width: ${(props) => props.theme.breakpoints.xl}) {
+//
+// }

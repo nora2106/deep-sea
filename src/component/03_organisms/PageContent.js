@@ -24,7 +24,11 @@ const Container = styled('div')`
     9kZCIgZD0ibSAwLDExLjM4NDQ4IGMgMCwwIDIxLjEzMzg1MSwxMS4zOTUzMSA0My42MTc2NjEsMTEuMzg0NDEgQyA2Ni4xMDE0NzEsMjIuNzU3OTkgM
     TA3Ljk2ODU2LDAuMDMyNjIKICAgIDEzMC41MDgsN2UtNSBjIDIyLjUzOTQ0LC0wLjAzMjUgNDMuOTYyNjQsMTEuMzg0NDEgNDMuOTYyNjQsMTEuMzg0
     NDEgViA0Ni4zNDU5NCBIIDAgWiIgLz4KPC9zdmc+");
-    top: 55em;
+    top: 45em;
+
+    @media (min-width: ${(props) => props.theme.breakpoints.xs}) {
+      top: 55em;
+    }
 
     @media (min-width: ${(props) => props.theme.breakpoints.s}) {
       top: 60em;
@@ -42,10 +46,14 @@ const Container = styled('div')`
 const Section = styled('section')`
   margin-top: 150px;
   width: 100%;
-  height: 50em;
+  height: 40em;
   padding-bottom: 5em;
   position: relative;
   background-color: ${(props) => props.theme.colors.bgDark};
+
+  @media (min-width: ${(props) => props.theme.breakpoints.xs}) {
+    height: 50em;
+  }
 
   @media (min-width: ${(props) => props.theme.breakpoints.s}) {
     height: 55em;

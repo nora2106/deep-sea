@@ -19,7 +19,7 @@ const Container = styled('div')`
 `;
 
 const Card = styled('div')`
-  margin: 0 12vw;
+  margin: -4em 2em;
   height: 220px;
   width: 220px;
   display: flex;
@@ -28,9 +28,12 @@ const Card = styled('div')`
   justify-content: center;
   z-index: 1;
 
+  @media (min-width: ${(props) => props.theme.breakpoints.xs}) {
+    margin: 0 12vw;
+  }
+
   @media (min-width: ${(props) => props.theme.breakpoints.s}) {
     margin: .5em 12em;
-
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.m}) {
@@ -75,13 +78,18 @@ const Card = styled('div')`
   
   h3{
     position: relative;
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 500;
     z-index: 2;
     color: white;
     padding-top: 2.5em;
     animation-delay: 6s;
     transition: opacity .4s ease;
+
+    @media (min-width: ${(props) => props.theme.breakpoints.s}) {
+      font-size: 18px;
+    }
+    
     @media (min-width: ${(props) => props.theme.breakpoints.m}) {
       font-size: 22px;
     }
@@ -105,8 +113,8 @@ const Card = styled('div')`
   }
   
   .bubble-bg {
-    width: 45vw;
-    height: 45vw;
+    width: 56vw;
+    height: 56vw;
     max-height: 18em;
     position: absolute;
     border-radius: 100%;
@@ -114,6 +122,11 @@ const Card = styled('div')`
     display: flex;
     align-items: center;
     justify-content: center;
+
+    @media (min-width: ${(props) => props.theme.breakpoints.xs}) {
+      height: 45vw;
+      max-height: 18em;
+    }
 
     @media (min-width: ${(props) => props.theme.breakpoints.s}) {
       height: 33vw;
@@ -174,9 +187,9 @@ const Button = styled('button')`
 `;
 
 const Outline = styled('img')`
-  width: 60vw;
+  width: 70vw;
+  max-width: 25em;
   height: auto;
-  max-width: 23em;
   margin-right: 10px;
   position: absolute;
   z-index: 1;
@@ -188,6 +201,11 @@ const Outline = styled('img')`
   @keyframes rotate {
     from{ transform: rotate(-360deg); }
     to{ transform: rotate(360deg); }
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.xs}) {
+    width: 60vw;
+    max-width: 23em;
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.s}) {
@@ -203,9 +221,9 @@ const Outline = styled('img')`
 `;
 
 const Outline2 = styled(Outline)`
-  width: 70vw;
+  width: 80vw;
+  max-width: 28em;
   height: auto;
-  max-width: 26em;
   margin-left: 10px;
   margin-top: 5px;
   position: absolute;
@@ -214,6 +232,11 @@ const Outline2 = styled(Outline)`
   @keyframes rotate2 {
     from{ transform: rotate(360deg); }
     to{ transform: rotate(-360deg); }
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.xs}) {
+    width: 70vw;
+    max-width: 26em;
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.s}) {

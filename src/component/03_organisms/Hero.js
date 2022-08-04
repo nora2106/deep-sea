@@ -5,7 +5,7 @@ import fish from '../../assets/img/png-image8.png'
 const Container = styled('div')`
   overflow: hidden;
   width: 100%;
-  height: 30em;
+  height: 25em;
   top: 5em;
   padding-top: 3em;
   background-color: ${(props) => props.theme.colors.bgDarker};
@@ -13,6 +13,10 @@ const Container = styled('div')`
   flex-direction: column;
   position: relative;
   align-items: center;
+
+  @media (min-width: ${(props) => props.theme.breakpoints.xs}) {
+    height: 30em;
+  }
 
   @media (min-width: ${(props) => props.theme.breakpoints.s}) {
     height: 35em;
@@ -67,15 +71,17 @@ const Container = styled('div')`
     #overlay {
       z-index: 2;
     }
-
     @media (min-width: ${(props) => props.theme.breakpoints.m}) {
-      justify-content:normal;
+      justify-content: normal;
     }
   }
   
   .sub-headline {
-    margin: 0 auto;
-    width: 28em;
+    
+    @media (min-width: ${(props) => props.theme.breakpoints.xs}) {
+      margin: 0 auto;
+      width: 20em;
+    }
     
     @media (min-width: ${(props) => props.theme.breakpoints.s}) {
       width: 30em;
@@ -83,6 +89,7 @@ const Container = styled('div')`
     
     @media (min-width: ${(props) => props.theme.breakpoints.m}) {
       margin: 0;
+      width: 40em;
     }
   }
 
@@ -93,16 +100,22 @@ const Text = styled('div')`
   padding: 2em;
   display: flex;
   flex-direction: column;
+  
 
   h1 {
     text-align: center;
-    font-size: 70px;
-    letter-spacing: 8px;
+    letter-spacing: 4px;
+    font-size: 50px;
     font-family: "IM Fell Double Pica", sans-serif;
     text-shadow: 8px 8px 4px rgba(0, 0, 0, 0.5);
     padding-right: .4em;
     z-index: 1;
     margin: 0;
+    
+    @media (min-width: ${(props) => props.theme.breakpoints.xs}) {
+      font-size: 65px;
+      letter-spacing: 6px;
+    }
 
     @media (min-width: ${(props) => props.theme.breakpoints.s}) {
       font-size: 80px;
@@ -114,17 +127,24 @@ const Text = styled('div')`
     }
     @media (min-width: ${(props) => props.theme.breakpoints.l}) {
       font-size: 150px;
+
     }
   }
 
   h2 {
-    font-size: 24px;
+    font-size: 20px;
     text-align: left;
     margin-bottom: 5px;
     text-shadow: 6px 6px 3px rgba(0, 0, 0, 0.5);
 
+    @media (min-width: ${(props) => props.theme.breakpoints.xs}) {
+      font-size: 24px;
+      margin-left: -35px;
+    }
+
     @media (min-width: ${(props) => props.theme.breakpoints.s}) {
       font-size: 26px;
+      margin-left: 0;
     }
 
     @media (min-width: ${(props) => props.theme.breakpoints.m}) {
@@ -137,15 +157,20 @@ const Text = styled('div')`
   }
 
   h3 {
-    font-size: 20px;
+    font-size: 16px;
     text-align: center;
     margin: 5em auto;
-    width: 80%;
+    width: 90%;
     font-weight: 400;
+
+    @media (min-width: ${(props) => props.theme.breakpoints.xs}) {
+      font-size: 20px;
+      margin: 5em auto;
+    }
 
     @media (min-width: ${(props) => props.theme.breakpoints.s}) {
       font-size: 22px;
-      width: 70%;
+      //width: 70%;
       margin: 6em auto;
     }
 
@@ -153,6 +178,7 @@ const Text = styled('div')`
       font-size: 26px;
       text-align: left;
       margin: 7em 0 3em 0;
+      width: 70%;
     }
 
     @media (min-width: ${(props) => props.theme.breakpoints.l}) {

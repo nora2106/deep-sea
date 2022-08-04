@@ -11,26 +11,51 @@ const Container = styled('div')`
 `;
 
 const Box = styled('div')`
+  z-index: 3;
   background-color: white;
-  width: 70%;
-  max-width: 45em;
+  width: 95%;
+  //max-width: 45em;
   position: absolute;
   right: 0;
   border-top-left-radius: 15px;
   border-bottom-left-radius: 15px;
+
+  @media (min-width: ${(props) => props.theme.breakpoints.xs}) {
+    width: 70%;
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.m}) {
+    width: 60%;
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.l}) {
+    width: 50%;
+  }
 `;
 
 const Icon = styled('div')`
-  width: 100px;
-  height: 100px;
+  width: 70px;
+  height: 70px;
   background-color: ${(props) => props.theme.colors.primAccent};
   position: absolute;
   border-radius: 100%;
   margin-left: 20px;
-  bottom: 60%;
+  top: -1em;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media (min-width: ${(props) => props.theme.breakpoints.xs}) {
+    height: 100px;
+    width: 100px;
+    top: -2em;
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.m}) {
+    
+    height: 120px;
+    width: 120px;
+  }
   
   .icon {
     width: 55%;
@@ -60,41 +85,65 @@ const Icon = styled('div')`
 `;
 const Headline = styled('h3')`
   font-weight: 500;
-  font-size: 28px;
+  font-size: 20px;
   text-align: left;
   padding-left: 5em;
+
+  @media (min-width: ${(props) => props.theme.breakpoints.xs}) {
+    font-size: 28px;
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.m}) {
+    font-size: 32px;
+  }
 
 `;
 
 const Text = styled('p')`
   font-weight: 500;
   font-family: Archivo, sans-serif;
-  padding: 5px 0 10px 20px;
-  font-size: 18px;
+  padding: 5px 10px 10px 20px;
+  font-size: 14px;
+
+  @media (min-width: ${(props) => props.theme.breakpoints.xs}) {
+    font-size: 20px;
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.s}) {
+    font-size: 22px;
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.m}) {
+    font-size: 24px;
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.l}) {
+    font-size: 28px;
+  }
 `;
 
 function FactBox() {
     // const [text, setText] = useState( 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam.');
-    const [text, setText] = useState('');
+    const [text, setText] = useState([]);
 
     useEffect(() => {
-        async function getData() {
-            const user = await app.logIn(Realm.Credentials.anonymous())
-            const client = app.currentUser.mongoClient('mongodb-atlas')
-            const set = client.db('deep_sea').collection('facts')
-            // const random = await set.find();
-            setText((await set.find()).slice(0, 20));
-            console.log(text);
-        }
+
         getData();
     },[]);
 
-
+    async function getData() {
+        const user = await app.logIn(Realm.Credentials.anonymous())
+        const client = app.currentUser.mongoClient('mongodb-atlas')
+        const set = client.db('deep_sea').collection('facts')
+        const randomFact = await set.aggregate([{$sample: {size: 1}}]);
+        // const facts = await set.find({}, {fact: 1, _id: 0});
+        setText(randomFact[0].fact);
+    }
 
     return (
         <Container>
             <Box>
-                <Icon>
+                <Icon onClick={getData}>
                     <Lightbulb className="icon"/>
                     <Lightmode className="sun-icon"/>
                 </Icon>
