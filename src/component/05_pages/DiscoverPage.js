@@ -30,7 +30,7 @@ export default function DiscoverPage(){
             <Container>
                 <Header/>
                 {/*<h1>Test</h1>*/}
-                <Grid type='discover' value={zone}/>
+                <Grid type='discover'/>
                 {/*<Grid/>*/}
             </Container>
     );

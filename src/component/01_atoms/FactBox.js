@@ -116,10 +116,7 @@ const Text = styled('p')`
   @media (min-width: ${(props) => props.theme.breakpoints.m}) {
     font-size: 24px;
   }
-
-  @media (min-width: ${(props) => props.theme.breakpoints.l}) {
-    font-size: 28px;
-  }
+  
 `;
 
 function FactBox() {

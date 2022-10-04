@@ -139,20 +139,26 @@ function MenuList() {
                 <Item id="test">Deep Sea Map</Item>
             </Link>
             <div className="list-container">
-                <Item onClick={toggleSubMenu} id="lastItem">Discover Creatures
-                    <FontAwesomeIcon className="sub-arrow" icon='angle-down'/>
-                <SubMenu  id="subMenu">
-                    <Link state={{val: "Sunlight Zone"}} to='/discover'>
-                        <SubItem>Sunlight Zone</SubItem>
-                    </Link>
-                    <Link state={{val: "Twilight Zone"}} to='/discover'>
-                        <SubItem>Twilight Zone</SubItem>
-                    </Link>
-                    <Link state={{val: "Midnight Zone"}} to='/discover'>
-                        <SubItem>Midnight Zone</SubItem>
-                    </Link>
-                </SubMenu>
-                </Item>
+                <Link state={{type: 'discover'}} to='/discover'>
+                    <Item id='lastItem'>Discover Creatures</Item>
+                </Link>
+                {/*<Item  id="lastItem">Discover Creatures*/}
+                {/*    <FontAwesomeIcon onClick={toggleSubMenu} className="sub-arrow" icon='angle-down'/>*/}
+                {/*<SubMenu  id="subMenu">*/}
+                {/*    <Link state={{val: "Sunlight Zone"}} to='/discover'>*/}
+                {/*        <SubItem>Sunlight Zone</SubItem>*/}
+                {/*    </Link>*/}
+                {/*    <Link state={{val: "Twilight Zone"}} to='/discover'>*/}
+                {/*        <SubItem>Twilight Zone</SubItem>*/}
+                {/*    </Link>*/}
+                {/*    <Link state={{val: "Midnight Zone"}} to='/discover'>*/}
+                {/*        <SubItem>Midnight Zone</SubItem>*/}
+                {/*    </Link>*/}
+                {/*    <Link state={{val: "Hadal Zone"}} to='/discover'>*/}
+                {/*        <SubItem>Hadal Zone</SubItem>*/}
+                {/*    </Link>*/}
+                {/*</SubMenu>*/}
+                {/*</Item>*/}
             </div>
         </Container>
     );

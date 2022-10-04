@@ -90,11 +90,11 @@ const Section3 = styled(Section)`
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.m}) {
-    height: 55em;
+    height: 60em;
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.l}) {
-    height: 55em;
+    height: 62em;
   }
 `;
 

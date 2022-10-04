@@ -31,12 +31,18 @@ const Container = styled('div')`
 `;
 
 const Bubble = styled('div')`
+  margin-top: 4em;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 250px;
-  height: 250px;
+  width: 60vw;
+  height: 60vw;
   position: relative;
+
+  @media (min-width: ${(props) => props.theme.breakpoints.xs}) {
+    width: 50vw;
+    height: 50vw;
+  }
 
   @media (min-width: ${(props) => props.theme.breakpoints.s}) {
     width: 32vw;
@@ -90,16 +96,18 @@ const Bubble = styled('div')`
 
 const Text = styled('p')`
   color: white;
-  position: absolute;
-  left: 50%;
-  top: 92%;
+  position: relative;
+  z-index: 3;
+  margin-top: 3em;
+
+  @media (min-width: ${(props) => props.theme.breakpoints.xs}) {
+  }
 
   @media (min-width: ${(props) => props.theme.breakpoints.s}) {
-    top: 98%;
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.m}) {
-    top: 105%;
+    margin-top: 4em;
   }
 
 `;
@@ -109,10 +117,16 @@ const Arrow = styled('div')`
   border: dotted white;
   border-width: 0 5px 5px 0;
   display: inline-block;
-  width: 35px;
-  height: 35px;
-  margin: 3em;
+  width: 7vw;
+  height: 7vw;
+  margin: 1.5em;
   z-index: 3;
+
+  @media (min-width: ${(props) => props.theme.breakpoints.xs}) {
+    margin: 8vw;
+    width: 6vw;
+    height: 6vw;
+  }
 
   @media (min-width: ${(props) => props.theme.breakpoints.s}) {
     margin: 7vw;
@@ -179,11 +193,14 @@ function Slider() {
     return (
         <Container>
             <Arrow id="left" onClick={() => showSlides(-1)} />
-            <Bubble >
-                <img id='bubble-circle' src={circle}/>
-                <SliderItem link={link} img={img}/>
-            </Bubble>
-            <Text id='curved'>{name}</Text>
+            <div>
+                <Bubble >
+                    <img id='bubble-circle' src={circle}/>
+                    <SliderItem link={link} img={img}/>
+                </Bubble>
+                <Text id='curved'>{name}</Text>
+            </div>
+
             <Arrow id="right" onClick={() => showSlides(1)} />
         </Container>
     );
