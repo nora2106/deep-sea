@@ -5,6 +5,7 @@ import CardContent from "../01_atoms/CardContent";
 const Container = styled('div')`
   border-radius: 1.5em;
   z-index: 1;
+  width: 100%;
 `;
 
 function Card(props) {

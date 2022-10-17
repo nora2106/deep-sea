@@ -94,6 +94,8 @@ let data = [];
         const client = app.currentUser.mongoClient('mongodb-atlas')
         const set = client.db('deep_sea').collection('creatures')
         setCreatures((await set.find()).slice(0, 50));
+        console.log(creatures);
+
     }
 
     async function sortZone () {
@@ -120,7 +122,6 @@ let data = [];
             { $sort : $value }
         ])
         setCreatures(result);
-        console.log(creatures);
 
     }
 

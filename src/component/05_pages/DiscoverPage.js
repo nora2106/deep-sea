@@ -17,6 +17,16 @@ const Container = styled('div')`
   }
 `;
 
+const Cursor = styled('div')`
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  border-radius: 100%;
+  position: absolute;
+  z-index: 5;
+  transform: translate(-50%, -50%);
+`;
+
 export default function DiscoverPage(){
 
     const location = useLocation();

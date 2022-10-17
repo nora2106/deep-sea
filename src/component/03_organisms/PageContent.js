@@ -11,9 +11,10 @@ import Footer from "../02_molecules/Footer";
 
 const Container = styled('div')`
   background-color: ${(props) => props.theme.colors.bgDarker};
-  position: absolute;
+  position: relative;
   overflow: hidden;
   width: 100%;
+  height: auto;
 
   .wave-dark {
     background-image:  url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTc0LjQ3MDY0IDQ2LjM0NTk0IiB2ZXJzaW9uPSIxLjEiI
@@ -43,8 +44,8 @@ const Container = styled('div')`
 `;
 
 
-const Section = styled('section')`
-  margin-top: 150px;
+const Section = styled('div')`
+  //margin-top: 150px;
   width: 100%;
   height: 40em;
   padding-bottom: 5em;
@@ -110,7 +111,7 @@ function PageContent() {
             <Wave class='wave-dark'/>
             <Section2>
                 <FactBox/>
-                    <img alt='Bigfin Reef Squid' src={squid}/>
+                <img alt='Bigfin Reef Squid' src={squid}/>
             </Section2>
             <Section3>
                 <References/>

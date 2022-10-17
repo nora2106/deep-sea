@@ -1,14 +1,15 @@
 import styled from 'styled-components';
-import img from '../../assets/img/img.png'
-import MapButton from "./MapButton";
+import img from '../../assets/img/species/img_searobin.jpg';
+// import img from '../../assets/img/img.png'
+
 
 const Container = styled('div')`
-  height: 50%;
+  //height: 50%;
   text-align: center;
   position: relative;
 
   @media (min-width: ${(props) => props.theme.breakpoints.s}) {
-    height: 45%;
+    //height: 45%;
   }
 
   .btn-icon {
@@ -28,7 +29,7 @@ const Container = styled('div')`
     font-size: 9px;
     position: absolute;
     z-index: 3;
-    bottom: 5px;
+    bottom: 10px;
     right: 10px;
   }
   
@@ -41,7 +42,6 @@ function CardImage() {
     return (
         <Container>
             <p>© MBARI</p>
-            {/*<MapButton/>*/}
             <img src={img}/>
         </Container>
     );
