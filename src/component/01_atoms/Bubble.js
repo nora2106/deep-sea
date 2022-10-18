@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import circle from '../../assets/dotted-circle2.png';
 import SliderItem from './SliderItem';
 import {Link} from "react-router-dom";
+import BubbleOutline from "./BubbleOutline";
 
 const Container = styled('div')`
   position: relative;
@@ -16,6 +17,7 @@ const Container = styled('div')`
   @media (min-width: ${(props) => props.theme.breakpoints.m}) {
     height: 20%;
   }
+
 `;
 
 const Card = styled('div')`
@@ -43,24 +45,13 @@ const Card = styled('div')`
     margin: 6em 22vw;
   }
 
-  :hover .bubble-img{
-    transform: scale(1.14);
-    opacity: .6;
-    cursor: pointer;
-    transition: opacity .6s ease, transform .5s ease;
-  }
-  .bubble-img {
-    transition: opacity .6s ease, transform .5s ease;
-  }
   :hover h3 {
-    transition: opacity .4s ease;
     opacity: 0;
     animation: disappear 1s forwards;
   }
   
   :hover .view-btn {
     opacity: 1;
-    transition: opacity .8s ease, transform .4s ease, background-color .3s ease;
   }
   
   :hover .icon {
@@ -85,6 +76,7 @@ const Card = styled('div')`
     padding-top: 2.5em;
     animation-delay: 6s;
     transition: opacity .4s ease;
+    pointer-events: none;
 
     @media (min-width: ${(props) => props.theme.breakpoints.s}) {
       font-size: 18px;
@@ -96,10 +88,6 @@ const Card = styled('div')`
 
     @media (min-width: ${(props) => props.theme.breakpoints.l}) {
       font-size: 24px;
-    }
-    
-    :hover {
-      cursor: pointer;
     }
 
     @keyframes disappear {
@@ -113,42 +101,24 @@ const Card = styled('div')`
   }
   
   .bubble-bg {
-    width: 56vw;
-    height: 56vw;
-    max-height: 18em;
     position: absolute;
-    border-radius: 100%;
     z-index: 1;
     display: flex;
     align-items: center;
     justify-content: center;
-
-    @media (min-width: ${(props) => props.theme.breakpoints.xs}) {
-      height: 45vw;
-      max-height: 18em;
-    }
-
-    @media (min-width: ${(props) => props.theme.breakpoints.s}) {
-      height: 33vw;
-      max-height: 18em;
-    }
-    @media (min-width: ${(props) => props.theme.breakpoints.m}) {
-      height: 26vw;
-      max-height: 23em;
-    }
-
-    @media (min-width: ${(props) => props.theme.breakpoints.l}) {
-      max-height: 23em;
-      height: 24vw;
-    }
     
-    img {
-      position: absolute;
-    }
+    //img {
+    //  position: absolute;
+    //}
   }
   
   :hover .bubble{
     animation-play-state: paused;
+  }
+  
+  :hover .bubble-img {
+    transform: scale(1.14);
+    opacity: .7;
   }
   .link {
     position: absolute;
@@ -169,13 +139,13 @@ const Button = styled('button')`
   font-family: Quicksand, sans-serif;
   font-weight: 500;
   text-align: center;
+  transition: opacity .8s ease, transform .4s ease, background-color .3s ease;
 
   .icon-btn {
     width: 30%;
   }
 
   :hover {
-    cursor: pointer;
     transform: scale(1.14);
   }
 
@@ -187,21 +157,14 @@ const Button = styled('button')`
 `;
 
 const Outline = styled('img')`
+  pointer-events: none;
   width: 70vw;
   max-width: 25em;
   height: auto;
   margin-right: 10px;
   position: absolute;
   z-index: 1;
-  animation-name: rotate;
-  animation-duration: 60s;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
-
-  @keyframes rotate {
-    from{ transform: rotate(-360deg); }
-    to{ transform: rotate(360deg); }
-  }
+  ${props => props.theme.animations.rotateRight};
 
   @media (min-width: ${(props) => props.theme.breakpoints.xs}) {
     width: 60vw;
@@ -227,12 +190,7 @@ const Outline2 = styled(Outline)`
   margin-left: 10px;
   margin-top: 5px;
   position: absolute;
-  animation-name: rotate2;
-  
-  @keyframes rotate2 {
-    from{ transform: rotate(360deg); }
-    to{ transform: rotate(-360deg); }
-  }
+  ${props => props.theme.animations.rotateLeft};
 
   @media (min-width: ${(props) => props.theme.breakpoints.xs}) {
     width: 70vw;
@@ -256,9 +214,12 @@ function Bubble(props) {
         <Container >
 
             <div className="wrapper" id={props.id}>
+
             <Card>
-                    <Outline className='bubble' src={circle}/>
-                    <Outline2 className='bubble' src={circle}/>
+                {/*<Outline className='bubble' src={circle}/>*/}
+                {/*<Outline2 className='bubble' src={circle}/>*/}
+                <BubbleOutline/>
+                <BubbleOutline/>
                 <h3>{props.text}</h3>
                 <Link className='link' to={props.link}>
                 <Button className='view-btn'>View
@@ -273,6 +234,7 @@ function Bubble(props) {
         </Container>
     );
 }
+
 
 export default Bubble;
 

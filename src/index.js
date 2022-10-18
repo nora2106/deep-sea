@@ -8,7 +8,7 @@ import MapMenu from "./component/05_pages/MapMenu";
 import DiscoverPage from "./component/05_pages/DiscoverPage";
 import SearchPage from "./component/05_pages/SearchPage";
 import {ThemeProvider} from "styled-components";
-import {colors, breakpoints} from "./theme";
+import {colors, breakpoints,animations} from "./theme";
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import { faTwitter, faFontAwesome } from '@fortawesome/free-brands-svg-icons'
@@ -17,7 +17,8 @@ library.add(fas, faTwitter, faFontAwesome)
 
 const theme = {
     colors,
-    breakpoints
+    breakpoints,
+    animations
 }
 
 ReactDOM.render(

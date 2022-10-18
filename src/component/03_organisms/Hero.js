@@ -78,6 +78,7 @@ const Container = styled('div')`
   
   .sub-headline {
     
+    
     @media (min-width: ${(props) => props.theme.breakpoints.xs}) {
       margin: 0 auto;
       width: 20em;
@@ -93,6 +94,7 @@ const Container = styled('div')`
     }
   }
 
+  .
 `;
 
 const Text = styled('div')`
@@ -100,9 +102,17 @@ const Text = styled('div')`
   padding: 2em;
   display: flex;
   flex-direction: column;
-  
+  ${props => props.theme.animations.show};
+  opacity: 0;
+  transform: translateY(20px);
+  animation-delay: 500ms;
+
 
   h1 {
+    ${props => props.theme.animations.show};
+    opacity: 0;
+    transform: translateY(20px);
+    animation-delay: 600ms;
     text-align: center;
     letter-spacing: 4px;
     font-size: 50px;
@@ -132,6 +142,7 @@ const Text = styled('div')`
   }
 
   h2 {
+    animation-delay: 600ms;
     font-size: 20px;
     text-align: left;
     margin-bottom: 5px;
@@ -157,6 +168,10 @@ const Text = styled('div')`
   }
 
   h3 {
+    ${props => props.theme.animations.show};
+    opacity: 0;
+    transform: translateY(20px);
+    animation-delay: 800ms;
     font-size: 16px;
     text-align: center;
     margin: 5em auto;

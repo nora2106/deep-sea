@@ -5,86 +5,83 @@ import Hero from "../03_organisms/Hero";
 import PageContent from "../03_organisms/PageContent";
 
 const Container = styled('div')`
-    //cursor: none;
+  cursor: none;
+  --cursorX: 50vw;
+  --cursorY: 50vh;
   height: auto;
   min-height: 100%;
   width: 100%;
   overflow: auto;
-  //position: fixed;
 
-  .test {
-    position: relative;
-    height: 40em;
-    width: 100%;
-    background-color: black;
+  @media (pointer:none), (pointer:coarse) {
+    #cursor,
+    #overlay {
+      display: none;
+    }
   }
+
 `;
+
 const Overlay = styled('div')`
-  background-color: ${(props) => props.theme.colors.bgDarker};
-  opacity: 65%;
-  height: 100%;
-  width: 100%;
-  position: fixed;
   z-index: 4;
   pointer-events: none;
+  content: '';
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background: radial-gradient(
+          circle 10vmax at var(--cursorX) var(--cursorY),
+          rgba(0,0,0,0) 0%,
+          rgba(0,0,0,.5) 80%,
+          rgba(0,0,0,.85) 100%
+  )
+  
+
 `;
 
 const Cursor = styled('div')`
-  width: 40px;
-  height: 40px;
-  background-color: white;
-  border-radius: 100%;
-  position: absolute;
+  border-radius: 50%;
+  position: fixed;
   z-index: 5;
-  transform: translate(-50%, -50%);
   pointer-events: none;
+  width: 30px;
+  height: 30px;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  transform: translate(-50%, -50%);
 `;
 
 
 export default function LandingPage(){
     useEffect(() => {
-        const cursor = document.getElementById('cursor');
-        window.addEventListener('mousemove', trackMouse)
-        window.addEventListener('scroll', trackScroll)
-        let scrollX;
-        let scrollY;
-        let posX;
-        let posY;
-
+        document.addEventListener('mousemove', trackMouse)
+        document.addEventListener('touchmove', trackMouse)
+        let posX = 0;
+        let posY = 0;
 
         function trackMouse(e) {
-            // scrollY = 0;
-            posX = e.pageX;
-            posY = e.pageY;
-            // let coords = "x: " + scrollX + " y: " + scrollY;
-            cursor.setAttribute('style', 'left: ' + posX+'px; top: '+posY+'px' )
-            console.log('mouse:' + posY);
+            posX = e.clientX || e.touches[0].clientX
+            posY = e.clientY || e.touches[0].clientY
+            document.getElementById('overlay').style.setProperty('--cursorX', posX + 'px')
+            document.getElementById('overlay').style.setProperty('--cursorY', posY + 'px')
+
+            document.getElementById('cursor').style.left = e.clientX + 'px';
+            document.getElementById('cursor').style.top = e.clientY + 'px';
+
+
         }
-
-
-        function trackScroll() {
-            // scrollY = window.scrollY + posY;
-            scrollY = window.scrollY + posY;
-            console.log('total scroll: ' + window.scrollY)
-            console.log('scroll: ' + scrollY);
-            // posY = scrollY;
-            cursor.setAttribute('style', 'left: ' + 300+'px; top: '+scrollY+'px' )
-        }
-
-
-
     },[]);
-    // window.addEventListener('scroll', trackScroll)
 
     return (
             <Container id='page'>
+                {/*<Overlay id='overlay'/>*/}
                 <Cursor id='cursor'/>
-                {/*<Overlay className='overlay'/>*/}
                 <Header/>
                 <Hero/>
                 <PageContent/>
             </Container>
     );
+
 }
 
 

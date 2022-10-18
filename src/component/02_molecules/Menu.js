@@ -8,7 +8,6 @@ const Container = styled('div')`
   height: 100vh;
   width: 100%;
   position: absolute;
-
   .show {
     width: 70%;
     height: 100%;
@@ -66,10 +65,10 @@ const Overlay = styled('div')`
 `;
 
 const MainMenu = styled('div')`
+  z-index: 4;
   background-color: transparent;
   width: 100%;
   height: 100%;
-  z-index: 3;
   position: absolute;
   top: 0;
   pointer-events: none;

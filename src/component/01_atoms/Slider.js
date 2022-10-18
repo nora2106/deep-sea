@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 import SliderItem from "./SliderItem";
-import circle from '../../assets/dotted-circle2.png';
 import logoMbari from '../../assets/img/mbari.jpeg';
 import logoPodcast from '../../assets/img/ds-podcast.jpeg';
 import logoOceanx from '../../assets/img/oceanx2.png';
 import CircleType from 'circletype';
 import {useEffect, useState} from "react";
+import BubbleOutline from "./BubbleOutline";
 
 const Container = styled('div')`
   
@@ -38,6 +38,7 @@ const Bubble = styled('div')`
   width: 60vw;
   height: 60vw;
   position: relative;
+  
 
   @media (min-width: ${(props) => props.theme.breakpoints.xs}) {
     width: 50vw;
@@ -59,37 +60,20 @@ const Bubble = styled('div')`
     height: 20vw;
   }
   
-  .bubble-img {
-    position: absolute;
-    z-index: 3;
-    transition: opacity .6s ease, transform .5s ease;
-  }
-  
-  :hover .bubble-img {
-    transform: scale(1.15);
-    opacity: .6;
-    cursor: pointer;
-    transition: opacity .6s ease, transform .5s ease;
-  }
+  //.bubble-img {
+  //  position: absolute;
+  //  z-index: 3;
+  //}
   
   :hover .arrow-icon {
     opacity: 1;
     transition: opacity .8s ease;
-    cursor: pointer;
+    //cursor: pointer;
   }
   
-  #bubble-circle {
-    width: 140%;
-    height: 140%;
-    animation-name: rotate;
-    animation-duration: 60s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-
-    @keyframes rotate {
-      from{ transform: rotate(-360deg); }
-      to{ transform: rotate(360deg); }
-    }
+  .bubble {
+    //width: 140%;
+    //height: 140%;
   }
 
 `;
@@ -145,7 +129,7 @@ const Arrow = styled('div')`
   }
   
   :hover {
-    cursor: pointer;
+    //cursor: pointer;
   }
 `;
 
@@ -195,7 +179,7 @@ function Slider() {
             <Arrow id="left" onClick={() => showSlides(-1)} />
             <div>
                 <Bubble >
-                    <img id='bubble-circle' src={circle}/>
+                    <BubbleOutline/>
                     <SliderItem link={link} img={img}/>
                 </Bubble>
                 <Text id='curved'>{name}</Text>

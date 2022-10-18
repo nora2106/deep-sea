@@ -27,22 +27,35 @@ export const breakpoints = {
     xl: '1600px' //4k: >25560px
 }
 
-// @media (min-width: ${(props) => props.theme.breakpoints.xs}) {
-//
-// }
-//
-// @media (min-width: ${(props) => props.theme.breakpoints.s}) {
-//
-// }
-//
-// @media (min-width: ${(props) => props.theme.breakpoints.m}) {
-//
-// }
-//
-// @media (min-width: ${(props) => props.theme.breakpoints.l}) {
-//
-// }
-//
-// @media (min-width: ${(props) => props.theme.breakpoints.xl}) {
-//
-// }
+const keyframes = {
+    show: `@keyframes show {
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }`,
+    rotateRight: `@keyframes rotateRight {
+    from{ transform: rotate(-360deg); }
+    to{ transform: rotate(360deg); }
+  }`,
+    rotateLeft: `@keyframes rotateLeft {
+    from{ transform: rotate(360deg); }
+    to{ transform: rotate(-360deg); }
+  }`,
+}
+//${props => props.theme.animations.show};
+
+export const animations = {
+    show: `
+    animation: show 500ms ease-out forwards;
+    ${keyframes.show}
+  `,
+    rotateRight: `
+    animation: rotateRight 60s infinite linear;
+    ${keyframes.rotateRight}
+  `,
+    rotateLeft: `
+    animation: rotateLeft 60s infinite linear;
+    ${keyframes.rotateLeft}
+  `,
+}

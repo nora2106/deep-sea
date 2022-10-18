@@ -45,7 +45,7 @@ const Container = styled('div')`
 
 
 const Section = styled('div')`
-  //margin-top: 150px;
+  margin-top: 150px;
   width: 100%;
   height: 40em;
   padding-bottom: 5em;
