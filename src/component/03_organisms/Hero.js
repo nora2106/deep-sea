@@ -59,7 +59,7 @@ const Container = styled('div')`
       top: 13em;
       width: 80%;
       max-width: 92em;
-      right: 0;
+      right: 1em;
     }
   }
   
@@ -69,7 +69,7 @@ const Container = styled('div')`
     justify-content: center;
     
     #overlay {
-      z-index: 2;
+      z-index: 3;
     }
     @media (min-width: ${(props) => props.theme.breakpoints.m}) {
       justify-content: normal;
@@ -77,8 +77,6 @@ const Container = styled('div')`
   }
   
   .sub-headline {
-    
-    
     @media (min-width: ${(props) => props.theme.breakpoints.xs}) {
       margin: 0 auto;
       width: 20em;
@@ -93,8 +91,7 @@ const Container = styled('div')`
       width: 40em;
     }
   }
-
-  .
+  
 `;
 
 const Text = styled('div')`
@@ -102,25 +99,17 @@ const Text = styled('div')`
   padding: 2em;
   display: flex;
   flex-direction: column;
-  ${props => props.theme.animations.show};
-  opacity: 0;
-  transform: translateY(20px);
-  animation-delay: 500ms;
-
 
   h1 {
-    ${props => props.theme.animations.show};
-    opacity: 0;
-    transform: translateY(20px);
-    animation-delay: 600ms;
+    position: relative;
     text-align: center;
     letter-spacing: 4px;
     font-size: 50px;
     font-family: "IM Fell Double Pica", sans-serif;
     text-shadow: 8px 8px 4px rgba(0, 0, 0, 0.5);
     padding-right: .4em;
-    z-index: 1;
     margin: 0;
+    z-index: 1;
     
     @media (min-width: ${(props) => props.theme.breakpoints.xs}) {
       font-size: 65px;

@@ -2,38 +2,45 @@ import styled from 'styled-components';
 import circle from '../../assets/dotted-circle2.png';
 
 const Container = styled('div')`
-    position: relative;
+  position: absolute;
+  width: 33vw;
+  //max-width: 25em;
+  min-width: 300px;
+  max-width: 600px;
+  :after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+  }
+  
+  .bubble2 {
+    width: 85%;
+    height: 85%;
+    left: 2vw;
+    top: 2vw;
+    display: none;
+    ${props => props.theme.animations.rotateLeft};
+  }
 `;
 
 const Outline = styled('img')`
   pointer-events: none;
-  width: 70vw;
-  max-width: 25em;
-  height: auto;
+  width: 100%;
+  height: 100%;
   position: absolute;
   z-index: 1;
   ${props => props.theme.animations.rotateRight};
 
-  @media (min-width: ${(props) => props.theme.breakpoints.xs}) {
-    width: 60vw;
-    max-width: 23em;
-  }
 
-  @media (min-width: ${(props) => props.theme.breakpoints.s}) {
-    max-width: 24em;
-    width: 44vw;
-  }
-
-  @media (min-width: ${(props) => props.theme.breakpoints.m}) {
-    max-width: 32em;
-    width: 35vw;
-  }
 
 `;
 
 function Name() {
     return (
+        <Container className='bubble-wrapper'>
             <Outline className='bubble' src={circle}/>
+            <Outline className='bubble bubble2' src={circle}/>
+        </Container>
     );
 }
 

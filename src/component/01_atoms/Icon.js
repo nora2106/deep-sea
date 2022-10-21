@@ -20,7 +20,7 @@ const Container = styled('div')`
     align-items: center;
     
     :hover {
-      cursor: pointer;
+      cursor: none;
       transform: scale(1.1);
       transition: transform .4s;
       .tooltip {

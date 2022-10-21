@@ -19,7 +19,7 @@
 
 #closeBtn:hover,
 #menuBtn:hover {
-    cursor: pointer;
+    cursor: none;
     transform: scale(1.2);
     transition: transform .2s;
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
@@ -21,7 +21,9 @@ const theme = {
     animations
 }
 
+
 ReactDOM.render(
+
     <ThemeProvider theme={theme}>
         <BrowserRouter forceRefresh={true}>
             <Routes>
@@ -35,7 +37,6 @@ ReactDOM.render(
 
     document.getElementById('root')
 );
-
 
 
 reportWebVitals();

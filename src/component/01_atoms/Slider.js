@@ -38,7 +38,6 @@ const Bubble = styled('div')`
   width: 60vw;
   height: 60vw;
   position: relative;
-  
 
   @media (min-width: ${(props) => props.theme.breakpoints.xs}) {
     width: 50vw;
@@ -60,20 +59,15 @@ const Bubble = styled('div')`
     height: 20vw;
   }
   
-  //.bubble-img {
-  //  position: absolute;
-  //  z-index: 3;
-  //}
   
   :hover .arrow-icon {
     opacity: 1;
     transition: opacity .8s ease;
-    //cursor: pointer;
   }
   
-  .bubble {
-    //width: 140%;
-    //height: 140%;
+  .bubble-wrapper {
+    width: 135%;
+    height: 135%;
   }
 
 `;
@@ -128,9 +122,6 @@ const Arrow = styled('div')`
     margin: 3vw;
   }
   
-  :hover {
-    //cursor: pointer;
-  }
 `;
 
 function Slider() {
@@ -176,16 +167,16 @@ function Slider() {
 
     return (
         <Container>
-            <Arrow id="left" onClick={() => showSlides(-1)} />
+            <Arrow id="left" className='btn-hover' onClick={() => showSlides(-1)} />
             <div>
                 <Bubble >
                     <BubbleOutline/>
-                    <SliderItem link={link} img={img}/>
+                    <SliderItem className='btn-hover' link={link} img={img}/>
                 </Bubble>
                 <Text id='curved'>{name}</Text>
             </div>
 
-            <Arrow id="right" onClick={() => showSlides(1)} />
+            <Arrow id="right" className='btn-hover' onClick={() => showSlides(1)} />
         </Container>
     );
 }

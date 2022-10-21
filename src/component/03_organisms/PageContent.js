@@ -3,6 +3,7 @@ import React from "react";
 import bg1 from '../../assets/img/bubble-bg1.png'
 import bg2 from '../../assets/img/bubble-bg2.png'
 import squid from '../../assets/img/png-image6.png';
+import jelly from '../../assets/img/png-image9.png';
 import Bubble from "../01_atoms/Bubble";
 import FactBox from "../01_atoms/FactBox";
 import Wave from "../01_atoms/Wave";
@@ -75,6 +76,7 @@ const Section2 = styled(Section)`
     top: 8em;
     left: -6%;
     display: none;
+    opacity: 95%;
     
     @media (min-width: ${(props) => props.theme.breakpoints.m}) {
       display: block;
@@ -97,6 +99,21 @@ const Section3 = styled(Section)`
   @media (min-width: ${(props) => props.theme.breakpoints.l}) {
     height: 62em;
   }
+
+  .bg-image {
+    position: absolute;
+    transform: rotate(-15deg);
+    width: 20vw;
+    z-index: 1;
+    top: 0;
+    right: -2%;
+    display: none;
+    opacity: 90%;
+
+    @media (min-width: ${(props) => props.theme.breakpoints.m}) {
+      display: block;
+    }
+  }
 `;
 
 
@@ -111,9 +128,10 @@ function PageContent() {
             <Wave class='wave-dark'/>
             <Section2>
                 <FactBox/>
-                <img alt='Bigfin Reef Squid' src={squid}/>
+                <img alt='Bigfin Reef Squid by' src={squid}/>
             </Section2>
             <Section3>
+                <img className='bg-image' alt='Barrel Jellyfish by Nikolay Kovalenko' src={jelly}/>
                 <References/>
                 <Wave class='wave-footer'/>
                 <Footer/>

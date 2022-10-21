@@ -24,7 +24,7 @@ const Button = styled('div')`
 
   :hover {
     background-color: ${(props) => props.theme.colors.secAccentHighlight};
-    cursor: pointer;
+    cursor: none;
   }
 `;
 

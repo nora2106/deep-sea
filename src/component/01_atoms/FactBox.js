@@ -74,7 +74,6 @@ const Icon = styled('div')`
  :hover {
    transition: background-color .5s ease;
    background-color: ${(props) => props.theme.colors.primAccentHighlight};
-   cursor: pointer;
    .sun-icon {
      opacity: 90%;
     transition: opacity .5s ease;
@@ -140,7 +139,7 @@ function FactBox() {
     return (
         <Container>
             <Box>
-                <Icon onClick={getData}>
+                <Icon className='btn-hover' onClick={getData}>
                     <Lightbulb className="icon"/>
                     <Lightmode className="sun-icon"/>
                 </Icon>

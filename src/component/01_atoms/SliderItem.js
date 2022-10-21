@@ -22,6 +22,7 @@ const Container = styled('a')`
    :hover {
      transform: scale(1.14);
      opacity: .7;
+     cursor: none;
    }
   
   :after {
@@ -32,7 +33,6 @@ const Container = styled('a')`
 `;
 
 function SliderItem(props) {
-    const btn = document.getElementsByClassName('view-button');
     return (
         <Container className='bubble-img'  href={props.link} target='_blank'>
                 <img src={props.img}/>
@@ -42,37 +42,3 @@ function SliderItem(props) {
 
 export default SliderItem;
 
-// const mouseEnter = event => {
-//     event.currentTarget.style.transform = 'scale(1.14)'
-//     event.currentTarget.style.opacity = '.7'
-//     const bubbles = document.querySelectorAll('.bubble');
-//     bubbles.forEach(bubble => {
-//         bubble.style.animationPlayState = 'paused';
-//     })
-// };
-//
-// const mouseLeave = event => {
-//     event.currentTarget.style.transform = 'scale(1.14)'
-//     event.currentTarget.style.opacity = '.7'
-//     const bubbles = document.querySelectorAll('.bubble');
-//     bubbles.forEach(bubble => {
-//         bubble.style.animationPlayState = 'paused';
-//     })
-// };
-
-function pause() {
-    // const bubble = document.getElementsByClassName('bubble-circle');
-    // bubble.style.animationPlayState = 'paused';
-    const bubbles = document.querySelectorAll('.bubble');
-    bubbles.forEach(bubble => {
-        bubble.style.animationPlayState = 'paused';
-    })
-}
-function play() {
-    // const bubble = document.getElementsByClassName('bubble-circle');
-    // bubble.style.animationPlayState = 'running';
-    const bubbles = document.querySelectorAll('.bubble');
-    bubbles.forEach(bubble => {
-        bubble.style.animationPlayState = 'running';
-    })
-}

@@ -37,6 +37,9 @@ const Container = styled('div')`
       margin-left: 10px;
 
     }
+  :hover {
+    cursor: none;
+  }
 
 `;
 
@@ -48,6 +51,7 @@ const Item = styled('h2')`
 
   :hover {
     color: ${(props) => props.theme.colors.primAccent};
+    cursor: none;
   }
 
   @media(min-width: ${(props) => props.theme.breakpoints.m}){
@@ -65,12 +69,6 @@ const Item = styled('h2')`
   @media(min-width: ${(props) => props.theme.breakpoints.xl}){
     font-size: 34px;
   }
-  
-  :hover {
-    cursor: pointer;
-  }
-
-  
 
 `;
 
@@ -91,6 +89,7 @@ const SubItem = styled(Item)`
     
     :hover {
       color: ${(props) => props.theme.colors.textHighLight};
+      cursor: none
     }
   }
   
@@ -133,14 +132,14 @@ function MenuList() {
     return (
         <Container id="container">
             <Link to="/">
-                <Item>Homepage</Item>
+                <Item className='btn-hover'>Homepage</Item>
             </Link>
             <Link to="/map">
-                <Item id="test">Deep Sea Map</Item>
+                <Item className='btn-hover' id="test">Deep Sea Map</Item>
             </Link>
             <div className="list-container">
                 <Link state={{type: 'discover'}} to='/discover'>
-                    <Item id='lastItem'>Discover Creatures</Item>
+                    <Item className='btn-hover' id='lastItem'>Discover Creatures</Item>
                 </Link>
                 {/*<Item  id="lastItem">Discover Creatures*/}
                 {/*    <FontAwesomeIcon onClick={toggleSubMenu} className="sub-arrow" icon='angle-down'/>*/}

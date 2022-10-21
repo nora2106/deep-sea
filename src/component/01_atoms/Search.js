@@ -17,7 +17,7 @@ const Container = styled('div')`
     width: 1.8em;
     height: 1.8em;
     margin-left: 10px;
-    cursor: pointer;
+    cursor: none;
 
     @media(min-width: ${(props) => props.theme.breakpoints.m}){
       margin-right: 10px;

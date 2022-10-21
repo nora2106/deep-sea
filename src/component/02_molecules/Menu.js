@@ -5,6 +5,7 @@ import MenuList from "../01_atoms/MenuList";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Container = styled('div')`
+  cursor: none;
   height: 100vh;
   width: 100%;
   position: absolute;
@@ -114,7 +115,7 @@ const MenuButton = styled('div')`
   }
   
   :hover {
-    cursor: pointer;
+    cursor: none;
   }
 
 `;
