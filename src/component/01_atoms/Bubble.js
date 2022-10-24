@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import circle from '../../assets/dotted-circle2.png';
 import SliderItem from './SliderItem';
 import {Link} from "react-router-dom";
 import BubbleOutline from "./BubbleOutline";
+import Zoom from '@mui/material/Zoom';
 
 const Container = styled('div')`
   position: relative;
@@ -98,14 +98,15 @@ const Card = styled('div')`
     display: block;
   }
   
-  :hover .bubble-img {
-    transform: scale(1.14);
-    opacity: .7;
-  }
   .link {
     position: absolute;
   }
 
+  :hover .bubble-img {
+    transform: scale(1.14);
+    opacity: .7;
+  }
+  
   :hover .bubble{
     animation-play-state: paused;
   }
@@ -123,7 +124,6 @@ const Card = styled('div')`
     opacity: 0;
     transition: opacity .4s ease;
   }
-  
 `;
 
 const Button = styled('button')`
@@ -162,6 +162,7 @@ function Bubble(props) {
     return (
         <Container >
             <div className="wrapper" id={props.id}>
+                <Zoom in={props.show} style={{ transitionDuration: '1000ms' }} >
                 <Card>
                     <h3>{props.text}</h3>
                     <Link className='link' to={props.link}>
@@ -170,10 +171,11 @@ function Bubble(props) {
                         </Button>
                     </Link>
                     <div className="bubble-bg">
-                        <SliderItem img={props.img} />
+                        <SliderItem show={props.show} img={props.img} />
                         <BubbleOutline/>
                     </div>
                 </Card>
+                </Zoom>
             </div>
         </Container>
     );

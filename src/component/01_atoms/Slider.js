@@ -4,11 +4,12 @@ import logoMbari from '../../assets/img/mbari.jpeg';
 import logoPodcast from '../../assets/img/ds-podcast.jpeg';
 import logoOceanx from '../../assets/img/oceanx2.png';
 import CircleType from 'circletype';
-import {useEffect, useState} from "react";
+import react, {useEffect, useState} from "react";
 import BubbleOutline from "./BubbleOutline";
+import Zoom from '@mui/material/Zoom';
 
 const Container = styled('div')`
-  
+
   .icon {
     width: 200px;
     height: 200px;
@@ -18,16 +19,17 @@ const Container = styled('div')`
   #left {
     transform: rotate(130deg);
   }
-  
+
   #right {
     transform: rotate(-45deg);
   }
+
   height: 25em;
   display: flex;
   flex-direction: row;
   align-items: center;
   overflow: no-display;
-  
+
 `;
 
 const Bubble = styled('div')`
@@ -58,18 +60,15 @@ const Bubble = styled('div')`
     width: 20vw;
     height: 20vw;
   }
-  
-  
-  :hover .arrow-icon {
-    opacity: 1;
-    transition: opacity .8s ease;
-  }
-  
+
   .bubble-wrapper {
     width: 135%;
     height: 135%;
   }
 
+  :hover .bubble {
+    animation-play-state: paused;
+  }
 `;
 
 const Text = styled('p')`
@@ -78,16 +77,9 @@ const Text = styled('p')`
   z-index: 3;
   margin-top: 3em;
 
-  @media (min-width: ${(props) => props.theme.breakpoints.xs}) {
-  }
-
-  @media (min-width: ${(props) => props.theme.breakpoints.s}) {
-  }
-
   @media (min-width: ${(props) => props.theme.breakpoints.m}) {
     margin-top: 4em;
   }
-
 `;
 
 const Arrow = styled('div')`
@@ -121,16 +113,13 @@ const Arrow = styled('div')`
   @media (min-width: ${(props) => props.theme.breakpoints.l}) {
     margin: 3vw;
   }
-  
 `;
 
-function Slider() {
+function Slider(props) {
     const slide1 = ['MBARI', 'https://www.mbari.org/', logoMbari];
     const slide2 = ['Deep-Sea Podcast', 'https://www.armatusoceanic.com/the-deepsea-podcast', logoPodcast];
     const slide3 = ['OceanX', 'https://www.oceanx.org/', logoOceanx];
-
     const slides = [slide1, slide2, slide3];
-
     const [name, setName] = useState('');
     const [link, setLink] = useState('');
     const [img, setImg] = useState('');
@@ -146,16 +135,15 @@ function Slider() {
         showSlides(0);
     }, []);
 
-
     function showSlides(index) {
         let count = slideIndex + index;
 
-        if (count > slides.length -1  ) {
+        if (count > slides.length - 1) {
             count = 0;
         }
 
         if (count < 0) {
-            count = slides.length -1;
+            count = slides.length - 1;
         }
 
         setIndex(count);
@@ -166,18 +154,20 @@ function Slider() {
     }
 
     return (
+        <Zoom in={props.show} style={{ transitionDuration: '1000ms' }} >
         <Container>
-            <Arrow id="left" className='btn-hover' onClick={() => showSlides(-1)} />
+            <Arrow id="left" className='btn-hover' onClick={() => showSlides(-1)}/>
             <div>
-                <Bubble >
+                <Bubble className='btn-hover'>
                     <BubbleOutline/>
-                    <SliderItem className='btn-hover' link={link} img={img}/>
+                    <SliderItem link={link} img={img}/>
                 </Bubble>
                 <Text id='curved'>{name}</Text>
             </div>
-
-            <Arrow id="right" className='btn-hover' onClick={() => showSlides(1)} />
+            <Arrow id="right" className='btn-hover' onClick={() => showSlides(1)}/>
         </Container>
+        </Zoom>
+
     );
 }
 

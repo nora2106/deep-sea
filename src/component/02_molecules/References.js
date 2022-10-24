@@ -45,14 +45,14 @@ const Text = styled('div')`
     }
 `;
 
-function References() {
+function References(props) {
     return (
         <Container>
             <Text>
                 <h2>Fascinated?</h2>
                 <h3>Check out these sites: </h3>
             </Text>
-            <Slider/>
+            <Slider show={props.show}/>
         </Container>
     );
 }

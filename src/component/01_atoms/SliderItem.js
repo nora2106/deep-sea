@@ -33,6 +33,7 @@ const Container = styled('a')`
 `;
 
 function SliderItem(props) {
+
     return (
         <Container className='bubble-img'  href={props.link} target='_blank'>
                 <img src={props.img}/>

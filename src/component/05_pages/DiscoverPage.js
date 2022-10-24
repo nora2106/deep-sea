@@ -4,6 +4,7 @@ import Header from "../03_organisms/Header";
 import Grid from "../03_organisms/Grid";
 import {useLocation} from "react-router-dom";
 import Cursor from "../01_atoms/Cursor";
+import BubbleAnimation from "../01_atoms/BubbleAnimation";
 
 const Container = styled('div')`
   background-color: ${(props) => props.theme.colors.bgDark};
@@ -22,20 +23,12 @@ const Container = styled('div')`
 
 export default function DiscoverPage(){
 
-    const location = useLocation();
-    let zone;
-    if(location.state !== null){
-         zone = location.state.val;
-        console.log(zone);
-    }
-
     return (
             <Container>
                 <Header/>
                 {/*<Cursor/>*/}
-                {/*<h1>Test</h1>*/}
                 <Grid type='discover'/>
-                {/*<Grid/>*/}
+                {/*<BubbleAnimation/>*/}
             </Container>
     );
 }

@@ -29,7 +29,7 @@ const Container = styled('div')`
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.l}) {
-    height: 55em;
+    height: 50em;
     padding-top: 0;
   }
   
@@ -56,11 +56,13 @@ const Container = styled('div')`
     }
 
     @media (min-width: ${(props) => props.theme.breakpoints.l}) {
-      top: 13em;
+      top: 11em;
       width: 80%;
       max-width: 92em;
       right: 1em;
     }
+    
+    
   }
   
   .headline {
@@ -199,6 +201,20 @@ const Text = styled('div')`
   }
 `;
 
+const DownButton = styled('button')`
+  background-color: white;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  bottom: 5em;
+  left: 50%;
+  z-index: 3;
+  
+  :hover {
+    cursor: none;
+  }
+`;
+
 function Hero() {
     return (
         <Container>
@@ -213,8 +229,16 @@ function Hero() {
                 <h3>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore.</h3>
             </Text>
             <img alt='Lanternfish' src={fish}/>
+            <DownButton className='btn-hover' onClick={scrollDown}/>
         </Container>
     );
+}
+
+function scrollDown() {
+    const target = document.getElementById('section1')
+    console.log(target.style.top);
+    // document.body.scrollTo(target.style.top)
+    target.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
 }
 
 export default Hero;

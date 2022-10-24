@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import React from "react";
+import React, {useEffect} from "react";
 import bg1 from '../../assets/img/bubble-bg1.png'
 import bg2 from '../../assets/img/bubble-bg2.png'
 import squid from '../../assets/img/png-image6.png';
@@ -9,6 +9,9 @@ import FactBox from "../01_atoms/FactBox";
 import Wave from "../01_atoms/Wave";
 import References from "../02_molecules/References";
 import Footer from "../02_molecules/Footer";
+import Slide from '@mui/material/Slide';
+import Zoom from '@mui/material/Zoom';
+import react from "react";
 
 const Container = styled('div')`
   background-color: ${(props) => props.theme.colors.bgDarker};
@@ -118,21 +121,37 @@ const Section3 = styled(Section)`
 
 
 function PageContent() {
+    const [zoom, setZoom] = react.useState(false)
+    const [zoom2, setZoom2] = react.useState(false)
+
+    useEffect(() => {
+        if(zoom === false) {
+            document.getElementById('section1').addEventListener('mouseenter', () => {
+                setZoom(true);
+            })
+        }
+        if(zoom2 === false) {
+            document.getElementById('section2').addEventListener('mouseenter', () => {
+                setZoom2(true);
+            })
+        }
+    },[])
+
     return (
         <Container>
             <Wave/>
-            <Section>
-                <Bubble link='/map' img={bg2} id="map-bubble" text='Deep Sea Map' icon={'globe-americas'}/>
-                <Bubble link='/discover' img={bg1} id="discover-bubble" text='Discover Creatures' icon={'search'}/>
+            <Section id='section1'>
+                <Bubble show={zoom} link='/map' img={bg2} id="map-bubble" text='Deep Sea Map' icon={'globe-americas'}/>
+                <Bubble show={zoom} link='/discover' img={bg1} id="discover-bubble" text='Discover Creatures' icon={'search'}/>
             </Section>
             <Wave class='wave-dark'/>
-            <Section2>
+            <Section2 id='section2'>
                 <FactBox/>
                 <img alt='Bigfin Reef Squid by' src={squid}/>
             </Section2>
-            <Section3>
+            <Section3 id='section3'>
                 <img className='bg-image' alt='Barrel Jellyfish by Nikolay Kovalenko' src={jelly}/>
-                <References/>
+                <References show={zoom2}/>
                 <Wave class='wave-footer'/>
                 <Footer/>
             </Section3>

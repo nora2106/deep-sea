@@ -93,11 +93,13 @@ function Grid(props) {
 
 
     async function showAll() { //show certain number of all cards
+        setTimeout(async () => {
         const user = await app.logIn(Realm.Credentials.anonymous()) //use var for global variables
         const client = app.currentUser.mongoClient('mongodb-atlas')
         const set = client.db('deep_sea').collection('creatures')
         setCreatures((await set.find()).slice(0, 30));
         setChecked(true);
+        }, 10);
     }
 
     async function sortZone() { //sort by a certain zone

@@ -11,6 +11,8 @@ const Container = styled('div')`
   align-items: center;
   text-align: right;
   order: 2;  
+  transition: opacity .5s;
+  opacity: 60%;
   
   .icon {
     color: white;
@@ -31,6 +33,10 @@ const Container = styled('div')`
     padding: 5px;
     width: 15vw;
     order: 3;
+  }
+  
+  :hover {
+   opacity: 100%;
   }
 `;
 
@@ -65,21 +71,15 @@ function Search() {
     function search(){
         const  href  = window.location.origin;
         window.location.href = `${href}/search?q=${value}`;
-        console.log(href);
     }
-
 
     return (
         <Container>
-                <FontAwesomeIcon onClick={search} icon="search" className="icon"/>
+                <FontAwesomeIcon onClick={search} icon="search" className="icon btn-hover"/>
             <SearchInput onKeyPress={e => handleKeyPress(e)} id='search' onChange={updateInput} placeholder="Search Creatures" type="text"/>
         </Container>
     );
 }
-
-
-
-
 
 export default Search;
 

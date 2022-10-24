@@ -7,6 +7,8 @@ const Container = styled('div')`
   //max-width: 25em;
   min-width: 300px;
   max-width: 600px;
+  pointer-events: none;
+
   :after {
     content: "";
     display: block;
@@ -14,6 +16,7 @@ const Container = styled('div')`
   }
   
   .bubble2 {
+    pointer-events: none;
     width: 85%;
     height: 85%;
     left: 2vw;
@@ -24,15 +27,11 @@ const Container = styled('div')`
 `;
 
 const Outline = styled('img')`
-  pointer-events: none;
   width: 100%;
   height: 100%;
   position: absolute;
   z-index: 1;
   ${props => props.theme.animations.rotateRight};
-
-
-
 `;
 
 function Name() {
