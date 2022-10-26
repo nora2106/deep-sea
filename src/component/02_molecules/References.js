@@ -6,9 +6,20 @@ const Container = styled('div')`
   display: flex;
   flex-direction: column;
   align-items: center;
+  
+  .reference-wrapper.active {
+      display: none;
+  }
+
+  .show-scroll.active {
+    
+    ${props => props.theme.animations.show};
+  }
 `;
 
 const Text = styled('div')`
+  opacity: 0;
+  transform: translateY(20px);
   text-align: center;
   color: white;
   margin-bottom: 2em;
@@ -43,12 +54,14 @@ const Text = styled('div')`
     h3 {
       font-size: 36px;
     }
+  }
+  
 `;
 
 function References(props) {
     return (
         <Container>
-            <Text>
+            <Text className='show-scroll'>
                 <h2>Fascinated?</h2>
                 <h3>Check out these sites: </h3>
             </Text>

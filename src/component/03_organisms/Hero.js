@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 import React from "react";
 import fish from '../../assets/img/png-image8.png'
+import Zoom from '@mui/material/Zoom';
+import react from "react";
+import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 
 const Container = styled('div')`
   overflow: hidden;
@@ -35,7 +38,7 @@ const Container = styled('div')`
   
   img {
     position: absolute;
-    transform: rotate(170deg) scaleY(-1);
+    transform: rotate(-10deg);
     top: 10em;
     right: -4em;
     width: 90vw;
@@ -59,7 +62,7 @@ const Container = styled('div')`
       top: 11em;
       width: 80%;
       max-width: 92em;
-      right: 1em;
+      right: 2%;
     }
     
     
@@ -101,8 +104,12 @@ const Text = styled('div')`
   padding: 2em;
   display: flex;
   flex-direction: column;
-
+  
   h1 {
+    opacity: 0;
+    transform: translateY(20px);
+    ${props => props.theme.animations.show};
+    animation-delay: 800ms;
     position: relative;
     text-align: center;
     letter-spacing: 4px;
@@ -133,7 +140,10 @@ const Text = styled('div')`
   }
 
   h2 {
-    animation-delay: 600ms;
+    opacity: 0;
+    transform: translateY(20px);
+    ${props => props.theme.animations.show};
+    animation-delay: 400ms;
     font-size: 20px;
     text-align: left;
     margin-bottom: 5px;
@@ -159,10 +169,10 @@ const Text = styled('div')`
   }
 
   h3 {
-    ${props => props.theme.animations.show};
     opacity: 0;
-    transform: translateY(20px);
-    animation-delay: 800ms;
+    transform: translateY(30px);
+    ${props => props.theme.animations.show};
+    animation-delay: 1100ms;
     font-size: 16px;
     text-align: center;
     margin: 5em auto;
@@ -176,7 +186,6 @@ const Text = styled('div')`
 
     @media (min-width: ${(props) => props.theme.breakpoints.s}) {
       font-size: 22px;
-      //width: 70%;
       margin: 6em auto;
     }
 
@@ -201,21 +210,34 @@ const Text = styled('div')`
   }
 `;
 
-const DownButton = styled('button')`
-  background-color: white;
-  width: 30px;
-  height: 30px;
+const DownButton = styled('div')`
+  width: 4em;
+  height: 4em;
   position: absolute;
-  bottom: 5em;
-  left: 50%;
+  bottom: 3.5em;
+  left: 25%;
   z-index: 3;
+  opacity: 80%;
+  transition: transform .6s, opacity .5s;
   
   :hover {
-    cursor: none;
+    transform: scale(1.3);
+    opacity: 1;
+  }
+  .icon {
+    width: 100%;
+    height: 100%;
+    color: white;
   }
 `;
 
 function Hero() {
+    const [show, setShow] = react.useState(false);
+
+    react.useEffect( () => {
+        setShow(true);
+    }, [])
+
     return (
         <Container>
             <Text>
@@ -228,8 +250,12 @@ function Hero() {
                 </div>
                 <h3>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore.</h3>
             </Text>
-            <img alt='Lanternfish' src={fish}/>
-            <DownButton className='btn-hover' onClick={scrollDown}/>
+            <Zoom in={show} style={{transform: 'rotate(-10deg)'}}>
+                <img className='' alt='Lanternfish' src={fish}/>
+            </Zoom>
+            <DownButton className='btn-hover' onClick={scrollDown}>
+                <KeyboardArrowDownRoundedIcon className='icon btn-hover'/>
+            </DownButton>
         </Container>
     );
 }

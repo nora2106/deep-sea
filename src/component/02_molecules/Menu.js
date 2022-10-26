@@ -115,7 +115,7 @@ const MenuButton = styled('div')`
   }
   
   :hover {
-    cursor: none;
+    //cursor: none;
   }
 
 `;

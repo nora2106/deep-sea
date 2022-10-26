@@ -9,9 +9,8 @@ import FactBox from "../01_atoms/FactBox";
 import Wave from "../01_atoms/Wave";
 import References from "../02_molecules/References";
 import Footer from "../02_molecules/Footer";
-import Slide from '@mui/material/Slide';
-import Zoom from '@mui/material/Zoom';
 import react from "react";
+import {Zoom} from "@mui/material";
 
 const Container = styled('div')`
   background-color: ${(props) => props.theme.colors.bgDarker};
@@ -21,7 +20,7 @@ const Container = styled('div')`
   height: auto;
 
   .wave-dark {
-    background-image:  url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTc0LjQ3MDY0IDQ2LjM0NTk0IiB2ZXJzaW9uPSIxLjEiI
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTc0LjQ3MDY0IDQ2LjM0NTk0IiB2ZXJzaW9uPSIxLjEiI
     HhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9IndhdmUtZ3JhZGllbnQiIHgxP
     SIwJSIgeTE9IjEwMCUiIHgyPSIwJSIgeTI9IjAlIj4KICAgICAgPHN0b3Agc3R5bGU9InN0b3AtY29sb3I6IzAzMEMxNTsiIG9mZnNldD0iMCIgaWQ9Im
     RlZXAtb2NlYW4iIC8+CiAgICAgIDxzdG9wIHN0eWxlPSJzdG9wLWNvbG9yOiMwMzBDMTU7IiBvZmZzZXQ9IjEiIGlkPSJzaGFsbG93LW9jZWFuIiAvPg
@@ -41,10 +40,39 @@ const Container = styled('div')`
     @media (min-width: ${(props) => props.theme.breakpoints.m}) {
     }
   }
-  
+
   .wave-footer {
     bottom: 65px;
   }
+  
+  .bg-image {
+    position: absolute;
+    z-index: 1;
+    display: none;
+    opacity: 0;
+
+    @media (min-width: ${(props) => props.theme.breakpoints.m}) {
+      display: block;
+    }
+    
+
+    @keyframes img-show {
+      from {
+        transform: scale(.6);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 90%;
+      }
+    }
+  }
+
+  .bg-image.active {
+    animation: img-show 2s forwards;
+    //animation-delay: 1s;
+  }
+  
 `;
 
 
@@ -70,20 +98,12 @@ const Section2 = styled(Section)`
   background-color: ${(props) => props.theme.colors.bgDarker};
   height: 20em;
   width: 100%;
-  
+
   img {
-    position: absolute;
-    transform: rotate(170deg) scaleY(-1);
+    //transform: rotate(170deg);
     width: 40vw;
-    z-index: 1;
     top: 8em;
     left: -6%;
-    display: none;
-    opacity: 95%;
-    
-    @media (min-width: ${(props) => props.theme.breakpoints.m}) {
-      display: block;
-    }
   }
 `;
 
@@ -104,18 +124,10 @@ const Section3 = styled(Section)`
   }
 
   .bg-image {
-    position: absolute;
     transform: rotate(-15deg);
     width: 20vw;
-    z-index: 1;
     top: 0;
     right: -2%;
-    display: none;
-    opacity: 90%;
-
-    @media (min-width: ${(props) => props.theme.breakpoints.m}) {
-      display: block;
-    }
   }
 `;
 
@@ -123,35 +135,69 @@ const Section3 = styled(Section)`
 function PageContent() {
     const [zoom, setZoom] = react.useState(false)
     const [zoom2, setZoom2] = react.useState(false)
+    const [collapse, setCollapse] = react.useState(false)
+    const [zoom3, setZoom3] = react.useState(false)
 
     useEffect(() => {
-        if(zoom === false) {
-            document.getElementById('section1').addEventListener('mouseenter', () => {
-                setZoom(true);
+        scrollTrigger('.show-scroll', {
+            rootMargin: '-200px'
+        })
+        // setZoom(true);
+    }, [])
+
+    function scrollTrigger(selector, options = {}) {
+        let els = document.querySelectorAll(selector)
+        els = Array.from(els)
+        els.forEach(el => {
+            addObserver(el, options)
+        })
+    }
+// Receiving options passed from the scrollTrigger function
+    function addObserver(el, options) {
+        let observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    if(entry.target.id === 'map-bubble') {
+                        setZoom(true)
+                    }
+                    else if(entry.target.id === 'discover-bubble') {
+                        setZoom2(true)
+                    }
+                    else if(entry.target.id === 'slider-bubble') {
+                        setZoom3(true);
+                    }
+                    else if(entry.target.classList.contains('fact-box')) {
+                        setCollapse(true);
+                    }
+                    else {
+                        entry.target.classList.add('active')
+                        // console.log(entry.target.id)
+                    }
+                    observer.unobserve(entry.target)
+                }
             })
-        }
-        if(zoom2 === false) {
-            document.getElementById('section2').addEventListener('mouseenter', () => {
-                setZoom2(true);
-            })
-        }
-    },[])
+        }, options) // Passing the options object to the observer
+        observer.observe(el)
+    }
+
+
 
     return (
         <Container>
             <Wave/>
             <Section id='section1'>
                 <Bubble show={zoom} link='/map' img={bg2} id="map-bubble" text='Deep Sea Map' icon={'globe-americas'}/>
-                <Bubble show={zoom} link='/discover' img={bg1} id="discover-bubble" text='Discover Creatures' icon={'search'}/>
+                <Bubble show={zoom2} link='/discover' img={bg1} id="discover-bubble" text='Discover Creatures'
+                        icon={'search'}/>
             </Section>
             <Wave class='wave-dark'/>
             <Section2 id='section2'>
-                <FactBox/>
-                <img alt='Bigfin Reef Squid by' src={squid}/>
+                <FactBox show={collapse}/>
+                <img className='show-scroll bg-image ' alt='Bigfin Reef Squid by ' src={squid}/>
             </Section2>
             <Section3 id='section3'>
-                <img className='bg-image' alt='Barrel Jellyfish by Nikolay Kovalenko' src={jelly}/>
-                <References show={zoom2}/>
+                <img className='show-scroll bg-image ' alt='Barrel Jellyfish by Nikolay Kovalenko' src={jelly}/>
+                <References show={zoom3}/>
                 <Wave class='wave-footer'/>
                 <Footer/>
             </Section3>

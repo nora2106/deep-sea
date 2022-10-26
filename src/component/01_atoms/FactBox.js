@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import Lightbulb from '@mui/icons-material/Lightbulb';
 import Lightmode from '@mui/icons-material/LightModeOutlined';
+import Collapse from '@mui/material/Collapse';
 import {useEffect, useState} from "react";
 import * as Realm from 'realm-web';
 const app = new Realm.App({ id: 'deep-sea-balmb' });
@@ -118,10 +119,9 @@ const Text = styled('p')`
   
 `;
 
-function FactBox() {
-    // const [text, setText] = useState( 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam.');
+function FactBox(props) {
     const [text, setText] = useState([]);
-
+    let test = false;
     useEffect(() => {
 
         getData();
@@ -136,15 +136,18 @@ function FactBox() {
         setText(randomFact[0].fact);
     }
 
+
     return (
         <Container>
-            <Box>
+            <Box className='fact-box show-scroll'>
+                <Collapse in={props.show} collapsedSize={40} >
                 <Icon className='btn-hover' onClick={getData}>
                     <Lightbulb className="icon"/>
                     <Lightmode className="sun-icon"/>
                 </Icon>
                 <Headline>Did you know?</Headline>
                 <Text>{text}</Text>
+                </Collapse>
             </Box>
         </Container>
     );

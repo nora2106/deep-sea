@@ -155,7 +155,7 @@ function Slider(props) {
 
     return (
         <Zoom in={props.show} style={{ transitionDuration: '1000ms' }} >
-        <Container>
+        <Container id='slider-bubble' className='show-scroll'>
             <Arrow id="left" className='btn-hover' onClick={() => showSlides(-1)}/>
             <div>
                 <Bubble className='btn-hover'>

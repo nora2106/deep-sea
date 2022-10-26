@@ -5,6 +5,7 @@ import {CSSTransition} from 'react-transition-group';
 import * as Realm from 'realm-web';
 import {FormControlLabel, Grow} from "@mui/material";
 import Switch from '@mui/material/Switch';
+import LoadingSpinner from "../01_atoms/LoadingSpinner";
 
 const app = new Realm.App({id: 'deep-sea-balmb'});
 
@@ -72,7 +73,6 @@ const SortSelect = styled('select')`
 
 function Grid(props) {
 
-
     const [creatures, setCreatures] = useState([]);
     let data = [];
     useEffect(() => {
@@ -99,11 +99,13 @@ function Grid(props) {
         const set = client.db('deep_sea').collection('creatures')
         setCreatures((await set.find()).slice(0, 30));
         setChecked(true);
+        setLoad(false);
         }, 10);
     }
 
     async function sortZone() { //sort by a certain zone
         setChecked(false);
+        setLoad(true);
         setTimeout(async () => {
             const user = await app.logIn(Realm.Credentials.anonymous())
             const client = app.currentUser.mongoClient('mongodb-atlas')
@@ -111,12 +113,13 @@ function Grid(props) {
             const set = client.db('deep_sea').collection('creatures')
             setCreatures((await set.find({Zone: zoneval})))
             setChecked(true);
+            setLoad(false);
         }, 10);
     }
 
     async function sortDiet() { //sort by a certain diet
         setChecked(false);
-
+        setLoad(true);
         setTimeout(async () => {
             const user = await app.logIn(Realm.Credentials.anonymous())
             const client = app.currentUser.mongoClient('mongodb-atlas')
@@ -124,12 +127,14 @@ function Grid(props) {
             let dietval = document.getElementById('dietSelect').value
             setCreatures((await set.find({Feed: dietval})))
             setChecked(true);
+            setLoad(false);
         }, 10);
 
     }
 
     async function sortBy(sortValue) { //sort by value alphabetically
         setChecked(false);
+        setLoad(true);
         setTimeout(async () => {
             const user = await app.logIn(Realm.Credentials.anonymous())
             const client = app.currentUser.mongoClient('mongodb-atlas')
@@ -141,6 +146,7 @@ function Grid(props) {
             ])
             setCreatures(result);
             setChecked(true);
+            setLoad(false);
         }, 10);
 
     }
@@ -213,11 +219,22 @@ function Grid(props) {
     }
 
     const [checked, setChecked] = react.useState(false);
+    function setLoad(bool) {
+        const spinner = document.getElementById('spinner');
+        if(bool === false) {
+            spinner.style.opacity = '0';
+            // spinner.style.display = 'none';
+        }
+        else {
+            spinner.style.opacity = '1';
+            // spinner.style.display = 'block';
+        }
+    }
 
     return (
         <Container>
             <div className='grid-head'>
-
+                <LoadingSpinner/>
                 <div className='select'>
                     <label htmlFor='sort'>Sort by</label>
                     <SortSelect onChange={sort} id='sortSelect' name='sort'>

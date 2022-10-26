@@ -20,9 +20,6 @@ const Container = styled('div')`
       display: none;
     }
   }
-  div:hover {
-    cursor: none;
-  }
 
 `;
 

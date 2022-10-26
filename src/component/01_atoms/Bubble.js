@@ -3,7 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SliderItem from './SliderItem';
 import {Link} from "react-router-dom";
 import BubbleOutline from "./BubbleOutline";
-import Zoom from '@mui/material/Zoom';
+import {CSSTransition} from "react-transition-group";
+import {Zoom} from "@mui/material";
 
 const Container = styled('div')`
   position: relative;
@@ -17,7 +18,26 @@ const Container = styled('div')`
   @media (min-width: ${(props) => props.theme.breakpoints.m}) {
     height: 20%;
   }
+  
+  .wrapper {
+   // opacity: 0;
+   // 
+   //@keyframes zoom {
+   //  from {
+   //    transform: scale(.2);
+   //    opacity: 0;
+   //  }
+   //  to {
+   //    transform: scale(1);
+   //    opacity: 1;
+   //  }
+   //}
+  }
 
+  .wrapper.active {
+    //opacity: 1;
+    //animation: zoom 2s ease-in;
+  }
 `;
 
 const Card = styled('div')`
@@ -161,8 +181,8 @@ const Button = styled('button')`
 function Bubble(props) {
     return (
         <Container >
-            <div className="wrapper" id={props.id}>
-                <Zoom in={props.show} style={{ transitionDuration: '1000ms' }} >
+            <Zoom in={props.show} style={{transitionDuration: '1000ms'}}>
+            <div className="wrapper show-scroll" id={props.id}>
                 <Card>
                     <h3>{props.text}</h3>
                     <Link className='link' to={props.link}>
@@ -170,13 +190,13 @@ function Bubble(props) {
                             <FontAwesomeIcon className="icon-btn" icon='arrow-right'/>
                         </Button>
                     </Link>
-                    <div className="bubble-bg">
+                    <div className="bubble-bg ">
                         <SliderItem show={props.show} img={props.img} />
                         <BubbleOutline/>
                     </div>
                 </Card>
-                </Zoom>
             </div>
+            </Zoom>
         </Container>
     );
 }
