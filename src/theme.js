@@ -42,6 +42,10 @@ const keyframes = {
     from{ transform: rotate(360deg); }
     to{ transform: rotate(-360deg); }
   }`,
+    slideIn: `@keyframes slideIn {
+    to{ transform: translateX(0);
+     opacity: 1;}
+  }`,
 }
 //${props => props.theme.animations.show};
 
@@ -57,5 +61,9 @@ export const animations = {
     rotateLeft: `
     animation: rotateLeft 60s infinite linear;
     ${keyframes.rotateLeft}
+  `,
+    slideIn: `
+    animation: slideIn 600ms ease-out forwards;
+    ${keyframes.slideIn}
   `,
 }

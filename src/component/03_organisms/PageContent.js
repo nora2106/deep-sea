@@ -69,8 +69,8 @@ const Container = styled('div')`
   }
 
   .bg-image.active {
-    animation: img-show 2s forwards;
-    //animation-delay: 1s;
+    ${props => props.theme.animations.show};
+    animation-delay: 1000ms;
   }
   
 `;
@@ -100,7 +100,7 @@ const Section2 = styled(Section)`
   width: 100%;
 
   img {
-    //transform: rotate(170deg);
+    transform: translateX(-30%);
     width: 40vw;
     top: 8em;
     left: -6%;
@@ -124,10 +124,11 @@ const Section3 = styled(Section)`
   }
 
   .bg-image {
-    transform: rotate(-15deg);
+    transform: rotate(-15deg) translateX(30%);
     width: 20vw;
     top: 0;
     right: -2%;
+
   }
 `;
 
@@ -140,7 +141,7 @@ function PageContent() {
 
     useEffect(() => {
         scrollTrigger('.show-scroll', {
-            rootMargin: '-200px'
+            rootMargin: '-100px'
         })
         // setZoom(true);
     }, [])

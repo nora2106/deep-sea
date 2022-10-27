@@ -38,7 +38,8 @@ const Container = styled('div')`
   
   img {
     position: absolute;
-    transform: rotate(-10deg);
+    animation-delay: 1000ms;
+    animation: slide-in 600ms ease-out forwards;
     top: 10em;
     right: -4em;
     width: 90vw;
@@ -59,13 +60,21 @@ const Container = styled('div')`
     }
 
     @media (min-width: ${(props) => props.theme.breakpoints.l}) {
-      top: 11em;
+      top: 10em;
       width: 80%;
       max-width: 92em;
       right: 2%;
     }
-    
-    
+    @keyframes slide-in {
+      from {
+        transform: translateX(30%) rotate(-10deg);
+        opacity: .2;
+      }
+      to {
+        transform: translateX(0) rotate(-10deg);
+        opacity: 1;
+      }
+    }
   }
   
   .headline {
@@ -104,12 +113,12 @@ const Text = styled('div')`
   padding: 2em;
   display: flex;
   flex-direction: column;
+  transform: translateX(-30%);
+  ${props => props.theme.animations.show};
+  animation-delay: 800ms;
+  opacity: 0;
   
   h1 {
-    opacity: 0;
-    transform: translateY(20px);
-    ${props => props.theme.animations.show};
-    animation-delay: 800ms;
     position: relative;
     text-align: center;
     letter-spacing: 4px;
@@ -140,10 +149,6 @@ const Text = styled('div')`
   }
 
   h2 {
-    opacity: 0;
-    transform: translateY(20px);
-    ${props => props.theme.animations.show};
-    animation-delay: 400ms;
     font-size: 20px;
     text-align: left;
     margin-bottom: 5px;
@@ -169,10 +174,6 @@ const Text = styled('div')`
   }
 
   h3 {
-    opacity: 0;
-    transform: translateY(30px);
-    ${props => props.theme.animations.show};
-    animation-delay: 1100ms;
     font-size: 16px;
     text-align: center;
     margin: 5em auto;
@@ -232,11 +233,6 @@ const DownButton = styled('div')`
 `;
 
 function Hero() {
-    const [show, setShow] = react.useState(false);
-
-    react.useEffect( () => {
-        setShow(true);
-    }, [])
 
     return (
         <Container>
@@ -250,9 +246,7 @@ function Hero() {
                 </div>
                 <h3>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore.</h3>
             </Text>
-            <Zoom in={show} style={{transform: 'rotate(-10deg)'}}>
-                <img className='' alt='Lanternfish' src={fish}/>
-            </Zoom>
+            <img className='' alt='Lanternfish' src={fish}/>
             <DownButton className='btn-hover' onClick={scrollDown}>
                 <KeyboardArrowDownRoundedIcon className='icon btn-hover'/>
             </DownButton>

@@ -32,7 +32,12 @@ const Container = styled('div')`
     display: block;
     margin: 0 1em;
   }
-
+  .select.first {
+    transform: translateX(-30%);
+    ${props => props.theme.animations.show};
+    animation-delay: 800ms;
+    opacity: 0;
+  }
 `;
 
 const GridContainer = styled('div')`
@@ -66,8 +71,7 @@ const GridContainer = styled('div')`
 
 const SortSelect = styled('select')`
   margin: 1em;
-
-
+  
 `;
 
 
@@ -235,7 +239,7 @@ function Grid(props) {
         <Container>
             <div className='grid-head'>
                 <LoadingSpinner/>
-                <div className='select'>
+                <div className='select first'>
                     <label htmlFor='sort'>Sort by</label>
                     <SortSelect onChange={sort} id='sortSelect' name='sort'>
                         <option value="depth">Depth</option>

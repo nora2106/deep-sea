@@ -128,10 +128,10 @@ function Slider(props) {
     useEffect(() => {
         const circleType = new CircleType(document.getElementById('curved'));
         circleType.radius(170).dir(-1);
-
     });
 
     useEffect(() => {
+
         showSlides(0);
     }, []);
 
@@ -166,7 +166,7 @@ function Slider(props) {
             </div>
             <Arrow id="right" className='btn-hover' onClick={() => showSlides(1)}/>
         </Container>
-        </Zoom>
+         </Zoom>
 
     );
 }

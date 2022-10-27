@@ -9,6 +9,7 @@ const app = new Realm.App({ id: 'deep-sea-balmb' });
 const Container = styled('div')`
   position: relative;
   top: 3em;
+  height: 50%;
 `;
 
 const Box = styled('div')`
@@ -121,9 +122,7 @@ const Text = styled('p')`
 
 function FactBox(props) {
     const [text, setText] = useState([]);
-    let test = false;
     useEffect(() => {
-
         getData();
     },[]);
 
@@ -138,17 +137,17 @@ function FactBox(props) {
 
 
     return (
-        <Container>
-            <Box className='fact-box show-scroll'>
-                <Collapse in={props.show} collapsedSize={40} >
+        <Container className='fact-box show-scroll'>
+            <Collapse in={props.show} collapsedSize={40}>
+            <Box>
                 <Icon className='btn-hover' onClick={getData}>
-                    <Lightbulb className="icon"/>
-                    <Lightmode className="sun-icon"/>
-                </Icon>
-                <Headline>Did you know?</Headline>
-                <Text>{text}</Text>
-                </Collapse>
+                        <Lightbulb className="icon"/>
+                        <Lightmode className="sun-icon"/>
+                    </Icon>
+                    <Headline>Did you know?</Headline>
+                    <Text>{text}</Text>
             </Box>
+            </Collapse>
         </Container>
     );
 }
