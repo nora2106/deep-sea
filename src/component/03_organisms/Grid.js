@@ -6,6 +6,7 @@ import * as Realm from 'realm-web';
 import {FormControlLabel, Grow} from "@mui/material";
 import Switch from '@mui/material/Switch';
 import LoadingSpinner from "../01_atoms/LoadingSpinner";
+import SortSelect from "../01_atoms/SortSelect";
 
 const app = new Realm.App({id: 'deep-sea-balmb'});
 
@@ -68,11 +69,12 @@ const GridContainer = styled('div')`
 
 
 `;
+//
+// const SortSelect = styled('select')`
+//   margin: 1em;
+//   appearance: none;
+// `;
 
-const SortSelect = styled('select')`
-  margin: 1em;
-  
-`;
 
 
 function Grid(props) {
@@ -234,6 +236,17 @@ function Grid(props) {
             // spinner.style.display = 'block';
         }
     }
+    const testOptions = [
+        {value: "depth", label: "Depth"},
+        {value: "diet", label: "Diet"},
+        {value: "zone", label: "Zone"},
+        {value: "name", label: "Name"}
+    ];
+
+
+    function handleCallback(childData) {
+        console.log(childData);
+    }
 
     return (
         <Container>
@@ -241,39 +254,40 @@ function Grid(props) {
                 <LoadingSpinner/>
                 <div className='select first'>
                     <label htmlFor='sort'>Sort by</label>
-                    <SortSelect onChange={sort} id='sortSelect' name='sort'>
-                        <option value="depth">Depth</option>
-                        <option value="diet">Diet</option>
-                        <option value="zone">Zone</option>
-                        <option value="name">Name</option>
-                    </SortSelect>
+                    <SortSelect parentCallback={handleCallback} options={testOptions} id='sortSelect'/>
+                    {/*<SortSelect onChange={sort} id='sortSelect' name='sort'>*/}
+                    {/*    <option value="depth">Depth</option>*/}
+                    {/*    <option value="diet">Diet</option>*/}
+                    {/*    <option value="zone">Zone</option>*/}
+                    {/*    <option value="name">Name</option>*/}
+                    {/*</SortSelect>*/}
                 </div>
                 <Grow in={showZ} style={{transformOrigin: '0 0 0'}}
                       {...(showZ ? {timeout: 500} : {})}>
                     <div className='select' id='zone'>
                         <label htmlFor='Zone'>Select Zone</label>
-                        <SortSelect onChange={sortZone} id='zoneSelect' name="Zone">
-                            <option value="">Select</option>
-                            <option value="Sunlight Zone">Sunlight Zone</option>
-                            <option value="Twilight Zone">Twilight Zone</option>
-                            <option value="Midnight Zone">Midnight Zone</option>
-                            <option value="Abyssal Zone">Abyssal Zone</option>
-                            <option value="Hadal Zone">Hadal Zone</option>
-                        </SortSelect>
+                        {/*<SortSelect onChange={sortZone} id='zoneSelect' name="Zone">*/}
+                        {/*    <option value="">Select</option>*/}
+                        {/*    <option value="Sunlight Zone">Sunlight Zone</option>*/}
+                        {/*    <option value="Twilight Zone">Twilight Zone</option>*/}
+                        {/*    <option value="Midnight Zone">Midnight Zone</option>*/}
+                        {/*    <option value="Abyssal Zone">Abyssal Zone</option>*/}
+                        {/*    <option value="Hadal Zone">Hadal Zone</option>*/}
+                        {/*</SortSelect>*/}
                     </div>
                 </Grow>
                 <Grow in={showD} style={{transformOrigin: '0 0 0'}}
                       {...(showD ? {timeout: 500} : {})}>
                     <div className='select' id='diet'>
                         <label htmlFor='Diet'>Select Diet</label>
-                        <SortSelect onChange={sortDiet} id='dietSelect' name="Diet">
-                            <option value="">Select</option>
-                            <option value="Carnivorous">Carnivores</option>
-                            <option value="Herbivorous">Herbivores</option>
-                            <option value="Omnivorous">Omnivores</option>
-                            <option value="Piscivorous">Piscivores</option>
-                            <option value="Detrivorous">Detrivores</option>
-                        </SortSelect>
+                        {/*<SortSelect onChange={sortDiet} id='dietSelect' name="Diet">*/}
+                        {/*    <option value="">Select</option>*/}
+                        {/*    <option value="Carnivorous">Carnivores</option>*/}
+                        {/*    <option value="Herbivorous">Herbivores</option>*/}
+                        {/*    <option value="Omnivorous">Omnivores</option>*/}
+                        {/*    <option value="Piscivorous">Piscivores</option>*/}
+                        {/*    <option value="Detrivorous">Detrivores</option>*/}
+                        {/*</SortSelect>*/}
                     </div>
                 </Grow>
 

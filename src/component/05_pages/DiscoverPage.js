@@ -26,7 +26,7 @@ export default function DiscoverPage(){
     return (
             <Container>
                 <Header/>
-                {/*<Cursor/>*/}
+                <Cursor id='cursor2'/>
                 <Grid type='discover'/>
                 {/*<BubbleAnimation/>*/}
             </Container>

@@ -2,18 +2,22 @@ import styled from 'styled-components';
 import {useEffect} from "react";
 
 const Container = styled('div')`
-     border-radius: 50%;
-     position: fixed;
-     z-index: 5;
-     pointer-events: none;
-     width: 30px;
-     height: 30px;
-     border: 2px solid rgba(255, 255, 255, 0.6);
-     transform: translate(-50%, -50%);
-     transition: transform .5s, background-color .5s;
+  border-radius: 50%;
+  position: fixed;
+  z-index: 5;
+  pointer-events: none;
+  width: 30px;
+  height: 30px;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  transform: translate(-50%, -50%);
+  transition: transform .5s, background-color .5s;
+
+  #cursor2 {
+    border: 2px solid rgba(0, 0, 0, 0.6);
+  }
 `;
 
-function Cursor() {
+function Cursor(props) {
 
     useEffect(() => {
         document.addEventListener('mousemove', trackMouse)
@@ -29,26 +33,28 @@ function Cursor() {
         function trackMouse(e) {
             posX = e.clientX || e.touches[0].clientX
             posY = e.clientY || e.touches[0].clientY
-            document.getElementById('overlay').style.setProperty('--cursorX', posX + 'px')
-            document.getElementById('overlay').style.setProperty('--cursorY', posY + 'px')
+            if(props.id === 'cursor1') {
+                document.getElementById('overlay').style.setProperty('--cursorX', posX + 'px')
+                document.getElementById('overlay').style.setProperty('--cursorY', posY + 'px')
+            }
 
-            document.getElementById('cursor').style.left = e.clientX + 'px';
-            document.getElementById('cursor').style.top = e.clientY + 'px';
+            document.getElementById(props.id).style.left = e.clientX + 'px';
+            document.getElementById(props.id).style.top = e.clientY + 'px';
 
 
         }
     },[]);
 
     function cursorActive() {
-        document.getElementById('cursor').style.background = 'white';
+        document.getElementById(props.id).style.background = 'white';
     }
 
     function cursorPassive() {
-        document.getElementById('cursor').style.background = 'transparent';
+        document.getElementById(props.id).style.background = 'transparent';
     }
 
     return (
-        <Container id='cursor'>
+        <Container id={props.id}>
         </Container>
     );
 }

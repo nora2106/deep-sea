@@ -47,7 +47,7 @@ export default function LandingPage(){
             <Container id='page'>
                 <Overlay id='overlay'/>
                 {/*<Cursor id='cursor'/>*/}
-                <Cursor/>
+                <Cursor id='cursor1'/>
                 <Header/>
                 <Hero/>
                 <PageContent/>
