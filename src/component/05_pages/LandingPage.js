@@ -32,12 +32,11 @@ const Overlay = styled('div')`
   height: 100%;
   position: fixed;
   background: radial-gradient(
-          circle 10vmax at var(--cursorX) var(--cursorY),
+          circle 12vmax at var(--cursorX) var(--cursorY),
           rgba(0,0,0,0) 0%,
           rgba(0,0,0,.5) 80%,
           rgba(0,0,0,.85) 100%
-  )
-  
+  );
 
 `;
 

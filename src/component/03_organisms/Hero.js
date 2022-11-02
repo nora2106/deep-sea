@@ -60,18 +60,18 @@ const Container = styled('div')`
     }
 
     @media (min-width: ${(props) => props.theme.breakpoints.l}) {
-      top: 10em;
+      top: 12.5em;
       width: 80%;
       max-width: 92em;
       right: 2%;
     }
     @keyframes slide-in {
       from {
-        transform: translateX(30%) rotate(-10deg);
+        transform: translateX(30%) rotate(-9deg);
         opacity: .2;
       }
       to {
-        transform: translateX(0) rotate(-10deg);
+        transform: translateX(0) rotate(-9deg);
         opacity: 1;
       }
     }

@@ -10,7 +10,9 @@ const Container = styled('div')`
   height: 30px;
   border: 2px solid rgba(255, 255, 255, 0.6);
   transform: translate(-50%, -50%);
-  transition: transform .5s, background-color .5s;
+  transition: background-color .8s;
+  //transition-duration: 200ms;
+  //transition-timing-function: ease-out;
 
   #cursor2 {
     border: 2px solid rgba(0, 0, 0, 0.6);
@@ -30,16 +32,23 @@ function Cursor(props) {
             elem.addEventListener('mouseleave', cursorPassive);
         } );
 
+        function lerp (start, end, amt){
+            return (1-amt)*start+amt*end
+        }
+
         function trackMouse(e) {
             posX = e.clientX || e.touches[0].clientX
             posY = e.clientY || e.touches[0].clientY
             if(props.id === 'cursor1') {
-                document.getElementById('overlay').style.setProperty('--cursorX', posX + 'px')
-                document.getElementById('overlay').style.setProperty('--cursorY', posY + 'px')
-            }
+                // document.getElementById('overlay').style.setProperty('--cursorX', posX + 'px')
+                // document.getElementById('overlay').style.setProperty('--cursorY', posY + 'px')
+                    document.getElementById('overlay').style.setProperty('--cursorX', document.getElementById(props.id).style.left)
+                    document.getElementById('overlay').style.setProperty('--cursorY', document.getElementById(props.id).style.top)
+                }
 
             document.getElementById(props.id).style.left = e.clientX + 'px';
             document.getElementById(props.id).style.top = e.clientY + 'px';
+
 
 
         }
