@@ -40,11 +40,12 @@ function Cursor(props) {
             posX = e.clientX || e.touches[0].clientX
             posY = e.clientY || e.touches[0].clientY
             if(props.id === 'cursor1') {
-                // document.getElementById('overlay').style.setProperty('--cursorX', posX + 'px')
-                // document.getElementById('overlay').style.setProperty('--cursorY', posY + 'px')
-                    document.getElementById('overlay').style.setProperty('--cursorX', document.getElementById(props.id).style.left)
-                    document.getElementById('overlay').style.setProperty('--cursorY', document.getElementById(props.id).style.top)
-                }
+                console.log(props.id)
+                document.getElementById('overlay').style.setProperty('--cursorX', posX + 'px')
+                document.getElementById('overlay').style.setProperty('--cursorY', posY + 'px')
+                //     document.getElementById('overlay').style.setProperty('--cursorX', document.getElementById(props.id).style.left)
+                //     document.getElementById('overlay').style.setProperty('--cursorY', document.getElementById(props.id).style.top)
+            }
 
             document.getElementById(props.id).style.left = e.clientX + 'px';
             document.getElementById(props.id).style.top = e.clientY + 'px';

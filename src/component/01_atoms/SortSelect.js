@@ -10,17 +10,15 @@ const Container = styled('div')`
 
 
 function SortSelect(props) {
-   const [value, setValue] = React.useState('');
 
-    function HandelChange (obj) {
-        // props.parentCallback(event.target.style.value);
-        // event.preventDefault();
-        console.log(obj);
+    function handleChange (obj, name) {
+        props.parentCallback(obj.value, name.name);
+        // console.log(name.name)
     }
 
     return (
         <Container>
-         <CustomSelect options={props.options} name="select1" onChange={(option) => HandelChange(option)} />
+         <CustomSelect options={props.options} name={props.name} onChange={(option, name) => handleChange(option, name)} />
         </Container>
     );
 }

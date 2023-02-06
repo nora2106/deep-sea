@@ -69,13 +69,6 @@ const GridContainer = styled('div')`
 
 
 `;
-//
-// const SortSelect = styled('select')`
-//   margin: 1em;
-//   appearance: none;
-// `;
-
-
 
 function Grid(props) {
 
@@ -93,6 +86,7 @@ function Grid(props) {
 
         } else if (props.type === "search") {
             searchData(props.value);
+            document.querySelector('.select').style.display = 'none';
         }
 
     }, [props.value]);
@@ -109,29 +103,27 @@ function Grid(props) {
         }, 10);
     }
 
-    async function sortZone() { //sort by a certain zone
+    async function sortZone(val) { //sort by a certain zone
         setChecked(false);
         setLoad(true);
         setTimeout(async () => {
             const user = await app.logIn(Realm.Credentials.anonymous())
             const client = app.currentUser.mongoClient('mongodb-atlas')
-            let zoneval = document.getElementById('zoneSelect').value
             const set = client.db('deep_sea').collection('creatures')
-            setCreatures((await set.find({Zone: zoneval})))
+            setCreatures((await set.find({Zone: val})))
             setChecked(true);
             setLoad(false);
         }, 10);
     }
 
-    async function sortDiet() { //sort by a certain diet
+    async function sortDiet(val) { //sort by a certain diet
         setChecked(false);
         setLoad(true);
         setTimeout(async () => {
             const user = await app.logIn(Realm.Credentials.anonymous())
             const client = app.currentUser.mongoClient('mongodb-atlas')
             const set = client.db('deep_sea').collection('creatures')
-            let dietval = document.getElementById('dietSelect').value
-            setCreatures((await set.find({Feed: dietval})))
+            setCreatures((await set.find({Feed: val})))
             setChecked(true);
             setLoad(false);
         }, 10);
@@ -160,8 +152,7 @@ function Grid(props) {
     const [showZ, setShowZ] = react.useState(false);
     const [showD, setShowD] = react.useState(false);
 
-    function sort() {
-        let sortVal = document.getElementById('sortSelect').value;
+    function sort(sortVal) {
         let zone = document.getElementById('zone');
         let diet = document.getElementById('diet');
 
@@ -206,6 +197,9 @@ function Grid(props) {
 
 
     async function searchData(value) {
+        setChecked(false);
+        setLoad(true);
+        setTimeout(async () => {
         const client = app.currentUser.mongoClient('mongodb-atlas');
         const set = client.db('deep_sea').collection('creatures');
         const result = await set.aggregate([
@@ -222,7 +216,11 @@ function Grid(props) {
             }
         ])
         setCreatures(result);
+            setChecked(true);
+            setLoad(false);
+        }, 10);
     }
+
 
     const [checked, setChecked] = react.useState(false);
     function setLoad(bool) {
@@ -236,16 +234,38 @@ function Grid(props) {
             // spinner.style.display = 'block';
         }
     }
-    const testOptions = [
+    const sortOptions = [
         {value: "depth", label: "Depth"},
-        {value: "diet", label: "Diet"},
+        {value: "name", label: "Name"},
         {value: "zone", label: "Zone"},
-        {value: "name", label: "Name"}
+        {value: "diet", label: "Diet"}
+    ];
+    const zoneOptions = [
+        {value: "Sunlight Zone", label: "Sunlight Zone"},
+        {value: "Twilight Zone", label: "Twilight Zone"},
+        {value: "Midnight Zone", label: "Midnight Zone"},
+        {value: "Abyssal Zone", label: "Abyssal Zone"},
+        {value: "Hadal Zone", label: "Hadal Zone"}
+    ];
+    const dietOptions = [
+        {value: "Carnivorous", label: "Carnivores"},
+        {value: "Ommivorous", label: "Omnivores"},
+        {value: "Detrivorous", label: "Detrivores"},
+        {value: "Herbivorous", label: "Herbivores"},
+        {value: "Pescivorous", label: "Pescivores"}
     ];
 
 
-    function handleCallback(childData) {
-        console.log(childData);
+    function handleCallback(childData, name) {
+        if(name === 'zoneSelect') {
+            sortZone(childData)
+        }
+        else if(name === 'dietSelect') {
+            sortDiet(childData)
+        }
+        else {
+            sort(childData);
+        }
     }
 
     return (
@@ -254,43 +274,22 @@ function Grid(props) {
                 <LoadingSpinner/>
                 <div className='select first'>
                     <label htmlFor='sort'>Sort by</label>
-                    <SortSelect parentCallback={handleCallback} options={testOptions} id='sortSelect'/>
-                    {/*<SortSelect onChange={sort} id='sortSelect' name='sort'>*/}
-                    {/*    <option value="depth">Depth</option>*/}
-                    {/*    <option value="diet">Diet</option>*/}
-                    {/*    <option value="zone">Zone</option>*/}
-                    {/*    <option value="name">Name</option>*/}
-                    {/*</SortSelect>*/}
+                    <SortSelect parentCallback={handleCallback} options={sortOptions} name='sortSelect'/>
                 </div>
                 <Grow in={showZ} style={{transformOrigin: '0 0 0'}}
                       {...(showZ ? {timeout: 500} : {})}>
                     <div className='select' id='zone'>
                         <label htmlFor='Zone'>Select Zone</label>
-                        {/*<SortSelect onChange={sortZone} id='zoneSelect' name="Zone">*/}
-                        {/*    <option value="">Select</option>*/}
-                        {/*    <option value="Sunlight Zone">Sunlight Zone</option>*/}
-                        {/*    <option value="Twilight Zone">Twilight Zone</option>*/}
-                        {/*    <option value="Midnight Zone">Midnight Zone</option>*/}
-                        {/*    <option value="Abyssal Zone">Abyssal Zone</option>*/}
-                        {/*    <option value="Hadal Zone">Hadal Zone</option>*/}
-                        {/*</SortSelect>*/}
+                        <SortSelect parentCallback={handleCallback} options={zoneOptions} name='zoneSelect'/>
                     </div>
                 </Grow>
                 <Grow in={showD} style={{transformOrigin: '0 0 0'}}
                       {...(showD ? {timeout: 500} : {})}>
                     <div className='select' id='diet'>
                         <label htmlFor='Diet'>Select Diet</label>
-                        {/*<SortSelect onChange={sortDiet} id='dietSelect' name="Diet">*/}
-                        {/*    <option value="">Select</option>*/}
-                        {/*    <option value="Carnivorous">Carnivores</option>*/}
-                        {/*    <option value="Herbivorous">Herbivores</option>*/}
-                        {/*    <option value="Omnivorous">Omnivores</option>*/}
-                        {/*    <option value="Piscivorous">Piscivores</option>*/}
-                        {/*    <option value="Detrivorous">Detrivores</option>*/}
-                        {/*</SortSelect>*/}
+                        <SortSelect parentCallback={handleCallback} options={dietOptions} name='dietSelect'/>
                     </div>
                 </Grow>
-
             </div>
             <GridContainer>
                 {creatures.map(creature => (
@@ -308,28 +307,3 @@ function Grid(props) {
 
 export default Grid;
 
-function toggleSort(val) {
-    let zone = document.getElementById('zone');
-    let diet = document.getElementById('diet');
-
-    switch (val) {
-        case 'zone': {
-            zone.style.display = 'block';
-            diet.style.display = 'none';
-            //function: sort by Zones (alphabetically)
-            break;
-        }
-        case 'diet': {
-            zone.style.display = 'none';
-            diet.style.display = 'block';
-            //function: sort by Diet (alphabetically)
-            break;
-        }
-        case 'depth': {
-            zone.style.display = 'none';
-            diet.style.display = 'none';
-            //function: sort by Depth (numerically)
-            break;
-        }
-    }
-}
