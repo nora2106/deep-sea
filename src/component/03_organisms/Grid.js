@@ -197,6 +197,7 @@ function Grid(props) {
 
 
     async function searchData(value) {
+        // @todo rework search function (backend)
         setChecked(false);
         setLoad(true);
         setTimeout(async () => {
@@ -215,7 +216,9 @@ function Grid(props) {
                 }
             }
         ])
+        //     const result = set.find({$text: {$search: "jelly"}})
         setCreatures(result);
+            // console.log(result)
             setChecked(true);
             setLoad(false);
         }, 10);
