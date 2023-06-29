@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import React, {useEffect} from "react";
 import Header from "../03_organisms/Header";
 import Grid from "../03_organisms/Grid";
-import Cursor from "../01_atoms/Cursor";
+import CursorHandler from "../00_base/helpers/CursorHandler";
 
 const Container = styled('div')`
   background-color: ${(props) => props.theme.colors.bgDark};
@@ -24,7 +24,6 @@ export default function DiscoverPage(){
     return (
             <Container>
                 <Header/>
-                <Cursor id='cursor2'/>
                 <Grid type='discover'/>
                 {/*<BubbleAnimation/>*/}
             </Container>
