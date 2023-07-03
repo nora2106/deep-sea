@@ -5,7 +5,7 @@ import MenuList from "../01_atoms/MenuList";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Container = styled('div')`
-  cursor: none;
+  //cursor: none;
   height: 100vh;
   width: 100%;
   position: absolute;
@@ -121,8 +121,6 @@ const MenuButton = styled('div')`
 `;
 
 function Menu(props) {
-
-
     return (
         <Container>
             <Overlay className="overlay">

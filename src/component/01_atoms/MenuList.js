@@ -38,7 +38,7 @@ const Container = styled('div')`
 
     }
   :hover {
-    cursor: none;
+    //cursor: none;
   }
 
 `;

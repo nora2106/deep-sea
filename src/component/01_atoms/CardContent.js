@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import Icon from "./Icon";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-
 const arthropod = 'shrimp';
 const cnidarian = ['fab', 'phoenix-framework'] ;
 const ctenophore = ['fab', 'empire'];
@@ -71,7 +70,7 @@ const SubName = styled('h3')`
 `;
 
 const Text = styled('p')`
-  font-size: 2.6vw;
+  font-size: .2rem;
   padding-left: 2%;
   padding-right: 2%;
   overflow: auto;
@@ -80,15 +79,15 @@ const Text = styled('p')`
   letter-spacing: .3px;
 
   @media (min-width: ${(props) => props.theme.breakpoints.s}) {
-    font-size: 1.5vw;
+    font-size: .4rem;
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.m}) {
-      font-size: .8vw;
+      font-size: .8rem;
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.l}) {
-      font-size: .7vw;
+      font-size: .8rem;
   }
 `;
 

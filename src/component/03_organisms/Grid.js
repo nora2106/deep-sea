@@ -1,12 +1,11 @@
 import styled from 'styled-components';
 import Card from "../02_molecules/Card";
 import react, {useEffect, useState} from "react";
-import {CSSTransition} from 'react-transition-group';
 import * as Realm from 'realm-web';
-import {FormControlLabel, Grow} from "@mui/material";
-import Switch from '@mui/material/Switch';
+import {Grow} from "@mui/material";
 import LoadingSpinner from "../01_atoms/LoadingSpinner";
 import SortSelect from "../01_atoms/SortSelect";
+import Pagination from "../01_atoms/Pagination"
 
 const app = new Realm.App({id: 'deep-sea-balmb'});
 
@@ -33,11 +32,22 @@ const Container = styled('div')`
     display: block;
     margin: 0 1em;
   }
+
   .select.first {
     transform: translateX(-30%);
     ${props => props.theme.animations.show};
     animation-delay: 800ms;
     opacity: 0;
+  }
+  
+  .top {
+    float: right;
+    z-index: 3;
+    position: relative;
+  }
+  
+  .bottom {
+    bottom: 2em;
   }
 `;
 
@@ -71,36 +81,35 @@ const GridContainer = styled('div')`
 `;
 
 function Grid(props) {
-
+    const [checked, setChecked] = useState(false);
     const [creatures, setCreatures] = useState([]);
+    const [count, setCount] = useState(0);
+    const [page, setPage] = useState(1);
+    let iteration = 20;
     let data = [];
     useEffect(() => {
         if (props.type === "discover") {
-            // if(props.value === undefined ) {
-            //     showAll();
-            // }
-            // else {
-            //     getData(props.value);
-            // }
-            showAll();
+            show(0, iteration).then();
 
         } else if (props.type === "search") {
-            searchData(props.value);
+            searchData(props.value).then();
             document.querySelector('.select').style.display = 'none';
         }
 
     }, [props.value]);
 
-
-    async function showAll() { //show certain number of all cards
+    async function show(startNum, endNum) { //show certain number of all cards
+        setChecked(false);
+        setLoad(true);
         setTimeout(async () => {
-        const user = await app.logIn(Realm.Credentials.anonymous()) //use var for global variables
-        const client = app.currentUser.mongoClient('mongodb-atlas')
-        const set = client.db('deep_sea').collection('creatures')
-        setCreatures((await set.find()).slice(0, 30));
-        setChecked(true);
-        setLoad(false);
-        }, 10);
+            const user = await app.logIn(Realm.Credentials.anonymous()) //use var for global variables
+            const client = app.currentUser.mongoClient('mongodb-atlas')
+            const set = client.db('deep_sea').collection('creatures')
+            setCount(Math.round(await set.count() / 20));
+            setCreatures((await set.find()).slice(startNum, endNum));
+            setChecked(true);
+            setLoad(false);
+        }, 4);
     }
 
     async function sortZone(val) { //sort by a certain zone
@@ -110,10 +119,11 @@ function Grid(props) {
             const user = await app.logIn(Realm.Credentials.anonymous())
             const client = app.currentUser.mongoClient('mongodb-atlas')
             const set = client.db('deep_sea').collection('creatures')
+            setCount(Math.round(await set.count({Zone: val}) / 20));
             setCreatures((await set.find({Zone: val})))
             setChecked(true);
             setLoad(false);
-        }, 10);
+        }, 4);
     }
 
     async function sortDiet(val) { //sort by a certain diet
@@ -123,11 +133,11 @@ function Grid(props) {
             const user = await app.logIn(Realm.Credentials.anonymous())
             const client = app.currentUser.mongoClient('mongodb-atlas')
             const set = client.db('deep_sea').collection('creatures')
+            setCount(Math.round(await set.count({Feed: val}) / 20));
             setCreatures((await set.find({Feed: val})))
             setChecked(true);
             setLoad(false);
-        }, 10);
-
+        }, 4);
     }
 
     async function sortBy(sortValue) { //sort by value alphabetically
@@ -137,7 +147,7 @@ function Grid(props) {
             const user = await app.logIn(Realm.Credentials.anonymous())
             const client = app.currentUser.mongoClient('mongodb-atlas')
             const set = client.db('deep_sea').collection('creatures')
-            var $value = {};
+            let $value = {};
             $value[sortValue] = 1;
             const result = await set.aggregate([
                 {$sort: $value}
@@ -145,7 +155,7 @@ function Grid(props) {
             setCreatures(result);
             setChecked(true);
             setLoad(false);
-        }, 10);
+        }, 4);
 
     }
 
@@ -158,7 +168,7 @@ function Grid(props) {
 
         switch (sortVal) {
             case 'zone': {
-                sortBy('Zone')
+                sortBy('Zone').then();
                 zone.style.display = 'block';
                 diet.style.display = 'none';
                 setShowZ(true);
@@ -166,7 +176,7 @@ function Grid(props) {
                 break;
             }
             case 'diet': {
-                sortBy("Feed");
+                sortBy("Feed").then();
                 zone.style.display = 'none';
                 diet.style.display = 'block';
                 setShowD(true);
@@ -175,16 +185,16 @@ function Grid(props) {
                 break;
             }
             case 'depth': {
-                sortBy("Depth");
+                sortBy("Depth").then();
                 zone.style.display = 'none';
                 diet.style.display = 'none';
                 setShowZ(false);
                 setShowD(false);
-                //function: sort by Depth (numerically) -> currently: alphabetically
+                //function: @todo: sort by Depth (numerically) -> currently: alphabetically
                 break;
             }
             case 'name': {
-                sortBy("Name");
+                sortBy("Name").then();
                 zone.style.display = 'none';
                 diet.style.display = 'none';
                 setShowZ(false);
@@ -195,48 +205,45 @@ function Grid(props) {
         }
     }
 
-
     async function searchData(value) {
         // @todo rework search function (backend)
         setChecked(false);
         setLoad(true);
         setTimeout(async () => {
-        const client = app.currentUser.mongoClient('mongodb-atlas');
-        const set = client.db('deep_sea').collection('creatures');
-        const result = await set.aggregate([
-            {
-                $search: {
-                    index: 'text',
-                    text: {
-                        query: value,
-                        path: {
-                            'wildcard': '*'
+            const client = app.currentUser.mongoClient('mongodb-atlas');
+            const set = client.db('deep_sea').collection('creatures');
+            // const query = { $text: { $search: value } };
+            // const result = set.find(query);
+            const result = await set.aggregate([
+                {
+                    $search: {
+                        index: 'text',
+                        text: {
+                            query: value,
+                            path: {
+                                'wildcard': '*'
+                            }
                         }
                     }
                 }
-            }
-        ])
-        //     const result = set.find({$text: {$search: "jelly"}})
-        setCreatures(result);
-            // console.log(result)
+            ])
+            //     const result = await set.find({$text: {$search: "jelly"}})
+            // setCreatures(result);
+            console.log(value, result)
             setChecked(true);
             setLoad(false);
-        }, 10);
+        }, 4);
     }
 
-
-    const [checked, setChecked] = react.useState(false);
     function setLoad(bool) {
         const spinner = document.getElementById('spinner');
-        if(bool === false) {
+        if (bool === false) {
             spinner.style.opacity = '0';
-            // spinner.style.display = 'none';
-        }
-        else {
+        } else {
             spinner.style.opacity = '1';
-            // spinner.style.display = 'block';
         }
     }
+
     const sortOptions = [
         {value: "depth", label: "Depth"},
         {value: "name", label: "Name"},
@@ -260,19 +267,29 @@ function Grid(props) {
 
 
     function handleCallback(childData, name) {
-        if(name === 'zoneSelect') {
-            sortZone(childData)
-        }
-        else if(name === 'dietSelect') {
-            sortDiet(childData)
-        }
-        else {
+        if (name === 'zoneSelect') {
+            sortZone(childData).then()
+        } else if (name === 'dietSelect') {
+            sortDiet(childData).then()
+        } else {
             sort(childData);
         }
     }
 
+    const getPage = (num) => {
+        // console.log('page: ' + num)
+        setPage(num);
+        let endNum = iteration * num;
+        let startNum = endNum - iteration;
+        show(startNum, endNum).then();
+        window.scrollTo(0, 0)
+    }
+
     return (
         <Container>
+            <div className='top'>
+                <Pagination action={getPage} pages={count}/>
+            </div>
             <div className='grid-head'>
                 <LoadingSpinner/>
                 <div className='select first'>
@@ -296,7 +313,6 @@ function Grid(props) {
             </div>
             <GridContainer>
                 {creatures.map(creature => (
-
                     <Card anim={checked} key={creature._id}
                           name={creature.Name} subName={creature.Scientific} size={creature.Size}
                           class={creature.Classification} zone={creature.Zone} diet={creature.Feed}
@@ -304,6 +320,9 @@ function Grid(props) {
                     />
                 ))}
             </GridContainer>
+            <div className='bottom'>
+                <Pagination action={getPage} pages={count}/>
+            </div>
         </Container>
     );
 }
