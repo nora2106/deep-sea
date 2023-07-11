@@ -78,15 +78,15 @@ const Text = styled('p')`
   font-family: Archivo, sans-serif;
   letter-spacing: .3px;
 
-  @media (min-width: ${(props) => props.theme.breakpoints.s}) {
+  @media (min-width: ${props => props.theme.breakpoints.s}) {
     font-size: .4rem;
   }
 
-  @media (min-width: ${(props) => props.theme.breakpoints.m}) {
+  @media (min-width: ${props => props.theme.breakpoints.m}) {
       font-size: .8rem;
   }
 
-  @media (min-width: ${(props) => props.theme.breakpoints.l}) {
+  @media (min-width: ${props => props.theme.breakpoints.l}) {
       font-size: .8rem;
   }
 `;

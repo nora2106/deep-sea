@@ -87,7 +87,9 @@ function Grid(props) {
     const [page, setPage] = useState(1);
     let iteration = 20;
     let data = [];
+    let database = props.data;
     useEffect(() => {
+        console.log(database)
         if (props.type === "discover") {
             show(0, iteration).then();
 
@@ -105,7 +107,7 @@ function Grid(props) {
             const user = await app.logIn(Realm.Credentials.anonymous()) //use var for global variables
             const client = app.currentUser.mongoClient('mongodb-atlas')
             const set = client.db('deep_sea').collection('creatures')
-            setCount(Math.round(await set.count() / 20));
+            // setCount(Math.round(await set.count() / 20));
             setCreatures((await set.find()).slice(startNum, endNum));
             setChecked(true);
             setLoad(false);

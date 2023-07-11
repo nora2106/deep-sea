@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import img from '../../assets/img/species/crown_jelly.jpg';
+import img from '../../assets/img/species/giant_pyrosome.png';
 // import img from '../../assets/img/img.png'
 
 

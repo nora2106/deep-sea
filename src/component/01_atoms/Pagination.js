@@ -24,13 +24,21 @@ const Number = styled('div')`
 `;
 
 function Pagination(props) {
-    const [active, setActive] = useState(0);
+    const [active, setActive] = useState(1);
     const handleClick = (num) => {
         props.action(num);
         setActive(num)
     }
 
     useEffect(() => {
+        updatePage();
+    }, [active])
+
+    useEffect(() => {
+        updatePage();
+    }, [props.pages]);
+
+    function updatePage() {
         let categories = document.querySelectorAll('.page-number')
         categories.forEach(category => {
                 category.classList.remove('selected')
@@ -39,12 +47,7 @@ function Pagination(props) {
                 }
             }
         )
-    }, [active])
-
-
-    useEffect(() => {
-        setActive(1)
-    }, [props.pages]);
+    }
 
     return (
         <Container>

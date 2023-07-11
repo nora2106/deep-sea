@@ -8,7 +8,6 @@ const Container = styled('div')`
 
 function CursorHandler() {
     const cursorRef = useRef();
-    //@todo
 
     useEffect(() => {
         const onMouseMove = event => {
@@ -16,8 +15,8 @@ function CursorHandler() {
         };
 
         document.addEventListener("mousemove", onMouseMove);
-
         const elems = document.querySelectorAll('.btn-hover');
+        console.log(elems)
         elems.forEach((elem) => {
             elem.addEventListener('mouseenter', cursorActive);
             elem.addEventListener('mouseleave', cursorPassive);
