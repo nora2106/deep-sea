@@ -26,7 +26,7 @@ const piscivore = "fish";
 
 const Container = styled('div')`
   background-color: white;
-  height: 55%;
+  height: 60%;
   width: 100%;
   position: relative;
   bottom: 1em;

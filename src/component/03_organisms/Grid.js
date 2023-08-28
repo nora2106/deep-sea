@@ -61,14 +61,12 @@ const GridContainer = styled('div')`
   @media (min-width: ${(props) => props.theme.breakpoints.s}) {
     grid-template-columns:  repeat(2, 1fr);
     grid-auto-rows: 65vw;
-
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.m}) {
     grid-template-columns:  repeat(3, 1fr);
     grid-auto-rows: 40vw;
     padding: 1em 3.5em 5em 3em;
-
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.l}) {
@@ -89,14 +87,24 @@ function Grid(props) {
     let data = [];
     let database = props.data;
     useEffect(() => {
-        console.log(database)
-        if (props.type === "discover") {
-            show(0, iteration).then();
 
-        } else if (props.type === "search") {
-            searchData(props.value).then();
-            document.querySelector('.select').style.display = 'none';
+        async function getCreatures(page) {
+            const response = await fetch(`http://localhost:3001/creatures/${page}`);
+
+            if (!response.ok) {
+                const message = `An error occurred: ${response.statusText}`;
+                window.alert(message);
+                return;
+            }
+
+            const results = await response.json();
+            console.log(results);
+            setCreatures(results);
+            setChecked(true);
+            setLoad(false);
         }
+
+        getCreatures(1).then();
 
     }, [props.value]);
 
