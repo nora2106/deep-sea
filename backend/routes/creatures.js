@@ -23,6 +23,19 @@ routes.route("/creatures").get(function (req, res) {
         });
 });
 
+// Get count of all creatures
+routes.route("/count/all").get(function (req, res) {
+    let db_connect = dbo.getDb("deep_sea");
+    db_connect
+        .collection("creatures")
+        .find({})
+        .count(function (err, result) {
+        if (err) throw err;
+        res.json(result);
+    });
+});
+
+
 // Get creatures by page
 routes.route("/creatures/:page").get(function (req, res) {
     let db_connect = dbo.getDb("deep_sea");

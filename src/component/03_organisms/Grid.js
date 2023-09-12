@@ -39,13 +39,13 @@ const Container = styled('div')`
     animation-delay: 800ms;
     opacity: 0;
   }
-  
+
   .top {
     float: right;
     z-index: 3;
     position: relative;
   }
-  
+
   .bottom {
     bottom: 2em;
   }
@@ -81,31 +81,30 @@ const GridContainer = styled('div')`
 function Grid(props) {
     const [checked, setChecked] = useState(false);
     const [creatures, setCreatures] = useState([]);
+    const [shownCreatures, setShownCreatures] = useState(creatures);
     const [count, setCount] = useState(0);
     const [page, setPage] = useState(1);
+    const [pageLength, setPageLength] = useState(0);
     let iteration = 20;
     let data = [];
     let database = props.data;
-    useEffect(() => {
 
-        async function getCreatures(page) {
-            const response = await fetch(`http://localhost:3001/creatures/${page}`);
-
-            if (!response.ok) {
-                const message = `An error occurred: ${response.statusText}`;
-                window.alert(message);
-                return;
-            }
-
-            const results = await response.json();
-            console.log(results);
-            setCreatures(results);
-            setChecked(true);
-            setLoad(false);
+    async function getData(url) {
+        const response = await fetch(url);
+        if (!response.ok) {
+            const message = `An error occurred: ${response.statusText}`;
+            window.alert(message);
+            return;
         }
+        const results = await response.json();
+        setCreatures(results);
+        setChecked(true);
+        setLoad(false);
+        setPageLength(Math.round(results.length / iteration));
+    }
 
-        getCreatures(1).then();
-
+    useEffect(() => {
+        getData(`http://localhost:3001/creatures/`);
     }, [props.value]);
 
     async function show(startNum, endNum) { //show certain number of all cards
@@ -122,51 +121,22 @@ function Grid(props) {
         }, 4);
     }
 
-    async function sortZone(val) { //sort by a certain zone
-        setChecked(false);
-        setLoad(true);
-        setTimeout(async () => {
-            const user = await app.logIn(Realm.Credentials.anonymous())
-            const client = app.currentUser.mongoClient('mongodb-atlas')
-            const set = client.db('deep_sea').collection('creatures')
-            setCount(Math.round(await set.count({Zone: val}) / 20));
-            setCreatures((await set.find({Zone: val})))
-            setChecked(true);
-            setLoad(false);
-        }, 4);
-    }
-
-    async function sortDiet(val) { //sort by a certain diet
-        setChecked(false);
-        setLoad(true);
-        setTimeout(async () => {
-            const user = await app.logIn(Realm.Credentials.anonymous())
-            const client = app.currentUser.mongoClient('mongodb-atlas')
-            const set = client.db('deep_sea').collection('creatures')
-            setCount(Math.round(await set.count({Feed: val}) / 20));
-            setCreatures((await set.find({Feed: val})))
-            setChecked(true);
-            setLoad(false);
-        }, 4);
-    }
-
-    async function sortBy(sortValue) { //sort by value alphabetically
-        setChecked(false);
-        setLoad(true);
-        setTimeout(async () => {
-            const user = await app.logIn(Realm.Credentials.anonymous())
-            const client = app.currentUser.mongoClient('mongodb-atlas')
-            const set = client.db('deep_sea').collection('creatures')
-            let $value = {};
-            $value[sortValue] = 1;
-            const result = await set.aggregate([
-                {$sort: $value}
-            ])
-            setCreatures(result);
-            setChecked(true);
-            setLoad(false);
-        }, 4);
-
+    function sortData(property) {
+        let sorted = creatures.sort(function (a, b) {
+            let propA = a[property];
+            let propB = b[property];
+            if (propA && !propB) return -1
+            if (propB && !propA) return 1
+            if (property === "Depth") {
+                return parseInt(propA) - parseInt(propB);
+            }
+            return (propA < propB) ? -1 : (propA > propB) ? 1 : 0;
+        });
+        // console.log(sorted)
+        setCreatures(sorted);
+        setChecked(true);
+        setLoad(false)
+        setPageLength(Math.round(sorted.length / iteration));
     }
 
     const [showZ, setShowZ] = react.useState(false);
@@ -175,40 +145,32 @@ function Grid(props) {
     function sort(sortVal) {
         let zone = document.getElementById('zone');
         let diet = document.getElementById('diet');
-
+        setLoad(true);
+        setChecked(false);
         switch (sortVal) {
             case 'zone': {
-                sortBy('Zone').then();
                 zone.style.display = 'block';
                 diet.style.display = 'none';
                 setShowZ(true);
-                //function: sort by Zones (higher to lower)
+                sortData("Depth")
+                //function: sort by Depth (numerically)
                 break;
             }
             case 'diet': {
-                sortBy("Feed").then();
                 zone.style.display = 'none';
                 diet.style.display = 'block';
                 setShowD(true);
                 setShowZ(false);
+                sortData("Feed")
                 //function: sort by Diet (alphabetically)
                 break;
             }
-            case 'depth': {
-                sortBy("Depth").then();
-                zone.style.display = 'none';
-                diet.style.display = 'none';
-                setShowZ(false);
-                setShowD(false);
-                //function: @todo: sort by Depth (numerically) -> currently: alphabetically
-                break;
-            }
             case 'name': {
-                sortBy("Name").then();
                 zone.style.display = 'none';
                 diet.style.display = 'none';
                 setShowZ(false);
                 setShowD(false);
+                sortData("Name")
                 //sort by name (alphabetically)
                 break;
             }
@@ -255,17 +217,16 @@ function Grid(props) {
     }
 
     const sortOptions = [
-        {value: "depth", label: "Depth"},
         {value: "name", label: "Name"},
-        {value: "zone", label: "Zone"},
+        {value: "zone", label: "Depth"},
         {value: "diet", label: "Diet"}
     ];
     const zoneOptions = [
-        {value: "Sunlight Zone", label: "Sunlight Zone"},
-        {value: "Twilight Zone", label: "Twilight Zone"},
-        {value: "Midnight Zone", label: "Midnight Zone"},
-        {value: "Abyssal Zone", label: "Abyssal Zone"},
-        {value: "Hadal Zone", label: "Hadal Zone"}
+        {value: "Sunlight", label: "Sunlight Zone"},
+        {value: "Twilight", label: "Twilight Zone"},
+        {value: "Midnight", label: "Midnight Zone"},
+        {value: "Abyssal", label: "Abyssal Zone"},
+        {value: "Hadal", label: "Hadal Zone"}
     ];
     const dietOptions = [
         {value: "Carnivorous", label: "Carnivores"},
@@ -277,10 +238,14 @@ function Grid(props) {
 
 
     function handleCallback(childData, name) {
+        setChecked(false);
+        setLoad(true);
         if (name === 'zoneSelect') {
-            sortZone(childData).then()
+            getData(`http://localhost:3001/creatures/zone/${childData}`).then();
+
         } else if (name === 'dietSelect') {
-            sortDiet(childData).then()
+            getData(`http://localhost:3001/creatures/diet/${childData}`).then();
+
         } else {
             sort(childData);
         }
@@ -331,7 +296,7 @@ function Grid(props) {
                 ))}
             </GridContainer>
             <div className='bottom'>
-                <Pagination action={getPage} pages={count}/>
+                <Pagination action={getPage} pages={pageLength}/>
             </div>
         </Container>
     );
