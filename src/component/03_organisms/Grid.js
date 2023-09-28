@@ -6,6 +6,7 @@ import {Grow} from "@mui/material";
 import LoadingSpinner from "../01_atoms/LoadingSpinner";
 import SortSelect from "../01_atoms/SortSelect";
 import Pagination from "../01_atoms/Pagination"
+import testData from "../../testData.json";
 
 const app = new Realm.App({id: 'deep-sea-balmb'});
 
@@ -55,24 +56,32 @@ const GridContainer = styled('div')`
   display: grid;
   gap: 4rem;
   grid-template-columns:  repeat(1, 1fr);
-  grid-auto-rows: 100vw;
-  padding: 1em 3em 5em 3em;
+  grid-auto-rows: 30em;
+  padding: 1em 2em 5em 2em;
+
+  @media (min-width: ${(props) => props.theme.breakpoints.xs}) {
+    //grid-auto-rows: 45em;
+    padding: 1em 5em 5em 5em;
+  }
 
   @media (min-width: ${(props) => props.theme.breakpoints.s}) {
     grid-template-columns:  repeat(2, 1fr);
-    grid-auto-rows: 65vw;
+    padding: 1em 3em 5em 3em;
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.m}) {
     grid-template-columns:  repeat(3, 1fr);
-    grid-auto-rows: 40vw;
-    padding: 1em 3.5em 5em 3em;
+    grid-auto-rows: 35em;
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.l}) {
+    grid-auto-rows: 40em;
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.xl}) {
     padding: 1em 4em 5em 3em;
     grid-template-columns:  repeat(4, 1fr);
-    grid-auto-rows: 30vw;
+    //grid-auto-rows: 40em;
   }
 
 
@@ -81,130 +90,109 @@ const GridContainer = styled('div')`
 function Grid(props) {
     const [checked, setChecked] = useState(false);
     const [creatures, setCreatures] = useState([]);
-    const [shownCreatures, setShownCreatures] = useState(creatures);
+    const [shownCreatures, setShownCreatures] = useState([]);
     const [count, setCount] = useState(0);
     const [page, setPage] = useState(1);
     const [pageLength, setPageLength] = useState(0);
     let iteration = 20;
-    let data = [];
-    let database = props.data;
 
     async function getData(url) {
-        const response = await fetch(url);
-        if (!response.ok) {
-            const message = `An error occurred: ${response.statusText}`;
-            window.alert(message);
-            return;
-        }
-        const results = await response.json();
-        setCreatures(results);
+        // const response = await fetch(url);
+        // if (!response.ok) {
+        //     const message = `An error occurred: ${response.statusText}`;
+        //     window.alert(message);
+        //     return;
+        // }
+        // const results = await response.json();
+        // setCreatures(results);
+        const results = testData;
         setChecked(true);
         setLoad(false);
-        setPageLength(Math.round(results.length / iteration));
+        setCreatures(results);
+        setPageLength(results.length / iteration)
+        outputToPage(results, page)
     }
 
     useEffect(() => {
         getData(`http://localhost:3001/creatures/`);
     }, [props.value]);
 
-    async function show(startNum, endNum) { //show certain number of all cards
-        setChecked(false);
-        setLoad(true);
-        setTimeout(async () => {
-            const user = await app.logIn(Realm.Credentials.anonymous()) //use var for global variables
-            const client = app.currentUser.mongoClient('mongodb-atlas')
-            const set = client.db('deep_sea').collection('creatures')
-            // setCount(Math.round(await set.count() / 20));
-            setCreatures((await set.find()).slice(startNum, endNum));
-            setChecked(true);
-            setLoad(false);
-        }, 4);
+    function outputToPage(data, pageVal) {
+        if(pageVal > 1) {
+            // setShownCreatures(data.slice(iteration * pageVal, iteration * pageVal + iteration));
+            let set = data.slice(iteration * pageVal, iteration * pageVal + iteration);
+            setShownCreatures(set)
+        }
+        else {
+            setShownCreatures(data.slice(0, iteration));
+        }
+        console.log(shownCreatures.length);
     }
 
     function sortData(property) {
-        let sorted = creatures.sort(function (a, b) {
+        let sorted = [...creatures];
+        sorted = creatures.sort(function (a, b) {
             let propA = a[property];
             let propB = b[property];
             if (propA && !propB) return -1
             if (propB && !propA) return 1
-            if (property === "Depth") {
+            if (property === "depth") {
                 return parseInt(propA) - parseInt(propB);
             }
             return (propA < propB) ? -1 : (propA > propB) ? 1 : 0;
         });
-        // console.log(sorted)
-        setCreatures(sorted);
+        console.log(property, sorted)
+        outputToPage(sorted, 1);
         setChecked(true);
         setLoad(false)
-        setPageLength(Math.round(sorted.length / iteration));
+        setPage(1);
     }
 
     const [showZ, setShowZ] = react.useState(false);
     const [showD, setShowD] = react.useState(false);
+    const [showC, setShowC] = react.useState(false);
 
     function sort(sortVal) {
         let zone = document.getElementById('zone');
         let diet = document.getElementById('diet');
+        let classification = document.getElementById('classification');
         setLoad(true);
         setChecked(false);
+        setShowZ(false);
+        setShowD(false);
+        setShowC(false);
+        setPage(1);
+        zone.style.display = 'none';
+        diet.style.display = 'none';
+        classification.style.display = 'none';
         switch (sortVal) {
-            case 'zone': {
+            case 'depth': {
                 zone.style.display = 'block';
-                diet.style.display = 'none';
                 setShowZ(true);
-                sortData("Depth")
+                sortData("depth")
                 //function: sort by Depth (numerically)
                 break;
             }
             case 'diet': {
-                zone.style.display = 'none';
                 diet.style.display = 'block';
                 setShowD(true);
-                setShowZ(false);
-                sortData("Feed")
+                sortData("diet")
                 //function: sort by Diet (alphabetically)
                 break;
             }
             case 'name': {
-                zone.style.display = 'none';
-                diet.style.display = 'none';
-                setShowZ(false);
-                setShowD(false);
-                sortData("Name")
+                sortData("name")
                 //sort by name (alphabetically)
                 break;
             }
+            case 'class': {
+                classification.style.display = 'block';
+                setShowC(true);
+                sortData("class")
+                //sort by classification (alphabetically)
+                break;
+            }
         }
-    }
-
-    async function searchData(value) {
-        // @todo rework search function (backend)
-        setChecked(false);
-        setLoad(true);
-        setTimeout(async () => {
-            const client = app.currentUser.mongoClient('mongodb-atlas');
-            const set = client.db('deep_sea').collection('creatures');
-            // const query = { $text: { $search: value } };
-            // const result = set.find(query);
-            const result = await set.aggregate([
-                {
-                    $search: {
-                        index: 'text',
-                        text: {
-                            query: value,
-                            path: {
-                                'wildcard': '*'
-                            }
-                        }
-                    }
-                }
-            ])
-            //     const result = await set.find({$text: {$search: "jelly"}})
-            // setCreatures(result);
-            console.log(value, result)
-            setChecked(true);
-            setLoad(false);
-        }, 4);
     }
 
     function setLoad(bool) {
@@ -218,10 +206,12 @@ function Grid(props) {
 
     const sortOptions = [
         {value: "name", label: "Name"},
-        {value: "zone", label: "Depth"},
-        {value: "diet", label: "Diet"}
+        {value: "depth", label: "Depth"},
+        {value: "diet", label: "Diet"},
+        {value: "class", label: "Species"}
     ];
     const zoneOptions = [
+        {value: "all", label: "Show All"},
         {value: "Sunlight", label: "Sunlight Zone"},
         {value: "Twilight", label: "Twilight Zone"},
         {value: "Midnight", label: "Midnight Zone"},
@@ -229,34 +219,59 @@ function Grid(props) {
         {value: "Hadal", label: "Hadal Zone"}
     ];
     const dietOptions = [
+        {value: "all", label: "Show All"},
         {value: "Carnivorous", label: "Carnivores"},
-        {value: "Ommivorous", label: "Omnivores"},
+        {value: "Omnivorous", label: "Omnivores"},
         {value: "Detrivorous", label: "Detrivores"},
         {value: "Herbivorous", label: "Herbivores"},
         {value: "Pescivorous", label: "Pescivores"}
     ];
 
+    const classOptions = [
+        {value: "all", label: "Show All"},
+        {value: "Vertebrae", label: "Vertebrae"},
+        {value: "Mollusk", label: "Mollusk"},
+        {value: "Ctenophore", label: "Ctenophore"},
+        {value: "Echoniderm", label: "Echoniderm"},
+        {value: "Cnidarian", label: "Cnidarian"},
+        {value: "Arthropod", label: "Arthropod"}
+    ];
 
+    //show only certain values
     function handleCallback(childData, name) {
         setChecked(false);
         setLoad(true);
-        if (name === 'zoneSelect') {
-            getData(`http://localhost:3001/creatures/zone/${childData}`).then();
-
-        } else if (name === 'dietSelect') {
-            getData(`http://localhost:3001/creatures/diet/${childData}`).then();
-
-        } else {
-            sort(childData);
+        console.log(childData)
+        if(childData === "all") {
+            sort(name);
+        }
+        else {
+            switch (name) {
+                default: {
+                    sort(childData)
+                    break;
+                }
+                case 'depth': {
+                    getData(`http://localhost:3001/creatures/zone/${childData}`).then();
+                    break;
+                }
+                case 'feed': {
+                    getData(`http://localhost:3001/creatures/diet/${childData}`).then();
+                    break;
+                }
+                case 'classification': {
+                    getData(`http://localhost:3001/creatures/classification/${childData}`).then();
+                    break;
+                }
+            }
         }
     }
 
     const getPage = (num) => {
-        // console.log('page: ' + num)
         setPage(num);
-        let endNum = iteration * num;
-        let startNum = endNum - iteration;
-        show(startNum, endNum).then();
+        // let endNum = iteration * num;
+        // let startNum = endNum - iteration;
+        outputToPage(creatures, num);
         window.scrollTo(0, 0)
     }
 
@@ -269,29 +284,36 @@ function Grid(props) {
                 <LoadingSpinner/>
                 <div className='select first'>
                     <label htmlFor='sort'>Sort by</label>
-                    <SortSelect parentCallback={handleCallback} options={sortOptions} name='sortSelect'/>
+                    <SortSelect default='Name' parentCallback={handleCallback} options={sortOptions} name='sortSelect'/>
                 </div>
                 <Grow in={showZ} style={{transformOrigin: '0 0 0'}}
                       {...(showZ ? {timeout: 500} : {})}>
                     <div className='select' id='zone'>
                         <label htmlFor='Zone'>Select Zone</label>
-                        <SortSelect parentCallback={handleCallback} options={zoneOptions} name='zoneSelect'/>
+                        <SortSelect parentCallback={handleCallback} options={zoneOptions} name='depth'/>
                     </div>
                 </Grow>
                 <Grow in={showD} style={{transformOrigin: '0 0 0'}}
                       {...(showD ? {timeout: 500} : {})}>
                     <div className='select' id='diet'>
                         <label htmlFor='Diet'>Select Diet</label>
-                        <SortSelect parentCallback={handleCallback} options={dietOptions} name='dietSelect'/>
+                        <SortSelect parentCallback={handleCallback} options={dietOptions} name='feed'/>
+                    </div>
+                </Grow>
+                <Grow in={showC} style={{transformOrigin: '0 0 0'}}
+                      {...(showC ? {timeout: 500} : {})}>
+                    <div className='select' id='classification'>
+                        <label htmlFor='Species'>Select Class</label>
+                        <SortSelect parentCallback={handleCallback} options={classOptions} name='classification'/>
                     </div>
                 </Grow>
             </div>
             <GridContainer>
-                {creatures.map(creature => (
-                    <Card anim={checked} key={creature._id}
-                          name={creature.Name} subName={creature.Scientific} size={creature.Size}
-                          class={creature.Classification} zone={creature.Zone} diet={creature.Feed}
-                          text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab ad amet assumenda beatae dicta dignissimos dolorem dolores doloribus dolorum earum esse est, fugiat modi molestias nemo numquam porro quibusdam voluptas!"
+                {shownCreatures.map(creature => (
+                    <Card anim={checked} key={creature.id}
+                          name={creature.name} subName={creature.scientific} size={creature.size}
+                          class={creature.class} zone={creature.zone} diet={creature.diet}
+                          text={creature.text} img={creature.img}
                     />
                 ))}
             </GridContainer>

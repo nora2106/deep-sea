@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import Icon from "./Icon";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const arthropod = 'shrimp';
-const cnidarian = ['fab', 'phoenix-framework'] ;
+const cnidarian = ['fab', 'phoenix-framework'];
 const ctenophore = ['fab', 'empire'];
 const vertebrae = 'fish-fins';
 const mollusk = ['fab', 'octopus-deploy'];
@@ -36,58 +36,95 @@ const Container = styled('div')`
   .icons {
     display: flex;
     justify-content: center;
-    margin-top: 12px;
-
-    @media (min-width: ${(props) => props.theme.breakpoints.m}) {
-      margin-top: 10px;
-    }
+    margin-top: 10px;
   }
-  
+
   a {
     color: ${(props) => props.theme.colors.primAccent};
-    
+
     .icon {
       margin-left: 5px;
     }
   }
+  
+  .text-section {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
 `;
-
 
 const Name = styled('h2')`
   padding-top: 10px;
   margin-left: 10px;
   font-weight: 500;
-  font-size: 20px;
+  font-size: 16px;
   margin-top: 0;
-  
+
+  @media (min-width: ${props => props.theme.breakpoints.s}) {
+    font-size: 20px;
+  }
+
+  @media (min-width: ${props => props.theme.breakpoints.m}) {
+    font-size: 22px;
+  }
+
+  @media (min-width: ${props => props.theme.breakpoints.l}) {
+    font-size: 24px;
+  }
+
+  @media (min-width: ${props => props.theme.breakpoints.xl}) {
+    font-size: 26px;
+  }
 `;
 
 const SubName = styled('h3')`
   margin-left: 10px;
-  font-size: 15px;
+  font-size: 12px;
   margin-top: -8px;
   font-weight: 300;
+
+  @media (min-width: ${props => props.theme.breakpoints.s}) {
+    font-size: 16px;
+  }
+
+  @media (min-width: ${props => props.theme.breakpoints.m}) {
+    font-size: 18px;
+  }
+
+  @media (min-width: ${props => props.theme.breakpoints.l}) {
+    font-size: 20px;
+  }
+
+  @media (min-width: ${props => props.theme.breakpoints.xl}) {
+    font-size: 22px;
+  }
 `;
 
 const Text = styled('p')`
-  font-size: .2rem;
+  font-size: 12px;
   padding-left: 2%;
   padding-right: 2%;
   overflow: auto;
   font-weight: 500;
   font-family: Archivo, sans-serif;
   letter-spacing: .3px;
+  margin: 5px 0;
 
   @media (min-width: ${props => props.theme.breakpoints.s}) {
-    font-size: .4rem;
+    font-size: 14px;
   }
 
   @media (min-width: ${props => props.theme.breakpoints.m}) {
-      font-size: .8rem;
+    font-size: 16px;
   }
 
   @media (min-width: ${props => props.theme.breakpoints.l}) {
-      font-size: .8rem;
+    font-size: 18px;
+  }
+
+  @media (min-width: ${props => props.theme.breakpoints.xl}) {
+    font-size: 20px;
   }
 `;
 
@@ -97,7 +134,7 @@ function CardContent(props) {
     let icon3 = size;
     let icon4 = dietIcon();
 
-     function classIcon() {
+    function classIcon() {
         switch (props.class) {
             default:
                 return vertebrae;
@@ -155,21 +192,23 @@ function CardContent(props) {
 
     return (
         <Container>
-                <Name>{props.name}</Name>
-                <SubName>{props.subName}</SubName>
-                <div className="icons">
-                    <Icon icon={icon1} label={props.class} text="Classification"/>
-                    <Icon icon={icon2} label={props.zone} text="Zone"/>
-                    <Icon icon={icon3} label={props.size} text="Size"/>
-                    <Icon icon={icon4} label={props.diet} text="Diet"/>
-                </div>
+            <Name>{props.name}</Name>
+            <SubName>{props.subName}</SubName>
+            <div className="icons">
+                <Icon icon={icon1} label={props.class} text="Classification"/>
+                <Icon icon={icon2} label={props.zone} text="Zone"/>
+                <Icon icon={icon3} label={props.size} text="Size"/>
+                <Icon icon={icon4} label={props.diet} text="Diet"/>
+            </div>
             <hr/>
-            <Text>{props.text}</Text>
-            <a href='https://www.mbari.org/'>
-                <Text>Read more
-                <FontAwesomeIcon className='icon' icon={'arrow-right'}/>
-                </Text>
-            </a>
+            <div className='text-section'>
+                <Text>{props.text}</Text>
+                <a href='https://www.mbari.org/'>
+                    <Text>Read more
+                        <FontAwesomeIcon className='icon' icon={'arrow-right'}/>
+                    </Text>
+                </a>
+            </div>
         </Container>
     );
 }

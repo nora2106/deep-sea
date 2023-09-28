@@ -87,4 +87,16 @@ routes.route("/creatures/zone/:zone").get(function (req, res) {
         });
 });
 
+//get creature by classification
+routes.route("/creatures/classification/:class").get(function (req, res) {
+    let db_connect = dbo.getDb();
+    let query = { Classification: req.params.class };
+    db_connect
+        .collection("creatures")
+        .find(query).toArray(function(err, result) {
+        if (err) throw err;
+        res.json(result);
+    });
+});
+
 module.exports = routes;

@@ -1,25 +1,16 @@
 import styled from 'styled-components';
-import img from '../../assets/img/species/giant_pyrosome.png';
-// import img from '../../assets/img/img.png'
 
 
 const Container = styled('div')`
-  //height: 50%;
+  height: 45%;
+  width: 100%;
   text-align: center;
   position: relative;
 
-  @media (min-width: ${(props) => props.theme.breakpoints.s}) {
-    //height: 45%;
-  }
-
-  .btn-icon {
-    width: 50%;
-    height: 50%;
-    padding: 10px;
-  }
-
   img {
-      width: 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     border-top-left-radius: 1em;
     border-top-right-radius: 1em;
   }
@@ -32,17 +23,17 @@ const Container = styled('div')`
     bottom: 10px;
     right: 10px;
   }
-  
-
 `;
 
 
 
-function CardImage() {
+function CardImage(props) {
+    // console.log('../../assets/img/species/' + props.url)
+    const imgPath = '../../../public/img/abyssal_spiderfish.jpeg';
     return (
         <Container>
             <p>© MBARI</p>
-            <img src={img}/>
+            <img src={'./img/species/' + props.url}/>
         </Container>
     );
 }

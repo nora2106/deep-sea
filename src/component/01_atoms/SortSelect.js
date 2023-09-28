@@ -3,22 +3,21 @@ import CustomSelect from "react-select";
 import React from "react";
 
 const Container = styled('div')`
-
-  
 `;
-
-
 
 function SortSelect(props) {
 
     function handleChange (obj, name) {
         props.parentCallback(obj.value, name.name);
-        // console.log(name.name)
     }
+
+    React.useEffect(() => {
+
+    })
 
     return (
         <Container>
-         <CustomSelect options={props.options} name={props.name} onChange={(option, name) => handleChange(option, name)} />
+         <CustomSelect placeholder={props.default} options={props.options} name={props.name} onChange={(option, name) => handleChange(option, name)} />
         </Container>
     );
 }

@@ -10,8 +10,6 @@ library.add(faOctopusDeploy, faPhoenixFramework, faEmpire);
 const Container = styled('div')`
   margin-right: 2.5%;
   margin-left: 2.5%;
-  margin-bottom: -10px;
- 
   
   .icon-content {
     display: flex;
@@ -59,35 +57,43 @@ const Container = styled('div')`
     }
   }
   
+  
   .label-text {
-    font-size: 2.2vw;
+    font-size: 8px;
     font-weight: 500;
     text-align: center;
-    line-height: 12px;
+    line-height: 8px;
+    margin: 5px 0;
 
     @media (min-width: ${(props) => props.theme.breakpoints.s}) {
-      font-size: 1.3vw;
+      font-size: 10px;
     }
 
     @media (min-width: ${(props) => props.theme.breakpoints.m}) {
-      font-size: .8vw;
+      font-size: 12px;
     }
 
-    @media (min-width: ${(props) => props.theme.breakpoints.l}) {
-      font-size: .6vw;
+    @media (min-width: ${(props) => props.theme.breakpoints.xl}) {
+      font-size: 14px;
     }
   }
 `;
 
 const Image = styled('div')`
   background-color: ${(props) => props.theme.colors.primAccent};
-  width: 45px;
-  height: 45px;
+  width: 35px;
+  height: 35px;
   border-radius: 100%;
- 
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
+  @media (min-width: ${(props) => props.theme.breakpoints.m}) {
+    width: 45px;
+    height: 45px;
+  }
 
-  .icon {
+    .icon {
     width: 55%;
     height: 55%;
     padding: 10px;
