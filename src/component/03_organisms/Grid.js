@@ -98,24 +98,28 @@ function Grid(props) {
     const [resetPagination, setReset] = useState("");
     let iteration = 20;
 
+    //fetch data
     async function getData(url) {
         const response = await fetch(url);
         if (!response.ok) {
-            const message = `An error occurred: ${response.statusText}`;
+            const message = `Couldn't connect to database: ${response.statusText}`;
             window.alert(message);
             return;
         }
         const results = await response.json();
-        // const results = testData;
         setChecked(true);
         setLoad(false);
-        setCreatures(results);
         setPageLength(results.length / iteration)
-        outputToPage(results, page)
+        return results;
     }
 
+    // get and sort initial data
     useEffect(() => {
-        getData(`http://localhost:3001/creatures/`);
+        (async () => {
+            //todo avoid duplicate getData
+            setCreatures(await getData(`http://localhost:3001/creatures/`));
+            sortData('name', await getData(`http://localhost:3001/creatures/`))
+        })()
     }, [props.value]);
 
     function outputToPage(data, pageVal) {
@@ -129,10 +133,10 @@ function Grid(props) {
         }
     }
 
-    function sortData(property) {
-        let sorted = [...creatures];
+    function sortData(property, data) {
+        // let sort = creatures;
         setReset(property);
-        sorted = creatures.sort(function (a, b) {
+        let sorted = data.sort(function (a, b) {
             let propA = a[property];
             let propB = b[property];
             if (propA && !propB) return -1
@@ -153,6 +157,7 @@ function Grid(props) {
     const [showD, setShowD] = react.useState(false);
     const [showC, setShowC] = react.useState(false);
 
+    //sort current results
     function sort(sortVal) {
         let zone = document.getElementById('zone');
         let diet = document.getElementById('diet');
@@ -170,26 +175,26 @@ function Grid(props) {
             case 'depth': {
                 zone.style.display = 'block';
                 setShowZ(true);
-                sortData("depth")
+                sortData("depth", creatures)
                 //function: sort by Depth (numerically)
                 break;
             }
             case 'diet': {
                 diet.style.display = 'block';
                 setShowD(true);
-                sortData("diet")
+                sortData("diet", creatures)
                 //function: sort by Diet (alphabetically)
                 break;
             }
             case 'name': {
-                sortData("name")
+                sortData("name", creatures)
                 //sort by name (alphabetically)
                 break;
             }
             case 'class': {
                 classification.style.display = 'block';
                 setShowC(true);
-                sortData("class")
+                sortData("class", creatures)
                 //sort by classification (alphabetically)
                 break;
             }
@@ -242,7 +247,6 @@ function Grid(props) {
     function handleCallback(childData, name) {
         setChecked(false);
         setLoad(true);
-        // console.log(childData)
         if(childData === "all") {
             sort(name);
         }
@@ -253,15 +257,21 @@ function Grid(props) {
                     break;
                 }
                 case 'depth': {
-                    getData(`http://localhost:3001/creatures/zone/${childData}`).then();
+                    (async () => {
+                        outputToPage(await getData(`http://localhost:3001/creatures/zone/${childData}`), 1)
+                    })()
                     break;
                 }
                 case 'feed': {
-                    getData(`http://localhost:3001/creatures/diet/${childData}`).then();
+                    (async () => {
+                        outputToPage(await getData(`http://localhost:3001/creatures/diet/${childData}`), 1)
+                    })()
                     break;
                 }
                 case 'classification': {
-                    getData(`http://localhost:3001/creatures/classification/${childData}`).then();
+                    (async () => {
+                        outputToPage(await getData(`http://localhost:3001/creatures/classification/${childData}`), 1)
+                    })()
                     break;
                 }
             }

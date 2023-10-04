@@ -66,7 +66,7 @@ routes.route("/creatures/id/:id").get(function (req, res) {
 //get creature by diet
 routes.route("/creatures/diet/:diet").get(function (req, res) {
     let db_connect = dbo.getDb();
-    let query = { Feed: req.params.diet };
+    let query = { diet: req.params.diet };
     db_connect
         .collection("creatures")
         .find(query).toArray(function(err, result) {
@@ -78,7 +78,7 @@ routes.route("/creatures/diet/:diet").get(function (req, res) {
 //get creature by zone
 routes.route("/creatures/zone/:zone").get(function (req, res) {
     let db_connect = dbo.getDb();
-    let query = { Zone: req.params.zone + ' Zone' };
+    let query = { zone: req.params.zone + ' Zone' };
     db_connect
         .collection("creatures")
         .find(query).toArray(function(err, result) {
@@ -90,10 +90,26 @@ routes.route("/creatures/zone/:zone").get(function (req, res) {
 //get creature by classification
 routes.route("/creatures/classification/:class").get(function (req, res) {
     let db_connect = dbo.getDb();
-    let query = { Classification: req.params.class };
+    let query = { class: req.params.class };
     db_connect
         .collection("creatures")
         .find(query).toArray(function(err, result) {
+        if (err) throw err;
+        res.json(result);
+    });
+});
+
+//search
+routes.route("/creatures/search/:query").get(function (req, res) {
+    let db_connect = dbo.getDb();
+    // let query = {$text: {$search: req.params.query}};
+    let query = req.params.query;
+    db_connect
+        .collection("creatures")
+        .find({"$or": [
+                { name: { '$regex': query, '$options': 'i' } },
+                { scientific: { '$regex': query, '$options': 'i' } }
+            ]}).toArray(function(err, result) {
         if (err) throw err;
         res.json(result);
     });
