@@ -75,6 +75,7 @@ const GridContainer = styled('div')`
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.l}) {
+    grid-template-columns:  repeat(4, 1fr);
     grid-auto-rows: 40em;
   }
 
@@ -94,18 +95,18 @@ function Grid(props) {
     const [count, setCount] = useState(0);
     const [page, setPage] = useState(1);
     const [pageLength, setPageLength] = useState(0);
+    const [resetPagination, setReset] = useState("");
     let iteration = 20;
 
     async function getData(url) {
-        // const response = await fetch(url);
-        // if (!response.ok) {
-        //     const message = `An error occurred: ${response.statusText}`;
-        //     window.alert(message);
-        //     return;
-        // }
-        // const results = await response.json();
-        // setCreatures(results);
-        const results = testData;
+        const response = await fetch(url);
+        if (!response.ok) {
+            const message = `An error occurred: ${response.statusText}`;
+            window.alert(message);
+            return;
+        }
+        const results = await response.json();
+        // const results = testData;
         setChecked(true);
         setLoad(false);
         setCreatures(results);
@@ -126,11 +127,11 @@ function Grid(props) {
         else {
             setShownCreatures(data.slice(0, iteration));
         }
-        console.log(shownCreatures.length);
     }
 
     function sortData(property) {
         let sorted = [...creatures];
+        setReset(property);
         sorted = creatures.sort(function (a, b) {
             let propA = a[property];
             let propB = b[property];
@@ -141,7 +142,7 @@ function Grid(props) {
             }
             return (propA < propB) ? -1 : (propA > propB) ? 1 : 0;
         });
-        console.log(property, sorted)
+        // console.log(property, sorted)
         outputToPage(sorted, 1);
         setChecked(true);
         setLoad(false)
@@ -241,7 +242,7 @@ function Grid(props) {
     function handleCallback(childData, name) {
         setChecked(false);
         setLoad(true);
-        console.log(childData)
+        // console.log(childData)
         if(childData === "all") {
             sort(name);
         }
@@ -310,7 +311,7 @@ function Grid(props) {
             </div>
             <GridContainer>
                 {shownCreatures.map(creature => (
-                    <Card anim={checked} key={creature.id}
+                    <Card anim={checked} key={creature._id}
                           name={creature.name} subName={creature.scientific} size={creature.size}
                           class={creature.class} zone={creature.zone} diet={creature.diet}
                           text={creature.text} img={creature.img}
@@ -318,7 +319,7 @@ function Grid(props) {
                 ))}
             </GridContainer>
             <div className='bottom'>
-                <Pagination action={getPage} pages={pageLength}/>
+                <Pagination reset={resetPagination} action={getPage} pages={pageLength}/>
             </div>
         </Container>
     );

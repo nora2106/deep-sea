@@ -35,7 +35,10 @@ function Pagination(props) {
     }, [active])
 
     useEffect(() => {
-        // console.log(props.pages)
+        setActive(1)
+    }, [props.reset])
+
+    useEffect(() => {
         updatePage();
     }, [props.pages]);
 
