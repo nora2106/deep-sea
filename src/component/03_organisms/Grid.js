@@ -96,6 +96,7 @@ function Grid(props) {
     const [page, setPage] = useState(1);
     const [pageLength, setPageLength] = useState(0);
     const [resetPagination, setReset] = useState("");
+    // const [baseURL, setBaseURL] = useState(window.location.origin);
     let iteration = 20;
 
     //fetch data
@@ -115,10 +116,15 @@ function Grid(props) {
 
     // get and sort initial data
     useEffect(() => {
+        //todo add .env variable for production url before deploying
+        let url = `http://localhost:3001/creatures/`;
+        if(props.type === "search") {
+            url = `http://localhost:3001/creatures/search/${props.value}`;
+        }
         (async () => {
-            //todo avoid duplicate getData
-            setCreatures(await getData(`http://localhost:3001/creatures/`));
-            sortData('name', await getData(`http://localhost:3001/creatures/`))
+            let data = await getData(url);
+            setCreatures(data);
+            sortData('name', data)
         })()
     }, [props.value]);
 
@@ -173,15 +179,19 @@ function Grid(props) {
         classification.style.display = 'none';
         switch (sortVal) {
             case 'depth': {
-                zone.style.display = 'block';
-                setShowZ(true);
+                if(props.type !== 'search') {
+                    zone.style.display = 'block';
+                    setShowZ(true);
+                }
                 sortData("depth", creatures)
                 //function: sort by Depth (numerically)
                 break;
             }
             case 'diet': {
-                diet.style.display = 'block';
-                setShowD(true);
+                if(props.type !== 'search') {
+                    diet.style.display = 'block';
+                    setShowD(true);
+                }
                 sortData("diet", creatures)
                 //function: sort by Diet (alphabetically)
                 break;
@@ -192,8 +202,10 @@ function Grid(props) {
                 break;
             }
             case 'class': {
-                classification.style.display = 'block';
-                setShowC(true);
+                if(props.type !== 'search') {
+                    classification.style.display = 'block';
+                    setShowC(true);
+                }
                 sortData("class", creatures)
                 //sort by classification (alphabetically)
                 break;
@@ -258,6 +270,7 @@ function Grid(props) {
                 }
                 case 'depth': {
                     (async () => {
+                        //@todo decide between sorting locally or fetching every time (regarding search)
                         outputToPage(await getData(`http://localhost:3001/creatures/zone/${childData}`), 1)
                     })()
                     break;
