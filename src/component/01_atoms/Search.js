@@ -10,7 +10,7 @@ const Container = styled('div')`
   text-align: right;
   order: 2;  
   transition: opacity .5s;
-  opacity: 60%;
+  opacity: 70%;
   
   .icon {
     color: white;

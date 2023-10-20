@@ -1,4 +1,3 @@
-
 export const colors = {
     bgDarker: '#030C15',
     bgDark: '#0D1D29',
@@ -15,10 +14,6 @@ export const colors = {
 // call props: ${(props) => props.theme.colors.bgDarker};
 
 export const breakpoints = {
-    // s: '750px',
-    // m: '1100px',
-    // l: '1550px',
-    // xl: '1600px'
                 // mobile <425px
     xs: '425px', //tablet 425-768px
     s: '768px', //tablet: 768-1024px

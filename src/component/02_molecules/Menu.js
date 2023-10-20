@@ -3,6 +3,7 @@ import Search from "../01_atoms/Search";
 import Logo from "../01_atoms/Logo";
 import MenuList from "../01_atoms/MenuList";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import ModeButton from "../01_atoms/ModeButton";
 
 const Container = styled('div')`
   //cursor: none;
@@ -77,8 +78,7 @@ const MainMenu = styled('div')`
   div {
     visibility: hidden;
   }
-
-
+  
   @media (min-width: ${(props) => props.theme.breakpoints.m}) {
     position: sticky;
     background-color: ${(props) => props.theme.colors.bgDarker};
@@ -122,7 +122,7 @@ const MenuButton = styled('div')`
 
 function Menu(props) {
     return (
-        <Container>
+        <Container className='main-menu'>
             <Overlay className="overlay">
                 <div className="top-bar"/>
                 <div id="darken"/>
@@ -133,6 +133,7 @@ function Menu(props) {
             <MainMenu className="menu">
                 <Logo/>
                 <MenuList/>
+                <ModeButton/>
                 <Search />
             </MainMenu>
 

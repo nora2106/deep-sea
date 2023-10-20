@@ -1,7 +1,17 @@
-# Start Backend Server
-cd backend
-python3 server.py
+# Install Dependencies
+### `nvm install 14`
+### `nvm use 14`
+### `brew install yarn`
+### `yarn install`
 
+# Start App
+### `yarn start`
+
+# Start Backend Server
+### `cd backend`
+### `npm install`
+
+### `npm run app`
 
 # Getting Started with Create React App
 

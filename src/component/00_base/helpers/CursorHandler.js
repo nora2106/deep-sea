@@ -16,7 +16,7 @@ function CursorHandler() {
 
         document.addEventListener("mousemove", onMouseMove);
         const elems = document.querySelectorAll('.btn-hover');
-        console.log(elems)
+        // console.log(elems)
         elems.forEach((elem) => {
             elem.addEventListener('mouseenter', cursorActive);
             elem.addEventListener('mouseleave', cursorPassive);

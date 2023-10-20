@@ -8,10 +8,11 @@ import MapMenu from "./component/05_pages/MapMenu";
 import DiscoverPage from "./component/05_pages/DiscoverPage";
 import SearchPage from "./component/05_pages/SearchPage";
 import {ThemeProvider} from "styled-components";
-import {colors, breakpoints,animations} from "./theme";
+import {colors, breakpoints,animations} from "./component/00_base/theme";
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import { faTwitter, faFontAwesome } from '@fortawesome/free-brands-svg-icons'
+import {ModeContextProvider} from "./component/00_base/ModeContext";
 
 library.add(fas, faTwitter, faFontAwesome)
 
@@ -24,6 +25,7 @@ const theme = {
 
 ReactDOM.render(
 
+    <ModeContextProvider>
     <ThemeProvider theme={theme}>
         <BrowserRouter forceRefresh={true}>
             <Routes>
@@ -33,7 +35,8 @@ ReactDOM.render(
             <Route path="/search" element={<SearchPage/>} />
             </Routes>
         </BrowserRouter>
-    </ThemeProvider>,
+    </ThemeProvider>
+    </ModeContextProvider>,
 
     document.getElementById('root')
 );

@@ -5,6 +5,8 @@ import Hero from "../03_organisms/Hero";
 import PageContent from "../03_organisms/PageContent";
 import Cursor from "../01_atoms/Cursor";
 import CursorHandler from "../00_base/helpers/CursorHandler";
+import {LightContext} from "../../index";
+import {ModeContext} from "../00_base/ModeContext";
 
 const Container = styled('div')`
   //cursor: none;
@@ -16,12 +18,18 @@ const Container = styled('div')`
   overflow: auto;
 
   @media (pointer:none), (pointer:coarse) {
-    #cursor,
-    #overlay {
+    #cursor, 
+    .overlay {
       display: none;
     }
   }
-
+  
+  &.no-overlay {
+    #cursor,
+    .overlay {
+      display: none;
+    }
+  }
 `;
 
 const Overlay = styled('div')`
@@ -42,10 +50,11 @@ const Overlay = styled('div')`
 `;
 
 export default function LandingPage(){
+    const {light, toggleLight} = React.useContext(ModeContext);
 
     return (
-            <Container id='page'>
-                <Overlay id='overlay'/>
+            <Container className={light === 'off' ? ` landing-page with-overlay` : ` landing-page no-overlay `} id='page'>
+                <Overlay id='overlay' className='overlay'/>
                 <Header/>
                 <Hero/>
                 <PageContent/>

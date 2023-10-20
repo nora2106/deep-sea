@@ -82,7 +82,7 @@ const Container = styled('div')`
     width: 100%;
     justify-content: center;
     
-    #overlay {
+    #textOverlay {
       z-index: 3;
     }
     @media (min-width: ${(props) => props.theme.breakpoints.m}) {
@@ -242,7 +242,7 @@ function Hero() {
                 </div>
                 <div className='headline'>
                     <h1>DEEP</h1>
-                    <h1 id='overlay'>SEA</h1>
+                    <h1 id='textOverlay'>SEA</h1>
                 </div>
                 <h3>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore.</h3>
             </Text>
