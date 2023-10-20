@@ -1,4 +1,5 @@
 import React, {createContext, useEffect, useState} from 'react';
+import GlobalStyle from './globalStyles'
 
 const ModeContext = createContext();
 function ModeContextProvider(props) {
@@ -12,19 +13,12 @@ function ModeContextProvider(props) {
             setLight('off')
             window.localStorage.setItem('light', 'off');
         }
-        // setLight(!light);
-        // if (light === true) {
-        //     window.localStorage.setItem('light', 'on');
-        //     setTest('on')
-        // } else {
-        //     window.localStorage.setItem('light', 'off');
-        //     setTest('off')
-        // }
     };
 
     return (
         <div>
             <ModeContext.Provider value={{light, toggleLight}}>
+                <GlobalStyle/>
                 {props.children}
             </ModeContext.Provider>
         </div>

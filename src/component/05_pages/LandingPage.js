@@ -1,12 +1,10 @@
 import styled from 'styled-components';
-import React, {useEffect} from "react";
+import React, {useEffect, useRef} from "react";
 import Header from "../03_organisms/Header";
 import Hero from "../03_organisms/Hero";
 import PageContent from "../03_organisms/PageContent";
-import Cursor from "../01_atoms/Cursor";
-import CursorHandler from "../00_base/helpers/CursorHandler";
-import {LightContext} from "../../index";
-import {ModeContext} from "../00_base/ModeContext";
+import {ModeContext} from "../00_base/theme/ModeContext";
+import DarkOverlay from "../02_molecules/DarkOverlay";
 
 const Container = styled('div')`
   //cursor: none;
@@ -32,29 +30,13 @@ const Container = styled('div')`
   }
 `;
 
-const Overlay = styled('div')`
-  z-index: 4;
-  pointer-events: none;
-  content: '';
-  display: block;
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  background: radial-gradient(
-          circle 12vmax at var(--cursorX) var(--cursorY),
-          rgba(0,0,0,0) 0%,
-          rgba(0,0,0,.3) 80%,
-          rgba(0,0,0,.6) 100%
-  );
-
-`;
-
 export default function LandingPage(){
     const {light, toggleLight} = React.useContext(ModeContext);
 
+
     return (
             <Container className={light === 'off' ? ` landing-page with-overlay` : ` landing-page no-overlay `} id='page'>
-                <Overlay id='overlay' className='overlay'/>
+                <DarkOverlay id='overlay'/>
                 <Header/>
                 <Hero/>
                 <PageContent/>

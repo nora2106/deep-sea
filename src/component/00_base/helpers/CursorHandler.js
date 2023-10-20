@@ -1,4 +1,4 @@
-import {useEffect, useRef} from "react";
+import {forwardRef, useEffect, useImperativeHandle, useRef, useState} from "react";
 import styled from "styled-components";
 import Cursor from "../../01_atoms/Cursor";
 
@@ -6,21 +6,17 @@ const Container = styled('div')`
 
 `;
 
-function CursorHandler() {
+const CursorHandler = forwardRef(function(props, ref) {
     const cursorRef = useRef();
+    // const [currentColor, setColor] = useState('white');
+    let currentColor = 'white';
 
     useEffect(() => {
         const onMouseMove = event => {
             trackMouse(event);
         };
-
         document.addEventListener("mousemove", onMouseMove);
-        const elems = document.querySelectorAll('.btn-hover');
-        // console.log(elems)
-        elems.forEach((elem) => {
-            elem.addEventListener('mouseenter', cursorActive);
-            elem.addEventListener('mouseleave', cursorPassive);
-        });
+        updateCursor();
         return () => document.removeEventListener("mousemove", onMouseMove);
     }, []);
 
@@ -38,18 +34,50 @@ function CursorHandler() {
         cursorRef.current.style.top = e.clientY + 'px';
     }
 
-    function cursorActive() {
-        cursorRef.current.style.background = 'white';
+    function cursorActive(color) {
+        cursorRef.current.style.background = color;
+        cursorRef.current.style.borderColor = color;
     }
 
-    function cursorPassive() {
+    function cursorPassive(color) {
         cursorRef.current.style.background = 'transparent';
+        cursorRef.current.style.borderColor = color;
     }
+
+    function updateColor(color) {
+        cursorRef.current.style.borderColor = color;
+    }
+
+    function updateCursor() {
+        const hoverElems = document.querySelectorAll('.btn-hover');
+        const whiteElems = document.querySelectorAll('.hover-light');
+        hoverElems.forEach((elem) => {
+            elem.addEventListener('mouseenter', () => {cursorActive(currentColor)});
+            elem.addEventListener('mouseleave', () => {cursorPassive(currentColor)});
+        });
+        whiteElems.forEach((elem) => {
+            elem.addEventListener('mouseenter', () => {
+                currentColor = 'black'
+                updateColor(currentColor);
+            });
+            elem.addEventListener('mouseleave', () => {
+                currentColor = 'white'
+                cursorPassive(currentColor)
+            });
+        });
+        console.log('updated :)')
+    }
+    useImperativeHandle(ref, () => ({
+        update() {
+            updateCursor();
+        }
+    }))
+
     return (
-        <Container>
+        <Container className='cursor-handler'>
             <Cursor ref={cursorRef}/>
         </Container>
     );
-}
+})
 
 export default CursorHandler;

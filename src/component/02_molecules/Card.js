@@ -24,7 +24,7 @@ function Card(props) {
                 <CardContent
                     name={props.name} subName={props.subName} size={props.size}
                              class={props.class} zone={props.zone} diet={props.diet}
-                    text={props.text}
+                    text={props.text} link={props.link}
                 />
             </Container>
         </Grow>

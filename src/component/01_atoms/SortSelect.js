@@ -16,7 +16,7 @@ function SortSelect(props) {
     })
 
     return (
-        <Container>
+        <Container className='hover-light'>
          <CustomSelect placeholder={props.default} options={props.options} name={props.name} onChange={(option, name) => handleChange(option, name)} />
         </Container>
     );

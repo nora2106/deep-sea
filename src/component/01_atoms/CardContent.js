@@ -191,7 +191,7 @@ function CardContent(props) {
     }
 
     return (
-        <Container>
+        <Container className='hover-light'>
             <Name>{props.name}</Name>
             <SubName>{props.subName}</SubName>
             <div className="icons">
@@ -203,7 +203,7 @@ function CardContent(props) {
             <hr/>
             <div className='text-section'>
                 <Text>{props.text}</Text>
-                <a href='https://www.mbari.org/'>
+                <a className='btn-hover' href={props.link} target='_blank'>
                     <Text>Read more
                         <FontAwesomeIcon className='icon' icon={'arrow-right'}/>
                     </Text>

@@ -10,9 +10,7 @@ const Container = styled('div')`
   height: 30px;
   border: 2px solid rgba(255, 255, 255, 0.6);
   transform: translate(-50%, -50%);
-  transition: background-color .8s;
-  //transition-duration: 200ms;
-  //transition-timing-function: ease-out;
+  transition: background-color .8s, border-color .6s;
 `;
 
 const Cursor = forwardRef(function(props, ref) {

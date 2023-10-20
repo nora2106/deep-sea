@@ -3,26 +3,26 @@ import {Link} from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Container = styled('div')`
-  //background-color: ${(props) => props.theme.colors.bgDark};
+    //background-color: ${(props) => props.theme.colors.bgDark};
   z-index: 3;
   position: relative;
   margin-top: 50px;
   border-top: 2px solid ${(props) => props.theme.colors.bgDark};
   order: 3;
-  
+
   .sub-show {
     display: block;
-    @media(min-width: ${(props) => props.theme.breakpoints.m}){
+    @media (min-width: ${(props) => props.theme.breakpoints.m}) {
       display: none;
     }
-    }
+  }
 
-  @media(min-width: ${(props) => props.theme.breakpoints.m}){
+  @media (min-width: ${(props) => props.theme.breakpoints.m}) {
     display: flex;
     border: none;
     margin: 0 3vw 0 3vw;
     order: 2;
-    
+
     #lastItem:hover #subMenu {
       display: block;
     }
@@ -31,16 +31,15 @@ const Container = styled('div')`
 
   a {
     text-decoration: none;
-  }
-  
-    .sub-arrow {
-      margin-left: 10px;
 
+    &:hover {
+      cursor: none;
     }
-  :hover {
-    //cursor: none;
   }
 
+  .sub-arrow {
+    margin-left: 10px;
+  }
 `;
 
 const Item = styled('h2')`

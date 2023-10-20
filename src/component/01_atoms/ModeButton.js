@@ -4,7 +4,7 @@ import Lightmode from '@mui/icons-material/LightModeOutlined';
 import Highlight from '@mui/icons-material/WbIncandescentOutlined';
 import HighlightFilled from '@mui/icons-material/WbIncandescent';
 import {useContext, useEffect} from "react";
-import {ModeContext} from "../00_base/ModeContext";
+import {ModeContext} from "../00_base/theme/ModeContext";
 
 const Container = styled('div')`
    order: 3;

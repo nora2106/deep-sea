@@ -6,7 +6,6 @@ import {Grow} from "@mui/material";
 import LoadingSpinner from "../01_atoms/LoadingSpinner";
 import SortSelect from "../01_atoms/SortSelect";
 import Pagination from "../01_atoms/Pagination"
-import testData from "../../testData.json";
 
 const app = new Realm.App({id: 'deep-sea-balmb'});
 
@@ -50,6 +49,11 @@ const Container = styled('div')`
   .bottom {
     bottom: 2em;
   }
+  
+  #errorMessage {
+    color: white;
+    font-size: 24px;
+  }
 `;
 
 const GridContainer = styled('div')`
@@ -84,8 +88,6 @@ const GridContainer = styled('div')`
     grid-template-columns:  repeat(4, 1fr);
     //grid-auto-rows: 40em;
   }
-
-
 `;
 
 function Grid(props) {
@@ -101,24 +103,30 @@ function Grid(props) {
 
     //fetch data
     async function getData(url) {
-        const response = await fetch(url);
-        if (!response.ok) {
-            const message = `Couldn't connect to database: ${response.statusText}`;
-            window.alert(message);
-            return;
-        }
-        const results = await response.json();
-        setChecked(true);
-        setLoad(false);
-        setPageLength(results.length / iteration)
-        return results;
+        return fetch(url).then((response) => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw new Error('Something went wrong')
+        })
+            .then((responseJson) => {
+                setChecked(true);
+                setLoad(false);
+                setPageLength(responseJson.length / iteration)
+                return responseJson;
+            })
+            .catch((error) => {
+                setLoad(false);
+                console.log(error);
+                document.getElementById('errorMessage').innerText = "Couldn't connect to database";
+            });
     }
 
     // get and sort initial data
     useEffect(() => {
         //todo add .env variable for production url before deploying
         let url = `http://localhost:3001/creatures/`;
-        if(props.type === "search") {
+        if (props.type === "search") {
             url = `http://localhost:3001/creatures/search/${props.value}`;
         }
         (async () => {
@@ -129,14 +137,16 @@ function Grid(props) {
     }, [props.value]);
 
     function outputToPage(data, pageVal) {
-        if(pageVal > 1) {
+        if (pageVal > 1) {
             // setShownCreatures(data.slice(iteration * pageVal, iteration * pageVal + iteration));
             let set = data.slice(iteration * pageVal, iteration * pageVal + iteration);
             setShownCreatures(set)
-        }
-        else {
+        } else {
             setShownCreatures(data.slice(0, iteration));
         }
+        setTimeout( () => {
+            props.update();
+        }, [0.2])
     }
 
     function sortData(property, data) {
@@ -164,6 +174,7 @@ function Grid(props) {
     const [showC, setShowC] = react.useState(false);
 
     //sort current results
+    //@todo: show whole dataset after switching from select back to sort by
     function sort(sortVal) {
         let zone = document.getElementById('zone');
         let diet = document.getElementById('diet');
@@ -179,7 +190,7 @@ function Grid(props) {
         classification.style.display = 'none';
         switch (sortVal) {
             case 'depth': {
-                if(props.type !== 'search') {
+                if (props.type !== 'search') {
                     zone.style.display = 'block';
                     setShowZ(true);
                 }
@@ -188,7 +199,7 @@ function Grid(props) {
                 break;
             }
             case 'diet': {
-                if(props.type !== 'search') {
+                if (props.type !== 'search') {
                     diet.style.display = 'block';
                     setShowD(true);
                 }
@@ -202,7 +213,7 @@ function Grid(props) {
                 break;
             }
             case 'class': {
-                if(props.type !== 'search') {
+                if (props.type !== 'search') {
                     classification.style.display = 'block';
                     setShowC(true);
                 }
@@ -259,10 +270,9 @@ function Grid(props) {
     function handleCallback(childData, name) {
         setChecked(false);
         setLoad(true);
-        if(childData === "all") {
+        if (childData === "all") {
             sort(name);
-        }
-        else {
+        } else {
             switch (name) {
                 default: {
                     sort(childData)
@@ -333,13 +343,16 @@ function Grid(props) {
                 </Grow>
             </div>
             <GridContainer>
-                {shownCreatures.map(creature => (
-                    <Card anim={checked} key={creature._id}
-                          name={creature.name} subName={creature.scientific} size={creature.size}
-                          class={creature.class} zone={creature.zone} diet={creature.diet}
-                          text={creature.text} img={creature.img}
-                    />
-                ))}
+                {shownCreatures.length ?
+                    shownCreatures.map(creature => (
+                        <Card anim={checked} key={creature._id}
+                              name={creature.name} subName={creature.scientific} size={creature.size}
+                              class={creature.class} zone={creature.zone} diet={creature.diet}
+                              text={creature.text} img={creature.img} link={creature.link}
+                        />
+                    ))
+                    : <p id='errorMessage'>No data found.</p>
+                }
             </GridContainer>
             <div className='bottom'>
                 <Pagination reset={resetPagination} action={getPage} pages={pageLength}/>

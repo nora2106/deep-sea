@@ -8,11 +8,12 @@ import MapMenu from "./component/05_pages/MapMenu";
 import DiscoverPage from "./component/05_pages/DiscoverPage";
 import SearchPage from "./component/05_pages/SearchPage";
 import {ThemeProvider} from "styled-components";
-import {colors, breakpoints,animations} from "./component/00_base/theme";
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { fas } from '@fortawesome/free-solid-svg-icons'
-import { faTwitter, faFontAwesome } from '@fortawesome/free-brands-svg-icons'
-import {ModeContextProvider} from "./component/00_base/ModeContext";
+import {colors, breakpoints, animations} from "./component/00_base/theme/theme";
+import {library} from '@fortawesome/fontawesome-svg-core'
+import {fas} from '@fortawesome/free-solid-svg-icons'
+import {faTwitter, faFontAwesome} from '@fortawesome/free-brands-svg-icons'
+import {ModeContextProvider} from "./component/00_base/theme/ModeContext";
+import GlobalStyle from '././component/00_base/theme/globalStyles'
 
 library.add(fas, faTwitter, faFontAwesome)
 
@@ -22,20 +23,18 @@ const theme = {
     animations
 }
 
-
 ReactDOM.render(
-
     <ModeContextProvider>
-    <ThemeProvider theme={theme}>
-        <BrowserRouter forceRefresh={true}>
-            <Routes>
-            <Route path="/" element={<LandingPage/>} />
-            <Route path="/map" element={<MapMenu/>} />
-            <Route path="/discover" element={<DiscoverPage/>} />
-            <Route path="/search" element={<SearchPage/>} />
-            </Routes>
-        </BrowserRouter>
-    </ThemeProvider>
+        <ThemeProvider theme={theme}>
+                <BrowserRouter forceRefresh={true}>
+                    <Routes>
+                        <Route path="/" element={<LandingPage/>}/>
+                        <Route path="/map" element={<MapMenu/>}/>
+                        <Route path="/discover" element={<DiscoverPage/>}/>
+                        <Route path="/search" element={<SearchPage/>}/>
+                    </Routes>
+                </BrowserRouter>
+        </ThemeProvider>
     </ModeContextProvider>,
 
     document.getElementById('root')

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import Header from "../03_organisms/Header";
 import Grid from "../03_organisms/Grid";
 import CursorHandler from "../00_base/helpers/CursorHandler";
@@ -23,12 +23,16 @@ const Container = styled('div')`
 
 
 export default function DiscoverPage(){
+    const CursorHandlerRef = useRef();
+
+    function callChild() {
+        CursorHandlerRef.current.update();
+    }
 
     return (
             <Container>
-                <Header/>
-                <Grid type='discover'/>
-                {/*<BubbleAnimation/>*/}
+                <Header theRef={CursorHandlerRef}/>
+                <Grid update={callChild} type='discover'/>
             </Container>
     );
 }
