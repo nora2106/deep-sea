@@ -1,6 +1,6 @@
 export const colors = {
-    bgDarker: '#030C15',
-    bgDark: '#0D1D29',
+    bgDarker: '#020312',
+    bgDark: '#08132F',
     primAccent: '#29ABAD',
     primAccentHighlight: '#3accce',
     secAccent: '#F75B4B',
@@ -10,6 +10,7 @@ export const colors = {
     pageBg: '#0D1D29',
     textLight: '#FFF',
     textDark: '#000',
+    lightBlue: '#1F2B6D'
 }
 // call props: ${(props) => props.theme.colors.bgDarker};
 

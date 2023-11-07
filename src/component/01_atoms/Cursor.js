@@ -11,6 +11,11 @@ const Container = styled('div')`
   border: 2px solid rgba(255, 255, 255, 0.6);
   transform: translate(-50%, -50%);
   transition: background-color .8s, border-color .6s;
+  display: none;
+
+  @media (min-width: ${props => props.theme.breakpoints.l}) {
+    display: block;
+  }
 `;
 
 const Cursor = forwardRef(function(props, ref) {

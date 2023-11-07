@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import ModeButton from "../01_atoms/ModeButton";
 
 const Container = styled('div')`
-  //cursor: none;
   height: 100vh;
   width: 100%;
   position: absolute;
@@ -15,15 +14,14 @@ const Container = styled('div')`
     height: 100%;
     right: 0;
     background-color: ${(props) => props.theme.colors.bgDarker};
-    display:flex;
+    display: flex;
     flex-direction: column;
     pointer-events: all;
     
     div {
       visibility: visible;
     }
-
-
+    
     @media (min-width: ${(props) => props.theme.breakpoints.m}) {
       width: 100%;
       height: 140px;
@@ -32,37 +30,6 @@ const Container = styled('div')`
       align-items: center;
       justify-content: space-evenly;
     }
-  }
-  
-
-`;
-
-const Overlay = styled('div')`
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  z-index: 3;
-  pointer-events: none;
-
-  .top-bar {
-    background-color: ${(props) => props.theme.colors.bgDarker};
-    height: 85px;
-    width: 100%;
-    box-shadow:  -10px 12px 18px 5px rgba(0, 0, 0, 0.3);
-  }
-
-  #darken {
-    background-color: ${(props) => props.theme.colors.bgDarker};
-    opacity: 80%;
-    pointer-events: none;
-    height: 100%;
-    width: 100%;
-    display: none;
-  }
-  
-  @media (min-width: ${(props) => props.theme.breakpoints.m}) {
-    display: none;
-    pointer-events: none;
   }
 `;
 
@@ -82,7 +49,6 @@ const MainMenu = styled('div')`
   @media (min-width: ${(props) => props.theme.breakpoints.m}) {
     position: sticky;
     background-color: ${(props) => props.theme.colors.bgDarker};
-    //box-shadow:  -10px 12px 18px 5px rgba(0, 0, 0, 0.3);
     width: 100%;
     height: 140px;
     display: flex;
@@ -97,39 +63,9 @@ const MainMenu = styled('div')`
   }
 `;
 
-const MenuButton = styled('div')`
-  z-index: 4;
-  background-color: transparent;
-  top: 0;
-  left: 0;
-  position: absolute;
-  
-  @media (min-width: ${(props) => props.theme.breakpoints.m}) {
-    display: none;
-  }
-  
-  .icon {
-    height: 40px;
-    width: 40px;
-    padding: 1em;
-  }
-  
-  :hover {
-    //cursor: none;
-  }
-
-`;
-
 function Menu(props) {
     return (
         <Container className='main-menu'>
-            <Overlay className="overlay">
-                <div className="top-bar"/>
-                <div id="darken"/>
-            </Overlay>
-            <MenuButton onClick={toggleMenu}>
-                <FontAwesomeIcon className="icon" icon="fa-solid fa-bars" inverse />
-            </MenuButton>
             <MainMenu className="menu">
                 <Logo/>
                 <MenuList/>
@@ -139,22 +75,6 @@ function Menu(props) {
 
         </Container>
     );
-}
-
-function toggleMenu() {
-    let menu = document.querySelector(".menu");
-    let overlay = document.querySelector(".overlay");
-    let darken = document.getElementById("darken");
-
-    if(menu.classList.contains("show")) {
-        menu.classList.remove("show");
-        darken.style.display = "none";
-    }
-    else {
-        menu.classList.add("show");
-        darken.style.display = "block";
-    }
-
 }
 
 export default Menu;

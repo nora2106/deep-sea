@@ -6,6 +6,7 @@ import {Grow} from "@mui/material";
 import LoadingSpinner from "../01_atoms/LoadingSpinner";
 import SortSelect from "../01_atoms/SortSelect";
 import Pagination from "../01_atoms/Pagination"
+import testData from '../../testData.json'
 
 const app = new Realm.App({id: 'deep-sea-balmb'});
 

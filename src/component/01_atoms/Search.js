@@ -9,28 +9,35 @@ const Container = styled('div')`
   align-items: center;
   text-align: right;
   order: 2;  
-  transition: opacity .5s;
-  opacity: 70%;
+  border-radius: 12px;
+  width: 10em;
+  margin-left: 4em;
+  height: 2.5em;
   
   .icon {
     color: white;
-    width: 1.8em;
-    height: 1.8em;
+    width: 1em;
+    height: 1em;
     margin-left: 10px;
     cursor: none;
 
     @media(min-width: ${(props) => props.theme.breakpoints.m}){
       margin-right: 10px;
+      width: 1.8em;
+      height: 1.8em;
     }
   }
 
   @media(min-width: ${(props) => props.theme.breakpoints.m}){
+    transition: opacity .5s;
     flex-direction: row-reverse;
     height: 35px;
     border-radius: 12px;
     padding: 5px;
     width: 15vw;
+    opacity: 70%;
     order: 3;
+    margin-left: 0;
   }
   
   :hover {
@@ -40,13 +47,14 @@ const Container = styled('div')`
 
 const SearchInput = styled('input')`
   height: 46px;
-  width: 85%;
+  width: 80%;
   background-color: transparent;
   color: white;
   border: none;
 
   @media(min-width: ${(props) => props.theme.breakpoints.m}){
     height: 100%;
+    width: 85%;
   }
 `;
 
