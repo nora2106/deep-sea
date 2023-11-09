@@ -11,7 +11,7 @@ const Container = styled('div')`
     display: none;
   }
 
-  @media (min-width: ${(props) => props.theme.breakpoints.m}) {
+  @media (min-width: ${(props) => props.theme.breakpoints.l}) {
     .main-menu {
       display: block;
     }

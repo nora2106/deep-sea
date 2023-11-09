@@ -1,10 +1,10 @@
 export const colors = {
     bgDarker: '#020312',
     bgDark: '#08132F',
-    primAccent: '#29ABAD',
-    primAccentHighlight: '#3accce',
-    secAccent: '#F75B4B',
-    secAccentHighlight: '#ff735c',
+    primAccent: '#F75B4B',
+    primAccentHighlight: '#ff735c',
+    secAccent: '#29ABAD',
+    secAccentHighlight: '#3accce',
     textHighlight: '#787878',
     cardBg: '#FFF',
     pageBg: '#0D1D29',
@@ -16,11 +16,11 @@ export const colors = {
 
 export const breakpoints = {
                 // mobile <425px
-    xs: '425px', //tablet 425-768px
-    s: '768px', //tablet: 768-1024px
-    m: '1024px', //laptop: 1024-1440px
-    l: '1440px', //desktop: 1440-2560px
-    xl: '2550px' //4k: >25560px
+    s: '425px', //tablet 425-768px
+    m: '768px', //tablet: 768-1024px
+    l: '1025px', //laptop: 1024-1440px
+    xl: '1440px', //desktop: 1440-2560px
+    xxl: '2550px' //4k: >25560px
 }
 
 const keyframes = {
