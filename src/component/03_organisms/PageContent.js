@@ -2,15 +2,16 @@ import styled from 'styled-components';
 import React, {useEffect} from "react";
 import bg1 from '../../assets/img/bubble-bg1.png'
 import bg2 from '../../assets/img/bubble-bg2.png'
-import squid from '../../assets/img/png-image6.png';
+import squid from '../../assets/img/VampireSquid1.png';
 import jelly from '../../assets/img/png-image9.png';
-import Bubble from "../01_atoms/Bubble";
+import Bubble from "../02_molecules/Bubble";
 import FactBox from "../01_atoms/FactBox";
 import Wave from "../01_atoms/Wave";
 import References from "../02_molecules/References";
 import Footer from "../02_molecules/Footer";
 import react from "react";
 import {Zoom} from "@mui/material";
+import BubbleSmall from "../01_atoms/BubbleSmall";
 
 const Container = styled('div')`
   background-color: ${(props) => props.theme.colors.bgDarker};
@@ -20,15 +21,7 @@ const Container = styled('div')`
   height: auto;
 
   .wave-dark {
-    background-image: url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTc0LjQ3MDY0IDQ2LjM0NTk0IiB2ZXJzaW9uPSIxLjEiI
-    HhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9IndhdmUtZ3JhZGllbnQiIHgxP
-    SIwJSIgeTE9IjEwMCUiIHgyPSIwJSIgeTI9IjAlIj4KICAgICAgPHN0b3Agc3R5bGU9InN0b3AtY29sb3I6IzAzMEMxNTsiIG9mZnNldD0iMCIgaWQ9Im
-    RlZXAtb2NlYW4iIC8+CiAgICAgIDxzdG9wIHN0eWxlPSJzdG9wLWNvbG9yOiMwMzBDMTU7IiBvZmZzZXQ9IjEiIGlkPSJzaGFsbG93LW9jZWFuIiAvPg
-    ogICAgPC9saW5lYXJHcmFkaWVudD4KICA8L2RlZnM+CiAgPHBhdGggc3R5bGU9ImZpbGw6dXJsKCN3YXZlLWdyYWRpZW50KTtmaWxsLXJ1bGU6ZXZlbm
-    9kZCIgZD0ibSAwLDExLjM4NDQ4IGMgMCwwIDIxLjEzMzg1MSwxMS4zOTUzMSA0My42MTc2NjEsMTEuMzg0NDEgQyA2Ni4xMDE0NzEsMjIuNzU3OTkgM
-    TA3Ljk2ODU2LDAuMDMyNjIKICAgIDEzMC41MDgsN2UtNSBjIDIyLjUzOTQ0LC0wLjAzMjUgNDMuOTYyNjQsMTEuMzg0NDEgNDMuOTYyNjQsMTEuMzg0
-    NDEgViA0Ni4zNDU5NCBIIDAgWiIgLz4KPC9zdmc+");
-    top: 45em;
+    top: 47em;
 
     @media (min-width: ${(props) => props.theme.breakpoints.xs}) {
       top: 55em;
@@ -42,9 +35,9 @@ const Container = styled('div')`
   }
 
   .wave-footer {
-    bottom: 65px;
+    bottom: 0;
   }
-  
+
   .bg-image {
     position: absolute;
     z-index: 1;
@@ -54,7 +47,7 @@ const Container = styled('div')`
     @media (min-width: ${(props) => props.theme.breakpoints.m}) {
       display: block;
     }
-    
+
 
     @keyframes img-show {
       from {
@@ -69,27 +62,54 @@ const Container = styled('div')`
   }
 
   .bg-image.active {
-    ${props => props.theme.animations.show};
     animation-delay: 1000ms;
+    opacity: 1;
   }
-  
 `;
 
 
 const Section = styled('div')`
   margin-top: 150px;
   width: 100%;
-  height: 40em;
-  padding-bottom: 5em;
+  height: 55em;
+  padding: 5em 0;
   position: relative;
   background-color: ${(props) => props.theme.colors.bgDark};
 
-  @media (min-width: ${(props) => props.theme.breakpoints.xs}) {
-    height: 50em;
+  #bubble1 {
+    float: right;
+    right: 1em;
+    top: 10%;
+
+    @media (min-width: ${(props) => props.theme.breakpoints.l}) {
+      right: 10%;
+    }
   }
 
-  @media (min-width: ${(props) => props.theme.breakpoints.s}) {
-    height: 55em;
+  #bubble2 {
+    top: 25%;
+    left: 1em;
+
+    @media (min-width: ${(props) => props.theme.breakpoints.l}) {
+      left: 10%;
+    }
+  }
+
+  .small-bubbles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    display: none;
+
+    &:first-child {
+      width: 40vw !important;
+      display: none;
+    }
+
+    :nth-child(2) {
+      width: 32vw;
+    }
   }
 `;
 
@@ -98,12 +118,19 @@ const Section2 = styled(Section)`
   background-color: ${(props) => props.theme.colors.bgDarker};
   height: 20em;
   width: 100%;
+  z-index: 2;
 
   img {
-    transform: translateX(-30%);
+    transform: translateX(-30%) rotate(60deg);
     width: 40vw;
     top: 8em;
     left: -6%;
+    transition: left .6s ease-in;
+
+    &.active {
+      opacity: 1;
+      left: 10%;
+    }
   }
 `;
 
@@ -111,25 +138,24 @@ const Section3 = styled(Section)`
   margin-top: 0;
   background-color: ${(props) => props.theme.colors.bgDarker};
   height: 50em;
-  @media (min-width: ${(props) => props.theme.breakpoints.s}) {
-    height: 50em;
-  }
-
-  @media (min-width: ${(props) => props.theme.breakpoints.m}) {
-    height: 60em;
-  }
-
+  // @media (min-width: ${(props) => props.theme.breakpoints.s}) {
+  //   height: 50em;
+  // }
+  //
+  // @media (min-width: ${(props) => props.theme.breakpoints.m}) {
+  //   height: 60em;
+  // }
+  //
   @media (min-width: ${(props) => props.theme.breakpoints.l}) {
-    height: 62em;
+    height: 65em;
   }
 
   .bg-image {
-    transform: rotate(-15deg) translateX(30%);
     width: 20vw;
     top: 0;
     right: -2%;
-
   }
+  
 `;
 
 
@@ -143,7 +169,6 @@ function PageContent() {
         scrollTrigger('.show-scroll', {
             rootMargin: '-100px'
         })
-        // setZoom(true);
     }, [])
 
     function scrollTrigger(selector, options = {}) {
@@ -153,26 +178,22 @@ function PageContent() {
             addObserver(el, options)
         })
     }
+
 // Receiving options passed from the scrollTrigger function
     function addObserver(el, options) {
         let observer = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
-                if(entry.isIntersecting) {
-                    if(entry.target.id === 'map-bubble') {
+                if (entry.isIntersecting) {
+                    if (entry.target.id === 'map-bubble') {
                         setZoom(true)
-                    }
-                    else if(entry.target.id === 'discover-bubble') {
+                    } else if (entry.target.id === 'discover-bubble') {
                         setZoom2(true)
-                    }
-                    else if(entry.target.id === 'slider-bubble') {
+                    } else if (entry.target.id === 'slider-bubble') {
                         setZoom3(true);
-                    }
-                    else if(entry.target.classList.contains('fact-box')) {
+                    } else if (entry.target.classList.contains('fact-box')) {
                         setCollapse(true);
-                    }
-                    else {
+                    } else {
                         entry.target.classList.add('active')
-                        // console.log(entry.target.id)
                     }
                     observer.unobserve(entry.target)
                 }
@@ -182,24 +203,28 @@ function PageContent() {
     }
 
 
-
     return (
         <Container>
             <Wave/>
             <Section id='section1'>
-                <Bubble show={zoom} link='/map' img={bg2} id="map-bubble" text='Deep Sea Map' icon={'globe-americas'}/>
-                <Bubble show={zoom2} link='/discover' img={bg1} id="discover-bubble" text='Discover Creatures'
+                <Bubble show={zoom} link='/discover' img={bg1} id="bubble1" text='Discover Creatures'
                         icon={'search'}/>
+                <Bubble show={zoom2} link='/map' img={bg2} id="bubble2" text='View Zones' icon={'globe-americas'}/>
+                <div className='small-bubbles'>
+                    <BubbleSmall/>
+                    <BubbleSmall/>
+                    <BubbleSmall/>
+                </div>
             </Section>
-            <Wave class='wave-dark'/>
+            {/*<Wave class='wave-dark'/>*/}
             <Section2 id='section2'>
-                <FactBox show={collapse}/>
-                <img className='show-scroll bg-image ' alt='Bigfin Reef Squid by ' src={squid}/>
+                {/*<FactBox show={collapse}/>*/}
+                <img className='show-scroll bg-image squid-img' alt='Vampire Squid Illustratioj ' src={squid}/>
             </Section2>
             <Section3 id='section3'>
                 <img className='show-scroll bg-image ' alt='Barrel Jellyfish by Nikolay Kovalenko' src={jelly}/>
                 <References show={zoom3}/>
-                <Wave class='wave-footer'/>
+                {/*<Wave class='wave-footer'/>*/}
                 <Footer/>
             </Section3>
         </Container>

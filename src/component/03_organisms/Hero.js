@@ -10,7 +10,7 @@ const Wrapper = styled('div')`
 const Container = styled('div')`
   width: 100%;
   height: 100%;
-  min-height: 80vh;
+  min-height: 78vh;
   top: 2em;
   padding-top: 3em;
   background-color: ${(props) => props.theme.colors.bgDarker};
@@ -19,26 +19,6 @@ const Container = styled('div')`
   position: relative;
   align-items: center;
   overflow: hidden;
-
-  @media (min-width: ${(props) => props.theme.breakpoints.xs}) {
-    //height: 30em;
-  }
-
-  @media (min-width: ${(props) => props.theme.breakpoints.s}) {
-    //height: 35em;
-  }
-
-  @media (min-width: ${(props) => props.theme.breakpoints.m}) {
-    //align-items: normal;
-    //justify-content: center;
-    //height: 45em;
-  }
-
-  @media (min-width: ${(props) => props.theme.breakpoints.l}) {
-    //height: 50em;
-    //padding-top: 0;
-  }
-  }
 
   .headline {
     width: fit-content;

@@ -9,7 +9,12 @@ import BubbleOutline from "./BubbleOutline";
 import Zoom from '@mui/material/Zoom';
 
 const Container = styled('div')`
-
+  height: 25em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  //overflow: hidden;
+  
   .icon {
     width: 200px;
     height: 200px;
@@ -23,13 +28,6 @@ const Container = styled('div')`
   #right {
     transform: rotate(-45deg);
   }
-
-  height: 25em;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  overflow: no-display;
-
 `;
 
 const Bubble = styled('div')`
@@ -38,27 +36,18 @@ const Bubble = styled('div')`
   align-items: center;
   justify-content: center;
   width: 60vw;
-  height: 60vw;
+  max-width: 20em;
   position: relative;
-
-  @media (min-width: ${(props) => props.theme.breakpoints.xs}) {
-    width: 50vw;
-    height: 50vw;
-  }
-
-  @media (min-width: ${(props) => props.theme.breakpoints.s}) {
-    width: 32vw;
-    height: 32vw;
-  }
+  aspect-ratio: 1/1;
 
   @media (min-width: ${(props) => props.theme.breakpoints.m}) {
-    width: 25vw;
-    height: 25vw;
+    width: 40vw;
+    max-width: 25em;
   }
 
-  @media (min-width: ${(props) => props.theme.breakpoints.l}) {
-    width: 20vw;
-    height: 20vw;
+  @media (min-width: ${(props) => props.theme.breakpoints.xl}) {
+    width: 25vw;
+    max-width: 30em;
   }
 
   .bubble-wrapper {
@@ -69,17 +58,19 @@ const Bubble = styled('div')`
   :hover .bubble {
     animation-play-state: paused;
   }
+
+  .outline-2 {
+    display: none;
+  }
 `;
 
 const Text = styled('p')`
   color: white;
-  position: relative;
+  position: absolute;
   z-index: 3;
-  margin-top: 3em;
-
-  @media (min-width: ${(props) => props.theme.breakpoints.m}) {
-    margin-top: 4em;
-  }
+  left: 0;
+  right: 0;
+  margin-top: 1.5em;
 `;
 
 const Arrow = styled('div')`
@@ -157,7 +148,7 @@ function Slider(props) {
         <Zoom in={props.show} style={{ transitionDuration: '1000ms' }} >
         <Container id='slider-bubble' className='show-scroll'>
             <Arrow id="left" className='btn-hover' onClick={() => showSlides(-1)}/>
-            <div>
+            <div className='slider-bubble-container'>
                 <Bubble className='btn-hover'>
                     <BubbleOutline/>
                     <SliderItem link={link} img={img}/>

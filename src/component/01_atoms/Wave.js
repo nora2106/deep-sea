@@ -3,23 +3,16 @@ import wave from '../../assets/svg/wave2.svg'
 
 const Container = styled('div')`
   z-index: 1;
+
   .wave-dark {
-    background-image:  url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTc0LjQ3MDY0IDQ2LjM0NTk0IiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cGF0aCBzdHlsZT0iZmlsbDojMDMwQzE1IiBkPSJtIDAsMTEuMzg0NDggYyAwLDAgMjEuMTMzODUxLDExLjM5NTMxIDQzLjYxNzY2MSwxMS4zODQ0MSBDIDY2LjEwMTQ3MSwyMi43NTc5OSAxMDcuOTY4NTYsMC4wMzI2MgogICAgMTMwLjUwOCw3ZS01IGMgMjIuNTM5NDQsLTAuMDMyNSA0My45NjI2NCwxMS4zODQ0MSA0My45NjI2NCwxMS4zODQ0MSBWIDQ2LjM0NTk0IEggMCBaIiAvPgo8L3N2Zz4=");
-    top: 55em;
-
-    @media (min-width: ${(props) => props.theme.breakpoints.s}) {
-      top: 60em;
-    }
-    @media (min-width: ${(props) => props.theme.breakpoints.m}) {
-    }
+    background-image: url('data:image/svg+xml;charset=UTF-8, 
+    <svg viewBox="0 0 174.47064 46.34594" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <path style="fill:%23020312" d="m 0,11.38448 c 0,0 21.133851,11.39531 43.617661,11.38441 C 66.101471,22.75799 107.96856,0.03262
+      130.508,7e-5 c 22.53944,-0.0325 43.96264,11.38441 43.96264,11.38441 V 46.34594 H 0 Z"/>
+    </svg>');
   }
 
-  .wave-footer {
-    bottom: 65px;
-  }
-  
   .wave-light {
-    background-image:  url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTc0LjQ3MDY0IDQ2LjM0NTk0IiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cGF0aCBzdHlsZT0iZmlsbDojOWFlN2U4IiBkPSJtIDAsMTEuMzg0NDggYyAwLDAgMjEuMTMzODUxLDExLjM5NTMxIDQzLjYxNzY2MSwxMS4zODQ0MSBDIDY2LjEwMTQ3MSwyMi43NTc5OSAxMDcuOTY4NTYsMC4wMzI2MgogICAgMTMwLjUwOCw3ZS01IGMgMjIuNTM5NDQsLTAuMDMyNSA0My45NjI2NCwxMS4zODQ0MSA0My45NjI2NCwxMS4zODQ0MSBWIDQ2LjM0NTk0IEggMCBaIiAvPgo8L3N2Zz4=");
     top: 6em;
     z-index: 1;
   }
@@ -28,7 +21,11 @@ const Container = styled('div')`
 const WaveAnim = styled('div')`
   --size: -300px;
   --percent: 60%;
-  background-image:  url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTc0LjQ3MDY0IDQ2LjM0NTk0IiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cGF0aCBzdHlsZT0iZmlsbDojMEQxRDI5IiBkPSJtIDAsMTEuMzg0NDggYyAwLDAgMjEuMTMzODUxLDExLjM5NTMxIDQzLjYxNzY2MSwxMS4zODQ0MSBDIDY2LjEwMTQ3MSwyMi43NTc5OSAxMDcuOTY4NTYsMC4wMzI2MgogICAgMTMwLjUwOCw3ZS01IGMgMjIuNTM5NDQsLTAuMDMyNSA0My45NjI2NCwxMS4zODQ0MSA0My45NjI2NCwxMS4zODQ0MSBWIDQ2LjM0NTk0IEggMCBaIiAvPgo8L3N2Zz4=");
+  background-image: url('data:image/svg+xml;charset=UTF-8, 
+    <svg viewBox="0 0 174.47064 46.34594" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <path style="fill:%2308132F" d="m 0,11.38448 c 0,0 21.133851,11.39531 43.617661,11.38441 C 66.101471,22.75799 107.96856,0.03262
+    130.508,7e-5 c 22.53944,-0.0325 43.96264,11.38441 43.96264,11.38441 V 46.34594 H 0 Z" />
+</svg>');
   background-size: 300px auto;
   background-position-y: bottom;
   position: absolute;

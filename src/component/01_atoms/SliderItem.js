@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 const Container = styled('a')`
-  width: 18vw;
-  min-width: 180px;
+  width: 70%;
+  aspect-ratio: 1/1;
   border-radius: 50%;
   overflow: hidden;
   display: flex;
@@ -10,7 +10,7 @@ const Container = styled('a')`
   align-items: center;
   transform: scale(1);
   position: absolute;
-  transition: opacity .6s ease, transform .6s ease;
+  transition: opacity, width .6s ease;
 
   img {
     border-radius: 100%;
@@ -20,16 +20,10 @@ const Container = styled('a')`
   }
   
    :hover {
-     transform: scale(1.14);
+     width: 80%;
      opacity: .7;
      cursor: none;
    }
-  
-  :after {
-    content: "";
-    display: block;
-    padding-bottom: 100%;
-  }
 `;
 
 function SliderItem(props) {
