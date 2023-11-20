@@ -17,6 +17,10 @@ const Container = styled('div')`
   align-items: center;
   max-width: 20em;
   aspect-ratio: 1 / 1;
+
+  :hover .outline {
+    animation-play-state: paused;
+  }
   
   #discover-bubble {
     float: right;

@@ -3,20 +3,33 @@ import outline from "../../assets/svg/dashed-circle.svg";
 
 const Container = styled('div')`
   position: relative;
-  pointer-events: none;
-  width: 30vw;
+  width: 34vw;
+  max-width: 10em;
   aspect-ratio: 1/1;
   display: flex;
   justify-content: center;
   align-items: center;
 
+  :hover .outline {
+    animation-play-state: paused;
+  }
+
   .outline-2 {
-    pointer-events: none;
     width: 72%;
     height: 72%;
     left: 11%;
     top: 11%;
-    //display: none;
+    ${props => props.theme.animations.rotateRight};
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.m}) {
+    width: 24vw;
+    max-width: 16em;
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.l}) {
+    width: 20vw;
+    max-width: 14em;
   }
 `;
 
@@ -26,11 +39,12 @@ const Outline = styled('img')`
   width: 100%;
   height: 100%;
   border-radius: 100%;
+  ${props => props.theme.animations.rotateLeft};
 `;
 
 function BubbleSmall() {
     return (
-        <Container>
+        <Container className='small-bubble'>
             <Outline className='outline' src={outline}/>
             <Outline className='outline outline-2' src={outline}/>
         </Container>

@@ -16,7 +16,8 @@ const Container = styled('div')`
     height: 85%;
     left: 6%;
     top: 6%;
-    //display: none;
+    ${props => props.theme.animations.rotateRight};
+    animation-duration: 80s;
   }
   
 `;
@@ -27,6 +28,8 @@ const Outline = styled('img')`
   width: 100%;
   height: 100%;
   border-radius: 100%;
+  ${props => props.theme.animations.rotateLeft};
+  animation-duration: 80s;
 `;
 
 function BubbleOutline(props) {
@@ -39,5 +42,3 @@ function BubbleOutline(props) {
 }
 
 export default BubbleOutline;
-
-//  ${props => props.theme.animations.rotateLeft};

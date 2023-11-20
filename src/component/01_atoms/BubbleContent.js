@@ -56,10 +56,6 @@ const Card = styled('div')`
     transition: opacity .4s ease;
     pointer-events: none;
 
-    @media (min-width: ${(props) => props.theme.breakpoints.l}) {
-      //font-size: 24px;
-    }
-
     @keyframes disappear {
       from {
         position: relative;
@@ -84,15 +80,16 @@ const Card = styled('div')`
 
   .link {
     position: absolute;
+    pointer-events: none;
+  }
+  
+  :hover .link {
+    pointer-events: all;
   }
 
   :hover .bubble-img {
     transform: scale(1.14);
     opacity: .7;
-  }
-
-  :hover .bubble {
-    animation-play-state: paused;
   }
 
   :hover h3 {
@@ -133,12 +130,6 @@ const Button = styled('button')`
   :hover {
     transform: scale(1.14);
     cursor: none;
-  }
-
-  @media (min-width: ${(props) => props.theme.breakpoints.m}) {
-    //height: 100%;
-    //width: 100%;
-    //border-radius: 18px;
   }
 `;
 

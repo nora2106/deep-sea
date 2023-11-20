@@ -21,16 +21,10 @@ const Container = styled('div')`
   height: auto;
 
   .wave-dark {
-    top: 47em;
+    top: 74em;
 
-    @media (min-width: ${(props) => props.theme.breakpoints.xs}) {
-      top: 55em;
-    }
-
-    @media (min-width: ${(props) => props.theme.breakpoints.s}) {
-      top: 60em;
-    }
     @media (min-width: ${(props) => props.theme.breakpoints.m}) {
+      //top: 70em;
     }
   }
 
@@ -71,8 +65,9 @@ const Container = styled('div')`
 const Section = styled('div')`
   margin-top: 150px;
   width: 100%;
-  height: 55em;
-  padding: 5em 0;
+  height: 60em;
+  padding-top: 8em;
+  padding-bottom: 4em;
   position: relative;
   background-color: ${(props) => props.theme.colors.bgDark};
 
@@ -89,9 +84,11 @@ const Section = styled('div')`
   #bubble2 {
     top: 25%;
     left: 1em;
+    transform: scale(.85);
 
     @media (min-width: ${(props) => props.theme.breakpoints.l}) {
       left: 10%;
+      top: 40%;
     }
   }
 
@@ -100,15 +97,107 @@ const Section = styled('div')`
     width: 100%;
     height: 100%;
     top: 0;
-    display: none;
+    
+    .small-bubble {
+      margin: 1em;
+      position: absolute;
+      
+      &:nth-child(1){
+        transform: scale(1);
+        right: 0;
+        top: 4%;
+      }
 
-    &:first-child {
-      width: 40vw !important;
-      display: none;
-    }
+      &:nth-child(2) {
+        transform: scale(.7);
+        top: 10%;
+      }
+      
+      &:nth-child(3) {
+        transform: scale(.7);
+        top: 45%;
+      }
+      
+      &:nth-child(4) {
+        transform: scale(.8);
+        bottom: 38%;
+        right: 0;
+      }
+      
+      &:nth-child(5) {
+        bottom: 7%;
+        right: 0;
+      }
 
-    :nth-child(2) {
-      width: 32vw;
+      @media (min-width: ${(props) => props.theme.breakpoints.s}) {
+        &:nth-child(4) {
+          bottom: 30%;
+        }
+      }
+
+      @media (min-width: ${(props) => props.theme.breakpoints.m}) {
+        &:nth-child(1) {
+          top: 3%;
+          right: 30%;
+          transform: scale(.8);
+        }
+
+        &:nth-child(2) {
+          top: 14%;
+          left: 5%;
+        }
+        
+        &:nth-child(3) {
+          top: auto;
+          bottom: 14%;
+        }
+
+        &:nth-child(4) {
+          right: 24%;
+          top: auto;
+          bottom: 24%;
+        }
+
+        &:nth-child(5) {
+          bottom: 8%;
+        }
+      }
+
+      @media (min-width: ${(props) => props.theme.breakpoints.l}) {
+        &:nth-child(1) {
+          right: 38%;
+          transform: scale(1);
+        }
+
+        &:nth-child(2) {
+          left: 28%;
+          top: 26%;
+        }
+
+        &:nth-child(3) {
+          bottom: 43%;
+        }
+
+        &:nth-child(4) {
+          right: 28%;
+          bottom: 20%;
+        }
+
+        &:nth-child(5) {
+          right: 8%;
+        }
+      }
+
+      @media (min-width: ${(props) => props.theme.breakpoints.xl}) {
+        &:nth-child(4) {
+          right: 40%;
+          bottom: 25%;
+        }
+
+        &:nth-child(5) {
+          right: 16%;
+        }
+      }
     }
   }
 `;
@@ -138,14 +227,7 @@ const Section3 = styled(Section)`
   margin-top: 0;
   background-color: ${(props) => props.theme.colors.bgDarker};
   height: 50em;
-  // @media (min-width: ${(props) => props.theme.breakpoints.s}) {
-  //   height: 50em;
-  // }
-  //
-  // @media (min-width: ${(props) => props.theme.breakpoints.m}) {
-  //   height: 60em;
-  // }
-  //
+  
   @media (min-width: ${(props) => props.theme.breakpoints.l}) {
     height: 65em;
   }
@@ -155,7 +237,6 @@ const Section3 = styled(Section)`
     top: 0;
     right: -2%;
   }
-  
 `;
 
 
@@ -207,6 +288,7 @@ function PageContent() {
         <Container>
             <Wave/>
             <Section id='section1'>
+                <FactBox/>
                 <Bubble show={zoom} link='/discover' img={bg1} id="bubble1" text='Discover Creatures'
                         icon={'search'}/>
                 <Bubble show={zoom2} link='/map' img={bg2} id="bubble2" text='View Zones' icon={'globe-americas'}/>
@@ -214,19 +296,18 @@ function PageContent() {
                     <BubbleSmall/>
                     <BubbleSmall/>
                     <BubbleSmall/>
+                    <BubbleSmall/>
+                    <BubbleSmall/>
                 </div>
             </Section>
-            {/*<Wave class='wave-dark'/>*/}
+            <Wave class='wave-dark'/>
             <Section2 id='section2'>
-                {/*<FactBox show={collapse}/>*/}
                 <img className='show-scroll bg-image squid-img' alt='Vampire Squid Illustratioj ' src={squid}/>
             </Section2>
             <Section3 id='section3'>
-                <img className='show-scroll bg-image ' alt='Barrel Jellyfish by Nikolay Kovalenko' src={jelly}/>
                 <References show={zoom3}/>
-                {/*<Wave class='wave-footer'/>*/}
-                <Footer/>
             </Section3>
+            <Footer/>
         </Container>
     );
 }

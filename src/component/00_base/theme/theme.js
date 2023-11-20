@@ -7,7 +7,7 @@ export const colors = {
     secAccentHighlight: '#3accce',
     textHighlight: '#787878',
     cardBg: '#FFF',
-    pageBg: '#0D1D29',
+    pageBg: '#08132F',
     textLight: '#FFF',
     textDark: '#000',
     lightBlue: '#1F2B6D'

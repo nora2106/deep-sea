@@ -125,8 +125,8 @@ const Text = styled('div')`
 
 const HeroImage = styled('img')`
   position: absolute;
-  //animation-delay: 1000ms;
-  //animation: slide-in 600ms ease-out forwards;
+  animation-delay: 1000ms;
+  animation: slide-in 600ms ease-out forwards;
   top: 7.5em;
   right: -4em;
   width: 90vw;
@@ -150,10 +150,10 @@ const HeroImage = styled('img')`
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.l}) {
-    width: 52vw;
-    max-width: 45em;
+    width: 50vw;
+    max-width: 50em;
     transform: rotate(-3deg);
-    right: -0.5em;
+    right: 0;
   }
 
   @keyframes slide-in {
@@ -196,6 +196,10 @@ const DownButton = styled('div')`
       transform: scale(1.3);
       opacity: 1;
     }
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.m}) {
+    top: 80vh;
   }
 `;
 

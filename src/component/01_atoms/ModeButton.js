@@ -1,6 +1,4 @@
 import styled from 'styled-components';
-import Lightbulb from '@mui/icons-material/Lightbulb';
-import Lightmode from '@mui/icons-material/LightModeOutlined';
 import Highlight from '@mui/icons-material/WbIncandescentOutlined';
 import HighlightFilled from '@mui/icons-material/WbIncandescent';
 import {useContext, useEffect} from "react";
