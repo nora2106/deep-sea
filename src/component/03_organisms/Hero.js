@@ -228,7 +228,7 @@ function Hero() {
 function scrollDown() {
     const target = document.getElementById('section1')
     console.log(target.style.top);
-    target.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
+    target.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
 }
 
 export default Hero;

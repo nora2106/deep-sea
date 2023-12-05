@@ -10,7 +10,6 @@ import Wave from "../01_atoms/Wave";
 import References from "../02_molecules/References";
 import Footer from "../02_molecules/Footer";
 import react from "react";
-import {Zoom} from "@mui/material";
 import BubbleSmall from "../01_atoms/BubbleSmall";
 
 const Container = styled('div')`
@@ -22,10 +21,6 @@ const Container = styled('div')`
 
   .wave-dark {
     top: 74em;
-
-    @media (min-width: ${(props) => props.theme.breakpoints.m}) {
-      //top: 70em;
-    }
   }
 
   .wave-footer {
@@ -41,8 +36,7 @@ const Container = styled('div')`
     @media (min-width: ${(props) => props.theme.breakpoints.m}) {
       display: block;
     }
-
-
+    
     @keyframes img-show {
       from {
         transform: scale(.6);
@@ -60,7 +54,6 @@ const Container = styled('div')`
     opacity: 1;
   }
 `;
-
 
 const Section = styled('div')`
   margin-top: 150px;
@@ -88,7 +81,7 @@ const Section = styled('div')`
 
     @media (min-width: ${(props) => props.theme.breakpoints.l}) {
       left: 10%;
-      top: 40%;
+      top: 45%;
     }
   }
 
@@ -97,33 +90,34 @@ const Section = styled('div')`
     width: 100%;
     height: 100%;
     top: 0;
-    
+    z-index: 2;
+
     .small-bubble {
       margin: 1em;
       position: absolute;
-      
-      &:nth-child(1){
-        transform: scale(1);
+
+      &:nth-child(1) {
+        transform: scale(1) rotate(50deg);
         right: 0;
         top: 4%;
       }
 
       &:nth-child(2) {
-        transform: scale(.7);
+        transform: scale(.7) rotate(-20deg);
         top: 10%;
       }
-      
+
       &:nth-child(3) {
         transform: scale(.7);
         top: 45%;
       }
-      
+
       &:nth-child(4) {
         transform: scale(.8);
         bottom: 38%;
         right: 0;
       }
-      
+
       &:nth-child(5) {
         bottom: 7%;
         right: 0;
@@ -139,14 +133,14 @@ const Section = styled('div')`
         &:nth-child(1) {
           top: 3%;
           right: 30%;
-          transform: scale(.8);
+          transform: scale(.8), rotate(50deg);
         }
 
         &:nth-child(2) {
           top: 14%;
           left: 5%;
         }
-        
+
         &:nth-child(3) {
           top: auto;
           bottom: 14%;
@@ -166,16 +160,16 @@ const Section = styled('div')`
       @media (min-width: ${(props) => props.theme.breakpoints.l}) {
         &:nth-child(1) {
           right: 38%;
-          transform: scale(1);
+          transform: scale(1) rotate(50deg);
         }
 
         &:nth-child(2) {
           left: 28%;
-          top: 26%;
+          top: 20%;
         }
 
         &:nth-child(3) {
-          bottom: 43%;
+          bottom: 45%;
         }
 
         &:nth-child(4) {
@@ -227,6 +221,10 @@ const Section3 = styled(Section)`
   margin-top: 0;
   background-color: ${(props) => props.theme.colors.bgDarker};
   height: 50em;
+
+  @media (min-width: ${(props) => props.theme.breakpoints.m}) {
+    height: 60em;
+  }
   
   @media (min-width: ${(props) => props.theme.breakpoints.l}) {
     height: 65em;
@@ -243,7 +241,6 @@ const Section3 = styled(Section)`
 function PageContent() {
     const [zoom, setZoom] = react.useState(false)
     const [zoom2, setZoom2] = react.useState(false)
-    const [collapse, setCollapse] = react.useState(false)
     const [zoom3, setZoom3] = react.useState(false)
 
     useEffect(() => {
@@ -265,14 +262,12 @@ function PageContent() {
         let observer = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    if (entry.target.id === 'map-bubble') {
+                    if (entry.target.id === 'bubble1') {
                         setZoom(true)
-                    } else if (entry.target.id === 'discover-bubble') {
+                    } if (entry.target.id === 'bubble2') {
                         setZoom2(true)
                     } else if (entry.target.id === 'slider-bubble') {
                         setZoom3(true);
-                    } else if (entry.target.classList.contains('fact-box')) {
-                        setCollapse(true);
                     } else {
                         entry.target.classList.add('active')
                     }
@@ -283,15 +278,13 @@ function PageContent() {
         observer.observe(el)
     }
 
-
     return (
         <Container>
             <Wave/>
             <Section id='section1'>
                 <FactBox/>
-                <Bubble show={zoom} link='/discover' img={bg1} id="bubble1" text='Discover Creatures'
-                        icon={'search'}/>
-                <Bubble show={zoom2} link='/map' img={bg2} id="bubble2" text='View Zones' icon={'globe-americas'}/>
+                <Bubble show={zoom} link='/discover' img={bg1} id="bubble1" text='Discover Creatures'/>
+                <Bubble show={zoom} link='/map' img={bg2} id="bubble2" text='View Zones'/>
                 <div className='small-bubbles'>
                     <BubbleSmall/>
                     <BubbleSmall/>

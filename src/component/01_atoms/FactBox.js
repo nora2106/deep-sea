@@ -13,12 +13,17 @@ const Container = styled('div')`
   z-index: 3;
   padding: .5em;
   top: -1em;
+  transform: translateX(-70%);
   
   .headline {
     display: flex;
     flex-direction: row;
     justify-content: start;
     align-items: center;
+  }
+  
+  &.active {
+    ${props => props.theme.animations.slideIn};
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.m}) {
@@ -30,6 +35,7 @@ const Container = styled('div')`
   @media (min-width: ${(props) => props.theme.breakpoints.l}) {
     width: 30vw;
     max-width: 50em;
+    top: 2em;
   }
 `;
 
@@ -69,9 +75,7 @@ const Text = styled('p')`
 `;
 
 function FactBox(props) {
-
     return (
-        <Collapse in={props.show} collapsedSize={40}>
         <Container className='fact-box show-scroll'>
             <div className='headline'>
                 <Icon>
@@ -81,7 +85,6 @@ function FactBox(props) {
             </div>
             <Text>The average depth of the ocean measures 3.682m, while the deepest parts reach up to 10.934m.</Text>
         </Container>
-    </Collapse>
     );
 }
 
