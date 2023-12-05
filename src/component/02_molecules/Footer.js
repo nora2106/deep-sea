@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import wave from '../../assets/svg/wave3.svg';
-import isopod from '../../assets/img/Isopod1.png'
 import Logo from "../01_atoms/Logo";
 
 const Container = styled('div')`
