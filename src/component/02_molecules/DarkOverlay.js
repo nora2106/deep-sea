@@ -1,8 +1,4 @@
 import styled from 'styled-components';
-import {useContext} from "react";
-import {ModeContext} from "../00_base/theme/ModeContext";
-import Highlight from "@mui/icons-material/WbIncandescentOutlined";
-import HighlightFilled from "@mui/icons-material/WbIncandescent";
 
 const Container = styled('div')`
   z-index: 4;

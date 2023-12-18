@@ -2,8 +2,6 @@ import styled from 'styled-components';
 import React, {useEffect} from "react";
 import bg1 from '../../assets/img/bubble-bg1.png'
 import bg2 from '../../assets/img/bubble-bg2.png'
-import squid from '../../assets/img/VampireSquid1.png';
-import jelly from '../../assets/img/png-image9.png';
 import Bubble from "../02_molecules/Bubble";
 import FactBox from "../01_atoms/FactBox";
 import Wave from "../01_atoms/Wave";
@@ -11,6 +9,7 @@ import References from "../02_molecules/References";
 import Footer from "../02_molecules/Footer";
 import react from "react";
 import BubbleSmall from "../01_atoms/BubbleSmall";
+import AnimatedSquid from "../01_atoms/AnimatedSquid";
 
 const Container = styled('div')`
   background-color: ${(props) => props.theme.colors.bgDarker};
@@ -295,7 +294,7 @@ function PageContent() {
             </Section>
             <Wave class='wave-dark'/>
             <Section2 id='section2'>
-                <img className='show-scroll bg-image squid-img' alt='Vampire Squid Illustratioj ' src={squid}/>
+                <AnimatedSquid/>
             </Section2>
             <Section3 id='section3'>
                 <References show={zoom3}/>

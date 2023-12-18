@@ -12,7 +12,7 @@ const Container = styled('div')`
   height: 80px;
   
   &.active .animated-isopod {
-    animation: Move 13s linear forwards, Switch .8s ease-in 17 forwards;
+    animation: Move 10s linear forwards, IsopodBody .8s ease-in 13 forwards;
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.l}) {
@@ -22,40 +22,48 @@ const Container = styled('div')`
 
 const Image = styled('div')`
   position: absolute;
-  width: 20em;
-  height: 20em;
+  width: 10em;
+  height: 10em;
   z-index: 3;
   display: block;
-  bottom: 42%;
-  left: 10%;
-  transform: rotate(-8deg) translateX(0) translateY(-20%);
+  bottom: clamp(1rem, 8vw, 10rem);
+  //left: 5%;
+  transform: rotate(-8deg);
   background-image: url("./img/Isopod1.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  offset-path: path("M 1 15.9576 C 104.642 -2.5238 183.6 -1.3046 258.149 5.9019 C 376.089 17.3029 829.914 137.653 924 139");
+  offset-rotate: auto;
+  --distance: 70%;
 
+    @media (min-width: ${(props) => props.theme.breakpoints.l}) {
+    width: 20em;
+    height: 20em;
+    left: 10%;
+    bottom: 0 !important;
+    --distance: 95%;
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.xl}) {
+    bottom: clamp(1em, 3vw, 6rem);
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.xxl}) {
+    bottom: clamp(2rem, 5vw, 10rem);
+  }
+  
   @keyframes Move {
     0% {
-      transform: translateX(1%) rotate(-8deg) translateY(-22%);
+      offset-distance: 0;
     }
-    20% {
-      transform: translateX(50%) rotate(-4deg) translateY(-20%);
-    }
-    40% {
-      transform: translateX(100%) rotate(0) translateY(-10%);
-    }
-    60% {
-      transform: translateX(150%) rotate(8deg) translateY(5%);
-    }
-    80% {
-      transform: translateX(200%) rotate(10deg) translateY(12%);
-    }
+    
     100% {
-      transform: translateX(250%) rotate(-4deg) translateY(14%);
+      offset-distance: var(--distance);
     }
   }
 
-  @keyframes Switch {
+  @keyframes IsopodBody {
     0% {
       background-image: url("./img/Isopod2.png");
     }
@@ -80,7 +88,7 @@ const Wave = styled('img')`
   bottom: 6em;
   
   @media (min-width: ${(props) => props.theme.breakpoints.l}) {
-    bottom: 3em;
+    bottom: 4em;
   }
 `;
 
@@ -130,7 +138,7 @@ function Footer() {
                     <p>♡ Made with React and lots of love</p>
                 </Text>
             </Content>
-            <Wave className='wave-footer' src={wave}/>
+            <Wave src={wave}/>
             <Image className='animated-isopod' />
         </Container>
     );

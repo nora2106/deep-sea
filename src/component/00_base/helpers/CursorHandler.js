@@ -8,10 +8,12 @@ const Container = styled('div')`
 
 const CursorHandler = forwardRef(function(props, ref) {
     const cursorRef = useRef();
-    // const [currentColor, setColor] = useState('white');
     let currentColor = 'white';
 
     useEffect(() => {
+        //@todo add function to calculate fishlight position
+        document.getElementById('overlay').style.setProperty('--cursorX', 785 + 'px')
+        document.getElementById('overlay').style.setProperty('--cursorY', 260 + 'px')
         const onMouseMove = event => {
             trackMouse(event);
         };
@@ -25,7 +27,7 @@ const CursorHandler = forwardRef(function(props, ref) {
         let posY = 0;
         posX = e.clientX || e.touches[0].clientX
         posY = e.clientY || e.touches[0].clientY
-        if (document.getElementById('overlay') != null) {
+        if (document.getElementById('overlay') != null && localStorage.getItem('flashlight') === 'on') {
             document.getElementById('overlay').style.setProperty('--cursorX', posX + 'px')
             document.getElementById('overlay').style.setProperty('--cursorY', posY + 'px')
         }
@@ -65,7 +67,6 @@ const CursorHandler = forwardRef(function(props, ref) {
                 cursorPassive(currentColor)
             });
         });
-        console.log('updated :)')
     }
     useImperativeHandle(ref, () => ({
         update() {

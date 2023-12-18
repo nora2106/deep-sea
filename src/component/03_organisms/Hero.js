@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import React from "react";
+import React, {useEffect} from "react";
 import fish from '../../assets/img/Anglerfish1.png'
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 
@@ -205,6 +205,10 @@ const DownButton = styled('div')`
 
 function Hero() {
 
+    useEffect(() => {
+        localStorage.setItem('flashlight', 'off');
+    }, []);
+
     return (
         <Wrapper>
             <Container>
@@ -216,7 +220,7 @@ function Hero() {
                     </div>
                     <h3 className='hero-text'>Dive into the depth and discover reasons for appreciating and protecting this alien world on our planet.</h3>
                 </Text>
-                <HeroImage className='hero-image' alt='Anglerfish Illustration' src={fish}/>
+                <HeroImage onClick={activateFlashlight} className='hero-image' alt='Anglerfish Illustration' src={fish}/>
             </Container>
             <DownButton className='btn-hover' onClick={scrollDown}>
                 <KeyboardArrowDownRoundedIcon className='icon btn-hover'/>
@@ -226,9 +230,13 @@ function Hero() {
 }
 
 function scrollDown() {
+    activateFlashlight();
     const target = document.getElementById('section1')
-    console.log(target.style.top);
     target.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+}
+
+function activateFlashlight() {
+    localStorage.setItem('flashlight', 'on');
 }
 
 export default Hero;
