@@ -12,7 +12,11 @@ const Container = styled('div')`
   height: 80px;
   
   &.active .animated-isopod {
-    animation: Move 10s linear forwards, IsopodBody .8s ease-in 13 forwards;
+    animation: MoveMobile 6s linear forwards, IsopodBody .8s ease-in 8 forwards;
+
+    @media (min-width: ${(props) => props.theme.breakpoints.s}) {
+      animation: Move 10s linear forwards, IsopodBody .8s ease-in 13 forwards;
+    }
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.l}) {
@@ -37,6 +41,10 @@ const Image = styled('div')`
   offset-rotate: auto;
   --distance: 70%;
 
+  @media (min-width: ${(props) => props.theme.breakpoints.l}) {
+    bottom: clamp(1rem, 10vw, 10rem);
+  }
+
     @media (min-width: ${(props) => props.theme.breakpoints.l}) {
     width: 20em;
     height: 20em;
@@ -60,6 +68,16 @@ const Image = styled('div')`
     
     100% {
       offset-distance: var(--distance);
+    }
+  }
+
+  @keyframes MoveMobile {
+    0% {
+      transform: translateX(0) rotate(-8deg);
+    }
+
+    100% {
+      transform: translateX(80vw) translateY(50%) rotate(5deg);
     }
   }
 

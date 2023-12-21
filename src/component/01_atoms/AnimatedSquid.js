@@ -22,7 +22,6 @@ const Squid = styled('div')`
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  //animation: Swim 3s ease-in forwards, Move .7s ease-in-out 4;
   
   @keyframes Swim {
     0% {

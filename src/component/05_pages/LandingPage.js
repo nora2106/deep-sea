@@ -33,7 +33,6 @@ const Container = styled('div')`
 export default function LandingPage(){
     const {light, toggleLight} = React.useContext(ModeContext);
 
-
     return (
             <Container className={light === 'off' ? ` landing-page with-overlay` : ` landing-page no-overlay `} id='page'>
                 <DarkOverlay id='overlay'/>

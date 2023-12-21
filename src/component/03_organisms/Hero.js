@@ -1,7 +1,8 @@
 import styled from 'styled-components';
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import fish from '../../assets/img/Anglerfish1.png'
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
+import TextArrow from "../01_atoms/TextArrow";
 
 const Wrapper = styled('div')`
   width: 100%;
@@ -68,18 +69,6 @@ const Text = styled('div')`
 
     @media (min-width: ${(props) => props.theme.breakpoints.xs}) {
       letter-spacing: 6px;
-    }
-
-    @media (min-width: ${(props) => props.theme.breakpoints.s}) {
-      //font-size: calc(50px + 7vw);
-    }
-
-    @media (min-width: ${(props) => props.theme.breakpoints.m}) {
-      //font-size: calc(55px + 7vw);
-    }
-
-    @media (min-width: ${(props) => props.theme.breakpoints.l}) {
-      //font-size: calc(40px + 7vw);
     }
   }
 
@@ -204,11 +193,16 @@ const DownButton = styled('div')`
 `;
 
 function Hero() {
+    const [flashlight, setFlashlight] = useState(false);
 
     useEffect(() => {
         localStorage.setItem('flashlight', 'off');
     }, []);
-
+    function scrollDown() {
+        setFlashlight(true);
+        const target = document.getElementById('section1')
+        target.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+    }
     return (
         <Wrapper>
             <Container>
@@ -220,6 +214,7 @@ function Hero() {
                     </div>
                     <h3 className='hero-text'>Dive into the depth and discover reasons for appreciating and protecting this alien world on our planet.</h3>
                 </Text>
+                <TextArrow show={flashlight}/>
                 <HeroImage onClick={activateFlashlight} className='hero-image' alt='Anglerfish Illustration' src={fish}/>
             </Container>
             <DownButton className='btn-hover' onClick={scrollDown}>
@@ -227,16 +222,11 @@ function Hero() {
             </DownButton>
         </Wrapper>
     );
-}
 
-function scrollDown() {
-    activateFlashlight();
-    const target = document.getElementById('section1')
-    target.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
-}
-
-function activateFlashlight() {
-    localStorage.setItem('flashlight', 'on');
+    function activateFlashlight() {
+        setFlashlight(true);
+        localStorage.setItem('flashlight', 'on');
+    }
 }
 
 export default Hero;

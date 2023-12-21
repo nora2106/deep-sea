@@ -11,7 +11,6 @@ const CursorHandler = forwardRef(function(props, ref) {
     let currentColor = 'white';
 
     useEffect(() => {
-        //@todo add function to calculate fishlight position
         document.getElementById('overlay').style.setProperty('--cursorX', 785 + 'px')
         document.getElementById('overlay').style.setProperty('--cursorY', 260 + 'px')
         const onMouseMove = event => {

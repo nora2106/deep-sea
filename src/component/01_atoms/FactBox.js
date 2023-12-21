@@ -13,7 +13,7 @@ const Container = styled('div')`
   z-index: 3;
   padding: .5em;
   top: -1em;
-  transform: translateX(-70%);
+  transform: translateX(-60%);
   
   .headline {
     display: flex;
@@ -27,6 +27,7 @@ const Container = styled('div')`
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.m}) {
+    transform: translateX(-70%);
     width: 40vw;
     max-width: 35em;
     padding: 1em;
