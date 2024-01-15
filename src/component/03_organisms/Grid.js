@@ -12,9 +12,11 @@ const app = new Realm.App({id: 'deep-sea-balmb'});
 
 const Container = styled('div')`
   padding-top: 10em;
+  width: 100%;
 
   .grid-head {
     position: relative;
+    margin-top: 1em;
     padding: 2em 3em;
     z-index: 3;
     display: flex;
@@ -59,35 +61,33 @@ const Container = styled('div')`
 
 const GridContainer = styled('div')`
   display: grid;
+  margin: 0 auto;
   gap: 4rem;
   grid-template-columns:  repeat(1, 1fr);
   grid-auto-rows: 30em;
   padding: 1em 2em 5em 2em;
-
+  
   @media (min-width: ${(props) => props.theme.breakpoints.xs}) {
-    //grid-auto-rows: 45em;
     padding: 1em 5em 5em 5em;
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.s}) {
-    grid-template-columns:  repeat(2, 1fr);
     padding: 1em 3em 5em 3em;
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.m}) {
-    grid-template-columns:  repeat(3, 1fr);
     grid-auto-rows: 35em;
+    grid-template-columns:  repeat(2, 1fr);
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.l}) {
-    grid-template-columns:  repeat(4, 1fr);
+    grid-template-columns:  repeat(3, 1fr);
     grid-auto-rows: 40em;
   }
 
-  @media (min-width: ${(props) => props.theme.breakpoints.xl}) {
+  @media (min-width: ${(props) => props.theme.breakpoints.xxl}) {
     padding: 1em 4em 5em 3em;
     grid-template-columns:  repeat(4, 1fr);
-    //grid-auto-rows: 40em;
   }
 `;
 
@@ -99,7 +99,6 @@ function Grid(props) {
     const [page, setPage] = useState(1);
     const [pageLength, setPageLength] = useState(0);
     const [resetPagination, setReset] = useState("");
-    // const [baseURL, setBaseURL] = useState(window.location.origin);
     let iteration = 20;
 
     //fetch data
@@ -113,7 +112,10 @@ function Grid(props) {
             .then((responseJson) => {
                 setChecked(true);
                 setLoad(false);
-                setPageLength(responseJson.length / iteration)
+                setPageLength(responseJson.length / iteration);
+                if(responseJson.length / iteration < 1) {
+                    setPageLength(1);
+                }
                 return responseJson;
             })
             .catch((error) => {
@@ -151,7 +153,7 @@ function Grid(props) {
     }
 
     function sortData(property, data) {
-        // let sort = creatures;
+        setPageLength(data.length / iteration);
         setReset(property);
         let sorted = data.sort(function (a, b) {
             let propA = a[property];
@@ -189,7 +191,12 @@ function Grid(props) {
         zone.style.display = 'none';
         diet.style.display = 'none';
         classification.style.display = 'none';
+
         switch (sortVal) {
+            default: {
+                sortData("name", creatures)
+                break;
+            }
             case 'depth': {
                 if (props.type !== 'search') {
                     zone.style.display = 'block';
@@ -259,7 +266,7 @@ function Grid(props) {
 
     const classOptions = [
         {value: "all", label: "Show All"},
-        {value: "Vertebrae", label: "Vertebrae"},
+        {value: "Chordate", label: "Chordate"},
         {value: "Mollusk", label: "Mollusk"},
         {value: "Ctenophore", label: "Ctenophore"},
         {value: "Echoniderm", label: "Echoniderm"},
@@ -304,8 +311,6 @@ function Grid(props) {
 
     const getPage = (num) => {
         setPage(num);
-        // let endNum = iteration * num;
-        // let startNum = endNum - iteration;
         outputToPage(creatures, num);
         window.scrollTo(0, 0)
     }

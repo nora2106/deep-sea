@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import InfoLabel from "./InfoLabel";
+import InfoLabel from "../01_atoms/InfoLabel";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import wave from '../../assets/svg/wave4.svg';
 
@@ -26,18 +26,24 @@ const omnivore = "holly-berry";
 const piscivore = "fish";
 
 const Container = styled('div')`
-  background-color: white;
   height: 60%;
   width: 100%;
   position: relative;
   bottom: 1em;
   z-index: 3;
-  border-radius: 1em;
+  
+  .card-content {
+    top: -10px;
+    height: 100%;
+    background-color: white;
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
+  }
 
   .infos {
     display: flex;
     justify-content: center;
-    margin-top: 1.5em;
+    margin-top: .5em;
   }
 
   a {
@@ -53,20 +59,36 @@ const Container = styled('div')`
     flex-direction: column;
     justify-content: space-between;
     height: 50%;
+    padding-bottom: 10px;
+
+    @media (min-width: ${(props) => props.theme.breakpoints.xl}) {
+      height: 40%;
+    }
   }
 `;
 
 const Wave = styled('img')`
   position: absolute;
-  width: 100%;
-  top: -12%;
+  width: 103%;
+  top: -20px;
   z-index: 2;
+
+  @media (min-width: ${(props) => props.theme.breakpoints.m}) {
+    top: -28px;
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.l}) {
+    top: -30px;
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.xl}) {
+    top: -40px;
+  }
 `;
 
 const Name = styled('h2')`
   margin-left: 10px;
   font-weight: 500;
-  //font-size: 16px;
   margin-top: 0;
   font-size: clamp(16px, 1.5vw, 26px);
   z-index: 3;
@@ -76,8 +98,13 @@ const Name = styled('h2')`
 const SubName = styled('h3')`
   margin-left: 10px;
   font-size: clamp(12px, 1.5vw, 18px);
-  margin-top: -8px;
   font-weight: 300;
+  z-index: 3;
+  position: relative;
+
+  @media (min-width: ${(props) => props.theme.breakpoints.l}) {
+    margin-top: -8px;
+  }
 `;
 
 const Text = styled('p')`
@@ -88,7 +115,7 @@ const Text = styled('p')`
   font-weight: 500;
   font-family: Archivo, sans-serif;
   letter-spacing: .3px;
-  margin-bottom: 1em;
+  margin-bottom: 0;
 `;
 
 function CardContent(props) {
@@ -157,7 +184,8 @@ function CardContent(props) {
         <Container className='hover-light'>
             <Wave src={wave}/>
             <Name>{props.name}</Name>
-            <SubName>{props.subName}</SubName>
+            <div className='card-content'>
+                <SubName>{props.subName}</SubName>
             <div className="infos">
                 <InfoLabel label={props.class} text="Classification"/>
                 <InfoLabel label={props.zone} text="Zone"/>
@@ -167,11 +195,12 @@ function CardContent(props) {
             <hr/>
             <div className='text-section'>
                 <Text>{props.text}</Text>
-                <a className='btn-hover' href={props.link} target='_blank'>
+                <a className='btn-hover' href={props.link} target='_blank' rel="noreferrer">
                     <Text>Read more
                         <FontAwesomeIcon className='icon' icon={'arrow-right'}/>
                     </Text>
                 </a>
+            </div>
             </div>
         </Container>
     );

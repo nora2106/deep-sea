@@ -1,14 +1,24 @@
 import styled from 'styled-components';
 import CardImage from "../01_atoms/CardImage";
-import CardContent from "../01_atoms/CardContent";
+import CardContent from "./CardContent";
 import {FormControlLabel, Grow} from "@mui/material";
 
 const Container = styled('div')`
   border-radius: 1.5em;
   z-index: 1;
   width: 100%;
+  height: 100%;
   overflow: hidden;
-  max-width: 25em;
+  max-width: 20em;
+  margin: auto;
+
+  @media (min-width: ${(props) => props.theme.breakpoints.m}) {
+    max-width: 25em;
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.l}) {
+    max-width: 30em;
+  }
   
   div {
     position: relative;

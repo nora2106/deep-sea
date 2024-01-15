@@ -12,10 +12,6 @@ const Number = styled('div')`
   font-size: 1rem;
   margin: 1em;
 
-  :hover {
-    cursor: pointer;
-  }
-
   &.selected {
     font-weight: bold;
     pointer-events: none;
@@ -40,6 +36,7 @@ function Pagination(props) {
 
     useEffect(() => {
         updatePage();
+        console.log(props.pages)
     }, [props.pages]);
 
     function updatePage() {

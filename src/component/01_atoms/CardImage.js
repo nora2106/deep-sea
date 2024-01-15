@@ -7,6 +7,10 @@ const Container = styled('div')`
   text-align: center;
   position: relative;
 
+  @media (min-width: ${(props) => props.theme.breakpoints.xl}) {
+    height: 52%;
+  }
+
   img {
     width: 100%;
     height: 100%;
@@ -17,19 +21,25 @@ const Container = styled('div')`
   
   p {
     color: white;
-    font-size: 9px;
+    font-size: clamp(10px, 1vw, 12px);
     position: absolute;
     z-index: 3;
-    bottom: 10px;
-    right: 10px;
+    bottom: 2%;
+    right: 5%;
+    font-weight: 500;
+    text-align: center;
+    min-width: 8em;
+
+    @media (min-width: ${(props) => props.theme.breakpoints.l}) {
+      bottom: 6%;
+      right: 1%;   
+    }
   }
 `;
 
 
 
 function CardImage(props) {
-    // console.log('../../assets/img/species/' + props.url)
-    const imgPath = '../../../public/img/abyssal_spiderfish.jpeg';
     return (
         <Container>
             <p>© MBARI</p>

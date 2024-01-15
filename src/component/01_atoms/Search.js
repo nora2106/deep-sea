@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {useEffect} from "react";
 
 const Container = styled('div')`
   border: 2px solid white;
@@ -60,11 +61,19 @@ const SearchInput = styled('input')`
 
 
 function Search() {
+    useEffect(() => {
+        const input = document.querySelector('#search');
+        input.addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                search();
+            }
+        });
+    }, []);
 
     function search() {
         let val = document.getElementById('search').value;
         if(val !== null) {
-            console.log(val)
             const  href  = window.location.origin;
             window.location.href = `${href}/search?q=${val}`;
         }
