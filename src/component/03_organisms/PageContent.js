@@ -10,6 +10,7 @@ import Footer from "../02_molecules/Footer";
 import react from "react";
 import BubbleSmall from "../01_atoms/BubbleSmall";
 import AnimatedSquid from "../01_atoms/AnimatedSquid";
+import BubbleElement from "../02_molecules/BubbleElement";
 
 const Container = styled('div')`
   background-color: ${(props) => props.theme.colors.bgDarker};
@@ -282,8 +283,8 @@ function PageContent() {
             <Wave/>
             <Section id='section1'>
                 <FactBox/>
-                <Bubble show={zoom} link='/discover' img={bg1} id="bubble1" text='Discover Creatures'/>
-                <Bubble show={zoom} link='/map' img={bg2} id="bubble2" text='View Zones'/>
+                <BubbleElement show={zoom} link='/discover' img={bg1} id="bubble1" text='Discover Creatures'/>
+                <BubbleElement show={zoom} link='/map' img={bg2} id="bubble2" text='View Zones'/>
                 <div className='small-bubbles'>
                     <BubbleSmall/>
                     <BubbleSmall/>

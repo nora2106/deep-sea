@@ -2,17 +2,9 @@ import BubbleOutline from "../01_atoms/BubbleOutline";
 import BubbleContent from "../01_atoms/BubbleContent";
 import {Zoom} from "@mui/material";
 import styled from "styled-components";
+import SliderItem from "../01_atoms/SliderItem";
 
 function Bubble(props) {
-    const Wrapper = styled('div')`
-      position: relative;
-      width: fit-content;
-      z-index: 3;
-
-      #bubble2 {
-        float: right;
-      }
-    `;
 
     const Container = styled('div')`
       position: relative;
@@ -42,14 +34,10 @@ function Bubble(props) {
 
 
     return (
-        <Wrapper id={props.id} className='show-scroll'>
-             <Zoom in={props.show} style={{transitionDuration: '1000ms'}}>
-                <Container>
-                    <BubbleOutline/>
-                    <BubbleContent text={props.text} link={props.link} img={props.img}/>
-                </Container>
-             </Zoom>
-        </Wrapper>
+            <Container>
+                <BubbleOutline/>
+                <BubbleContent text={props.text} link={props.link} img={props.img}/>
+            </Container>
     );
 }
 

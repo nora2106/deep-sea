@@ -1,6 +1,7 @@
 import styled from 'styled-components';
-import Icon from "./Icon";
+import InfoLabel from "./InfoLabel";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import wave from '../../assets/svg/wave4.svg';
 
 const arthropod = 'shrimp';
 const cnidarian = ['fab', 'phoenix-framework'];
@@ -33,10 +34,10 @@ const Container = styled('div')`
   z-index: 3;
   border-radius: 1em;
 
-  .icons {
+  .infos {
     display: flex;
     justify-content: center;
-    margin-top: 10px;
+    margin-top: 1.5em;
   }
 
   a {
@@ -50,82 +51,44 @@ const Container = styled('div')`
   .text-section {
     display: flex;
     flex-direction: column;
-    align-items: stretch;
+    justify-content: space-between;
+    height: 50%;
   }
 `;
 
+const Wave = styled('img')`
+  position: absolute;
+  width: 100%;
+  top: -12%;
+  z-index: 2;
+`;
+
 const Name = styled('h2')`
-  padding-top: 10px;
   margin-left: 10px;
   font-weight: 500;
-  font-size: 16px;
+  //font-size: 16px;
   margin-top: 0;
-
-  @media (min-width: ${props => props.theme.breakpoints.s}) {
-    font-size: 20px;
-  }
-
-  @media (min-width: ${props => props.theme.breakpoints.m}) {
-    font-size: 22px;
-  }
-
-  @media (min-width: ${props => props.theme.breakpoints.l}) {
-    font-size: 24px;
-  }
-
-  @media (min-width: ${props => props.theme.breakpoints.xl}) {
-    font-size: 26px;
-  }
+  font-size: clamp(16px, 1.5vw, 26px);
+  z-index: 3;
+  position: relative;
 `;
 
 const SubName = styled('h3')`
   margin-left: 10px;
-  font-size: 12px;
+  font-size: clamp(12px, 1.5vw, 18px);
   margin-top: -8px;
   font-weight: 300;
-
-  @media (min-width: ${props => props.theme.breakpoints.s}) {
-    font-size: 16px;
-  }
-
-  @media (min-width: ${props => props.theme.breakpoints.m}) {
-    font-size: 18px;
-  }
-
-  @media (min-width: ${props => props.theme.breakpoints.l}) {
-    font-size: 20px;
-  }
-
-  @media (min-width: ${props => props.theme.breakpoints.xl}) {
-    font-size: 22px;
-  }
 `;
 
 const Text = styled('p')`
-  font-size: 12px;
+  font-size: clamp(12px, 1.5vw, 18px);
   padding-left: 2%;
   padding-right: 2%;
   overflow: auto;
   font-weight: 500;
   font-family: Archivo, sans-serif;
   letter-spacing: .3px;
-  margin: 5px 0;
-
-  @media (min-width: ${props => props.theme.breakpoints.s}) {
-    font-size: 14px;
-  }
-
-  @media (min-width: ${props => props.theme.breakpoints.m}) {
-    font-size: 16px;
-  }
-
-  @media (min-width: ${props => props.theme.breakpoints.l}) {
-    font-size: 18px;
-  }
-
-  @media (min-width: ${props => props.theme.breakpoints.xl}) {
-    font-size: 20px;
-  }
+  margin-bottom: 1em;
 `;
 
 function CardContent(props) {
@@ -192,13 +155,14 @@ function CardContent(props) {
 
     return (
         <Container className='hover-light'>
+            <Wave src={wave}/>
             <Name>{props.name}</Name>
             <SubName>{props.subName}</SubName>
-            <div className="icons">
-                <Icon icon={icon1} label={props.class} text="Classification"/>
-                <Icon icon={icon2} label={props.zone} text="Zone"/>
-                <Icon icon={icon3} label={props.size} text="Size"/>
-                <Icon icon={icon4} label={props.diet} text="Diet"/>
+            <div className="infos">
+                <InfoLabel label={props.class} text="Classification"/>
+                <InfoLabel label={props.zone} text="Zone"/>
+                <InfoLabel label={props.size} text="Size"/>
+                <InfoLabel label={props.diet} text="Diet"/>
             </div>
             <hr/>
             <div className='text-section'>

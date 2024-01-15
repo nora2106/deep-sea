@@ -118,7 +118,7 @@ const Overlay = styled('div')`
   background-color: black;
   position: fixed;
   z-index: 3;
-  opacity: 1;
+  opacity: 0;
   pointer-events: none;
   transition: opacity 1.2s;
 `;
@@ -177,7 +177,7 @@ function Menu(props) {
     }
 
     return (
-        <Container className='mobile-menu hidden'>
+        <Container className='mobile-menu'>
             <MenuButton open={open} action={toggleMenu}/>
             <Logo/>
             <Blob className='growing-blob' viewBox="0 0 480 480" xmlns="http://www.w3.org/2000/svg">

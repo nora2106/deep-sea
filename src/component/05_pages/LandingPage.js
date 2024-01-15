@@ -7,7 +7,6 @@ import {ModeContext} from "../00_base/theme/ModeContext";
 import DarkOverlay from "../02_molecules/DarkOverlay";
 
 const Container = styled('div')`
-  //cursor: none;
   --cursorX: 50vw;
   --cursorY: 50vh;
   height: auto;
@@ -16,7 +15,7 @@ const Container = styled('div')`
   overflow: auto;
 
   @media (pointer:none), (pointer:coarse) {
-    #cursor, 
+    .cursor-handler, 
     .overlay {
       display: none;
     }
@@ -25,6 +24,10 @@ const Container = styled('div')`
   &.no-overlay {
     #cursor,
     .overlay {
+      display: none;
+    }
+    
+    .flashlight-text {
       display: none;
     }
   }

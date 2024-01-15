@@ -8,6 +8,7 @@ const Container = styled('div')`
   z-index: 1;
   width: 100%;
   overflow: hidden;
+  max-width: 25em;
   
   div {
     position: relative;

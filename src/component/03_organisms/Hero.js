@@ -6,6 +6,12 @@ import TextArrow from "../01_atoms/TextArrow";
 
 const Wrapper = styled('div')`
   width: 100%;
+  background-color: ${(props) => props.theme.colors.bgDarker};
+  
+  @media (min-width: ${(props) => props.theme.breakpoints.l}) {
+    display: flex;
+    justify-content: center;
+  }
 `;
 
 const Container = styled('div')`
@@ -14,7 +20,6 @@ const Container = styled('div')`
   min-height: 78vh;
   top: 2em;
   padding-top: 3em;
-  background-color: ${(props) => props.theme.colors.bgDarker};
   display: flex;
   flex-direction: column;
   position: relative;
@@ -28,6 +33,18 @@ const Container = styled('div')`
       text-align: right !important;
       z-index: 3 !important;
     }
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.m}) {
+    max-width: ${(props) => props.theme.breakpoints.l};
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.l}) {
+    max-width: ${(props) => props.theme.breakpoints.xl}
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.xl}) {
+    max-width: 2048px;
   }
 `;
 
@@ -88,13 +105,12 @@ const Text = styled('div')`
   .hero-text {
     text-align: left;
     font-weight: 400;
-    margin-top: 50%;
+    margin-top: 75%;
     font-size: calc(16px + 1vw);
     line-height: 130%;
 
     @media (min-width: ${(props) => props.theme.breakpoints.s}) {
-      margin-top: 20%;
-      width: 60%;
+      margin-top: 65%;
     }
 
     @media (min-width: ${(props) => props.theme.breakpoints.m}) {
@@ -116,18 +132,17 @@ const HeroImage = styled('img')`
   position: absolute;
   animation-delay: 1000ms;
   animation: slide-in 600ms ease-out forwards;
-  top: 7.5em;
+  top: 25%;
   right: -4em;
   width: 90vw;
   z-index: 1;
   max-width: 25em;
-  transform: rotate(14deg);
+  --rotate: 12deg;
 
   @media (min-width: ${(props) => props.theme.breakpoints.s}) {
-    top: 6em;
+    top: 35%;
     width: 80vw;
     max-width: 30em;
-    transform: rotate(12deg);
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.m}) {
@@ -135,23 +150,30 @@ const HeroImage = styled('img')`
     max-width: 35em;
     right: -1em;
     top: 5em;
-    transform: rotate(5deg);
+    --rotate: 5deg;
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.l}) {
     width: 50vw;
     max-width: 50em;
-    transform: rotate(-3deg);
+    --rotate: 0deg;
+    right: 0;
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.xxl}) {
+    width: 50vw;
+    max-width: 55em;
+    --rotate: 0deg;
     right: 0;
   }
 
   @keyframes slide-in {
     from {
-      transform: translateX(30%);
+      transform: rotate(var(--rotate)) translateX(30%);
       opacity: .2;
     }
     to {
-      transform: translateX(0);
+      transform: rotate(var(--rotate)) translateX(0);
       opacity: 1;
     }
   }

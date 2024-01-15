@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Slider from '../01_atoms/Slider';
+import Slider from './Slider';
 import {useEffect} from "react";
 
 const Container = styled('div')`

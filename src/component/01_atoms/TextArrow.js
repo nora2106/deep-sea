@@ -5,21 +5,30 @@ import {useEffect} from "react";
 const Container = styled('div')`
   position: absolute;
   top: 25%;
-  max-width: 10em;
-  display: flex;
+  max-width: 12em;
   flex-direction: row;
   align-items: center;
-  right: 24%;
+  right: 16%;
   gap: 1em;
+  display: none;
   
   svg {
     color: white;
     transform: rotate(180deg) scale(1.4);
   }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.l}) {
+    display: flex;
+  }
+  
+  @media (min-width: ${(props) => props.theme.breakpoints.xxl}) {
+    right: 18%;
+  }
 `;
 
 const Text = styled('p')`
     color: white;
+  font-size: 1.5rem;
 `;
 
 function Name(props) {
