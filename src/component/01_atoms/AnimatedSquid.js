@@ -20,39 +20,53 @@ const Squid = styled('div')`
   height: 15em;
   position: absolute;
   left: -20%;
-  top: 80%;
+  top: 90%;
   display: block;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  --endHeight: -75%;
-  --endWidth: -150vw;
-
-  @media (min-width: ${(props) => props.theme.breakpoints.s}) {
-    --endHeight: 10em;
-    --endWidth: -110vw;
-  }
+  --endHeight: -10%;
+  --endWidth: 75%;
 
   @media (min-width: ${(props) => props.theme.breakpoints.m}) {
     width: 20em;
     height: 20em;
-    --endHeight: 15em;
-    --endWidth: -90vw;
+    --endWidth: 85%;
   }
 
-  @media (min-width: ${(props) => props.theme.breakpoints.l}) {
+  @media (min-width: ${(props) => props.theme.breakpoints.xl}) {
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.xl}) {
+    --endHeight: 5%;
+    --endWidth: 90%;
     width: 25em;
     height: 25em;
-    --endHeight: 35em;
-    --endWidth: -100vw;
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.xxl}) {
+
   }
   
+  //@keyframes Swim {
+  //  0% {
+  //    transform: rotate(60deg) translate(0);
+  //  }
+  //  100% {
+  //    transform: rotate(50deg) translate(var(--endHeight), var(--endWidth));
+  //  }
+  //}
+
   @keyframes Swim {
     0% {
-      transform: rotate(60deg) translate(0);
+      transform: rotate(60deg);
+      left: -20%;
+      top: 85%;
     }
     100% {
-      transform: rotate(50deg) translate(var(--endHeight), var(--endWidth));
+      transform: rotate(50deg);
+      left: var(--endWidth);
+      top: var(--endHeight);
     }
   }
 

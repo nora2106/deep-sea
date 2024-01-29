@@ -26,35 +26,17 @@ const Text = styled('div')`
   margin-bottom: 2em;
   
   h2 {
-    font-size: 40px;
+    font-size: clamp(40px, 3vw, 50px);
     line-height: 20px;
   }
   
   h3 {
-    font-size: 26px;
+    font-size: clamp(26px, 2vw, 36px);
     line-height: 20px;
-  }
-
-  @media (min-width: ${(props) => props.theme.breakpoints.s}) {
-    h2 {
-      font-size: 48px;
-    }
-
-    h3 {
-      font-size: 32px;
-    }
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.m}) {
     margin-bottom: 6em;
-
-    h2 {
-      font-size: 50px;
-    }
-
-    h3 {
-      font-size: 36px;
-    }
   }
   
 `;

@@ -34,7 +34,7 @@ const Container = styled('div')`
 
       @media(min-width: ${(props) => props.theme.breakpoints.s}) {
         transform: scale(8);
-        right: 12em;
+        right: 10em;
         top: 18em;
       }
     }

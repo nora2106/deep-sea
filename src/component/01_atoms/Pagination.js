@@ -36,6 +36,7 @@ function Pagination(props) {
 
     useEffect(() => {
         updatePage();
+        //@todo find way to remove log
         console.log(props.pages)
     }, [props.pages]);
 

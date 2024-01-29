@@ -21,6 +21,10 @@ const Container = styled('div')`
 
   .wave-dark {
     top: 74em;
+
+    @media (min-width: ${(props) => props.theme.breakpoints.l}) {
+      top: 82em;
+    }
   }
 
   .wave-footer {
@@ -63,6 +67,10 @@ const Section = styled('div')`
   padding-bottom: 4em;
   position: relative;
   background-color: ${(props) => props.theme.colors.bgDark};
+
+  @media (min-width: ${(props) => props.theme.breakpoints.l}) {
+    height: 70em;
+  }
 
   #bubble1 {
     float: right;
@@ -203,6 +211,10 @@ const Section2 = styled(Section)`
   width: 100%;
   z-index: 2;
 
+  @media (min-width: ${(props) => props.theme.breakpoints.l}) {
+    height: 30em;
+  }
+
   img {
     transform: translateX(-30%) rotate(60deg);
     width: 40vw;
@@ -227,7 +239,11 @@ const Section3 = styled(Section)`
   }
   
   @media (min-width: ${(props) => props.theme.breakpoints.l}) {
-    height: 65em;
+    height: 70em;
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.xl}) {
+    height: 80em;
   }
 
   .bg-image {

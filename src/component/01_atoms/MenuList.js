@@ -7,7 +7,7 @@ const Container = styled('div')`
   position: relative;
   order: 3;
 
-  @media (min-width: ${(props) => props.theme.breakpoints.m}) {
+  @media (min-width: ${(props) => props.theme.breakpoints.l}) {
     display: flex;
     border: none;
     margin: 0 3vw 0 3vw;
@@ -26,7 +26,7 @@ const Container = styled('div')`
 const Item = styled('h2')`
   color: ${(props) => props.theme.colors.textLight};
   text-indent: 20px;
-  //font-size: 22px;
+  font-size: clamp(24px, 2vw, 34px);
 
   :hover {
     color: ${(props) => props.theme.colors.primAccent};
@@ -38,18 +38,15 @@ const Item = styled('h2')`
     border: none;
     padding: 0 1vw 0 1vw;
     line-height: 50px;
-    font-size: 26px;
   }
 
   @media(min-width: ${(props) => props.theme.breakpoints.l}){
     padding: 0 1.5vw 0 1.5vw;
-    font-size: 30px;
   }
 
   @media(min-width: ${(props) => props.theme.breakpoints.xl}){
-    font-size: 34px;
+    font-size: clamp(30px, 2vw, 40px);
   }
-
 `;
 
 function MenuList() {

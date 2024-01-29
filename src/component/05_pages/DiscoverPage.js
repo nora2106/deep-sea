@@ -7,7 +7,7 @@ const app = new Realm.App({id: 'deep-sea-balmb'});
 
 
 const Container = styled('div')`
-  background-color: ${(props) => props.theme.colors.bgDark};
+  background-color: ${(props) => props.theme.colors.bgDarker};
   height: 100%;
   min-height: 100vh;
   //cursor: none;

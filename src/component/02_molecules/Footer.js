@@ -31,7 +31,6 @@ const Image = styled('div')`
   z-index: 3;
   display: block;
   bottom: clamp(1rem, 8vw, 10rem);
-  //left: 5%;
   transform: rotate(-8deg);
   background-image: url("./img/Isopod1.png");
   background-position: center;
@@ -45,27 +44,29 @@ const Image = styled('div')`
     bottom: clamp(1rem, 10vw, 10rem);
   }
 
-    @media (min-width: ${(props) => props.theme.breakpoints.l}) {
+  @media (min-width: ${(props) => props.theme.breakpoints.l}) {
     width: 20em;
     height: 20em;
     left: 10%;
-    bottom: 0 !important;
+    bottom: clamp(-6rem, 2vw, -2rem);
     --distance: 95%;
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.xl}) {
-    bottom: clamp(1em, 3vw, 6rem);
+    bottom: 2vw;
+    left: 15%;
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.xxl}) {
-    bottom: clamp(2rem, 5vw, 10rem);
+    bottom: clamp(7rem, 6vw, 10rem);
+    left: 20%;
   }
-  
+
   @keyframes Move {
     0% {
       offset-distance: 0;
     }
-    
+
     100% {
       offset-distance: var(--distance);
     }
@@ -107,6 +108,10 @@ const Wave = styled('img')`
   
   @media (min-width: ${(props) => props.theme.breakpoints.l}) {
     bottom: 4em;
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.xl}) {
+    bottom: 1em;
   }
 `;
 
