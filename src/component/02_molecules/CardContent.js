@@ -189,6 +189,7 @@ function CardContent(props) {
             <div className="infos">
                 <InfoLabel label={props.class} text="Classification"/>
                 <InfoLabel label={props.zone} text="Zone"/>
+                {/*@todo format size and maybe add converter?*/}
                 <InfoLabel label={props.size} text="Size"/>
                 <InfoLabel label={props.diet} text="Diet"/>
             </div>

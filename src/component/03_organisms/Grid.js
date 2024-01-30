@@ -7,7 +7,6 @@ import LoadingSpinner from "../01_atoms/LoadingSpinner";
 import SortSelect from "../01_atoms/SortSelect";
 import Pagination from "../01_atoms/Pagination"
 import testData from '../../testData.json'
-
 const app = new Realm.App({id: 'deep-sea-balmb'});
 
 const Container = styled('div')`
@@ -36,13 +35,6 @@ const Container = styled('div')`
     margin: 0 1em;
   }
 
-  .select.first {
-    transform: translateX(-30%);
-    ${props => props.theme.animations.show};
-    animation-delay: 800ms;
-    opacity: 0;
-  }
-
   .top {
     float: right;
     z-index: 3;
@@ -52,7 +44,7 @@ const Container = styled('div')`
   .bottom {
     bottom: 2em;
   }
-  
+
   #errorMessage {
     color: white;
     font-size: 24px;
@@ -66,7 +58,7 @@ const GridContainer = styled('div')`
   grid-template-columns:  repeat(1, 1fr);
   grid-auto-rows: 30em;
   padding: 1em 2em 5em 2em;
-  
+
   @media (min-width: ${(props) => props.theme.breakpoints.xs}) {
     padding: 1em 5em 5em 5em;
   }
@@ -99,6 +91,7 @@ function Grid(props) {
     const [page, setPage] = useState(1);
     const [pageLength, setPageLength] = useState(0);
     const [resetPagination, setReset] = useState("");
+    const [showSort, setShowSort] = useState(false);
     let iteration = 20;
 
     //fetch data
@@ -116,6 +109,7 @@ function Grid(props) {
                 if(responseJson.length / iteration < 1) {
                     setPageLength(1);
                 }
+                setShowSort(true);
                 return responseJson;
             })
             .catch((error) => {
@@ -123,6 +117,8 @@ function Grid(props) {
                 console.log(error);
                 document.getElementById('errorMessage').innerText = "Couldn't connect to database";
             });
+        // setShowSort(true);
+        // return testData;
     }
 
     // get and sort initial data
@@ -147,7 +143,7 @@ function Grid(props) {
         } else {
             setShownCreatures(data.slice(0, iteration));
         }
-        setTimeout( () => {
+        setTimeout(() => {
             props.update();
         }, [0.2])
     }
@@ -165,7 +161,6 @@ function Grid(props) {
             }
             return (propA < propB) ? -1 : (propA > propB) ? 1 : 0;
         });
-        // console.log(property, sorted)
         outputToPage(sorted, 1);
         setChecked(true);
         setLoad(false)
@@ -181,7 +176,7 @@ function Grid(props) {
     function sort(sortVal) {
         let zone = document.getElementById('zone');
         let diet = document.getElementById('diet');
-        let classification = document.getElementById('classification');
+        let classification = document.getElementById('class');
         setLoad(true);
         setChecked(false);
         setShowZ(false);
@@ -259,9 +254,9 @@ function Grid(props) {
         {value: "all", label: "Show All"},
         {value: "Carnivorous", label: "Carnivores"},
         {value: "Omnivorous", label: "Omnivores"},
-        {value: "Detrivorous", label: "Detrivores"},
-        {value: "Herbivorous", label: "Herbivores"},
-        {value: "Pescivorous", label: "Pescivores"}
+        {value: "Detrivorous", label: "Detrivores"}
+        // {value: "Herbivorous", label: "Herbivores"},
+        // {value: "Pescivorous", label: "Pescivores"}
     ];
 
     const classOptions = [
@@ -278,7 +273,7 @@ function Grid(props) {
     function handleCallback(childData, name) {
         setChecked(false);
         setLoad(true);
-        if (childData === "all") {
+        if (childData === "all" || childData === "Show all") {
             sort(name);
         } else {
             switch (name) {
@@ -293,13 +288,13 @@ function Grid(props) {
                     })()
                     break;
                 }
-                case 'feed': {
+                case 'diet': {
                     (async () => {
                         outputToPage(await getData(`http://localhost:3001/creatures/diet/${childData}`), 1)
                     })()
                     break;
                 }
-                case 'classification': {
+                case 'class': {
                     (async () => {
                         outputToPage(await getData(`http://localhost:3001/creatures/classification/${childData}`), 1)
                     })()
@@ -317,41 +312,42 @@ function Grid(props) {
 
     return (
         <Container>
-            <div className='top'>
-                <Pagination action={getPage} pages={count}/>
-            </div>
             <div className='grid-head'>
                 <LoadingSpinner/>
-                <div className='select first'>
-                    <label htmlFor='sort'>Sort by</label>
-                    <SortSelect default='Name' parentCallback={handleCallback} options={sortOptions} name='sortSelect'/>
-                </div>
+                    <Grow in={showSort} style={{transformOrigin: '0 0 0'}}
+                          {...(showZ ? {timeout: 500} : {})}>
+                        <div className='select first'>
+                        <label htmlFor='sort'>Sort by</label>
+                        <SortSelect default='Name' parentCallback={handleCallback} options={sortOptions}
+                                    name='sortSelect'/>
+                        </div>
+                    </Grow>
                 <Grow in={showZ} style={{transformOrigin: '0 0 0'}}
                       {...(showZ ? {timeout: 500} : {})}>
                     <div className='select' id='zone'>
                         <label htmlFor='Zone'>Select Zone</label>
-                        <SortSelect parentCallback={handleCallback} options={zoneOptions} name='depth'/>
+                        <SortSelect show={showZ} default='Show all' parentCallback={handleCallback} options={zoneOptions} name='depth'/>
                     </div>
                 </Grow>
                 <Grow in={showD} style={{transformOrigin: '0 0 0'}}
                       {...(showD ? {timeout: 500} : {})}>
                     <div className='select' id='diet'>
                         <label htmlFor='Diet'>Select Diet</label>
-                        <SortSelect parentCallback={handleCallback} options={dietOptions} name='feed'/>
+                        <SortSelect show={showZ} default='Show all' parentCallback={handleCallback} options={dietOptions} name='diet'/>
                     </div>
                 </Grow>
                 <Grow in={showC} style={{transformOrigin: '0 0 0'}}
                       {...(showC ? {timeout: 500} : {})}>
-                    <div className='select' id='classification'>
+                    <div className='select' id='class'>
                         <label htmlFor='Species'>Select Class</label>
-                        <SortSelect parentCallback={handleCallback} options={classOptions} name='classification'/>
+                        <SortSelect show={showZ} default='Show all' parentCallback={handleCallback} options={classOptions} name='class'/>
                     </div>
                 </Grow>
             </div>
             <GridContainer>
                 {shownCreatures.length ?
-                    shownCreatures.map(creature => (
-                        <Card anim={checked} key={creature._id}
+                    shownCreatures.map((creature, index) => (
+                        <Card anim={checked} key={index}
                               name={creature.name} subName={creature.scientific} size={creature.size}
                               class={creature.class} zone={creature.zone} diet={creature.diet}
                               text={creature.text} img={creature.img} link={creature.link}

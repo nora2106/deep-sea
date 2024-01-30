@@ -37,8 +37,6 @@ const Container = styled('div')`
   }
 `;
 
-
-
 function CardImage(props) {
     return (
         <Container>

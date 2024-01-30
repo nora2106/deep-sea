@@ -21,6 +21,7 @@ const Number = styled('div')`
 
 function Pagination(props) {
     const [active, setActive] = useState(1);
+    const [pages, setPages] = useState(1);
     const handleClick = (num) => {
         props.action(num);
         setActive(num)
@@ -36,8 +37,7 @@ function Pagination(props) {
 
     useEffect(() => {
         updatePage();
-        //@todo find way to remove log
-        console.log(props.pages)
+        setPages(props.pages)
     }, [props.pages]);
 
     function updatePage() {
