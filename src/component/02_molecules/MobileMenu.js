@@ -16,6 +16,7 @@ const Container = styled('div')`
     .mobile-menu__open {
       animation: showMenu 1s ease-in forwards;
       animation-delay: 1s;
+      pointer-events: all;
     }
 
     .growing-blob {
@@ -130,6 +131,7 @@ const MainMenu = styled('div')`
   margin-top: 6em;
   column-gap: 30px;
   opacity: 0;
+  pointer-events: none;
 
   .menu-items {
     margin-bottom: 8em;

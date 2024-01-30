@@ -4,20 +4,29 @@ import Card from "../02_molecules/Card";
 import Select from "react-select";
 
 const Container = styled('div')`
-
+  margin-top: 1em;
+  
   .custom-select__container {
-    width: 12em;
+    width: 18em;
     color: white;
     font-size: clamp(12px, 1.5vw, 18px);
 
+    @media (min-width: ${(props) => props.theme.breakpoints.m}) {
+      width: 12em;
+    }
+
     .custom-select__control {
       border: none;
-      height: 3em;
+      height: 4em;
       border-radius: 10px;
 
       &:hover {
         border: none;
         cursor: none;
+      }
+
+      @media (min-width: ${(props) => props.theme.breakpoints.m}) {
+        height: 3em;
       }
     }
 

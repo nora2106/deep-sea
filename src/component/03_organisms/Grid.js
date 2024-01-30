@@ -16,9 +16,15 @@ const Container = styled('div')`
   .grid-head {
     position: relative;
     margin-top: 1em;
-    padding: 2em 3em;
+    padding: 2em 1em;
     z-index: 3;
     display: flex;
+    flex-direction: column;
+
+    @media (min-width: ${(props) => props.theme.breakpoints.m}) {
+      padding: 2em 3em;
+      flex-direction: row;
+    }
 
     label {
       color: white;
@@ -32,7 +38,7 @@ const Container = styled('div')`
 
   .select {
     display: block;
-    margin: 0 1em;
+    margin:  1em;
   }
 
   .top {
@@ -172,7 +178,6 @@ function Grid(props) {
     const [showC, setShowC] = react.useState(false);
 
     //sort current results
-    //@todo: show whole dataset after switching from select back to sort by
     function sort(sortVal) {
         let zone = document.getElementById('zone');
         let diet = document.getElementById('diet');
