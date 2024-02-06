@@ -34,8 +34,8 @@ const Container = styled('div')`
     background-color: #05091a;
   }
 
-  .wave {
-    
+  .wave-light {
+    position: absolute;
   }
 `;
 
@@ -76,7 +76,7 @@ const Zone = styled('section')`
       transform: scale(1.2);
       transition: transform .3s;
     }
-    cursor: pointer;
+    cursor: none;
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.m}) {
@@ -88,34 +88,13 @@ const Zone = styled('section')`
 
 function MapOverview() {
 
-    const [data, setdata] = useState({
-        name: "",
-        age: 0,
-        date: "",
-        programming: "",
-    });
-
-    // Using fetch to fetch the api from
-    // flask server it will be redirected to proxy
-    fetch("/data").then((res) =>
-        res.json().then((data) => {
-            // Setting a data from api
-            setdata({
-                name: data.Name,
-                age: data.Age,
-                date: data.Date,
-                programming: data.programming,
-            });
-        })
-    );
-
     return (
         <Container>
             <MapIntro/>
-            <Wave class='wave-light'/>
+            {/*<Wave class='wave-light'/>*/}
             <Zone id='zone1'>
-                <h2>{data.name}</h2>
-                <h3>{data.programming}</h3>
+                <h2>Sunlight Zone</h2>
+                <h3>Epipelagic</h3>
             </Zone>
             <Zone id='zone2'>
                 <h2>Twilight Zone</h2>

@@ -45,7 +45,7 @@ const Item = styled('h2')`
   }
 
   @media(min-width: ${(props) => props.theme.breakpoints.xl}){
-    font-size: clamp(30px, 2vw, 40px);
+    font-size: clamp(28px, 1.5vw, 38px);
   }
 `;
 

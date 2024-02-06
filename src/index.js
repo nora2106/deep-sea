@@ -4,7 +4,7 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import LandingPage from "./component/05_pages/LandingPage";
-import MapMenu from "./component/05_pages/MapMenu";
+import MapPage from "./component/05_pages/MapPage";
 import DiscoverPage from "./component/05_pages/DiscoverPage";
 import SearchPage from "./component/05_pages/SearchPage";
 import {ThemeProvider} from "styled-components";
@@ -29,7 +29,7 @@ ReactDOM.render(
                 <BrowserRouter forceRefresh={true}>
                     <Routes>
                         <Route path="/" element={<LandingPage/>}/>
-                        <Route path="/map" element={<MapMenu/>}/>
+                        <Route path="/map" element={<MapPage/>}/>
                         <Route path="/discover" element={<DiscoverPage/>}/>
                         <Route path="/search" element={<SearchPage/>}/>
                     </Routes>

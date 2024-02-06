@@ -111,6 +111,10 @@ const Wave = styled('img')`
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.xl}) {
+    bottom: 3em;
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.xxl}) {
     bottom: 1em;
   }
 `;

@@ -7,7 +7,7 @@ const Container = styled('div')`
   background-color: ${(props) => props.theme.colors.bgDark};
 `;
 
-export default function MapMenu(){
+export default function MapPage(){
     return (
         <Container>
             <Header/>

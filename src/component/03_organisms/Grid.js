@@ -26,6 +26,10 @@ const Container = styled('div')`
       flex-direction: row;
     }
 
+    @media (min-width: ${(props) => props.theme.breakpoints.xl}) {
+      padding: 2em 4em;
+    }
+
     label {
       color: white;
     }
@@ -267,11 +271,12 @@ function Grid(props) {
     const classOptions = [
         {value: "all", label: "Show All"},
         {value: "Chordate", label: "Chordate"},
-        {value: "Mollusk", label: "Mollusk"},
+        {value: "Mollusc", label: "Mollusc"},
         {value: "Ctenophore", label: "Ctenophore"},
-        {value: "Echoniderm", label: "Echoniderm"},
+        {value: "Echinoderm", label: "Echinoderm"},
         {value: "Cnidarian", label: "Cnidarian"},
-        {value: "Arthropod", label: "Arthropod"}
+        {value: "Arthropod", label: "Arthropod"},
+        {value: "Segmented Worm", label: "Segmented Worm"}
     ];
 
     //show only certain values

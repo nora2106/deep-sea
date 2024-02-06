@@ -1,10 +1,13 @@
 import styled from 'styled-components';
 import React, {useEffect, useRef, useState} from "react";
-import Card from "../02_molecules/Card";
 import Select from "react-select";
 
 const Container = styled('div')`
   margin-top: 1em;
+  
+  @media (min-width: ${(props) => props.theme.breakpoints.m}) {
+    margin: 1em 0 1em 0;
+  }
   
   .custom-select__container {
     width: 18em;
