@@ -33,11 +33,6 @@ const Container = styled('div')`
     label {
       color: white;
     }
-
-    #zone,
-    #diet {
-      display: none;
-    }
   }
 
   .select {
@@ -103,6 +98,23 @@ function Grid(props) {
     const [resetPagination, setReset] = useState("");
     const [showSort, setShowSort] = useState(false);
     let iteration = 20;
+    const [showZ, setShowZ] = react.useState(false);
+    const [showD, setShowD] = react.useState(false);
+    const [showC, setShowC] = react.useState(false);
+
+    // get and sort initial data
+    useEffect(() => {
+        //todo add .env variable for production url before deploying
+        let url = `http://localhost:3001/creatures/`;
+        if (props.type === "search") {
+            url = `http://localhost:3001/creatures/search/${props.value}`;
+        }
+        (async () => {
+            let data = await getData(url);
+            setCreatures(data);
+            sortData('name', data)
+        })()
+    }, [props.value]);
 
     //fetch data
     async function getData(url) {
@@ -131,23 +143,8 @@ function Grid(props) {
         // return testData;
     }
 
-    // get and sort initial data
-    useEffect(() => {
-        //todo add .env variable for production url before deploying
-        let url = `http://localhost:3001/creatures/`;
-        if (props.type === "search") {
-            url = `http://localhost:3001/creatures/search/${props.value}`;
-        }
-        (async () => {
-            let data = await getData(url);
-            setCreatures(data);
-            sortData('name', data)
-        })()
-    }, [props.value]);
-
     function outputToPage(data, pageVal) {
         if (pageVal > 1) {
-            // setShownCreatures(data.slice(iteration * pageVal, iteration * pageVal + iteration));
             let set = data.slice(iteration * pageVal, iteration * pageVal + iteration);
             setShownCreatures(set)
         } else {
@@ -158,6 +155,49 @@ function Grid(props) {
         }, [0.2])
     }
 
+    //sort current results
+    function sort(sortVal) {
+        console.log('sort val')
+        // console.log(sortVal)
+        setLoad(true);
+        setChecked(false);
+        setShowZ(false);
+        setShowD(false);
+        setShowC(false);
+        setPage(1);
+
+        switch (sortVal) {
+            default: {
+                sortData("name", creatures)
+                break;
+            }
+            case 'depth': {
+                //function: sort by Depth (numerically)
+                setShowZ(true);
+                sortData("depth", creatures)
+                break;
+            }
+            case 'diet': {
+                //function: sort by Diet (alphabetically)
+                setShowD(true);
+                sortData("diet", creatures)
+                break;
+            }
+            case 'name': {
+                //sort by name (alphabetically)
+                sortData("name", creatures)
+                break;
+            }
+            case 'class': {
+                //sort by classification (alphabetically)
+                setShowC(true);
+                sortData("class", creatures)
+                break;
+            }
+        }
+    }
+
+    //sorting algorithms
     function sortData(property, data) {
         setPageLength(data.length / iteration);
         setReset(property);
@@ -175,65 +215,6 @@ function Grid(props) {
         setChecked(true);
         setLoad(false)
         setPage(1);
-    }
-
-    const [showZ, setShowZ] = react.useState(false);
-    const [showD, setShowD] = react.useState(false);
-    const [showC, setShowC] = react.useState(false);
-
-    //sort current results
-    function sort(sortVal) {
-        let zone = document.getElementById('zone');
-        let diet = document.getElementById('diet');
-        let classification = document.getElementById('class');
-        setLoad(true);
-        setChecked(false);
-        setShowZ(false);
-        setShowD(false);
-        setShowC(false);
-        setPage(1);
-        zone.style.display = 'none';
-        diet.style.display = 'none';
-        classification.style.display = 'none';
-
-        switch (sortVal) {
-            default: {
-                sortData("name", creatures)
-                break;
-            }
-            case 'depth': {
-                if (props.type !== 'search') {
-                    zone.style.display = 'block';
-                    setShowZ(true);
-                }
-                sortData("depth", creatures)
-                //function: sort by Depth (numerically)
-                break;
-            }
-            case 'diet': {
-                if (props.type !== 'search') {
-                    diet.style.display = 'block';
-                    setShowD(true);
-                }
-                sortData("diet", creatures)
-                //function: sort by Diet (alphabetically)
-                break;
-            }
-            case 'name': {
-                sortData("name", creatures)
-                //sort by name (alphabetically)
-                break;
-            }
-            case 'class': {
-                if (props.type !== 'search') {
-                    classification.style.display = 'block';
-                    setShowC(true);
-                }
-                sortData("class", creatures)
-                //sort by classification (alphabetically)
-                break;
-            }
-        }
     }
 
     function setLoad(bool) {
@@ -264,8 +245,6 @@ function Grid(props) {
         {value: "Carnivorous", label: "Carnivores"},
         {value: "Omnivorous", label: "Omnivores"},
         {value: "Detrivorous", label: "Detrivores"}
-        // {value: "Herbivorous", label: "Herbivores"},
-        // {value: "Pescivorous", label: "Pescivores"}
     ];
 
     const classOptions = [
@@ -310,6 +289,10 @@ function Grid(props) {
                     })()
                     break;
                 }
+                case 'all' || 'show all': {
+                    sort(name)
+                    break;
+                }
             }
         }
     }
@@ -325,31 +308,31 @@ function Grid(props) {
             <div className='grid-head'>
                 <LoadingSpinner/>
                     <Grow in={showSort} style={{transformOrigin: '0 0 0'}}
-                          {...(showZ ? {timeout: 500} : {})}>
+                          {...(showSort ? {timeout: 500} : {})}>
                         <div className='select first'>
                         <label htmlFor='sort'>Sort by</label>
                         <SortSelect default='Name' parentCallback={handleCallback} options={sortOptions}
                                     name='sortSelect'/>
                         </div>
                     </Grow>
-                <Grow in={showZ} style={{transformOrigin: '0 0 0'}}
-                      {...(showZ ? {timeout: 500} : {})}>
+                <Grow in={showZ} unmountOnExit={true} style={{transformOrigin: '0 0 0'}}
+                      {...(showZ ? {timeout: 1000} : {})}>
                     <div className='select' id='zone'>
                         <label htmlFor='Zone'>Select Zone</label>
                         <SortSelect show={showZ} default='Show all' parentCallback={handleCallback} options={zoneOptions} name='depth'/>
                     </div>
                 </Grow>
-                <Grow in={showD} style={{transformOrigin: '0 0 0'}}
-                      {...(showD ? {timeout: 500} : {})}>
+                <Grow in={showD} unmountOnExit={true} style={{transformOrigin: '0 0 0'}}
+                      {...(showD ? {timeout: 1000} : {})}>
                     <div className='select' id='diet'>
                         <label htmlFor='Diet'>Select Diet</label>
                         <SortSelect show={showZ} default='Show all' parentCallback={handleCallback} options={dietOptions} name='diet'/>
                     </div>
                 </Grow>
-                <Grow in={showC} style={{transformOrigin: '0 0 0'}}
-                      {...(showC ? {timeout: 500} : {})}>
+                <Grow in={showC} unmountOnExit={true} style={{transformOrigin: '0 0 0'}}
+                      {...(showC ? {timeout: 1000} : {})}>
                     <div className='select' id='class'>
-                        <label htmlFor='Species'>Select Class</label>
+                        <label htmlFor='Species'>Select Classification</label>
                         <SortSelect show={showZ} default='Show all' parentCallback={handleCallback} options={classOptions} name='class'/>
                     </div>
                 </Grow>
