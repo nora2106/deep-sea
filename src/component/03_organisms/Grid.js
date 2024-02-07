@@ -157,8 +157,6 @@ function Grid(props) {
 
     //sort current results
     function sort(sortVal) {
-        console.log('sort val')
-        // console.log(sortVal)
         setLoad(true);
         setChecked(false);
         setShowZ(false);
@@ -344,6 +342,7 @@ function Grid(props) {
                               name={creature.name} subName={creature.scientific} size={creature.size}
                               class={creature.class} zone={creature.zone} diet={creature.diet}
                               text={creature.text} img={creature.img} link={creature.link}
+                              copyright={creature.copyright}
                         />
                     ))
                     : <p id='errorMessage'>No data found.</p>

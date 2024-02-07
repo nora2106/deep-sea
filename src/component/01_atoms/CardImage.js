@@ -31,7 +31,7 @@ const Container = styled('div')`
     min-width: 8em;
 
     @media (min-width: ${(props) => props.theme.breakpoints.l}) {
-      bottom: 6%;
+      bottom: 3%;
       right: 1%;   
     }
   }
@@ -40,7 +40,9 @@ const Container = styled('div')`
 function CardImage(props) {
     return (
         <Container>
-            <p>© MBARI</p>
+            {props.copyright ?
+            <p>© {props.copyright}</p>
+            : null }
             <img src={'./img/species/' + props.url}/>
         </Container>
     );

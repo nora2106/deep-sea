@@ -31,7 +31,7 @@ function Card(props) {
     return (
         <Grow in={checked} style={{ transformOrigin: '0 0 0' }}>
             <Container>
-                <CardImage url={props.img}/>
+                <CardImage copyright={props.copyright} url={props.img}/>
                 <CardContent
                     name={props.name} subName={props.subName} size={props.size}
                              class={props.class} zone={props.zone} diet={props.diet}
