@@ -39,7 +39,7 @@ export default function LandingPage(){
     return (
             <Container className={light === 'off' ? ` landing-page with-overlay` : ` landing-page no-overlay `} id='page'>
                 <DarkOverlay id='overlay'/>
-                <Header/>
+                <Header show={true}/>
                 <Hero/>
                 <PageContent/>
             </Container>

@@ -3,11 +3,12 @@ import React, {useEffect, useState} from "react";
 import fish from '../../assets/img/Anglerfish1.png'
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 import TextArrow from "../01_atoms/TextArrow";
+import Anglerfish from "../01_atoms/Anglerfish";
 
 const Wrapper = styled('div')`
   width: 100%;
   background-color: ${(props) => props.theme.colors.bgDarker};
-  
+
   @media (min-width: ${(props) => props.theme.breakpoints.l}) {
     display: flex;
     justify-content: center;
@@ -25,18 +26,10 @@ const Container = styled('div')`
   position: relative;
   align-items: center;
   overflow: hidden;
-
-  .headline {
-    width: fit-content;
-
-    .h1-second {
-      text-align: right !important;
-      z-index: 3 !important;
-    }
-  }
+  max-width: 2048px;
 
   @media (min-width: ${(props) => props.theme.breakpoints.m}) {
-    max-width: ${(props) => props.theme.breakpoints.l};
+    max-width: ${(props) => props.theme.breakpoints.xl};
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.l}) {
@@ -58,8 +51,10 @@ const Text = styled('div')`
   animation-delay: 800ms;
   opacity: 0;
   height: 100%;
-  width: fit-content;
+  width: 90%;
+  margin-top: 5%;
   z-index: 1;
+  align-items: center;
 
   @media (min-width: ${(props) => props.theme.breakpoints.s}) {
     padding: 1em;
@@ -73,41 +68,78 @@ const Text = styled('div')`
     padding: 3em;
     margin-left: 5em;
   }
+  
+  .h1-first {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .h1-second {
+    margin-left: 40%;
+    width: 60%;
+    margin-top: 1em;
+
+    h1 {
+      text-align: left;
+      overflow: hidden;
+      white-space: nowrap;
+      
+      &:after {
+        content: "L";
+        color: ${(props) => props.theme.colors.bgDarker};
+        animation: typing 2.8s linear forwards;
+        animation-delay: 1.5s;
+        text-align: left;
+      }
+    }
+
+    @keyframes typing {
+      0%, 5.8% { content: "L"; color: white}
+      5.9%, 11.6% { content: "Li"; }
+      11.7%, 17.4% { content: "Lif"; }
+      17.5%, 23.2% { content: "Life"; }
+      23.3%, 29% { content: "Life "; }
+      29.1%, 34.8% { content: "Life i"; }
+      34.9%, 46.4% { content: "Life in"; }
+      46.5%, 52.2% { content: "Life in "; }
+      52.3%, 58% { content: "Life in t"; }
+      58.1%, 63.8% { content: "Life in th"; }
+      63.9%, 69.6% { content: "Life in the"; }
+      69.7%, 75.4% { content: "Life in the "; }
+      75.5%, 81.2% { content: "Life in the A"; }
+      81.3%, 87% { content: "Life in the Ab"; }
+      87.1%, 92.8% { content: "Life in the Aby"; }
+      92.9%, 98% { content: "Life in the Abys"; }
+      98.1%, 100% { content: "Life in the Abyss"; color: white}
+    }
+  }
 
   h1 {
     position: relative;
     text-align: left;
-    letter-spacing: 4px;
-    font-size: calc(44px + 6vw);
+    letter-spacing: -4px;
+    font-size: calc(26px + 4.5vw);
     line-height: calc(90%);
-    font-family: "IM Fell Double Pica", sans-serif;
+    font-family: "Oxanium", sans-serif;
+    text-transform: uppercase;
     text-shadow: 8px 8px 4px rgba(0, 0, 0, 0.5);
     margin: 0;
 
     @media (min-width: ${(props) => props.theme.breakpoints.xs}) {
-      letter-spacing: 6px;
-    }
-  }
-
-  .sub-headline {
-    font-size: calc(24px + 2vw);
-    line-height: 120%;
-    text-align: left;
-    left: 0;
-    margin-bottom: 5px;
-    text-shadow: 6px 6px 3px rgba(0, 0, 0, 0.5);
-
-    @media (min-width: ${(props) => props.theme.breakpoints.l}) {
-      margin-left: -1em;
+      letter-spacing: -2px;
     }
   }
 
   .hero-text {
-    text-align: left;
+    text-align: right;
     font-weight: 400;
     margin-top: 75%;
     font-size: calc(16px + 1vw);
     line-height: 130%;
+    padding-left: 28%;
 
     @media (min-width: ${(props) => props.theme.breakpoints.s}) {
       margin-top: 65%;
@@ -122,60 +154,22 @@ const Text = styled('div')`
     @media (min-width: ${(props) => props.theme.breakpoints.l}) {
       margin-top: 1em;
       width: 40%;
-      text-align: right;
+      text-align: left;
       margin-left: -5%;
     }
   }
 `;
 
-const HeroImage = styled('img')`
-  position: absolute;
-  animation-delay: 1000ms;
-  animation: slide-in 600ms ease-out forwards;
-  top: 25%;
-  right: -4em;
-  width: 90vw;
-  z-index: 1;
-  max-width: 25em;
-  --rotate: 12deg;
+const Line = styled('div')`
+  width: 4.5em;
+  border-bottom: .7em solid;
+  height: 4.5em;
+  animation: type .75s step-end 5;
+  animation-delay: .8s;
 
-  @media (min-width: ${(props) => props.theme.breakpoints.s}) {
-    top: 35%;
-    width: 80vw;
-    max-width: 30em;
-  }
-
-  @media (min-width: ${(props) => props.theme.breakpoints.m}) {
-    width: 60vw;
-    max-width: 35em;
-    right: -1em;
-    top: 5em;
-    --rotate: 5deg;
-  }
-
-  @media (min-width: ${(props) => props.theme.breakpoints.l}) {
-    width: 50vw;
-    max-width: 50em;
-    --rotate: 0deg;
-    right: 0;
-  }
-
-  @media (min-width: ${(props) => props.theme.breakpoints.xxl}) {
-    width: 50vw;
-    max-width: 55em;
-    --rotate: 0deg;
-    right: 0;
-  }
-
-  @keyframes slide-in {
-    from {
-      transform: rotate(var(--rotate)) translateX(30%);
-      opacity: .2;
-    }
-    to {
-      transform: rotate(var(--rotate)) translateX(0);
-      opacity: 1;
-    }
+  @keyframes type {
+    from, to { border-color: transparent }
+    50% { border-color: white; }
   }
 `;
 
@@ -220,24 +214,31 @@ function Hero() {
     useEffect(() => {
         localStorage.setItem('flashlight', 'off');
     }, []);
+
     function scrollDown() {
         setFlashlight(true);
         const target = document.getElementById('section1')
         target.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
     }
+
     return (
         <Wrapper>
             <Container>
                 <Text>
-                    <h2 className='sub-headline'>Discover the</h2>
-                    <div className='headline'>
-                        <h1>DEEP</h1>
-                        <h1 className='h1-second'>SE<span className='text-higher'>A</span></h1>
+                    {/*<h2 className='sub-headline'>Discover the</h2>*/}
+                        <div className='h1-first'>
+                            <h1>Deep Sea</h1>
+                            <Line/>
+                        </div>
+                    <div className='h1-second'>
+                        <h1></h1>
                     </div>
-                    <h3 className='hero-text'>Dive into the depth and discover reasons for appreciating and protecting this alien world on our planet.</h3>
+                    <h3 className='hero-text'>Dive into the deep and discover reasons for appreciating and protecting
+                        this alien world on our planet.</h3>
                 </Text>
                 <TextArrow show={flashlight}/>
-                <HeroImage onClick={activateFlashlight} className='hero-image' alt='Anglerfish Illustration' src={fish}/>
+                <Anglerfish/>
+                {/*<HeroImage onClick={activateFlashlight} className='hero-image' alt='Anglerfish Illustration' src={fish}/>*/}
             </Container>
             <DownButton className='btn-hover' onClick={scrollDown}>
                 <KeyboardArrowDownRoundedIcon className='icon btn-hover'/>

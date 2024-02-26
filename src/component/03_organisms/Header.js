@@ -27,7 +27,7 @@ function Header(props) {
     return (
         <Container>
             <CursorHandler ref={props.theRef}/>
-            <Menu/>
+            <Menu showMode={props.show}/>
             <MobileMenu/>
         </Container>
     );

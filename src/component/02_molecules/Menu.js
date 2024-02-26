@@ -69,7 +69,9 @@ function Menu(props) {
             <MainMenu className="menu">
                 <Logo/>
                 <MenuList/>
-                <ModeButton/>
+                {props.showMode ?
+                    <ModeButton/>
+                    : null }
                 <Search />
             </MainMenu>
 
