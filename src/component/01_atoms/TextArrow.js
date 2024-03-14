@@ -4,11 +4,11 @@ import {useEffect} from "react";
 
 const Container = styled('div')`
   position: absolute;
-  top: 25%;
+  top: 70%;
+  left: 32%;
   max-width: 12em;
   flex-direction: row;
   align-items: center;
-  right: 16%;
   gap: 1em;
   display: none;
   
@@ -18,7 +18,7 @@ const Container = styled('div')`
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.l}) {
-    display: flex;
+    //display: flex;
   }
   
   @media (min-width: ${(props) => props.theme.breakpoints.xxl}) {

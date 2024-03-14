@@ -11,6 +11,7 @@ const CursorHandler = forwardRef(function(props, ref) {
     let currentColor = 'white';
 
     useEffect(() => {
+        setTimeout(setOverlayPosition, 2400)
         const onMouseMove = event => {
             trackMouse(event);
         };
@@ -18,6 +19,20 @@ const CursorHandler = forwardRef(function(props, ref) {
         updateCursor();
         return () => document.removeEventListener("mousemove", onMouseMove);
     }, []);
+
+    window.addEventListener(('resize'), () => {
+        setOverlayPosition();
+    })
+
+    function setOverlayPosition() {
+        let overlay = document.getElementById('overlay');
+        let light = document.getElementById('lightbulb').getBoundingClientRect();
+        console.log(Math.round(light.top) + 'px', Math.round(light.left) + 'px');
+        overlay.style.setProperty('--cursorX', Math.round(light.right) + 'px')
+        overlay.style.setProperty('--cursorY', Math.round(light.top) + 'px')
+        overlay.style.setProperty('--opacity', '1');
+        overlay.style.background = 'transparent';
+    }
 
     function trackMouse(e) {
         let posX = 0;
@@ -28,7 +43,6 @@ const CursorHandler = forwardRef(function(props, ref) {
             document.getElementById('overlay').style.setProperty('--cursorX', posX + 'px')
             document.getElementById('overlay').style.setProperty('--cursorY', posY + 'px')
         }
-
         cursorRef.current.style.left = e.clientX + 'px';
         cursorRef.current.style.top = e.clientY + 'px';
     }

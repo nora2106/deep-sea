@@ -62,7 +62,7 @@ const GridContainer = styled('div')`
   gap: 4rem;
   grid-template-columns:  repeat(1, 1fr);
   grid-auto-rows: 30em;
-  padding: 1em 2em 5em 2em;
+  padding: 1em 2em 5em< 2em;
 
   @media (min-width: ${(props) => props.theme.breakpoints.xs}) {
     padding: 1em 5em 5em 5em;

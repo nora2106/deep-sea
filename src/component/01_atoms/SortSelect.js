@@ -92,8 +92,6 @@ function SortSelect(props) {
 
     function clearValue() {
         selectInputRef.current.clearValue();
-        let selectName = selectInputRef.current.props.name;
-        // props.parentCallback(props.default, selectName)
     }
 
     function handleChange(e) {

@@ -46,10 +46,7 @@ const Text = styled('div')`
   padding: .5em;
   display: flex;
   flex-direction: column;
-  transform: translateX(-30%);
-  ${props => props.theme.animations.show};
-  animation-delay: 800ms;
-  opacity: 0;
+  opacity: 1;
   height: 100%;
   width: 90%;
   margin-top: 5%;
@@ -75,6 +72,10 @@ const Text = styled('div')`
     gap: 20px;
     margin-left: 0;
     width: 100%;
+    opacity: 0;
+    transform: translateX(-30%);
+    ${props => props.theme.animations.show};
+    animation-delay: 600ms;
   }
 
   .h1-second {
@@ -90,7 +91,7 @@ const Text = styled('div')`
       &:after {
         content: "L";
         color: ${(props) => props.theme.colors.bgDarker};
-        animation: typing 2.8s linear forwards;
+        animation: typing 2.5s linear forwards;
         animation-delay: 1.5s;
         text-align: left;
       }
@@ -125,7 +126,6 @@ const Text = styled('div')`
     line-height: calc(90%);
     font-family: "Oxanium", sans-serif;
     text-transform: uppercase;
-    text-shadow: 8px 8px 4px rgba(0, 0, 0, 0.5);
     margin: 0;
 
     @media (min-width: ${(props) => props.theme.breakpoints.xs}) {
@@ -140,6 +140,9 @@ const Text = styled('div')`
     font-size: calc(16px + 1vw);
     line-height: 130%;
     padding-left: 28%;
+    animation: textIn 1s ease-in forwards;
+    animation-delay: 4000ms;
+    opacity: 0;
 
     @media (min-width: ${(props) => props.theme.breakpoints.s}) {
       margin-top: 65%;
@@ -153,9 +156,17 @@ const Text = styled('div')`
 
     @media (min-width: ${(props) => props.theme.breakpoints.l}) {
       margin-top: 1em;
-      width: 40%;
       text-align: left;
       margin-left: -5%;
+    }
+    
+    @keyframes textIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
     }
   }
 `;
@@ -174,31 +185,79 @@ const Line = styled('div')`
 `;
 
 const DownButton = styled('div')`
-  width: 3em;
-  height: 3em;
+  width: 4em;
+  height: 4em;
   position: absolute;
   top: 90vh;
-  display: block;
   left: 0;
   right: 0;
   margin: auto;
   z-index: 2;
   transition: transform .6s, opacity .5s;
 
-  .icon {
+  .circle-border {
     width: 100%;
     height: 100%;
+    border-radius: 100%;
+    background: none;
+    border: 0;
+    box-sizing: border-box;
+    position: relative;
+    vertical-align: middle;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    &:before,
+    &:after {
+      box-sizing: inherit;
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 100%;
+    }
+
+    &:before {
+      border: 2px solid transparent;
+    }
+
+    &:after {
+      border: 0 solid transparent;
+    }
+
+    &:hover {
+      :before {
+        border-top-color: white;
+        border-right-color: white;
+        border-left-color: white;
+        transition: border-left-color 0.3s linear, border-top-color 0.3s linear 0.25s, border-right-color 0.3s linear 0.25s;
+      }
+
+      :after {
+        border-left: 2px solid white;
+        border-right-width: 2px;
+        border-top-width: 2px;
+        transform: rotate(180deg);
+        transition: transform 0.55s linear 0s, border-bottom-width 0s linear 0.5s, -webkit-transform 0.55s linear 0s;
+      }
+    }
+  }
+
+  .icon {
+    width: 90%;
+    height: 90%;
     color: white;
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.m}) {
-    width: 4em;
-    height: 4em;
+    width: 5em;
+    height: 5em;
     opacity: .8;
-    top: 85vh;
+    top: 90vh;
 
     :hover {
-      transform: scale(1.3);
+      transform: scale(1.15);
       opacity: 1;
     }
   }
@@ -241,7 +300,9 @@ function Hero() {
                 {/*<HeroImage onClick={activateFlashlight} className='hero-image' alt='Anglerfish Illustration' src={fish}/>*/}
             </Container>
             <DownButton className='btn-hover' onClick={scrollDown}>
-                <KeyboardArrowDownRoundedIcon className='icon btn-hover'/>
+                <div className="circle-border">
+                    <KeyboardArrowDownRoundedIcon className='icon btn-hover'/>
+                </div>
             </DownButton>
         </Wrapper>
     );

@@ -422,49 +422,49 @@ function Name() {
     return (
         <Container>
                 <div className="anglerfish">
-                    <div className="light"> </div>
+                    <div className="light"/>
                     <div className="top-fin">
                         <div className="stripes">
-                            <div className="stripe"></div>
-                            <div className="stripe"></div>
-                            <div className="stripe"></div>
-                            <div className="stripe"></div>
+                            <div className="stripe"/>
+                            <div className="stripe"/>
+                            <div className="stripe"/>
+                            <div className="stripe"/>
                         </div>
                     </div>
                     <div className="head">
-                        <div className="eye"></div>
-                        <div className="fin"></div>
-                        <div className="fin-end"></div>
+                        <div className="eye"/>
+                        <div className="fin"/>
+                        <div className="fin-end"/>
                     </div>
-                    <div className="lip"></div>
-                    <div className="lip lip-bottom"></div>
+                    <div className="lip"/>
+                    <div className="lip lip-bottom"/>
                     <div className="mouth">
                         <div className="top">
-                            <div className="tooth tooth-1"></div>
-                            <div className="tooth tooth-2"></div>
-                            <div className="tooth tooth-3"></div>
-                            <div className="tooth tooth-4"></div>
+                            <div className="tooth tooth-1"/>
+                            <div className="tooth tooth-2"/>
+                            <div className="tooth tooth-3"/>
+                            <div className="tooth tooth-4"/>
                         </div>
                         <div className="bottom">
-                            <div className="tooth tooth-1"></div>
-                            <div className="tooth tooth-2"></div>
-                            <div className="tooth tooth-3"></div>
-                            <div className="tooth tooth-4"></div>
+                            <div className="tooth tooth-1"/>
+                            <div className="tooth tooth-2"/>
+                            <div className="tooth tooth-3"/>
+                            <div className="tooth tooth-4"/>
                         </div>
                     </div>
                     <div className="tail">
                         <div className="dots">
-                            <div className="dot"></div>
-                            <div className="dot"></div>
-                            <div className="dot"></div>
-                            <div className="dot"></div>
-                            <div className="dot"></div>
-                            <div className="dot"></div>
+                            <div className="dot"/>
+                            <div className="dot"/>
+                            <div className="dot"/>
+                            <div className="dot"/>
+                            <div className="dot"/>
+                            <div className="dot"/>
                         </div>
                     </div>
-                    <div className="tail-fin"></div>
-                    <div className="tail-fin-end"></div>
-                    <div className="lightbulb"> </div>
+                    <div className="tail-fin"/>
+                    <div className="tail-fin-end"/>
+                    <div onClick={() => localStorage.setItem('flashlight', 'on')} className="lightbulb" id="lightbulb"/>
                 </div>
         </Container>
     );

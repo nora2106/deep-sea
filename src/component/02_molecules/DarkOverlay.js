@@ -1,41 +1,34 @@
 import styled from 'styled-components';
 
 const Container = styled('div')`
+  --opacity: 0;
   z-index: 4;
   pointer-events: none;
   content: '';
-  display: none;
+  display: block;
   width: 100%;
   height: 100%;
   position: fixed;
-  background: radial-gradient(circle 14vmax at var(--cursorX) var(--cursorY),
-  rgba(255, 255, 255, .05) 0%,
-  rgba(255, 255, 255, .1) 10%,
-  rgba(0, 0, 0, .3) 80%,
-  rgba(0, 0, 0, .6) 100%);
+  background-color: rgba(0, 0, 0, .6);
+  transition: background-color 2s;
 
-  @media (min-width: ${(props) => props.theme.breakpoints.l}) {
+  &::before {
+    position: fixed;
+    content: '';
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
     display: block;
-    --cursorX: 55%;
-    --cursorY: 16em;
-  }
-
-  @media (min-width: ${(props) => props.theme.breakpoints.xl}) {
-    --cursorX: 55vw;
-    --cursorY: 17em;
-  }
-
-  @media (min-width: 1720px) {
-    --cursorX: 60vw;
-  }
-
-  @media (min-width: 1720px) {
-    --cursorX: 64vw;
-  }
-
-  @media (min-width: ${(props) => props.theme.breakpoints.xxl}) {
-    --cursorX: 58vw;
-    --cursorY: 19em;
+    width: 100%;
+    height: 100%;
+    transition: opacity ease-in 0.8s;
+    background: radial-gradient(circle 13vmax at var(--cursorX) var(--cursorY),
+    rgba(255, 255, 255, .05) 0%,
+    rgba(255, 255, 255, .1) 5%,
+    rgba(0, 0, 0, .3) 80%,
+    rgba(0, 0, 0, .6) 100%);
+    opacity: var(--opacity);
   }
 `;
 
