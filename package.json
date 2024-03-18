@@ -1,6 +1,6 @@
 {
-  "name": "deep-sea",
-  "version": "0.1.0",
+  "name": "abyssal-creatures",
+  "version": "1.0.0",
   "private": true,
   "proxy": "https://127.0.0.1:5000",
   "dependencies": {
@@ -39,10 +39,11 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "install-client": "npm install",
+    "build-client": "npm run build",
+    "start-client": "npm run start",
+    "install-server": "cd backend && npm install",
+    "start-server": "cd backend && npm start"
   },
   "eslintConfig": {
     "extends": [
@@ -62,7 +63,7 @@
       "last 1 safari version"
     ]
   },
-  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "description": "Abyssal Creatures - Discover life in the Abyss",
   "main": "index.js",
   "devDependencies": {},
   "repository": {
