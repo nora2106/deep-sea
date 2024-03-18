@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import InfoLabel from "../01_atoms/InfoLabel";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import wave from '../../assets/svg/wave4.svg';
+import {useEffect, useState} from "react";
 
 const Container = styled('div')`
   height: 60%;
@@ -107,6 +108,17 @@ const Text = styled('p')`
 `;
 
 function CardContent(props) {
+    const [size, setSize] = useState(props.size);
+    const [unit, setUnit] = useState('m');
+
+    useEffect(() => {
+        //convert to cm if smaller than 1m
+        if(size < 1 && size > 0.01) {
+            setUnit('cm');
+            setSize(size * 100);
+        }
+    }, []);
+
 
     return (
         <Container className='hover-light'>
@@ -117,8 +129,8 @@ function CardContent(props) {
             <div className="infos">
                 <InfoLabel label={props.class} text="Classification"/>
                 <InfoLabel label={props.zone} text="Zone"/>
-                {/*@todo format size and maybe add converter?*/}
-                <InfoLabel label={props.size} text="Size"/>
+                {/*@todo maybe add converter to different units?*/}
+                <InfoLabel label={size + unit} text="Size"/>
                 <InfoLabel label={props.diet} text="Diet"/>
             </div>
             <hr/>

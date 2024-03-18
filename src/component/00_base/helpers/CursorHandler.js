@@ -21,13 +21,14 @@ const CursorHandler = forwardRef(function(props, ref) {
     }, []);
 
     window.addEventListener(('resize'), () => {
-        setOverlayPosition();
+        if(localStorage.getItem('flashlight') !== 'on') {
+            setOverlayPosition();
+        }
     })
 
     function setOverlayPosition() {
         let overlay = document.getElementById('overlay');
         let light = document.getElementById('lightbulb').getBoundingClientRect();
-        console.log(Math.round(light.top) + 'px', Math.round(light.left) + 'px');
         overlay.style.setProperty('--cursorX', Math.round(light.right) + 'px')
         overlay.style.setProperty('--cursorY', Math.round(light.top) + 'px')
         overlay.style.setProperty('--opacity', '1');

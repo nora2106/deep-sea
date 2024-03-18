@@ -34,7 +34,7 @@ const WaveAnim = styled('div')`
   z-index: 1;
   top: 2em;
   background-repeat: repeat-x;
-  //animation: wave 8s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite, swell 8s ease -1.25s infinite;
+  animation: wave 8s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite, swell 8s ease -1.25s infinite;
 
   @media (min-width: ${(props) => props.theme.breakpoints.m}) {
     top: 0;

@@ -3,14 +3,14 @@ import ArrowRightAlt from '@mui/icons-material/ArrowRightAlt';
 import {useEffect} from "react";
 
 const Container = styled('div')`
-  position: absolute;
-  top: 70%;
-  left: 32%;
   max-width: 12em;
   flex-direction: row;
   align-items: center;
   gap: 1em;
   display: none;
+  opacity: 0;
+  animation: textIn 1s ease-in forwards;
+  animation-delay: 3000ms;
   
   svg {
     color: white;
@@ -18,17 +18,13 @@ const Container = styled('div')`
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.l}) {
-    //display: flex;
-  }
-  
-  @media (min-width: ${(props) => props.theme.breakpoints.xxl}) {
-    right: 18%;
+    display: flex;
   }
 `;
 
 const Text = styled('p')`
     color: white;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 `;
 
 function Name(props) {
@@ -40,7 +36,7 @@ function Name(props) {
     return (
         <Container className='flashlight-text'>
             <ArrowRightAlt/>
-            <Text>Click here for flashlight</Text>
+            <Text>Click here for a flashlight</Text>
         </Container>
     );
 }

@@ -8,10 +8,29 @@ import Anglerfish from "../01_atoms/Anglerfish";
 const Wrapper = styled('div')`
   width: 100%;
   background-color: ${(props) => props.theme.colors.bgDarker};
+  padding-bottom: .5em;
 
   @media (min-width: ${(props) => props.theme.breakpoints.l}) {
     display: flex;
     justify-content: center;
+    flex-direction: column;
+  }
+
+  .interactive-angler {
+    margin-left: 0;
+    margin-right: auto;
+
+    @media (min-width: ${(props) => props.theme.breakpoints.l}) {
+      margin-top: -4em;
+      margin-left: 2%;
+      display: flex;
+      flex-direction: row-reverse;
+      gap: 4em;
+    }
+
+    @media (min-width: ${(props) => props.theme.breakpoints.l}) {
+      margin-top: -5em;
+    }
   }
 `;
 
@@ -65,29 +84,77 @@ const Text = styled('div')`
     padding: 3em;
     margin-left: 5em;
   }
-  
+
+  h1 {
+    position: relative;
+    text-align: left;
+    letter-spacing: -4px;
+    font-size: calc(34px + 4.5vw);
+    line-height: calc(90%);
+    font-family: "Oxanium", sans-serif;
+    text-transform: uppercase;
+    margin: 0;
+
+    @media (min-width: ${(props) => props.theme.breakpoints.xs}) {
+      letter-spacing: -2px;
+    }
+
+    @media (min-width: ${(props) => props.theme.breakpoints.xs}) {
+      font-size: calc(28px + 4.5vw);
+    }
+  }
+
   .h1-first {
     display: flex;
     flex-direction: row;
-    gap: 20px;
     margin-left: 0;
+    gap: 15px;
     width: 100%;
     opacity: 0;
     transform: translateX(-30%);
     ${props => props.theme.animations.show};
     animation-delay: 600ms;
+
+    @media (min-width: ${(props) => props.theme.breakpoints.l}) {
+      gap: 25px;
+    }
+
+    .line {
+      animation: type .75s step-end 4;
+      animation-delay: .8s;
+
+      @keyframes type {
+        from, to {
+          opacity: 0;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+    }
   }
 
   .h1-second {
-    margin-left: 40%;
-    width: 60%;
-    margin-top: 1em;
+    margin-top: 2em;
+    width: 100%;
+
+    @media (min-width: ${(props) => props.theme.breakpoints.l}) {
+      margin-top: 1em;
+      margin-left: 40%;
+      width: 60%;
+    }
 
     h1 {
-      text-align: left;
       overflow: hidden;
       white-space: nowrap;
-      
+      text-align: right;
+      font-size: calc(30px + 4.5vw);
+
+      @media (min-width: ${(props) => props.theme.breakpoints.l}) {
+        text-align: left;
+        font-size: calc(26px + 4.5vw);
+      }
+
       &:after {
         content: "L";
         color: ${(props) => props.theme.colors.bgDarker};
@@ -98,68 +165,89 @@ const Text = styled('div')`
     }
 
     @keyframes typing {
-      0%, 5.8% { content: "L"; color: white}
-      5.9%, 11.6% { content: "Li"; }
-      11.7%, 17.4% { content: "Lif"; }
-      17.5%, 23.2% { content: "Life"; }
-      23.3%, 29% { content: "Life "; }
-      29.1%, 34.8% { content: "Life i"; }
-      34.9%, 46.4% { content: "Life in"; }
-      46.5%, 52.2% { content: "Life in "; }
-      52.3%, 58% { content: "Life in t"; }
-      58.1%, 63.8% { content: "Life in th"; }
-      63.9%, 69.6% { content: "Life in the"; }
-      69.7%, 75.4% { content: "Life in the "; }
-      75.5%, 81.2% { content: "Life in the A"; }
-      81.3%, 87% { content: "Life in the Ab"; }
-      87.1%, 92.8% { content: "Life in the Aby"; }
-      92.9%, 98% { content: "Life in the Abys"; }
-      98.1%, 100% { content: "Life in the Abyss"; color: white}
-    }
-  }
-
-  h1 {
-    position: relative;
-    text-align: left;
-    letter-spacing: -4px;
-    font-size: calc(26px + 4.5vw);
-    line-height: calc(90%);
-    font-family: "Oxanium", sans-serif;
-    text-transform: uppercase;
-    margin: 0;
-
-    @media (min-width: ${(props) => props.theme.breakpoints.xs}) {
-      letter-spacing: -2px;
+      0%, 5.8% {
+        content: "L";
+        color: white
+      }
+      5.9%, 11.6% {
+        content: "Li";
+      }
+      11.7%, 17.4% {
+        content: "Lif";
+      }
+      17.5%, 23.2% {
+        content: "Life";
+      }
+      23.3%, 29% {
+        content: "Life ";
+      }
+      29.1%, 34.8% {
+        content: "Life i";
+      }
+      34.9%, 46.4% {
+        content: "Life in";
+      }
+      46.5%, 52.2% {
+        content: "Life in ";
+      }
+      52.3%, 58% {
+        content: "Life in t";
+      }
+      58.1%, 63.8% {
+        content: "Life in th";
+      }
+      63.9%, 69.6% {
+        content: "Life in the";
+      }
+      69.7%, 75.4% {
+        content: "Life in the ";
+      }
+      75.5%, 81.2% {
+        content: "Life in the A";
+      }
+      81.3%, 87% {
+        content: "Life in the Ab";
+      }
+      87.1%, 92.8% {
+        content: "Life in the Aby";
+      }
+      92.9%, 98% {
+        content: "Life in the Abys";
+      }
+      98.1%, 100% {
+        content: "Life in the Abyss";
+        color: white
+      }
     }
   }
 
   .hero-text {
-    text-align: right;
+    margin-top: 2em;
     font-weight: 400;
-    margin-top: 75%;
     font-size: calc(16px + 1vw);
     line-height: 130%;
-    padding-left: 28%;
     animation: textIn 1s ease-in forwards;
     animation-delay: 4000ms;
     opacity: 0;
-
-    @media (min-width: ${(props) => props.theme.breakpoints.s}) {
-      margin-top: 65%;
-    }
+    width: 100%;
+    max-width: 20em;
+    margin-left: auto;
+    margin-right: 0;
+    text-align: left;
 
     @media (min-width: ${(props) => props.theme.breakpoints.m}) {
       margin-top: 2em;
-      width: 40%;
+      width: 70%;
       font-size: calc(18px + 0.5vw);
+      max-width: none;
     }
 
     @media (min-width: ${(props) => props.theme.breakpoints.l}) {
+      width: 50%;
       margin-top: 1em;
-      text-align: left;
-      margin-left: -5%;
+      margin-left: 30%;
     }
-    
+
     @keyframes textIn {
       0% {
         opacity: 0;
@@ -171,24 +259,11 @@ const Text = styled('div')`
   }
 `;
 
-const Line = styled('div')`
-  width: 4.5em;
-  border-bottom: .7em solid;
-  height: 4.5em;
-  animation: type .75s step-end 5;
-  animation-delay: .8s;
-
-  @keyframes type {
-    from, to { border-color: transparent }
-    50% { border-color: white; }
-  }
-`;
-
 const DownButton = styled('div')`
   width: 4em;
   height: 4em;
   position: absolute;
-  top: 90vh;
+  bottom: 5em;
   left: 0;
   right: 0;
   margin: auto;
@@ -207,7 +282,7 @@ const DownButton = styled('div')`
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
     &:before,
     &:after {
       box-sizing: inherit;
@@ -275,7 +350,7 @@ function Hero() {
     }, []);
 
     function scrollDown() {
-        setFlashlight(true);
+        localStorage.setItem('flashlight', 'on');
         const target = document.getElementById('section1')
         target.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
     }
@@ -284,20 +359,20 @@ function Hero() {
         <Wrapper>
             <Container>
                 <Text>
-                    {/*<h2 className='sub-headline'>Discover the</h2>*/}
-                        <div className='h1-first'>
-                            <h1>Deep Sea</h1>
-                            <Line/>
-                        </div>
+                    <div className='h1-first'>
+                        <h1>Deep Sea</h1>
+                        <h1 className='line'>_</h1>
+                    </div>
                     <div className='h1-second'>
                         <h1></h1>
                     </div>
                     <h3 className='hero-text'>Dive into the deep and discover reasons for appreciating and protecting
                         this alien world on our planet.</h3>
                 </Text>
-                <TextArrow show={flashlight}/>
-                <Anglerfish/>
-                {/*<HeroImage onClick={activateFlashlight} className='hero-image' alt='Anglerfish Illustration' src={fish}/>*/}
+                <div className='interactive-angler'>
+                    <TextArrow show={flashlight}/>
+                    <Anglerfish/>
+                </div>
             </Container>
             <DownButton className='btn-hover' onClick={scrollDown}>
                 <div className="circle-border">

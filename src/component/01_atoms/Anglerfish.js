@@ -8,10 +8,24 @@ const Container = styled('div')`
   --eye-color: #220737;
   --lightbulb-color: #FBCA23;
   --lightbulb-dark: #F5890B;
-  position: absolute;
-  bottom: 8%;
   z-index: 3;
-  left: 5%;
+  transform: scale(.7);
+  padding-block: 1em;
+  margin-left: -20%;
+
+  @media (min-width: ${(props) => props.theme.breakpoints.m}) {
+    margin-left: 0;
+    padding-block: 2em;
+    transform: scale(.9);
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.l}) {
+    transform: scale(1);
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.l}) {
+    transform: scale(1.1);
+  }
 
   .anglerfish {
     display: inline-grid;
