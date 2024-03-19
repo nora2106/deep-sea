@@ -43,7 +43,9 @@
     "build-client": "npm run build",
     "start-client": "npm run start",
     "install-server": "cd backend && npm install",
-    "start-server": "cd backend && npm start"
+    "start-server": "cd backend && npm start",
+    "start": "react-scripts start",
+    "build": "react-scripts build"
   },
   "eslintConfig": {
     "extends": [
