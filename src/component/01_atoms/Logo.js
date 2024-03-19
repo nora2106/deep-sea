@@ -26,8 +26,9 @@ const Container = styled('div')`
   
   p {
     color: white;
-    font-family: 'Bungee Inline', sans-serif;
-    font-style: normal;
+    font-family: 'Oxanium', sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
     margin-top: -10px;
     font-size: 20px;
   }
