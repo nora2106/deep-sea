@@ -6,6 +6,7 @@ import MobileMenu from "../02_molecules/MobileMenu";
 
 const Container = styled('div')`
   position: relative;
+  min-height: 8em;
   
   .main-menu {
     display: none;

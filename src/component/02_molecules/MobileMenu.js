@@ -6,11 +6,12 @@ import {useEffect, useState} from "react";
 import MenuButton from "../01_atoms/MenuButton";
 
 const Container = styled('div')`
-  height: 20em;
+  height: 8em;
   width: 100%;
   position: absolute;
   background-color: ${(props) => props.theme.colors.bgDarker};
   top: 0;
+  z-index: 3;
 
   &.show {
     .mobile-menu__open {

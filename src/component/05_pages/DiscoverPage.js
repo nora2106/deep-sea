@@ -10,7 +10,6 @@ const Container = styled('div')`
   background-color: ${(props) => props.theme.colors.bgDarker};
   height: 100%;
   min-height: 100vh;
-  //cursor: none;
   
   h1 {
     position: absolute;

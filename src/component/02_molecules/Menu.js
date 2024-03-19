@@ -50,7 +50,7 @@ const MainMenu = styled('div')`
     position: sticky;
     background-color: ${(props) => props.theme.colors.bgDarker};
     width: 100%;
-    height: 140px;
+    height: 150px;
     display: flex;
     flex-direction: row;
     align-items: center;

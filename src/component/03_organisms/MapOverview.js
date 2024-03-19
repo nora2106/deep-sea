@@ -5,7 +5,6 @@ import React, { useState, useEffect } from "react";
 const Container = styled('div')`
   position: relative;
   width: 100%;
-  top: 5em;
 
   #zone1 {
     background-color: #9ae7e8;
@@ -41,11 +40,16 @@ const Container = styled('div')`
 
 const MapIntro = styled('div')`
   width: 100%;
-  height: 12em;
   background-color: ${(props) => props.theme.colors.bgDark};
   
-  @media (min-width: ${(props) => props.theme.breakpoints.m}) {
-    height: 15em;
+  p {
+    color: white;
+    padding: 1em;
+
+    @media (min-width: ${(props) => props.theme.breakpoints.m}) {
+      padding: 2em;
+      font-size: 24px;
+    }
   }
 `;
 
@@ -90,7 +94,9 @@ function MapOverview() {
 
     return (
         <Container>
-            <MapIntro/>
+            <MapIntro>
+                <p>Coming soon...</p>
+            </MapIntro>
             {/*<Wave class='wave-light'/>*/}
             <Zone id='zone1'>
                 <h2>Sunlight Zone</h2>
