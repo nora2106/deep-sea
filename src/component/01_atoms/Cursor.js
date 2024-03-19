@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {forwardRef, useEffect, useRef} from "react";
+import {forwardRef} from "react";
 
 const Container = styled('div')`
   border-radius: 50%;

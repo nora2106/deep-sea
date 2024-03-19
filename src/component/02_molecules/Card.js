@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import CardImage from "../01_atoms/CardImage";
 import CardContent from "./CardContent";
-import {FormControlLabel, Grow} from "@mui/material";
+import {Grow} from "@mui/material";
 
 const Container = styled('div')`
   border-radius: 1.5em;

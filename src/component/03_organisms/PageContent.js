@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import React, {useEffect} from "react";
 import bg1 from '../../assets/img/bubble-bg1.png'
 import bg2 from '../../assets/img/bubble-bg2.png'
-import Bubble from "../02_molecules/Bubble";
 import FactBox from "../01_atoms/FactBox";
 import Wave from "../01_atoms/Wave";
 import References from "../02_molecules/References";
@@ -256,14 +255,13 @@ const Section3 = styled(Section)`
 
 function PageContent() {
     const [zoom, setZoom] = react.useState(false)
-    const [zoom2, setZoom2] = react.useState(false)
     const [zoom3, setZoom3] = react.useState(false)
 
     useEffect(() => {
         scrollTrigger('.show-scroll', {
             rootMargin: '-100px'
         })
-    }, [])
+    }, )
 
     function scrollTrigger(selector, options = {}) {
         let els = document.querySelectorAll(selector)
@@ -280,9 +278,8 @@ function PageContent() {
                 if (entry.isIntersecting) {
                     if (entry.target.id === 'bubble1') {
                         setZoom(true)
-                    } if (entry.target.id === 'bubble2') {
-                        setZoom2(true)
-                    } else if (entry.target.id === 'slider-bubble') {
+                    }
+                    else if (entry.target.id === 'slider-bubble') {
                         setZoom3(true);
                     } else {
                         entry.target.classList.add('active')

@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 import Zoom from "@mui/material/Zoom";
 import Bubble from "./Bubble";
-import BubbleOutline from "../01_atoms/BubbleOutline";
-import SliderItem from "../01_atoms/SliderItem";
 
 const Wrapper = styled('div')`
   position: relative;
@@ -12,10 +10,6 @@ const Wrapper = styled('div')`
   #bubble2 {
     float: right;
   }
-`;
-
-const Test = styled('div')`
-  position: relative;
 `;
 
 function BubbleElement(props) {

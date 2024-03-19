@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import Search from "../01_atoms/Search";
 import Logo from "../01_atoms/Logo";
 import MenuList from "../01_atoms/MenuList";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import MenuButton from "../01_atoms/MenuButton";
 
 const Container = styled('div')`

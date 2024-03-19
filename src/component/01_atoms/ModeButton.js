@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Highlight from '@mui/icons-material/WbIncandescentOutlined';
 import HighlightFilled from '@mui/icons-material/WbIncandescent';
-import {useContext, useEffect} from "react";
+import {useContext} from "react";
 import {ModeContext} from "../00_base/theme/ModeContext";
 
 const Container = styled('div')`

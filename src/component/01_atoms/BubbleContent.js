@@ -1,9 +1,7 @@
 import styled from 'styled-components';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import SliderItem from './SliderItem';
 import {Link} from "react-router-dom";
 import img from "../../assets/img/bubble-bg1.png"
-import circle from "../../assets/dotted-circle2.png";
 
 const Card = styled('div')`
   height: 65%;

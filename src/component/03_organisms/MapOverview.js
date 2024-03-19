@@ -1,6 +1,4 @@
 import styled from 'styled-components';
-import Wave from "../01_atoms/Wave";
-import React, { useState, useEffect } from "react";
 
 const Container = styled('div')`
   position: relative;

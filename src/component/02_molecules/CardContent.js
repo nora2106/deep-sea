@@ -117,7 +117,7 @@ function CardContent(props) {
             setUnit('cm');
             setSize(size * 100);
         }
-    }, []);
+    }, [size]);
 
 
     return (

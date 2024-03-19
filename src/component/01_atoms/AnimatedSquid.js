@@ -44,19 +44,6 @@ const Squid = styled('div')`
     height: 25em;
   }
 
-  @media (min-width: ${(props) => props.theme.breakpoints.xxl}) {
-
-  }
-  
-  //@keyframes Swim {
-  //  0% {
-  //    transform: rotate(60deg) translate(0);
-  //  }
-  //  100% {
-  //    transform: rotate(50deg) translate(var(--endHeight), var(--endWidth));
-  //  }
-  //}
-
   @keyframes Swim {
     0% {
       transform: rotate(60deg);
@@ -87,10 +74,10 @@ const Squid = styled('div')`
 `;
 
 //@todo decide if inkblob is too much to add
-const InkBlob = styled('div')`
-  position: absolute;
-  
-`;
+// const InkBlob = styled('div')`
+//   position: absolute;
+//
+// `;
 function Name() {
     return (
         <Container className='show-scroll'>

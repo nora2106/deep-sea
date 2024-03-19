@@ -1,10 +1,7 @@
 import styled from 'styled-components';
-import React, {useEffect, useRef, useState} from "react";
+import React, { useRef} from "react";
 import Header from "../03_organisms/Header";
 import Grid from "../03_organisms/Grid";
-import * as Realm from "realm-web";
-const app = new Realm.App({id: 'deep-sea-balmb'});
-
 
 const Container = styled('div')`
   background-color: ${(props) => props.theme.colors.bgDarker};

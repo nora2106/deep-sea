@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import React, {useEffect, useRef} from "react";
+import React from "react";
 import Header from "../03_organisms/Header";
 import Hero from "../03_organisms/Hero";
 import PageContent from "../03_organisms/PageContent";
@@ -34,7 +34,7 @@ const Container = styled('div')`
 `;
 
 export default function LandingPage(){
-    const {light, toggleLight} = React.useContext(ModeContext);
+    const {light} = React.useContext(ModeContext);
 
     return (
             <Container className={light === 'off' ? ` landing-page with-overlay` : ` landing-page no-overlay `} id='page'>

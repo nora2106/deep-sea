@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import React, {useEffect, useState} from "react";
-import fish from '../../assets/img/Anglerfish1.png'
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 import TextArrow from "../01_atoms/TextArrow";
 import Anglerfish from "../01_atoms/Anglerfish";
@@ -39,7 +38,7 @@ const Container = styled('div')`
   height: 100%;
   min-height: 78vh;
   top: 2em;
-  padding-top: 3em;
+  //padding-top: 3em;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -381,11 +380,6 @@ function Hero() {
             </DownButton>
         </Wrapper>
     );
-
-    function activateFlashlight() {
-        setFlashlight(true);
-        localStorage.setItem('flashlight', 'on');
-    }
 }
 
 export default Hero;

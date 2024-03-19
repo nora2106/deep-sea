@@ -56,7 +56,7 @@ function Logo() {
     return (
         <Container className='btn-hover'>
             <Link to='/'>
-                <img src={logo}/>
+                <img alt='' src={logo}/>
                 <p>Abyssal Creatures</p>
             </Link>
         </Container>
