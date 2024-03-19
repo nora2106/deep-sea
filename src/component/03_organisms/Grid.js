@@ -6,8 +6,9 @@ import {Grow} from "@mui/material";
 import LoadingSpinner from "../01_atoms/LoadingSpinner";
 import SortSelect from "../01_atoms/SortSelect";
 import Pagination from "../01_atoms/Pagination"
-import testData from '../../testData.json'
-const app = new Realm.App({id: 'deep-sea-balmb'});
+
+//todo replace with .env variable for production backend url before deploying
+const backendURL = 'https://abyssal-creatures-be.onrender.com';
 
 const Container = styled('div')`
   padding-top: 10em;
@@ -104,10 +105,9 @@ function Grid(props) {
 
     // get and sort initial data
     useEffect(() => {
-        //todo add .env variable for production url before deploying
-        let url = `http://localhost:3001/creatures/`;
+        let url = `${backendURL}/creatures/`;
         if (props.type === "search") {
-            url = `http://localhost:3001/creatures/search/${props.value}`;
+            url = `${backendURL}/search/${props.value}`;
         }
         (async () => {
             let data = await getData(url);
@@ -271,19 +271,19 @@ function Grid(props) {
                 case 'depth': {
                     (async () => {
                         //@todo decide between sorting locally or fetching every time (regarding search)
-                        outputToPage(await getData(`http://localhost:3001/creatures/zone/${childData}`), 1)
+                        outputToPage(await getData(`${backendURL}/creatures/zone/${childData}`), 1)
                     })()
                     break;
                 }
                 case 'diet': {
                     (async () => {
-                        outputToPage(await getData(`http://localhost:3001/creatures/diet/${childData}`), 1)
+                        outputToPage(await getData(`${backendURL}/creatures/diet/${childData}`), 1)
                     })()
                     break;
                 }
                 case 'class': {
                     (async () => {
-                        outputToPage(await getData(`http://localhost:3001/creatures/classification/${childData}`), 1)
+                        outputToPage(await getData(`${backendURL}/creatures/classification/${childData}`), 1)
                     })()
                     break;
                 }

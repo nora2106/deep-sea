@@ -1,32 +1,43 @@
 import styled from 'styled-components';
+import logo from '../../assets/svg/logo.svg'
 
 const Container = styled('div')`
   order: 1;
-  padding: 10px;
+  height: 100%;
   z-index: 5;
   position: relative;
   width: fit-content;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
   @media (min-width: ${(props) => props.theme.breakpoints.l}) {
     width: auto;
     margin: 0;
   }
 
-  p {
-    font-family: "IM Fell Double Pica", sans-serif;
-    color: white;
-    text-align: center;
-    font-size: 22px;
+  img {
+    width: 85%;
+    height: 85%;
     margin: 0;
+  }
+  
+  p {
+    color: white;
+    font-family: 'Bungee Inline', sans-serif;
+    font-style: normal;
+    margin-top: -10px;
+    font-size: 20px;
   }
 `;
 
 function Logo() {
     return (
         <Container>
-            <p>Deep</p>
-            <p>Sea</p>
+            <img src={logo}/>
+            <p>Abyssal Creatures</p>
         </Container>
     );
 }
