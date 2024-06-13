@@ -38,6 +38,10 @@ const CursorHandler = forwardRef(function(props, ref) {
     function trackMouse(e) {
         let posX = 0;
         let posY = 0;
+        //@todo fix runtime error cannot read properties of undefined
+        if(e === undefined) {
+            console.log(e)
+        }
         posX = e.clientX || e.touches[0].clientX
         posY = e.clientY || e.touches[0].clientY
         if (document.getElementById('overlay') != null && localStorage.getItem('flashlight') === 'on') {

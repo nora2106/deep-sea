@@ -478,7 +478,7 @@ function Name() {
                     </div>
                     <div className="tail-fin"/>
                     <div className="tail-fin-end"/>
-                    <div onClick={() => localStorage.setItem('flashlight', 'on')} className="lightbulb" id="lightbulb"/>
+                    <div onClick={() => localStorage.setItem('flashlight', 'on')} className="lightbulb btn-hover" id="lightbulb"/>
                 </div>
         </Container>
     );

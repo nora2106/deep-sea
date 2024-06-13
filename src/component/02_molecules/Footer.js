@@ -18,6 +18,18 @@ const Container = styled('div')`
       animation: Move 10s linear forwards, IsopodBody .8s ease-in 13 forwards;
     }
   }
+  
+  .logo {
+    height: 4.5em;
+    
+    @media (min-width: ${(props) => props.theme.breakpoints.m}) {
+      height: 5.5em;
+    }
+
+    @media (min-width: ${(props) => props.theme.breakpoints.l}) {
+      height: 7em;
+    }
+  }
 
   @media (min-width: ${(props) => props.theme.breakpoints.l}) {
     height: 90px;
@@ -135,7 +147,7 @@ const Content = styled('div')`
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.l}) {
-    left: 3em;
+    left: 5em;
     bottom: 2em;
   }
 `;
@@ -146,11 +158,11 @@ const Text = styled('div')`
   border-left: 1px solid ${(props) => props.theme.colors.textLight};
   position: relative;
   margin-left: .5em;
-  font-size: clamp(12px, 3vw, 18px);
+  font-size: clamp(10px, 3vw, 18px);
 
   @media (min-width: ${(props) => props.theme.breakpoints.m}) {
-    padding: 1em;
-    margin-left: 1em;
+    padding: 1.5em;
+    margin-left: 1.5em;
     border-width: 2px;
   }
 `;

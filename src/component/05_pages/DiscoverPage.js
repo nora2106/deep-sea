@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import React, { useRef} from "react";
 import Header from "../03_organisms/Header";
 import Grid from "../03_organisms/Grid";
+import DownButton from "../01_atoms/DownButton";
 
 const Container = styled('div')`
   background-color: ${(props) => props.theme.colors.bgDarker};

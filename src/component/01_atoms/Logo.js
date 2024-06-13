@@ -54,7 +54,7 @@ const Container = styled('div')`
 
 function Logo() {
     return (
-        <Container className='btn-hover'>
+        <Container className='btn-hover logo'>
             <Link to='/'>
                 <img alt='' src={logo}/>
                 <p>Abyssal Creatures</p>

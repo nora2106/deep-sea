@@ -100,6 +100,7 @@ function Grid(props) {
     const [showZ, setShowZ] = react.useState(false);
     const [showD, setShowD] = react.useState(false);
     const [showC, setShowC] = react.useState(false);
+    const [error, setError] = useState("");
 
     // get and sort initial data
     useEffect(() => {
@@ -121,6 +122,7 @@ function Grid(props) {
             if (response.ok) {
                 return response.json();
             }
+            setError("Something went wrong.");
             throw new Error('Something went wrong')
         })
             .then((responseJson) => {
@@ -136,10 +138,8 @@ function Grid(props) {
             .catch((error) => {
                 setLoad(false);
                 console.log(error);
-                document.getElementById('errorMessage').innerText = "Couldn't connect to database";
+                setError("Couldn't connect to database.");
             });
-        // setShowSort(true);
-        // return testData;
     }
 
     function outputToPage(data, pageVal) {
@@ -344,7 +344,7 @@ function Grid(props) {
                               copyright={creature.copyright}
                         />
                     ))
-                    : <p id='errorMessage'>No data found.</p>
+                    : <p id='errorMessage'>{error}</p>
                 }
             </GridContainer>
             <div className='bottom'>

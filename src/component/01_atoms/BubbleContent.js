@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {Link} from "react-router-dom";
-import img from "../../assets/img/bubble-bg1.png"
 
 const Card = styled('div')`
   height: 65%;
@@ -13,7 +12,7 @@ const Card = styled('div')`
   justify-content: center;
   z-index: 1;
   transition: transform .6s ease;
-  background-size: contain !important;
+  background-size: cover !important;
 
   &::before {
     border-radius: 100%;
@@ -133,7 +132,7 @@ const Button = styled('button')`
 
 function BubbleContent(props) {
     return (
-        <Card style={{ background: `url(${img})`, }}>
+        <Card style={{ background: `url(${props.img})`, }}>
             <h3>{props.text}</h3>
             <Link className='link' to={props.link}>
                 <Button className='view-btn btn-hover'>View

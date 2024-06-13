@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import React, {useEffect} from "react";
 import bg1 from '../../assets/img/bubble-bg1.png'
-import bg2 from '../../assets/img/bubble-bg2.png'
+import bg2 from '../../assets/img/bubble-bg3.jpg'
 import FactBox from "../01_atoms/FactBox";
 import Wave from "../01_atoms/Wave";
 import References from "../02_molecules/References";
@@ -10,6 +10,7 @@ import react from "react";
 import BubbleSmall from "../01_atoms/BubbleSmall";
 import AnimatedSquid from "../01_atoms/AnimatedSquid";
 import BubbleElement from "../02_molecules/BubbleElement";
+import DownButton from "../01_atoms/DownButton";
 
 const Container = styled('div')`
   background-color: ${(props) => props.theme.colors.bgDarker};
