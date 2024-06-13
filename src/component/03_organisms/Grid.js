@@ -122,8 +122,11 @@ function Grid(props) {
             if (response.ok) {
                 return response.json();
             }
-            setError("Something went wrong.");
-            throw new Error('Something went wrong')
+            else {
+                setError("Something went wrong.");
+                setLoad(false);
+                throw new Error('Something went wrong');
+            }
         })
             .then((responseJson) => {
                 setChecked(true);
@@ -139,6 +142,7 @@ function Grid(props) {
                 setLoad(false);
                 console.log(error);
                 setError("Couldn't connect to database.");
+                return [];
             });
     }
 

@@ -8,12 +8,18 @@ import DownButton from "../01_atoms/DownButton";
 const Wrapper = styled('div')`
   width: 100%;
   background-color: ${(props) => props.theme.colors.bgDarker};
-  padding-bottom: .5em;
+  padding-bottom: 1em;
+  max-height: 75vh;
 
   @media (min-width: ${(props) => props.theme.breakpoints.l}) {
     display: flex;
     justify-content: center;
     flex-direction: column;
+    max-height: 70vh;
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.xxl}) {
+    max-height: 80vh;
   }
 
   .interactive-angler {
@@ -28,35 +34,9 @@ const Wrapper = styled('div')`
       gap: 4em;
     }
 
-    @media (min-width: ${(props) => props.theme.breakpoints.l}) {
+    @media (min-width: ${(props) => props.theme.breakpoints.xl}) {
       margin-top: -5em;
     }
-  }
-`;
-
-const Container = styled('div')`
-  width: 100%;
-  height: 100%;
-  min-height: 78vh;
-  top: 2em;
-  //padding-top: 3em;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  align-items: center;
-  overflow: hidden;
-  max-width: 2048px;
-
-  @media (min-width: ${(props) => props.theme.breakpoints.m}) {
-    max-width: ${(props) => props.theme.breakpoints.xl};
-  }
-
-  @media (min-width: ${(props) => props.theme.breakpoints.l}) {
-    max-width: ${(props) => props.theme.breakpoints.xl}
-  }
-
-  @media (min-width: ${(props) => props.theme.breakpoints.xl}) {
-    max-width: 2048px;
   }
 `;
 
@@ -68,7 +48,7 @@ const Text = styled('div')`
   opacity: 1;
   height: 100%;
   width: 90%;
-  margin-top: 5%;
+  margin-top: 0;
   z-index: 1;
   align-items: center;
 
@@ -83,6 +63,10 @@ const Text = styled('div')`
   @media (min-width: ${(props) => props.theme.breakpoints.l}) {
     padding: 3em;
     margin-left: 5em;
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.xxl}) {
+    margin-top: 3em;
   }
 
   h1 {
@@ -259,8 +243,6 @@ const Text = styled('div')`
   }
 `;
 
-
-
 function Hero() {
     const [flashlight, setFlashlight] = useState(false);
 
@@ -276,7 +258,7 @@ function Hero() {
 
     return (
         <Wrapper>
-            <Container>
+            {/*<Container>*/}
                 <Text>
                     <div className='h1-first'>
                         <h1>Deep Sea</h1>
@@ -293,7 +275,7 @@ function Hero() {
                     <Anglerfish/>
                 </div>
                 <DownButton action={scrollDown}/>
-            </Container>
+            {/*</Container>*/}
         </Wrapper>
     );
 }

@@ -32,6 +32,10 @@ const Container = styled('div')`
       display: none;
     }
   }
+  
+  .to-top {
+    top: auto;
+  }
 `;
 
 export default function LandingPage(){

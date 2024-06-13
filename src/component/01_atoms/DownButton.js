@@ -8,6 +8,7 @@ const Container = styled('div')`
   position: absolute;
   left: 0;
   right: 0;
+  top: 80%;
   margin: auto;
   z-index: 2;
   transition: transform .6s, opacity .5s;
