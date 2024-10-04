@@ -104,6 +104,7 @@ routes.route("/creatures/search/:query").get(function (req, res) {
     let db_connect = dbo.getDb();
     // let query = {$text: {$search: req.params.query}};
     let query = req.params.query;
+    console.log(query);
     db_connect
         .collection("creatures")
         .find({"$or": [

@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import React, {useEffect, useState} from "react";
-import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 import TextArrow from "../01_atoms/TextArrow";
 import Anglerfish from "../01_atoms/Anglerfish";
 import DownButton from "../01_atoms/DownButton";
@@ -244,7 +243,7 @@ const Text = styled('div')`
 `;
 
 function Hero() {
-    const [flashlight, setFlashlight] = useState(false);
+    const [showText, setShowText] = useState(true);
 
     useEffect(() => {
         localStorage.setItem('flashlight', 'off');
@@ -254,11 +253,16 @@ function Hero() {
         localStorage.setItem('flashlight', 'on');
         const target = document.getElementById('section1')
         target.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+        setShowText(false);
+    }
+
+    function setFlashlight() {
+        setShowText(false);
+        localStorage.setItem('flashlight', 'on');
     }
 
     return (
         <Wrapper>
-            {/*<Container>*/}
                 <Text>
                     <div className='h1-first'>
                         <h1>Deep Sea</h1>
@@ -271,11 +275,10 @@ function Hero() {
                         this alien world on our planet.</h3>
                 </Text>
                 <div className='interactive-angler'>
-                    <TextArrow show={flashlight}/>
-                    <Anglerfish/>
+                    <TextArrow show={showText}/>
+                    <Anglerfish handle={setFlashlight}/>
                 </div>
                 <DownButton action={scrollDown}/>
-            {/*</Container>*/}
         </Wrapper>
     );
 }

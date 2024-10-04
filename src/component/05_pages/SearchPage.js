@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import React from "react";
+import React, { useRef} from "react";
 import Header from "../03_organisms/Header";
 import Grid from "../03_organisms/Grid";
 import {Link} from "react-router-dom";
@@ -48,6 +48,12 @@ const Text = styled('div')`
 export default function SearchPage(){
     const queryParams = new URLSearchParams(window.location.search)
     const search = queryParams.get("q");
+    const CursorHandlerRef = useRef();
+    console.log(search)
+
+    function callChild() {
+        CursorHandlerRef.current.update();
+    }
 
     return (
             <Container>
@@ -56,10 +62,10 @@ export default function SearchPage(){
                     <h2>Search results for: "{search}"</h2>
                 </Text>
                 <Link className='back-link btn-hover' to='/discover'>
-                    <FontAwesomeIcon icon="fa-solid fa-arrow-left" />
+                    <FontAwesomeIcon icon="fa-solid fa-arrow-left"/>
                     <h3>Back</h3>
                 </Link>
-                <Grid type='search' value={search} />
+                <Grid type='search' value={search} update={callChild}/>
             </Container>
     );
 }

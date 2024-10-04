@@ -8,6 +8,7 @@ import Pagination from "../01_atoms/Pagination"
 
 //todo replace with .env variable for production backend url before deploying
 const backendURL = 'https://abyssal-creatures-be.onrender.com';
+const devURL = 'http://localhost:3001'
 
 const Container = styled('div')`
   padding-top: 10em;
@@ -105,9 +106,9 @@ function Grid(props) {
     // get and sort initial data
     useEffect(() => {
         localStorage.setItem('flashlight', 'off');
-        let url = `${backendURL}/creatures/`;
+        let url = `${devURL}/creatures/`;
         if (props.type === "search") {
-            url = `${backendURL}/search/${props.value}`;
+            url = `${backendURL}/creatures/search/${props.value}`;
         }
         (async () => {
             let data = await getData(url);
