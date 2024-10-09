@@ -71,7 +71,7 @@ const Wave = styled('img')`
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.xl}) {
-    top: -40px;
+    top: -41px;
   }
 `;
 
@@ -112,12 +112,16 @@ function CardContent(props) {
     const [unit, setUnit] = useState('m');
 
     useEffect(() => {
-        //convert to cm if smaller than 1m
-        if(size < 1 && size > 0.01) {
+        if(size > 0.1 && size < 1) {
             setUnit('cm');
-            setSize(size * 100);
+            setSize((size * 100));
         }
-    }, [size]);
+        else if(size < 0.1) {
+            setUnit('cm');
+            setSize((Math.fround(size * 10).toFixed(1)));
+        }
+
+    }, [props.size]);
 
 
     return (

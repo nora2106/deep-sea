@@ -24,8 +24,8 @@ const Container = styled('div')`
     font-size: clamp(10px, 1vw, 12px);
     position: absolute;
     z-index: 3;
-    bottom: 2%;
-    right: 5%;
+    top: 2%;
+    right: 6%;
     font-weight: 500;
     text-align: center;
     min-width: 8em;
