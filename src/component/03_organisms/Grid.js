@@ -108,7 +108,7 @@ function Grid(props) {
         localStorage.setItem('flashlight', 'off');
         let url = `${devURL}/creatures/`;
         if (props.type === "search") {
-            url = `${backendURL}/creatures/search/${props.value}`;
+            url = `${devURL}/creatures/search/${props.value}`;
         }
         (async () => {
             let data = await getData(url);
