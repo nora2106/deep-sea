@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import {Link} from "react-router-dom";
+import {useEffect} from "react";
 
 const Container = styled('div')`
   z-index: 3;
@@ -19,6 +20,10 @@ const Container = styled('div')`
     &:hover {
       cursor: none;
     }
+  }
+  
+  .active h2 {
+    color: ${(props) => props.theme.colors.primAccent};
   }
 `;
 
@@ -49,6 +54,15 @@ const Item = styled('h2')`
 `;
 
 function MenuList() {
+    useEffect(()=> {
+        let menuItems = document.querySelector('.menu-items').children;
+        [].forEach.call(menuItems, function(item) {
+            item.classList.remove('active');
+            if(item.getAttribute("href") === window.location.pathname) {
+                item.classList.add('active');
+            }
+        });
+    }, [])
 
     return (
         <Container className='menu-items'>
