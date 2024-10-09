@@ -43,7 +43,7 @@ function CardImage(props) {
             {props.copyright ?
             <p>© {props.copyright}</p>
             : null }
-            <img src={'./img/species/' + props.url}/>
+            <img alt={props.name} src={'./img/species/' + props.url}/>
         </Container>
     );
 }

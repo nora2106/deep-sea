@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import Card from "../02_molecules/Card";
 import react, {useEffect, useState} from "react";
-import * as Realm from 'realm-web';
 import {Grow} from "@mui/material";
 import LoadingSpinner from "../01_atoms/LoadingSpinner";
 import SortSelect from "../01_atoms/SortSelect";
@@ -9,6 +8,7 @@ import Pagination from "../01_atoms/Pagination"
 
 //todo replace with .env variable for production backend url before deploying
 const backendURL = 'https://abyssal-creatures-be.onrender.com';
+const devURL = 'http://localhost:3001'
 
 const Container = styled('div')`
   padding-top: 10em;
@@ -93,7 +93,6 @@ function Grid(props) {
     const [checked, setChecked] = useState(false);
     const [creatures, setCreatures] = useState([]);
     const [shownCreatures, setShownCreatures] = useState([]);
-    const [count, setCount] = useState(0);
     const [page, setPage] = useState(1);
     const [pageLength, setPageLength] = useState(0);
     const [resetPagination, setReset] = useState("");
@@ -102,12 +101,14 @@ function Grid(props) {
     const [showZ, setShowZ] = react.useState(false);
     const [showD, setShowD] = react.useState(false);
     const [showC, setShowC] = react.useState(false);
+    const [error, setError] = useState("");
 
     // get and sort initial data
     useEffect(() => {
-        let url = `${backendURL}/creatures/`;
+        localStorage.setItem('flashlight', 'off');
+        let url = `${devURL}/creatures/`;
         if (props.type === "search") {
-            url = `${backendURL}/search/${props.value}`;
+            url = `${backendURL}/creatures/search/${props.value}`;
         }
         (async () => {
             let data = await getData(url);
@@ -122,7 +123,11 @@ function Grid(props) {
             if (response.ok) {
                 return response.json();
             }
-            throw new Error('Something went wrong')
+            else {
+                setError("Something went wrong.");
+                setLoad(false);
+                throw new Error('Something went wrong');
+            }
         })
             .then((responseJson) => {
                 setChecked(true);
@@ -137,10 +142,9 @@ function Grid(props) {
             .catch((error) => {
                 setLoad(false);
                 console.log(error);
-                document.getElementById('errorMessage').innerText = "Couldn't connect to database";
+                setError("Couldn't connect to database.");
+                return [];
             });
-        // setShowSort(true);
-        // return testData;
     }
 
     function outputToPage(data, pageVal) {
@@ -345,7 +349,7 @@ function Grid(props) {
                               copyright={creature.copyright}
                         />
                     ))
-                    : <p id='errorMessage'>No data found.</p>
+                    : <p id='errorMessage'>{error}</p>
                 }
             </GridContainer>
             <div className='bottom'>

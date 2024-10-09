@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import wave from '../../assets/svg/wave2.svg'
 
 const Container = styled('div')`
   z-index: 1;

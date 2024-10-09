@@ -82,7 +82,7 @@ function Search() {
     return (
         <Container>
                 <FontAwesomeIcon onClick={search} icon="search" className="icon btn-hover"/>
-            <SearchInput id='search' placeholder="Search Creatures" type="text"/>
+            <SearchInput id='search' placeholder="Search creatures" type="text"/>
         </Container>
     );
 }

@@ -1,4 +1,4 @@
-import {forwardRef, useEffect, useImperativeHandle, useRef, useState} from "react";
+import {forwardRef, useEffect, useImperativeHandle, useRef} from "react";
 import styled from "styled-components";
 import Cursor from "../../01_atoms/Cursor";
 
@@ -18,26 +18,30 @@ const CursorHandler = forwardRef(function(props, ref) {
         document.addEventListener("mousemove", onMouseMove);
         updateCursor();
         return () => document.removeEventListener("mousemove", onMouseMove);
-    }, []);
+    }, [updateCursor]);
 
     window.addEventListener(('resize'), () => {
-        if(localStorage.getItem('flashlight') !== 'on') {
-            setOverlayPosition();
-        }
+        setOverlayPosition();
     })
 
     function setOverlayPosition() {
-        let overlay = document.getElementById('overlay');
-        let light = document.getElementById('lightbulb').getBoundingClientRect();
-        overlay.style.setProperty('--cursorX', Math.round(light.right) + 'px')
-        overlay.style.setProperty('--cursorY', Math.round(light.top) + 'px')
-        overlay.style.setProperty('--opacity', '1');
-        overlay.style.background = 'transparent';
+        if(document.getElementById('lightbulb') != null) {
+            let overlay = document.getElementById('overlay');
+            let light = document.getElementById('lightbulb').getBoundingClientRect();
+            overlay.style.setProperty('--cursorX', Math.round(light.right) + 'px')
+            overlay.style.setProperty('--cursorY', Math.round(light.top) + 'px')
+            overlay.style.setProperty('--opacity', '1');
+            overlay.style.background = 'transparent';
+        }
     }
 
     function trackMouse(e) {
         let posX = 0;
         let posY = 0;
+        //@todo fix runtime error cannot read properties of undefined
+        if(e === undefined) {
+            console.log(e)
+        }
         posX = e.clientX || e.touches[0].clientX
         posY = e.clientY || e.touches[0].clientY
         if (document.getElementById('overlay') != null && localStorage.getItem('flashlight') === 'on') {

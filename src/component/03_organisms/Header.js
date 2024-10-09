@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import React, {useEffect, useImperativeHandle, useRef} from "react";
 import Menu from "../02_molecules/Menu";
 import CursorHandler from "../00_base/helpers/CursorHandler";
 import MobileMenu from "../02_molecules/MobileMenu";

@@ -432,7 +432,7 @@ const Container = styled('div')`
   }
 `;
 
-function Name() {
+function Name(props) {
     return (
         <Container>
                 <div className="anglerfish">
@@ -478,7 +478,7 @@ function Name() {
                     </div>
                     <div className="tail-fin"/>
                     <div className="tail-fin-end"/>
-                    <div onClick={() => localStorage.setItem('flashlight', 'on')} className="lightbulb" id="lightbulb"/>
+                    <div onClick={props.handle} className="lightbulb btn-hover" id="lightbulb"/>
                 </div>
         </Container>
     );

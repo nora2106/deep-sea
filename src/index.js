@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
@@ -13,7 +13,6 @@ import {library} from '@fortawesome/fontawesome-svg-core'
 import {fas} from '@fortawesome/free-solid-svg-icons'
 import {faTwitter, faFontAwesome} from '@fortawesome/free-brands-svg-icons'
 import {ModeContextProvider} from "./component/00_base/theme/ModeContext";
-import GlobalStyle from '././component/00_base/theme/globalStyles'
 
 library.add(fas, faTwitter, faFontAwesome)
 

@@ -1,8 +1,6 @@
 import BubbleOutline from "../01_atoms/BubbleOutline";
 import BubbleContent from "../01_atoms/BubbleContent";
-import {Zoom} from "@mui/material";
 import styled from "styled-components";
-import SliderItem from "../01_atoms/SliderItem";
 
 function Bubble(props) {
 

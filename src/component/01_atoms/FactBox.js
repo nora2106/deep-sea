@@ -1,9 +1,5 @@
 import styled from 'styled-components';
 import Lightbulb from '@mui/icons-material/LightbulbOutlined';
-import Collapse from '@mui/material/Collapse';
-import {useEffect, useState} from "react";
-import * as Realm from 'realm-web';
-const app = new Realm.App({ id: 'deep-sea-balmb' });
 
 const Container = styled('div')`
   position: absolute;

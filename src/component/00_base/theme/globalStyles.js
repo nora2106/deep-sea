@@ -6,6 +6,10 @@ const GlobalStyle = createGlobalStyle`
   body {
     cursor: none;
   }
+
+  *, html {
+    scroll-behavior: smooth !important;
+  }
 `;
 
 export default GlobalStyle;

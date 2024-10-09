@@ -29,7 +29,7 @@ const Text = styled('p')`
 
 function Name(props) {
     useEffect(() => {
-        if(props.show === true) {
+        if(!props.show) {
             document.querySelector('.flashlight-text').style.display = 'none';
         }
     }, [props.show]);

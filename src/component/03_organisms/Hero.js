@@ -1,19 +1,24 @@
 import styled from 'styled-components';
 import React, {useEffect, useState} from "react";
-import fish from '../../assets/img/Anglerfish1.png'
-import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 import TextArrow from "../01_atoms/TextArrow";
 import Anglerfish from "../01_atoms/Anglerfish";
+import DownButton from "../01_atoms/DownButton";
 
 const Wrapper = styled('div')`
   width: 100%;
   background-color: ${(props) => props.theme.colors.bgDarker};
-  padding-bottom: .5em;
+  padding-bottom: 1em;
+  max-height: 75vh;
 
   @media (min-width: ${(props) => props.theme.breakpoints.l}) {
     display: flex;
     justify-content: center;
     flex-direction: column;
+    max-height: 70vh;
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.xxl}) {
+    max-height: 80vh;
   }
 
   .interactive-angler {
@@ -28,35 +33,9 @@ const Wrapper = styled('div')`
       gap: 4em;
     }
 
-    @media (min-width: ${(props) => props.theme.breakpoints.l}) {
+    @media (min-width: ${(props) => props.theme.breakpoints.xl}) {
       margin-top: -5em;
     }
-  }
-`;
-
-const Container = styled('div')`
-  width: 100%;
-  height: 100%;
-  min-height: 78vh;
-  top: 2em;
-  padding-top: 3em;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  align-items: center;
-  overflow: hidden;
-  max-width: 2048px;
-
-  @media (min-width: ${(props) => props.theme.breakpoints.m}) {
-    max-width: ${(props) => props.theme.breakpoints.xl};
-  }
-
-  @media (min-width: ${(props) => props.theme.breakpoints.l}) {
-    max-width: ${(props) => props.theme.breakpoints.xl}
-  }
-
-  @media (min-width: ${(props) => props.theme.breakpoints.xl}) {
-    max-width: 2048px;
   }
 `;
 
@@ -68,7 +47,7 @@ const Text = styled('div')`
   opacity: 1;
   height: 100%;
   width: 90%;
-  margin-top: 5%;
+  margin-top: 0;
   z-index: 1;
   align-items: center;
 
@@ -83,6 +62,10 @@ const Text = styled('div')`
   @media (min-width: ${(props) => props.theme.breakpoints.l}) {
     padding: 3em;
     margin-left: 5em;
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.xxl}) {
+    margin-top: 3em;
   }
 
   h1 {
@@ -259,91 +242,8 @@ const Text = styled('div')`
   }
 `;
 
-const DownButton = styled('div')`
-  width: 4em;
-  height: 4em;
-  position: absolute;
-  bottom: 5em;
-  left: 0;
-  right: 0;
-  margin: auto;
-  z-index: 2;
-  transition: transform .6s, opacity .5s;
-
-  .circle-border {
-    width: 100%;
-    height: 100%;
-    border-radius: 100%;
-    background: none;
-    border: 0;
-    box-sizing: border-box;
-    position: relative;
-    vertical-align: middle;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    &:before,
-    &:after {
-      box-sizing: inherit;
-      content: '';
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      border-radius: 100%;
-    }
-
-    &:before {
-      border: 2px solid transparent;
-    }
-
-    &:after {
-      border: 0 solid transparent;
-    }
-
-    &:hover {
-      :before {
-        border-top-color: white;
-        border-right-color: white;
-        border-left-color: white;
-        transition: border-left-color 0.3s linear, border-top-color 0.3s linear 0.25s, border-right-color 0.3s linear 0.25s;
-      }
-
-      :after {
-        border-left: 2px solid white;
-        border-right-width: 2px;
-        border-top-width: 2px;
-        transform: rotate(180deg);
-        transition: transform 0.55s linear 0s, border-bottom-width 0s linear 0.5s, -webkit-transform 0.55s linear 0s;
-      }
-    }
-  }
-
-  .icon {
-    width: 90%;
-    height: 90%;
-    color: white;
-  }
-
-  @media (min-width: ${(props) => props.theme.breakpoints.m}) {
-    width: 5em;
-    height: 5em;
-    opacity: .8;
-    top: 90vh;
-
-    :hover {
-      transform: scale(1.15);
-      opacity: 1;
-    }
-  }
-
-  @media (min-width: ${(props) => props.theme.breakpoints.m}) {
-    top: 80vh;
-  }
-`;
-
 function Hero() {
-    const [flashlight, setFlashlight] = useState(false);
+    const [showText, setShowText] = useState(true);
 
     useEffect(() => {
         localStorage.setItem('flashlight', 'off');
@@ -353,11 +253,16 @@ function Hero() {
         localStorage.setItem('flashlight', 'on');
         const target = document.getElementById('section1')
         target.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+        setShowText(false);
+    }
+
+    function setFlashlight() {
+        setShowText(false);
+        localStorage.setItem('flashlight', 'on');
     }
 
     return (
         <Wrapper>
-            <Container>
                 <Text>
                     <div className='h1-first'>
                         <h1>Deep Sea</h1>
@@ -370,22 +275,12 @@ function Hero() {
                         this alien world on our planet.</h3>
                 </Text>
                 <div className='interactive-angler'>
-                    <TextArrow show={flashlight}/>
-                    <Anglerfish/>
+                    <TextArrow show={showText}/>
+                    <Anglerfish handle={setFlashlight}/>
                 </div>
-            </Container>
-            <DownButton className='btn-hover' onClick={scrollDown}>
-                <div className="circle-border">
-                    <KeyboardArrowDownRoundedIcon className='icon btn-hover'/>
-                </div>
-            </DownButton>
+                <DownButton action={scrollDown}/>
         </Wrapper>
     );
-
-    function activateFlashlight() {
-        setFlashlight(true);
-        localStorage.setItem('flashlight', 'on');
-    }
 }
 
 export default Hero;

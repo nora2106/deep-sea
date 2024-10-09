@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import Slider from './Slider';
-import {useEffect} from "react";
 
 const Container = styled('div')`
     position: relative;

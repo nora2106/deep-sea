@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import Search from "../01_atoms/Search";
 import Logo from "../01_atoms/Logo";
 import MenuList from "../01_atoms/MenuList";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import ModeButton from "../01_atoms/ModeButton";
 
 const Container = styled('div')`

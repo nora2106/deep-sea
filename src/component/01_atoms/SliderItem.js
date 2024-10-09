@@ -30,7 +30,7 @@ function SliderItem(props) {
 
     return (
         <Container className='bubble-img'  href={props.link} target='_blank'>
-                <img src={props.img}/>
+                <img alt='' src={props.img}/>
         </Container>
     );
 }

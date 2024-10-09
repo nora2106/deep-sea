@@ -3,7 +3,7 @@ import SliderItem from "../01_atoms/SliderItem";
 import logoMbari from '../../assets/img/mbari.jpeg';
 import logoPodcast from '../../assets/img/ds-podcast.jpeg';
 import logoOceanx from '../../assets/img/oceanx2.png';
-import react, {useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import BubbleOutline from "../01_atoms/BubbleOutline";
 import Zoom from '@mui/material/Zoom';
 
@@ -65,7 +65,6 @@ const Bubble = styled('div')`
 
 const Text = styled('p')`
   color: white;
-  //position: absolute;
   z-index: 3;
   margin: 1.5em auto;
 `;
@@ -115,7 +114,7 @@ function Slider(props) {
 
     useEffect(() => {
         showSlides(0);
-    }, []);
+    }, );
 
     function showSlides(index) {
         let count = slideIndex + index;
