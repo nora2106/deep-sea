@@ -106,7 +106,7 @@ function Grid(props) {
     // get and sort initial data
     useEffect(() => {
         localStorage.setItem('flashlight', 'off');
-        let url = `${devURL}/creatures/`;
+        let url = `${backendURL}/creatures/`;
         if (props.type === "search") {
             url = `${backendURL}/creatures/search/${props.value}`;
         }
