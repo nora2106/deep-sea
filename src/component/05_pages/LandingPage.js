@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import React from "react";
+import React, {useEffect} from "react";
 import Header from "../03_organisms/Header";
 import Hero from "../03_organisms/Hero";
 import PageContent from "../03_organisms/PageContent";
@@ -40,6 +40,15 @@ const Container = styled('div')`
 
 export default function LandingPage(){
     const {light} = React.useContext(ModeContext);
+    const [type, setType] = React.useState("to-top");
+    const scrollCallback = (show) => {
+        if(show) {
+            setType("to-top active");
+        }
+        else {
+            setType("to-top");
+        }
+    }
 
     function scrollTop() {
         const target = document.getElementById('page')
@@ -50,8 +59,8 @@ export default function LandingPage(){
                 <DarkOverlay id='overlay'/>
                 <Header show={true}/>
                 <Hero/>
-                <PageContent/>
-                <DownButton action={scrollTop} type='to-top'/>
+                <PageContent callback={scrollCallback}/>
+                <DownButton action={scrollTop} type={type}/>
             </Container>
     );
 

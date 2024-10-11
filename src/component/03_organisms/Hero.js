@@ -263,7 +263,8 @@ function Hero() {
 
     return (
         <Wrapper>
-                <Text>
+            <div className='show-scroll' id='top'/>
+                <Text >
                     <div className='h1-first'>
                         <h1>Deep Sea</h1>
                         <h1 className='line'>_</h1>

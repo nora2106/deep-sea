@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
-import React from "react";
+import React, {useEffect} from "react";
 
 const Container = styled('div')`
   width: 4em;
@@ -14,15 +14,24 @@ const Container = styled('div')`
   transition: transform .6s, opacity .5s;
   
   &.to-top {
+    opacity: 0;
+    transition: .2s ease-in opacity;
     position: fixed;
     left: auto;
     right: 0;
     bottom: 0;
     margin: 1em 2em;
     transform: scale(.8);
-    
     svg {
       transform: rotate(180deg);
+    }
+    
+    :not(.active):hover {
+      display: none;
+    }
+    
+    &.active {
+      opacity: 1;
     }
   }
 
@@ -56,7 +65,7 @@ const Container = styled('div')`
     &:after {
       border: 0 solid transparent;
     }
-
+    
     &:hover {
       :before {
         border-top-color: white;
@@ -99,6 +108,9 @@ const Container = styled('div')`
 `;
 
 function DownButton(props) {
+    useEffect(() => {
+        console.log(props.type)
+    }, []);
     return (
         <Container className={('btn-hover ' + props.type)} onClick={props.action}>
             <div className="circle-border">

@@ -254,10 +254,11 @@ const Section3 = styled(Section)`
 `;
 
 
-function PageContent() {
+function PageContent(props) {
     const [zoom, setZoom] = react.useState(false)
     const [zoom3, setZoom3] = react.useState(false)
 
+    //@todo relocate observer to helpers for reusablity?
     useEffect(() => {
         scrollTrigger('.show-scroll', {
             rootMargin: '-100px'
@@ -279,10 +280,15 @@ function PageContent() {
                 if (entry.isIntersecting) {
                     if (entry.target.id === 'bubble1') {
                         setZoom(true)
+                        props.callback(true);
+                    }
+                    else if(entry.target.id === 'top') {
+                        props.callback(false);
                     }
                     else if (entry.target.id === 'slider-bubble') {
                         setZoom3(true);
-                    } else {
+                    }
+                    else {
                         entry.target.classList.add('active')
                     }
                     observer.unobserve(entry.target)

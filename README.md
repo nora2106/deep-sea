@@ -8,6 +8,7 @@
 
 # Start Backend Server (only if running db locally)
 ### `cd backend`
+### `nvm use 14`
 ### `npm install`
 ### `npm run app`
 
