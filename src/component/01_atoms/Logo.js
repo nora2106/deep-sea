@@ -6,7 +6,7 @@ const Container = styled('div')`
   order: 1;
   height: 80%;
   padding: 3%;
-  z-index: 5;
+  z-index: 2;
   position: relative;
   width: fit-content;
   margin: 0 auto;
@@ -52,9 +52,9 @@ const Container = styled('div')`
   }
 `;
 
-function Logo() {
+function Logo(props) {
     return (
-        <Container className='btn-hover logo'>
+        <Container className={` btn-hover logo` + props.class}>
             <Link to='/'>
                 <img alt='' src={logo}/>
                 <p>Abyssal Creatures</p>

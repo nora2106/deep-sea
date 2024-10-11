@@ -10,6 +10,21 @@ const Button = styled('div')`
   transform: rotate(0deg);
   margin: 1em;
   position: fixed;
+  
+  &.menu-open {
+    .line-1 {
+      transform: rotate(45deg) translate(5px, -5px);
+    }
+    .line-2 {
+      transform: translateX(-35%);
+      opacity: 0;
+      transition: transform .4s, opacity .8s ease-out;
+    }
+    .line-3 {
+      transform: rotate(-45deg) translate(20px, -10px);
+      top: 0;
+    }
+  }
 `;
 
 const Line = styled('span')`
@@ -22,7 +37,7 @@ const Line = styled('span')`
   border-radius: 9px;
   opacity: 1;
   left: 0;
-  transition: .25s ease-in-out;
+  transition: 1s ease-in-out;
 `;
 
 
@@ -30,9 +45,9 @@ function MenuButton(props) {
 
     return (
         <Button onClick={props.action} className={props.open === true ? ` menu-open` : ` `}>
-            <Line/>
-            <Line/>
-            <Line/>
+            <Line className='line-1'/>
+            <Line className='line-2'/>
+            <Line className='line-3'/>
         </Button>
     );
 }

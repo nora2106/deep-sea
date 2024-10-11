@@ -14,6 +14,7 @@ const Container = styled('div')`
   width: 10em;
   margin-left: 4em;
   height: 2.5em;
+  transition: width, margin .8s;
   
   .icon {
     color: white;
@@ -29,7 +30,11 @@ const Container = styled('div')`
     }
   }
 
-  @media(min-width: ${(props) => props.theme.breakpoints.m}){
+  @media(min-width: ${(props) => props.theme.breakpoints.s}){
+    width: 12em;
+  }
+
+  @media(min-width: ${(props) => props.theme.breakpoints.l}){
     transition: opacity .5s;
     flex-direction: row-reverse;
     height: 35px;
@@ -53,7 +58,7 @@ const SearchInput = styled('input')`
   color: white;
   border: none;
 
-  @media(min-width: ${(props) => props.theme.breakpoints.m}){
+  @media(min-width: ${(props) => props.theme.breakpoints.l}){
     height: 100%;
     width: 85%;
   }
