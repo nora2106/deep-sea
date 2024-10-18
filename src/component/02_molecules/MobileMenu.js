@@ -161,7 +161,6 @@ const MainMenu = styled('div')`
 
   .logo {
     &.mobile {
-      pointer-events: none;
       position: fixed;
       height: 6.5em;
       left: 0;
@@ -227,7 +226,7 @@ function Menu(props) {
                 <Logo class=' mobile'/>
                 <div className='mobile-menu__items'>
                     <MenuList/>
-                    <Search/>
+                    <Search id='mobileSearch'/>
                 </div>
             </MainMenu>
         </Container>

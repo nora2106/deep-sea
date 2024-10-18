@@ -65,10 +65,10 @@ const SearchInput = styled('input')`
 `;
 
 
-function Search() {
+function Search(props) {
     useEffect(() => {
-        const input = document.querySelector('#search');
-        input.addEventListener("keypress", function(event) {
+        const input = document.getElementById(props.id);
+        input.addEventListener("keydown", function(event) {
             if (event.key === "Enter") {
                 event.preventDefault();
                 search();
@@ -87,7 +87,7 @@ function Search() {
     return (
         <Container>
                 <FontAwesomeIcon onClick={search} icon="search" className="icon btn-hover"/>
-            <SearchInput id='search' placeholder="Search creatures" type="text"/>
+            <SearchInput id={props.id} placeholder="Search creatures" type="text"/>
         </Container>
     );
 }

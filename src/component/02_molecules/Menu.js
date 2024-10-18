@@ -71,7 +71,7 @@ function Menu(props) {
                 {props.showMode ?
                     <ModeButton/>
                     : null }
-                <Search />
+                <Search id='search'/>
             </MainMenu>
 
         </Container>

@@ -13,7 +13,9 @@ import {library} from '@fortawesome/fontawesome-svg-core'
 import {fas} from '@fortawesome/free-solid-svg-icons'
 import {faTwitter, faFontAwesome} from '@fortawesome/free-brands-svg-icons'
 import {ModeContextProvider} from "./component/00_base/theme/ModeContext";
-
+import { createRoot } from 'react-dom/client';
+const container = document.getElementById('root');
+const root = createRoot(container);
 library.add(fas, faTwitter, faFontAwesome)
 
 const theme = {
@@ -22,7 +24,7 @@ const theme = {
     animations
 }
 
-ReactDOM.render(
+root.render(
     <ModeContextProvider>
         <ThemeProvider theme={theme}>
                 <BrowserRouter forceRefresh={true}>
@@ -35,8 +37,6 @@ ReactDOM.render(
                 </BrowserRouter>
         </ThemeProvider>
     </ModeContextProvider>,
-
-    document.getElementById('root')
 );
 
 

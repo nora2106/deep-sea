@@ -18,7 +18,7 @@ const Button = styled('div')`
     .line-2 {
       transform: translateX(-35%);
       opacity: 0;
-      transition: transform .4s, opacity .8s ease-out;
+      transition: transform .3s, opacity .7s ease-out;
     }
     .line-3 {
       transform: rotate(-45deg) translate(20px, -10px);
@@ -37,7 +37,7 @@ const Line = styled('span')`
   border-radius: 9px;
   opacity: 1;
   left: 0;
-  transition: 1s ease-in-out;
+  transition: .8s ease-in-out;
 `;
 
 

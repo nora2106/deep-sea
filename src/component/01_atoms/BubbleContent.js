@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {Link} from "react-router-dom";
+import {useEffect} from "react";
 
 const Card = styled('div')`
   height: 65%;
@@ -25,13 +26,6 @@ const Card = styled('div')`
     background-color: rgba(0,0,0,0.25);
     opacity: 0;
     transition: opacity .6s ease;
-  }
-
-  :hover {
-    transform: scale(1.12);
-    &::before {
-      opacity: 1;
-    }
   }
 
   .icon {
@@ -79,28 +73,36 @@ const Card = styled('div')`
     position: absolute;
     pointer-events: none;
   }
-  
-  :hover .link {
-    pointer-events: all;
-  }
 
-  :hover .bubble-img {
-    transform: scale(1.14);
-    opacity: .7;
-  }
+  &.on-hover {
+    transform: scale(1.12);
+    
+    &::before {
+      opacity: 1;
+    }
 
-  :hover h3 {
-    opacity: 0;
-    animation: disappear 1s forwards;
-  }
+    .link {
+      pointer-events: all;
+    }
 
-  :hover .view-btn {
-    opacity: 1;
-  }
+    .bubble-img {
+      transform: scale(1.14);
+      opacity: .7;
+    }
 
-  :hover .icon {
-    opacity: 0;
-    transition: opacity .4s ease;
+    h3 {
+      opacity: 0;
+      animation: disappear 1s forwards;
+    }
+
+    .view-btn {
+      opacity: 1;
+    }
+
+    .icon {
+      opacity: 0;
+      transition: opacity .4s ease;
+    }
   }
 `;
 
@@ -119,6 +121,7 @@ const Button = styled('button')`
   font-weight: 500;
   text-align: center;
   transition: opacity .8s ease, transform .4s ease, background-color .3s ease;
+  pointer-events: none;
 
   .icon-btn {
     width: 30%;
@@ -131,8 +134,26 @@ const Button = styled('button')`
 `;
 
 function BubbleContent(props) {
+    useEffect(() => {
+        document.querySelectorAll('.bubble-card').forEach((card) => {
+            // card.addEventListener('mouseover', () => {
+            //     card.classList.add('on-hover');
+            // })
+            // card.addEventListener('mouseleave', () => {
+            //     card.classList.remove('on-hover');
+            // })
+            card.addEventListener('touchstart', () => {
+                console.log('touch');
+                card.classList.add('on-hover');
+            }, {passive: true})
+            card.addEventListener('touchmove', () => {
+                //card.classList.remove('on-hover');
+            }, {passive: true})
+        })
+    }, []);
+
     return (
-        <Card style={{ background: `url(${props.img})`, }}>
+        <Card className='bubble-card' style={{ background: `url(${props.img})`, }}>
             <h3>{props.text}</h3>
             <Link className='link' to={props.link}>
                 <Button className='view-btn btn-hover'>View
