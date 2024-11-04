@@ -27,7 +27,7 @@ const WaveAnim = styled('div')`
 </svg>');
   background-size: 300px auto;
   background-position-y: bottom;
-  position: absolute;
+  position: relative;
   width: 100vw;
   height: 150px;
   z-index: 1;

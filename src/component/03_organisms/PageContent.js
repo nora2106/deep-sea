@@ -18,16 +18,22 @@ const Container = styled('div')`
   overflow: hidden;
   width: 100%;
   height: auto;
-
+  
+  .wave {
+    position: relative;
+    bottom: -3em;
+  }
+  
   .wave-dark {
-    top: 74em;
-
-    @media (min-width: ${(props) => props.theme.breakpoints.l}) {
-      top: 82em;
-    }
+    background-color: ${(props) => props.theme.colors.bgDark};
+  }
+  
+  .wave-wrapper {
+    background-color: ${(props) => props.theme.colors.bgDark};
   }
 
   .wave-footer {
+    position: absolute;
     bottom: 0;
   }
 
@@ -60,7 +66,7 @@ const Container = styled('div')`
 `;
 
 const Section = styled('div')`
-  margin-top: 150px;
+  //margin-top: 150px;
   width: 100%;
   height: 60em;
   padding-top: 8em;
@@ -205,7 +211,6 @@ const Section = styled('div')`
 `;
 
 const Section2 = styled(Section)`
-  margin-top: 100px;
   background-color: ${(props) => props.theme.colors.bgDarker};
   height: 20em;
   width: 100%;
@@ -313,7 +318,9 @@ function PageContent(props) {
                     <BubbleSmall/>
                 </div>
             </Section>
-            <Wave class='wave-dark'/>
+            <div className='wave-wrapper'>
+                <Wave class='wave-dark'/>
+            </div>
             <Section2 id='section2'>
                 <AnimatedSquid/>
             </Section2>

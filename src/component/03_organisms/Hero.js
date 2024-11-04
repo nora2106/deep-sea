@@ -8,17 +8,18 @@ const Wrapper = styled('div')`
   width: 100%;
   background-color: ${(props) => props.theme.colors.bgDarker};
   padding-bottom: 1em;
-  max-height: 75vh;
+  max-height: 70vh;
 
   @media (min-width: ${(props) => props.theme.breakpoints.l}) {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    max-height: 70vh;
+    max-height: none;
+    //max-height: 70vh;
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.xxl}) {
-    max-height: 80vh;
+    //max-height: 80vh;
   }
 
   .interactive-angler {

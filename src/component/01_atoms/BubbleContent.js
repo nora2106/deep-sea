@@ -136,18 +136,18 @@ const Button = styled('button')`
 function BubbleContent(props) {
     useEffect(() => {
         document.querySelectorAll('.bubble-card').forEach((card) => {
-            // card.addEventListener('mouseover', () => {
-            //     card.classList.add('on-hover');
-            // })
-            // card.addEventListener('mouseleave', () => {
-            //     card.classList.remove('on-hover');
-            // })
+            card.addEventListener('mouseover', () => {
+                card.classList.add('on-hover');
+            })
+            card.addEventListener('mouseleave', () => {
+                card.classList.remove('on-hover');
+            })
             card.addEventListener('touchstart', () => {
-                console.log('touch');
+                //console.log('touch');
                 card.classList.add('on-hover');
             }, {passive: true})
             card.addEventListener('touchmove', () => {
-                //card.classList.remove('on-hover');
+                card.classList.remove('on-hover');
             }, {passive: true})
         })
     }, []);
